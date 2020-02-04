@@ -14,5 +14,7 @@ parserOptions:
 plugins: ['react']
 
 settings:
-  react:
+  react: {
     version: '16'
+  }
+

@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Main = (props) => {
-  // eslint-disable-next-line react/prop-types
   const {countPlaces} = props;
+  const {listOffers} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -117,7 +118,7 @@ const Main = (props) => {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">Beautiful &amp; luxurious apartment at great location</a>
+                      <a href="#">{listOffers[0]}</a>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
@@ -149,7 +150,7 @@ const Main = (props) => {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">Wood and stone place</a>
+                      <a href="#">{listOffers[1]}</a>
                     </h2>
                     <p className="place-card__type">Private room</p>
                   </div>
@@ -181,7 +182,7 @@ const Main = (props) => {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">Canal View Prinsengracht</a>
+                      <a href="#">{listOffers[2]}</a>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
@@ -216,7 +217,7 @@ const Main = (props) => {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">Nice, cozy, warm big bed apartment</a>
+                      <a href="#">{listOffers[3]}</a>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
@@ -263,6 +264,11 @@ const Main = (props) => {
       </main>
     </div>
   );
+};
+
+Main.propTypes = {
+  countPlaces: PropTypes.number.isRequired,
+  listOffers: PropTypes.arrayOf(PropTypes.string.isRequired),
 };
 
 export default Main;

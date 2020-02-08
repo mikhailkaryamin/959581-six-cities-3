@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Main = (props) => {
-  const {countPlaces} = props;
-  const {listOffers} = props;
+  const {countPlaces, listOffers, onHeadlineButtonClick} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -117,8 +116,13 @@ const Main = (props) => {
                         <span className="visually-hidden">Rating</span>
                       </div>
                     </div>
-                    <h2 className="place-card__name">
-                      <a href="#">{listOffers[0]}</a>
+                    <h2
+                      className="place-card__name"
+                      onClick={onHeadlineButtonClick}
+                    >
+                      <a href="#" >
+                        {listOffers[0]}
+                      </a>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
@@ -149,8 +153,13 @@ const Main = (props) => {
                         <span className="visually-hidden">Rating</span>
                       </div>
                     </div>
-                    <h2 className="place-card__name">
-                      <a href="#">{listOffers[1]}</a>
+                    <h2
+                      className="place-card__name"
+                      onClick={onHeadlineButtonClick}
+                    >
+                      <a href="#" >
+                        {listOffers[1]}
+                      </a>
                     </h2>
                     <p className="place-card__type">Private room</p>
                   </div>
@@ -181,8 +190,13 @@ const Main = (props) => {
                         <span className="visually-hidden">Rating</span>
                       </div>
                     </div>
-                    <h2 className="place-card__name">
-                      <a href="#">{listOffers[2]}</a>
+                    <h2
+                      className="place-card__name"
+                      onClick={onHeadlineButtonClick}
+                    >
+                      <a href="#" >
+                        {listOffers[2]}
+                      </a>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
@@ -216,8 +230,13 @@ const Main = (props) => {
                         <span className="visually-hidden">Rating</span>
                       </div>
                     </div>
-                    <h2 className="place-card__name">
-                      <a href="#">{listOffers[3]}</a>
+                    <h2
+                      className="place-card__name"
+                      onClick={onHeadlineButtonClick}
+                    >
+                      <a href="#" >
+                        {listOffers[3]}
+                      </a>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
@@ -248,8 +267,13 @@ const Main = (props) => {
                         <span className="visually-hidden">Rating</span>
                       </div>
                     </div>
-                    <h2 className="place-card__name">
-                      <a href="#">Wood and stone place</a>
+                    <h2
+                      className="place-card__name"
+                      onClick={onHeadlineButtonClick}
+                    >
+                      <a href="#">
+                        {listOffers[1]}
+                      </a>
                     </h2>
                     <p className="place-card__type">Private room</p>
                   </div>
@@ -269,6 +293,7 @@ const Main = (props) => {
 Main.propTypes = {
   countPlaces: PropTypes.number.isRequired,
   listOffers: PropTypes.arrayOf(PropTypes.string.isRequired),
+  onHeadlineButtonClick: PropTypes.func.isRequired,
 };
 
 export default Main;

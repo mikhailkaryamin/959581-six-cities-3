@@ -1,21 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
-
-const Settings = {
-  countPlaces: 312,
-  listOffers: [
-    `Beautiful &amp; luxurious apartment at great location`,
-    `Wood and stone place`,
-    `Canal View Prinsengracht`,
-    `Nice, cozy, warm big bed apartment`,
-  ]
-};
+import mockData from "./mockData.js";
 
 ReactDOM.render(
     <App
-      countPlaces = {Settings.countPlaces}
-      listOffers = {Settings.listOffers}
+      countPlaces = {mockData.countPlaces}
+      listOffers = {mockData.listOffers}
     />,
     document.querySelector(`#root`)
 );

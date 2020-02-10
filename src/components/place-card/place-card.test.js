@@ -1,17 +1,17 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main.jsx";
-import MockData from "../../mockData.js";
+import PlaceCard from "./place-card.jsx";
 
+const TEST_DESCRIPTION = `Test text`;
 const TEST_HEADLINE_CLICK = () => {};
 
-it(`renders correctly`, () => {
+it(`Render place card`, () => {
   const tree = renderer
-    .create(<Main
-      available={MockData.AVAILABLE}
-      descriptions={MockData.DESCRIPTIONS}
+    .create(<PlaceCard
+      description={TEST_DESCRIPTION}
       onHeadlineButtonClick={TEST_HEADLINE_CLICK}
     />)
     .toJSON();
+
   expect(tree).toMatchSnapshot();
 });

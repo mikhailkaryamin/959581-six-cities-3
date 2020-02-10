@@ -1,6 +1,6 @@
-const mockData = {
-  countPlaces: 312,
-  listOffers: [
+const MockData = {
+  AVAILABLE: 5,
+  DESCRIPTIONS: [
     `Beautiful &amp; luxurious apartment at great location`,
     `Wood and stone place`,
     `Canal View Prinsengracht`,
@@ -8,4 +8,4 @@ const mockData = {
   ]
 };
 
-export default mockData;
+export default MockData;

@@ -2,21 +2,26 @@ import React from "react";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 
+const headlineButtonHandler = () => {};
+
 const App = (props) => {
-  const {countPlaces} = props;
-  const {listOffers} = props;
+  const {available} = props;
+  const {descriptions} = props;
 
   return (
     <Main
-      countPlaces = {countPlaces}
-      listOffers = {listOffers}
+      available = {available}
+      descriptions = {descriptions}
+      onHeadlineButtonClick={headlineButtonHandler}
     />
   );
 };
 
 App.propTypes = {
-  countPlaces: PropTypes.number.isRequired,
-  listOffers: PropTypes.arrayOf(PropTypes.string.isRequired),
+  available: PropTypes.number.isRequired,
+  descriptions: PropTypes.arrayOf(
+      PropTypes.string
+  ).isRequired,
 };
 
 

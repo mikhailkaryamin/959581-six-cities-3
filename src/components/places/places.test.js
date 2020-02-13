@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main.jsx";
+import Places from "./places.jsx";
 
 const offers = [
   {
@@ -40,19 +40,19 @@ const offers = [
     mark: ``
   }
 ];
-
 const handleHeaderOfferClick = () => {};
 
-it(`Main render correctly`, () => {
+it(`Render places correctly`, () => {
   const tree = renderer
-    .create(<Main
+    .create(<Places
       offers={
         offers
       }
       handleHeaderOfferClick={
         handleHeaderOfferClick
       }
-    />)
-    .toJSON();
+    />
+    ).toJSON();
+
   expect(tree).toMatchSnapshot();
 });

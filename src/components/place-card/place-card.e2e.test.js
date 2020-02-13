@@ -3,26 +3,51 @@ import Adapter from "enzyme-adapter-react-16";
 import Enzyme, {shallow} from "enzyme";
 import PlaceCard from "./place-card.jsx";
 
-const TEST_DESCRIPTION = `Test text`;
+const offer = {
+  id: 123,
+  src: `img/apartment-01.jpg`,
+  price: 120,
+  rating: 4,
+  name: `Beautiful &amp; luxurious apartment at great location`,
+  type: `Apartment`,
+  mark: `Premium`
+};
+
+const onMouseLeave = () => {};
 
 Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`Should headline button click`, () => {
-  const onHeadlineButtonClick = jest.fn();
+it(`Should headline button click and send state offer`, () => {
+  const handleHeaderOfferClick = jest.fn();
+  const onMouseEnter = jest.fn();
 
   const placeCard = shallow(
       <PlaceCard
-        description={TEST_DESCRIPTION}
-        onHeadlineButtonClick={onHeadlineButtonClick}
+        offer={
+          offer
+        }
+        handleHeaderOfferClick={
+          handleHeaderOfferClick
+        }
+        onMouseEnter={
+          onMouseEnter
+        }
+        onMouseLeave={
+          onMouseLeave
+        }
       />
   );
 
-  const headlineButton = placeCard.find(`.place-card__name`);
+  const placeCardElement = placeCard.find(`.place-card`);
+  const headerOfferElement = placeCard.find(`.place-card__name`);
 
-  headlineButton.props().onClick();
+  headerOfferElement.props().onClick();
+  placeCardElement.simulate(`mouseenter`);
 
-  expect(onHeadlineButtonClick.mock.calls.length).toBe(1);
+  expect(handleHeaderOfferClick.mock.calls.length).toBe(1);
+  expect(onMouseEnter.mock.calls[0][0]).toMatchObject(offer);
+  expect(onMouseEnter.mock.calls.length).toBe(1);
 });
 

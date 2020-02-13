@@ -2,14 +2,34 @@ import React from "react";
 import renderer from "react-test-renderer";
 import PlaceCard from "./place-card.jsx";
 
-const TEST_DESCRIPTION = `Test text`;
-const TEST_HEADLINE_CLICK = () => {};
+const offer = {
+  id: 123,
+  src: `img/apartment-01.jpg`,
+  price: 120,
+  rating: 4,
+  name: `Beautiful &amp; luxurious apartment at great location`,
+  type: `Apartment`,
+  mark: `Premium`
+};
+const handleHeaderOfferClick = () => {};
+const onMouseEnter = () => {};
+const onMouseLeave = () => {};
 
 it(`Render place card`, () => {
   const tree = renderer
     .create(<PlaceCard
-      description={TEST_DESCRIPTION}
-      onHeadlineButtonClick={TEST_HEADLINE_CLICK}
+      offer={
+        offer
+      }
+      handleHeaderOfferClick={
+        handleHeaderOfferClick
+      }
+      onMouseEnter={
+        onMouseEnter
+      }
+      onMouseLeave={
+        onMouseLeave
+      }
     />)
     .toJSON();
 

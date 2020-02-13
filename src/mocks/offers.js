@@ -1,8 +1,4 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import Main from "./main.jsx";
-
-const offers = [
+export default [
   {
     id: 123,
     src: `img/apartment-01.jpg`,
@@ -40,19 +36,3 @@ const offers = [
     mark: ``
   }
 ];
-
-const handleHeaderOfferClick = () => {};
-
-it(`Main render correctly`, () => {
-  const tree = renderer
-    .create(<Main
-      offers={
-        offers
-      }
-      handleHeaderOfferClick={
-        handleHeaderOfferClick
-      }
-    />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});

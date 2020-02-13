@@ -1,27 +1,43 @@
-import React from "react";
+import React,
+{
+  PureComponent
+} from "react";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 
-const headlineButtonHandler = () => {};
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
 
-const App = (props) => {
-  const {available} = props;
-  const {descriptions} = props;
+  render() {
+    const {
+      offers,
+      handleHeaderOfferClick
+    } = this.props;
 
-  return (
-    <Main
-      available = {available}
-      descriptions = {descriptions}
-      onHeadlineButtonClick={headlineButtonHandler}
-    />
-  );
-};
+    return (
+      <Main
+        offers = {offers}
+        handleHeaderOfferClick={handleHeaderOfferClick}
+      />
+    );
+  }
+}
 
 App.propTypes = {
-  available: PropTypes.number.isRequired,
-  descriptions: PropTypes.arrayOf(
-      PropTypes.string
+  offers: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        src: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        rating: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+        mark: PropTypes.string,
+      })
   ).isRequired,
+  handleHeaderOfferClick: PropTypes.func.isRequired,
 };
 
 

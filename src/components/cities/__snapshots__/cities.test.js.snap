@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render citites 1`] = `
+exports[`Render citites correctly 1`] = `
 <div
   className="cities"
 >
@@ -18,7 +18,7 @@ exports[`Render citites 1`] = `
       <b
         className="places__found"
       >
-        5
+        4
          places to stay in Amsterdam
       </b>
       <form
@@ -80,6 +80,8 @@ exports[`Render citites 1`] = `
       >
         <article
           className="cities__place-card place-card"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="place-card__mark"
@@ -115,7 +117,8 @@ exports[`Render citites 1`] = `
                 <b
                   className="place-card__price-value"
                 >
-                  €120
+                  €
+                  120
                 </b>
                 <span
                   className="place-card__price-text"
@@ -165,7 +168,6 @@ exports[`Render citites 1`] = `
             </div>
             <h2
               className="place-card__name"
-              onClick={[Function]}
             >
               <a
                 href="#"
@@ -182,14 +184,10 @@ exports[`Render citites 1`] = `
         </article>
         <article
           className="cities__place-card place-card"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
-          <div
-            className="place-card__mark"
-          >
-            <span>
-              Premium
-            </span>
-          </div>
+          
           <div
             className="cities__image-wrapper place-card__image-wrapper"
           >
@@ -200,7 +198,7 @@ exports[`Render citites 1`] = `
                 alt="Place image"
                 className="place-card__image"
                 height="200"
-                src="img/apartment-01.jpg"
+                src="img/room.jpg"
                 width="260"
               />
             </a>
@@ -217,7 +215,8 @@ exports[`Render citites 1`] = `
                 <b
                   className="place-card__price-value"
                 >
-                  €120
+                  €
+                  80
                 </b>
                 <span
                   className="place-card__price-text"
@@ -267,7 +266,6 @@ exports[`Render citites 1`] = `
             </div>
             <h2
               className="place-card__name"
-              onClick={[Function]}
             >
               <a
                 href="#"
@@ -278,12 +276,14 @@ exports[`Render citites 1`] = `
             <p
               className="place-card__type"
             >
-              Apartment
+              Private room
             </p>
           </div>
         </article>
         <article
           className="cities__place-card place-card"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="place-card__mark"
@@ -302,7 +302,7 @@ exports[`Render citites 1`] = `
                 alt="Place image"
                 className="place-card__image"
                 height="200"
-                src="img/apartment-01.jpg"
+                src="img/apartment-02.jpg"
                 width="260"
               />
             </a>
@@ -319,7 +319,8 @@ exports[`Render citites 1`] = `
                 <b
                   className="place-card__price-value"
                 >
-                  €120
+                  €
+                  132
                 </b>
                 <span
                   className="place-card__price-text"
@@ -356,7 +357,7 @@ exports[`Render citites 1`] = `
                 <span
                   style={
                     Object {
-                      "width": "80%",
+                      "width": "100%",
                     }
                   }
                 />
@@ -369,7 +370,6 @@ exports[`Render citites 1`] = `
             </div>
             <h2
               className="place-card__name"
-              onClick={[Function]}
             >
               <a
                 href="#"
@@ -386,14 +386,10 @@ exports[`Render citites 1`] = `
         </article>
         <article
           className="cities__place-card place-card"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
-          <div
-            className="place-card__mark"
-          >
-            <span>
-              Premium
-            </span>
-          </div>
+          
           <div
             className="cities__image-wrapper place-card__image-wrapper"
           >
@@ -404,7 +400,7 @@ exports[`Render citites 1`] = `
                 alt="Place image"
                 className="place-card__image"
                 height="200"
-                src="img/apartment-01.jpg"
+                src="img/apartment-03.jpg"
                 width="260"
               />
             </a>
@@ -421,7 +417,8 @@ exports[`Render citites 1`] = `
                 <b
                   className="place-card__price-value"
                 >
-                  €120
+                  €
+                  115
                 </b>
                 <span
                   className="place-card__price-text"
@@ -471,7 +468,6 @@ exports[`Render citites 1`] = `
             </div>
             <h2
               className="place-card__name"
-              onClick={[Function]}
             >
               <a
                 href="#"

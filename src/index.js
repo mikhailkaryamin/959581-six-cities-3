@@ -1,12 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
-import MockData from "./mockData.js";
+import offers from "./mocks/offers.js";
+
+const handleHeaderOfferClick = () => {};
 
 ReactDOM.render(
     <App
-      available = {MockData.AVAILABLE}
-      descriptions = {MockData.DESCRIPTIONS}
+      offers = {
+        offers
+      }
+      handleHeaderOfferClick={
+        handleHeaderOfferClick
+      }
     />,
     document.querySelector(`#root`)
 );

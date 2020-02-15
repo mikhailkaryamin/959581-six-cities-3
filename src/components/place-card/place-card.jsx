@@ -49,7 +49,7 @@ class PlaceCard extends PureComponent {
         }
         <div className="cities__image-wrapper place-card__image-wrapper">
           <a href="#">
-            <img className="place-card__image" src={src} width="260" height="200" alt="Place image" />
+            <img className="place-card__image" src={src[0]} width="260" height="200" alt="Place image" />
           </a>
         </div>
         <div className="place-card__info">
@@ -75,7 +75,9 @@ class PlaceCard extends PureComponent {
           </div>
           <h2
             className="place-card__name"
-            onClick={handleHeaderOfferClick}
+            onClick={() => {
+              handleHeaderOfferClick(offer);
+            }}
           >
             <a href="#" >
               {name}
@@ -93,10 +95,13 @@ class PlaceCard extends PureComponent {
 PlaceCard.propTypes = {
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    src: PropTypes.string.isRequired,
+    src: PropTypes.arrayOf(
+        PropTypes.string.isRequired
+    ).isRequired,
     price: PropTypes.number.isRequired,
     rating: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     mark: PropTypes.string,
   }),

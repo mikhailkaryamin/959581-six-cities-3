@@ -247,7 +247,7 @@ exports[`App render correctly 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="img/apartment-01.jpg"
+                    src="img/apartment-03.jpg"
                     width="260"
                   />
                 </a>
@@ -315,6 +315,7 @@ exports[`App render correctly 1`] = `
                 </div>
                 <h2
                   className="place-card__name"
+                  onClick={[Function]}
                 >
                   <a
                     href="#"
@@ -345,7 +346,7 @@ exports[`App render correctly 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="img/room.jpg"
+                    src="img/apartment-02.jpg"
                     width="260"
                   />
                 </a>
@@ -413,6 +414,7 @@ exports[`App render correctly 1`] = `
                 </div>
                 <h2
                   className="place-card__name"
+                  onClick={[Function]}
                 >
                   <a
                     href="#"
@@ -449,7 +451,7 @@ exports[`App render correctly 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="img/apartment-02.jpg"
+                    src="img/apartment-01.jpg"
                     width="260"
                   />
                 </a>
@@ -517,6 +519,7 @@ exports[`App render correctly 1`] = `
                 </div>
                 <h2
                   className="place-card__name"
+                  onClick={[Function]}
                 >
                   <a
                     href="#"
@@ -527,7 +530,7 @@ exports[`App render correctly 1`] = `
                 <p
                   className="place-card__type"
                 >
-                  Apartment
+                  Room
                 </p>
               </div>
             </article>
@@ -615,6 +618,7 @@ exports[`App render correctly 1`] = `
                 </div>
                 <h2
                   className="place-card__name"
+                  onClick={[Function]}
                 >
                   <a
                     href="#"
@@ -625,7 +629,7 @@ exports[`App render correctly 1`] = `
                 <p
                   className="place-card__type"
                 >
-                  Apartment
+                  Hotel
                 </p>
               </div>
             </article>

@@ -41,7 +41,7 @@ class Places extends PureComponent {
       <PlaceCard
         key={`${offer.id}`}
         offer={offer}
-        onHeadlineButtonClick={handleHeaderOfferClick}
+        handleHeaderOfferClick={handleHeaderOfferClick}
         onMouseEnter={this._setActiveCard}
         onMouseLeave={this._removeActiveCard}
       />);
@@ -83,10 +83,13 @@ Places.propTypes = {
   offers: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
-        src: PropTypes.string.isRequired,
+        src: PropTypes.arrayOf(
+            PropTypes.string.isRequired
+        ).isRequired,
         price: PropTypes.number.isRequired,
         rating: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,
         mark: PropTypes.string,
       })

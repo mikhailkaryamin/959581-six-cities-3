@@ -2,7 +2,8 @@ import {
   shape,
   arrayOf,
   number,
-  string
+  string,
+  bool
 } from "prop-types";
 
 export const offerPropTypes = shape({
@@ -15,5 +16,8 @@ export const offerPropTypes = shape({
   name: string.isRequired,
   description: string.isRequired,
   type: string.isRequired,
-  mark: string,
+  mark: bool.isRequired,
+  insideItems: arrayOf(
+      string.isRequired
+  ).isRequired,
 });

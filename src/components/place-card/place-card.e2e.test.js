@@ -10,7 +10,19 @@ const offer = {
   rating: 4,
   name: `Beautiful &amp; luxurious apartment at great location`,
   type: `Apartment`,
-  mark: `Premium`
+  mark: true,
+  insideItems: [
+    `Wi-Fi`,
+    `Washing machine`,
+    `Towels`,
+    `Heating`,
+    `Coffee machine`,
+    `Baby seat`,
+    `Kitchen`,
+    `Dishwasher`,
+    `Cabel TV`,
+    `Fridge`
+  ]
 };
 
 const onMouseLeave = () => {};

@@ -44,7 +44,7 @@ class PlaceCard extends PureComponent {
         {mark ?
           <div className="place-card__mark">
             <span>
-              {mark}
+              Premium
             </span>
           </div>
           :

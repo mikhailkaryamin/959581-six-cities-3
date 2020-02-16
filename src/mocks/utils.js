@@ -7,7 +7,7 @@ const getRandomArray = (elements, lengthArray, isUnique) => {
 
   while (randomArray.length < lengthArray) {
     randomArray
-      .push(elements[getRandomNumber(elements.length)]);
+      .push(elements[getRandomNumber(elements.length - 1)]);
   }
 
   if (isUnique) {
@@ -20,10 +20,11 @@ const getRandomArray = (elements, lengthArray, isUnique) => {
   }
 };
 
-const getRandomElement = (elements) => elements[getRandomNumber(elements.length)];
+const getRandomElement = (elements) => elements[getRandomNumber(elements.length - 1)];
 
 export {
   getRandomArray,
   getRandomNumber,
   getRandomElement
-}
+};
+

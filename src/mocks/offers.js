@@ -16,8 +16,8 @@ const offers = [
     name: getRandomElement(OfferParameters.NAMES),
     description: OfferParameters.DESCRIPTION,
     type: getRandomElement(OfferParameters.TYPES),
-    mark: `Premium`,
-    insideItems: getRandomArray(OfferParameters.INSIDE_ITEMS, OfferParameters.INSIDE_ITEMS.length),
+    mark: Boolean(getRandomNumber(1)),
+    insideItems: getRandomArray(OfferParameters.INSIDE_ITEMS, OfferParameters.INSIDE_ITEMS.length, true),
   },
   {
     id: getRandomNumber(OfferParameters.MAX_ID),
@@ -27,8 +27,8 @@ const offers = [
     name: getRandomElement(OfferParameters.NAMES),
     description: OfferParameters.DESCRIPTION,
     type: getRandomElement(OfferParameters.TYPES),
-    mark: `Premium`,
-    insideItems: getRandomArray(OfferParameters.INSIDE_ITEMS, OfferParameters.INSIDE_ITEMS.length),
+    mark: Boolean(getRandomNumber(1)),
+    insideItems: getRandomArray(OfferParameters.INSIDE_ITEMS, OfferParameters.INSIDE_ITEMS.length, true),
   },
   {
     id: getRandomNumber(OfferParameters.MAX_ID),
@@ -38,8 +38,8 @@ const offers = [
     name: getRandomElement(OfferParameters.NAMES),
     description: OfferParameters.DESCRIPTION,
     type: getRandomElement(OfferParameters.TYPES),
-    mark: `Premium`,
-    insideItems: getRandomArray(OfferParameters.INSIDE_ITEMS, OfferParameters.INSIDE_ITEMS.length),
+    mark: Boolean(getRandomNumber(1)),
+    insideItems: getRandomArray(OfferParameters.INSIDE_ITEMS, OfferParameters.INSIDE_ITEMS.length, true),
   },
   {
     id: getRandomNumber(OfferParameters.MAX_ID),
@@ -49,8 +49,8 @@ const offers = [
     name: getRandomElement(OfferParameters.NAMES),
     description: OfferParameters.DESCRIPTION,
     type: getRandomElement(OfferParameters.TYPES),
-    mark: `Premium`,
-    insideItems: getRandomArray(OfferParameters.INSIDE_ITEMS, OfferParameters.INSIDE_ITEMS.length),
+    mark: Boolean(getRandomNumber(1)),
+    insideItems: getRandomArray(OfferParameters.INSIDE_ITEMS, OfferParameters.INSIDE_ITEMS.length, true),
   }
 ];
 

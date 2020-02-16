@@ -335,7 +335,13 @@ exports[`App render correctly 1`] = `
               onMouseEnter={[Function]}
               onMouseLeave={[Function]}
             >
-              
+              <div
+                className="place-card__mark"
+              >
+                <span>
+                  Premium
+                </span>
+              </div>
               <div
                 className="cities__image-wrapper place-card__image-wrapper"
               >
@@ -539,7 +545,13 @@ exports[`App render correctly 1`] = `
               onMouseEnter={[Function]}
               onMouseLeave={[Function]}
             >
-              
+              <div
+                className="place-card__mark"
+              >
+                <span>
+                  Premium
+                </span>
+              </div>
               <div
                 className="cities__image-wrapper place-card__image-wrapper"
               >
@@ -639,7 +651,7 @@ exports[`App render correctly 1`] = `
           className="cities__right-section"
         >
           <section
-            className="cities__map map"
+            className="map cities__map"
           />
         </div>
       </div>

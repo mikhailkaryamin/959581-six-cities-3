@@ -19,7 +19,19 @@ const offers = [
     description: `An independent House, strategically located between Rembrand Square and National Opera,`
     + ` but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     type: `Apartment`,
-    mark: `Premium`
+    mark: true,
+    insideItems: [
+      `Wi-Fi`,
+      `Washing machine`,
+      `Towels`,
+      `Heating`,
+      `Coffee machine`,
+      `Baby seat`,
+      `Kitchen`,
+      `Dishwasher`,
+      `Cabel TV`,
+      `Fridge`
+    ]
   },
   {
     id: 242,
@@ -37,7 +49,19 @@ const offers = [
     description: `An independent House, strategically located between Rembrand Square and National Opera,`
     + ` but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     type: `Private room`,
-    mark: ``
+    mark: true,
+    insideItems: [
+      `Wi-Fi`,
+      `Washing machine`,
+      `Towels`,
+      `Heating`,
+      `Coffee machine`,
+      `Baby seat`,
+      `Kitchen`,
+      `Dishwasher`,
+      `Cabel TV`,
+      `Fridge`
+    ]
   },
   {
     id: 232,
@@ -55,7 +79,19 @@ const offers = [
     description: `An independent House, strategically located between Rembrand Square and National Opera,`
     + ` but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     type: `Room`,
-    mark: `Premium`
+    mark: true,
+    insideItems: [
+      `Wi-Fi`,
+      `Washing machine`,
+      `Towels`,
+      `Heating`,
+      `Coffee machine`,
+      `Baby seat`,
+      `Kitchen`,
+      `Dishwasher`,
+      `Cabel TV`,
+      `Fridge`
+    ]
   },
   {
     id: 522,
@@ -73,7 +109,19 @@ const offers = [
     description: `An independent House, strategically located between Rembrand Square and National Opera,`
     + ` but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     type: `Hotel`,
-    mark: ``
+    mark: true,
+    insideItems: [
+      `Wi-Fi`,
+      `Washing machine`,
+      `Towels`,
+      `Heating`,
+      `Coffee machine`,
+      `Baby seat`,
+      `Kitchen`,
+      `Dishwasher`,
+      `Cabel TV`,
+      `Fridge`
+    ]
   }
 ];
 const handleHeaderOfferClick = () => {};

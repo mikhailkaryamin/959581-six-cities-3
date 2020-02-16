@@ -3,6 +3,9 @@ import React,
   PureComponent
 } from "react";
 import PropTypes from "prop-types";
+import {
+  offerPropTypes
+} from "../../types.js";
 import PlaceCard from "../place-card/place-card.jsx";
 
 class Places extends PureComponent {
@@ -41,7 +44,7 @@ class Places extends PureComponent {
       <PlaceCard
         key={`${offer.id}`}
         offer={offer}
-        onHeadlineButtonClick={handleHeaderOfferClick}
+        handleHeaderOfferClick={handleHeaderOfferClick}
         onMouseEnter={this._setActiveCard}
         onMouseLeave={this._removeActiveCard}
       />);
@@ -81,15 +84,7 @@ class Places extends PureComponent {
 
 Places.propTypes = {
   offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        src: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        rating: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        mark: PropTypes.string,
-      })
+      offerPropTypes
   ).isRequired,
   handleHeaderOfferClick: PropTypes.func.isRequired
 };

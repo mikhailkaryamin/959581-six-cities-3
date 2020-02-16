@@ -100,7 +100,7 @@ exports[`Render citites correctly 1`] = `
                 alt="Place image"
                 className="place-card__image"
                 height="200"
-                src="img/apartment-01.jpg"
+                src="img/apartment-03.jpg"
                 width="260"
               />
             </a>
@@ -168,6 +168,7 @@ exports[`Render citites correctly 1`] = `
             </div>
             <h2
               className="place-card__name"
+              onClick={[Function]}
             >
               <a
                 href="#"
@@ -187,7 +188,13 @@ exports[`Render citites correctly 1`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          
+          <div
+            className="place-card__mark"
+          >
+            <span>
+              Premium
+            </span>
+          </div>
           <div
             className="cities__image-wrapper place-card__image-wrapper"
           >
@@ -198,7 +205,7 @@ exports[`Render citites correctly 1`] = `
                 alt="Place image"
                 className="place-card__image"
                 height="200"
-                src="img/room.jpg"
+                src="img/apartment-02.jpg"
                 width="260"
               />
             </a>
@@ -266,6 +273,7 @@ exports[`Render citites correctly 1`] = `
             </div>
             <h2
               className="place-card__name"
+              onClick={[Function]}
             >
               <a
                 href="#"
@@ -302,7 +310,7 @@ exports[`Render citites correctly 1`] = `
                 alt="Place image"
                 className="place-card__image"
                 height="200"
-                src="img/apartment-02.jpg"
+                src="img/apartment-01.jpg"
                 width="260"
               />
             </a>
@@ -370,6 +378,7 @@ exports[`Render citites correctly 1`] = `
             </div>
             <h2
               className="place-card__name"
+              onClick={[Function]}
             >
               <a
                 href="#"
@@ -380,7 +389,7 @@ exports[`Render citites correctly 1`] = `
             <p
               className="place-card__type"
             >
-              Apartment
+              Room
             </p>
           </div>
         </article>
@@ -389,7 +398,13 @@ exports[`Render citites correctly 1`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          
+          <div
+            className="place-card__mark"
+          >
+            <span>
+              Premium
+            </span>
+          </div>
           <div
             className="cities__image-wrapper place-card__image-wrapper"
           >
@@ -468,6 +483,7 @@ exports[`Render citites correctly 1`] = `
             </div>
             <h2
               className="place-card__name"
+              onClick={[Function]}
             >
               <a
                 href="#"
@@ -478,7 +494,7 @@ exports[`Render citites correctly 1`] = `
             <p
               className="place-card__type"
             >
-              Apartment
+              Hotel
             </p>
           </div>
         </article>
@@ -488,7 +504,7 @@ exports[`Render citites correctly 1`] = `
       className="cities__right-section"
     >
       <section
-        className="cities__map map"
+        className="map cities__map"
       />
     </div>
   </div>

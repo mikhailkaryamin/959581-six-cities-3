@@ -1,8 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import PlaceCard from "./place-card.jsx";
+import Property from "./property.jsx";
 
-const offer = {
+const activeCard = {
   id: 123,
   src: [
     `img/apartment-03.jpg`,
@@ -32,27 +32,15 @@ const offer = {
     `Fridge`
   ]
 };
-const handleHeaderOfferClick = () => {};
-const onMouseEnter = () => {};
-const onMouseLeave = () => {};
 
-it(`Render place card`, () => {
+it(`Render property correctly`, () => {
   const tree = renderer
-    .create(<PlaceCard
-      offer={
-        offer
-      }
-      handleHeaderOfferClick={
-        handleHeaderOfferClick
-      }
-      onMouseEnter={
-        onMouseEnter
-      }
-      onMouseLeave={
-        onMouseLeave
+    .create(<Property
+      activeCard={
+        activeCard
       }
     />)
-    .toJSON();
+  .toJSON();
 
   expect(tree).toMatchSnapshot();
 });

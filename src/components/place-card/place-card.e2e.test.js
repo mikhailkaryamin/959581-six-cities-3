@@ -10,7 +10,19 @@ const offer = {
   rating: 4,
   name: `Beautiful &amp; luxurious apartment at great location`,
   type: `Apartment`,
-  mark: `Premium`
+  mark: true,
+  insideItems: [
+    `Wi-Fi`,
+    `Washing machine`,
+    `Towels`,
+    `Heating`,
+    `Coffee machine`,
+    `Baby seat`,
+    `Kitchen`,
+    `Dishwasher`,
+    `Cabel TV`,
+    `Fridge`
+  ]
 };
 
 const onMouseLeave = () => {};
@@ -43,10 +55,12 @@ it(`Should headline button click and send state offer`, () => {
   const placeCardElement = placeCard.find(`.place-card`);
   const headerOfferElement = placeCard.find(`.place-card__name`);
 
-  headerOfferElement.props().onClick();
+  headerOfferElement.simulate(`click`);
   placeCardElement.simulate(`mouseenter`);
 
+  expect(handleHeaderOfferClick.mock.calls[0][0]).toMatchObject(offer);
   expect(handleHeaderOfferClick.mock.calls.length).toBe(1);
+
   expect(onMouseEnter.mock.calls[0][0]).toMatchObject(offer);
   expect(onMouseEnter.mock.calls.length).toBe(1);
 });

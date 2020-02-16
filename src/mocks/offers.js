@@ -1,38 +1,57 @@
-export default [
+import {
+  OfferParameters
+} from "./consts.JS";
+import {
+  getRandomArray,
+  getRandomNumber,
+  getRandomElement
+} from "./utils.js";
+
+const offers = [
   {
-    id: 123,
-    src: `img/apartment-01.jpg`,
-    price: 120,
-    rating: 4,
-    name: `Beautiful &amp; luxurious apartment at great location`,
-    type: `Apartment`,
-    mark: `Premium`
+    id: getRandomNumber(OfferParameters.MAX_ID),
+    src: getRandomArray(OfferParameters.SRC, OfferParameters.MAX_IMAGES),
+    price: getRandomNumber(OfferParameters.MAX_PRICE),
+    rating: getRandomNumber(OfferParameters.MAX_RATING),
+    name: getRandomElement(OfferParameters.NAMES),
+    description: OfferParameters.DESCRIPTION,
+    type: getRandomElement(OfferParameters.TYPES),
+    mark: Boolean(getRandomNumber(1)),
+    insideItems: getRandomArray(OfferParameters.INSIDE_ITEMS, OfferParameters.INSIDE_ITEMS.length, true),
   },
   {
-    id: 242,
-    src: `img/room.jpg`,
-    price: 80,
-    rating: 4,
-    name: `Wood and stone place`,
-    type: `Private room`,
-    mark: ``
+    id: getRandomNumber(OfferParameters.MAX_ID),
+    src: getRandomArray(OfferParameters.SRC, OfferParameters.MAX_IMAGES),
+    price: getRandomNumber(OfferParameters.MAX_PRICE),
+    rating: getRandomNumber(OfferParameters.MAX_RATING),
+    name: getRandomElement(OfferParameters.NAMES),
+    description: OfferParameters.DESCRIPTION,
+    type: getRandomElement(OfferParameters.TYPES),
+    mark: Boolean(getRandomNumber(1)),
+    insideItems: getRandomArray(OfferParameters.INSIDE_ITEMS, OfferParameters.INSIDE_ITEMS.length, true),
   },
   {
-    id: 232,
-    src: `img/apartment-02.jpg`,
-    price: 132,
-    rating: 5,
-    name: `Canal View Prinsengracht`,
-    type: `Apartment`,
-    mark: `Premium`
+    id: getRandomNumber(OfferParameters.MAX_ID),
+    src: getRandomArray(OfferParameters.SRC, OfferParameters.MAX_IMAGES),
+    price: getRandomNumber(OfferParameters.MAX_PRICE),
+    rating: getRandomNumber(OfferParameters.MAX_RATING),
+    name: getRandomElement(OfferParameters.NAMES),
+    description: OfferParameters.DESCRIPTION,
+    type: getRandomElement(OfferParameters.TYPES),
+    mark: Boolean(getRandomNumber(1)),
+    insideItems: getRandomArray(OfferParameters.INSIDE_ITEMS, OfferParameters.INSIDE_ITEMS.length, true),
   },
   {
-    id: 522,
-    src: `img/apartment-03.jpg`,
-    price: 115,
-    rating: 4,
-    name: `Nice, cozy, warm big bed apartment`,
-    type: `Apartment`,
-    mark: ``
+    id: getRandomNumber(OfferParameters.MAX_ID),
+    src: getRandomArray(OfferParameters.SRC, OfferParameters.MAX_IMAGES),
+    price: getRandomNumber(OfferParameters.MAX_PRICE),
+    rating: getRandomNumber(OfferParameters.MAX_RATING),
+    name: getRandomElement(OfferParameters.NAMES),
+    description: OfferParameters.DESCRIPTION,
+    type: getRandomElement(OfferParameters.TYPES),
+    mark: Boolean(getRandomNumber(1)),
+    insideItems: getRandomArray(OfferParameters.INSIDE_ITEMS, OfferParameters.INSIDE_ITEMS.length, true),
   }
 ];
+
+export default offers;

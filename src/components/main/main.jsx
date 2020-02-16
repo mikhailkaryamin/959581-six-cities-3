@@ -3,6 +3,9 @@ import React,
   PureComponent
 } from "react";
 import PropTypes from "prop-types";
+import {
+  offerPropTypes
+} from "../../types.js";
 import Header from "../header/header.jsx";
 import Locations from "../locations/locations.jsx";
 import Cities from "../cities/cities.jsx";
@@ -42,18 +45,7 @@ class Main extends PureComponent {
 
 Main.propTypes = {
   offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        src: PropTypes.arrayOf(
-            PropTypes.string.isRequired
-        ).isRequired,
-        price: PropTypes.number.isRequired,
-        rating: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        mark: PropTypes.string,
-      })
+      offerPropTypes
   ).isRequired,
   handleHeaderOfferClick: PropTypes.func.isRequired,
 };

@@ -1,74 +1,57 @@
-export default [
+import {
+  OfferParameters
+} from "./consts.JS";
+import {
+  getRandomArray,
+  getRandomNumber,
+  getRandomElement
+} from "./utils.js";
+
+const offers = [
   {
-    id: 123,
-    src: [
-      `img/apartment-03.jpg`,
-      `img/studio-01.jpg`,
-      `img/apartment-01.jpg`,
-      `img/room.jpg`,
-      `img/apartment-01.jpg`,
-      `img/apartment-02.jpg`,
-    ],
-    price: 120,
-    rating: 4,
-    name: `Beautiful &amp; luxurious apartment at great location`,
-    description: `An independent House, strategically located between Rembrand Square and National Opera,`
-    + ` but where the bustle of the city comes to rest in this alley flowery and colorful.`,
-    type: `Apartment`,
-    mark: `Premium`
+    id: getRandomNumber(OfferParameters.MAX_ID),
+    src: getRandomArray(OfferParameters.SRC, OfferParameters.MAX_IMAGES),
+    price: getRandomNumber(OfferParameters.MAX_PRICE),
+    rating: getRandomNumber(OfferParameters.MAX_RATING),
+    name: getRandomElement(OfferParameters.NAMES),
+    description: OfferParameters.DESCRIPTION,
+    type: getRandomElement(OfferParameters.TYPES),
+    mark: `Premium`,
+    insideItems: getRandomArray(OfferParameters.INSIDE_ITEMS, OfferParameters.INSIDE_ITEMS.length),
   },
   {
-    id: 242,
-    src: [
-      `img/apartment-02.jpg`,
-      `img/apartment-03.jpg`,
-      `img/studio-01.jpg`,
-      `img/room.jpg`,
-      `img/apartment-01.jpg`,
-      `img/apartment-01.jpg`
-    ],
-    price: 80,
-    rating: 4,
-    name: `Wood and stone place`,
-    description: `An independent House, strategically located between Rembrand Square and National Opera,`
-    + ` but where the bustle of the city comes to rest in this alley flowery and colorful.`,
-    type: `Private room`,
-    mark: ``
+    id: getRandomNumber(OfferParameters.MAX_ID),
+    src: getRandomArray(OfferParameters.SRC, OfferParameters.MAX_IMAGES),
+    price: getRandomNumber(OfferParameters.MAX_PRICE),
+    rating: getRandomNumber(OfferParameters.MAX_RATING),
+    name: getRandomElement(OfferParameters.NAMES),
+    description: OfferParameters.DESCRIPTION,
+    type: getRandomElement(OfferParameters.TYPES),
+    mark: `Premium`,
+    insideItems: getRandomArray(OfferParameters.INSIDE_ITEMS, OfferParameters.INSIDE_ITEMS.length),
   },
   {
-    id: 232,
-    src: [
-      `img/apartment-01.jpg`,
-      `img/apartment-02.jpg`,
-      `img/room.jpg`,
-      `img/apartment-03.jpg`,
-      `img/studio-01.jpg`,
-      `img/apartment-01.jpg`
-    ],
-    price: 132,
-    rating: 5,
-    name: `Canal View Prinsengracht`,
-    description: `An independent House, strategically located between Rembrand Square and National Opera,`
-    + ` but where the bustle of the city comes to rest in this alley flowery and colorful.`,
-    type: `Room`,
-    mark: `Premium`
+    id: getRandomNumber(OfferParameters.MAX_ID),
+    src: getRandomArray(OfferParameters.SRC, OfferParameters.MAX_IMAGES),
+    price: getRandomNumber(OfferParameters.MAX_PRICE),
+    rating: getRandomNumber(OfferParameters.MAX_RATING),
+    name: getRandomElement(OfferParameters.NAMES),
+    description: OfferParameters.DESCRIPTION,
+    type: getRandomElement(OfferParameters.TYPES),
+    mark: `Premium`,
+    insideItems: getRandomArray(OfferParameters.INSIDE_ITEMS, OfferParameters.INSIDE_ITEMS.length),
   },
   {
-    id: 522,
-    src: [
-      `img/apartment-03.jpg`,
-      `img/studio-01.jpg`,
-      `img/apartment-01.jpg`,
-      `img/room.jpg`,
-      `img/apartment-01.jpg`,
-      `img/apartment-02.jpg`,
-    ],
-    price: 115,
-    rating: 4,
-    name: `Nice, cozy, warm big bed apartment`,
-    description: `An independent House, strategically located between Rembrand Square and National Opera,`
-    + ` but where the bustle of the city comes to rest in this alley flowery and colorful.`,
-    type: `Hotel`,
-    mark: ``
+    id: getRandomNumber(OfferParameters.MAX_ID),
+    src: getRandomArray(OfferParameters.SRC, OfferParameters.MAX_IMAGES),
+    price: getRandomNumber(OfferParameters.MAX_PRICE),
+    rating: getRandomNumber(OfferParameters.MAX_RATING),
+    name: getRandomElement(OfferParameters.NAMES),
+    description: OfferParameters.DESCRIPTION,
+    type: getRandomElement(OfferParameters.TYPES),
+    mark: `Premium`,
+    insideItems: getRandomArray(OfferParameters.INSIDE_ITEMS, OfferParameters.INSIDE_ITEMS.length),
   }
 ];
+
+export default offers;

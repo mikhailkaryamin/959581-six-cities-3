@@ -7,7 +7,11 @@ import {
   Route,
   BrowserRouter
 } from "react-router-dom";
+
 import PropTypes from "prop-types";
+import {
+  offerPropTypes
+} from "../../types.js";
 import Main from "../main/main.jsx";
 import Property from "../property/property.jsx";
 
@@ -83,18 +87,7 @@ class App extends PureComponent {
 
 App.propTypes = {
   offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        src: PropTypes.arrayOf(
-            PropTypes.string.isRequired
-        ).isRequired,
-        price: PropTypes.number.isRequired,
-        rating: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        mark: PropTypes.string,
-      })
+      offerPropTypes
   ).isRequired,
 };
 

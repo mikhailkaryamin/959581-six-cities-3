@@ -2,7 +2,10 @@ import React, {
   PureComponent
 } from "react";
 import Header from "../header/header.jsx";
-import PropTypes from "prop-types";
+
+import {
+  offerPropTypes
+} from "../../types.js";
 
 class Property extends PureComponent {
   constructor(props) {
@@ -11,6 +14,7 @@ class Property extends PureComponent {
 
   render() {
     const ONE_STAR = 20;
+    const STARS = [1, 2, 3, 4, 5];
 
     const {
       activeCard
@@ -165,40 +169,25 @@ class Property extends PureComponent {
                   <form className="reviews__form form" action="#" method="post">
                     <label className="reviews__label form__label" htmlFor="review">Your review</label>
                     <div className="reviews__rating-form form__rating">
-                      <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio" />
-                      <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
-                        <svg className="form__star-image" width="37" height="33">
-                          <use xlinkHref="#icon-star"></use>
-                        </svg>
-                      </label>
-
-                      <input className="form__rating-input visually-hidden" name="rating" value="4" id="4-stars" type="radio" />
-                      <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
-                        <svg className="form__star-image" width="37" height="33">
-                          <use xlinkHref="#icon-star"></use>
-                        </svg>
-                      </label>
-
-                      <input className="form__rating-input visually-hidden" name="rating" value="3" id="3-stars" type="radio" />
-                      <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
-                        <svg className="form__star-image" width="37" height="33">
-                          <use xlinkHref="#icon-star"></use>
-                        </svg>
-                      </label>
-
-                      <input className="form__rating-input visually-hidden" name="rating" value="2" id="2-stars" type="radio" />
-                      <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
-                        <svg className="form__star-image" width="37" height="33">
-                          <use xlinkHref="#icon-star"></use>
-                        </svg>
-                      </label>
-
-                      <input className="form__rating-input visually-hidden" name="rating" value="1" id="1-star" type="radio" />
-                      <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
-                        <svg className="form__star-image" width="37" height="33">
-                          <use xlinkHref="#icon-star"></use>
-                        </svg>
-                      </label>
+                      { STARS.map((numberStars) => (
+                        <React.Fragment key={`${numberStars}-stars`}>
+                          <input className="form__rating-input visually-hidden"
+                            name="rating"
+                            value={numberStars}
+                            id={`${numberStars}-stars`}
+                            type="radio"
+                          />
+                          <label
+                            htmlFor={`${numberStars}-stars`}
+                            className="reviews__rating-label form__rating-label"
+                            title="perfect">
+                            <svg className="form__star-image" width="37" height="33">
+                              <use xlinkHref="#icon-star"></use>
+                            </svg>
+                          </label>
+                        </React.Fragment>
+                      ))
+                      }
                     </div>
                     <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
                     <div className="reviews__button-wrapper">
@@ -220,18 +209,7 @@ class Property extends PureComponent {
 }
 
 Property.propTypes = {
-  activeCard: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    src: PropTypes.arrayOf(
-        PropTypes.string.isRequired
-    ).isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    mark: PropTypes.string,
-  }),
+  activeCard: offerPropTypes
 };
 
 export default Property;

@@ -3,6 +3,9 @@ import React,
   PureComponent
 } from "react";
 import PropTypes from "prop-types";
+import {
+  offerPropTypes
+} from "../../types.js";
 
 class PlaceCard extends PureComponent {
   constructor(props) {
@@ -93,18 +96,7 @@ class PlaceCard extends PureComponent {
 }
 
 PlaceCard.propTypes = {
-  offer: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    src: PropTypes.arrayOf(
-        PropTypes.string.isRequired
-    ).isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    mark: PropTypes.string,
-  }),
+  offer: offerPropTypes,
   handleHeaderOfferClick: PropTypes.func.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,

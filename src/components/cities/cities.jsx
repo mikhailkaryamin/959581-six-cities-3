@@ -3,7 +3,11 @@ import React,
   PureComponent
 } from "react";
 import Places from "../places/places.jsx";
+import Map from "../map/map.jsx";
 import PropTypes from "prop-types";
+import {
+  offerPropTypes
+} from "../../types.js";
 
 class Cities extends PureComponent {
   constructor(props) {
@@ -11,6 +15,8 @@ class Cities extends PureComponent {
   }
 
   render() {
+    const MODIFICATOR_CLASS_MAP = `cities__map`;
+
     const {
       offers,
       handleHeaderOfferClick
@@ -27,7 +33,11 @@ class Cities extends PureComponent {
             }
           />
           <div className="cities__right-section">
-            <section className="cities__map map"></section>
+            <Map
+              modificatorClass={
+                MODIFICATOR_CLASS_MAP
+              }
+            />
           </div>
         </div>
       </div>
@@ -37,18 +47,7 @@ class Cities extends PureComponent {
 
 Cities.propTypes = {
   offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        src: PropTypes.arrayOf(
-            PropTypes.string.isRequired
-        ).isRequired,
-        price: PropTypes.number.isRequired,
-        rating: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        mark: PropTypes.string,
-      })
+      offerPropTypes
   ).isRequired,
   handleHeaderOfferClick: PropTypes.func.isRequired,
 };

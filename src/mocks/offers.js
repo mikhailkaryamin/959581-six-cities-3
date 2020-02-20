@@ -1,6 +1,6 @@
 import {
   OfferParameters
-} from "./consts.JS";
+} from "./consts.js";
 import {
   getRandomArray,
   getRandomNumber,
@@ -18,6 +18,7 @@ const offers = [
     type: getRandomElement(OfferParameters.TYPES),
     mark: Boolean(getRandomNumber(1)),
     insideItems: getRandomArray(OfferParameters.INSIDE_ITEMS, OfferParameters.INSIDE_ITEMS.length, true),
+    coordinate: OfferParameters.COORDINATES[0],
   },
   {
     id: getRandomNumber(OfferParameters.MAX_ID),
@@ -29,6 +30,7 @@ const offers = [
     type: getRandomElement(OfferParameters.TYPES),
     mark: Boolean(getRandomNumber(1)),
     insideItems: getRandomArray(OfferParameters.INSIDE_ITEMS, OfferParameters.INSIDE_ITEMS.length, true),
+    coordinate: OfferParameters.COORDINATES[1],
   },
   {
     id: getRandomNumber(OfferParameters.MAX_ID),
@@ -40,6 +42,7 @@ const offers = [
     type: getRandomElement(OfferParameters.TYPES),
     mark: Boolean(getRandomNumber(1)),
     insideItems: getRandomArray(OfferParameters.INSIDE_ITEMS, OfferParameters.INSIDE_ITEMS.length, true),
+    coordinate: OfferParameters.COORDINATES[2],
   },
   {
     id: getRandomNumber(OfferParameters.MAX_ID),
@@ -51,6 +54,7 @@ const offers = [
     type: getRandomElement(OfferParameters.TYPES),
     mark: Boolean(getRandomNumber(1)),
     insideItems: getRandomArray(OfferParameters.INSIDE_ITEMS, OfferParameters.INSIDE_ITEMS.length, true),
+    coordinate: OfferParameters.COORDINATES[3],
   }
 ];
 

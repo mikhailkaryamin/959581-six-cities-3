@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render logo correctly 1`] = `
+exports[`Render map correctly 1`] = `
 <section
   className="map "
 />

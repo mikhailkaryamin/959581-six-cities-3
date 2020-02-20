@@ -14,6 +14,13 @@ class Cities extends PureComponent {
     super(props);
   }
 
+  _coordinates() {
+
+    return (
+      this.props.offers.map((offer) => offer.coordinate)
+    );
+  }
+
   render() {
     const MODIFICATOR_CLASS_MAP = `cities__map`;
 
@@ -21,6 +28,7 @@ class Cities extends PureComponent {
       offers,
       handleHeaderOfferClick
     } = this.props;
+
     return (
       <div className="cities">
         <div className="cities__places-container container">
@@ -36,6 +44,9 @@ class Cities extends PureComponent {
             <Map
               modificatorClass={
                 MODIFICATOR_CLASS_MAP
+              }
+              coordinates={
+                this._coordinates()
               }
             />
           </div>

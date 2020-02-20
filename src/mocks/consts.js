@@ -36,5 +36,15 @@ export const OfferParameters = {
     `Dishwasher`,
     `Cabel TV`,
     `Fridge`
+  ],
+  COORDINATES: [
+    [52.3909553943508, 4.85309666406198],
+    [52.369553943508, 4.85309666406198],
+    [52.3909553943508, 4.929309666406198],
+    [52.3809553943508, 4.939309666406198]
   ]
+};
+
+export const CoordinatesCity = {
+  AMSTERDAM: [52.38333, 4.9],
 };

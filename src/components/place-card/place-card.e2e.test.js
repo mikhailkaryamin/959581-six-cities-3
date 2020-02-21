@@ -5,7 +5,14 @@ import PlaceCard from "./place-card.jsx";
 
 const offer = {
   id: 123,
-  src: `img/apartment-01.jpg`,
+  src: [
+    `img/apartment-03.jpg`,
+    `img/studio-01.jpg`,
+    `img/apartment-01.jpg`,
+    `img/room.jpg`,
+    `img/apartment-01.jpg`,
+    `img/apartment-02.jpg`,
+  ],
   price: 120,
   rating: 4,
   name: `Beautiful &amp; luxurious apartment at great location`,
@@ -22,7 +29,8 @@ const offer = {
     `Dishwasher`,
     `Cabel TV`,
     `Fridge`
-  ]
+  ],
+  coordinate: [52.3909553943508, 4.85309666406198],
 };
 
 const onMouseLeave = () => {};

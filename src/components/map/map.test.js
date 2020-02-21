@@ -9,11 +9,14 @@ const coordinatesMock = [
   [52.3809553943508, 4.939309666406198]
 ];
 
+const activeCoordinatesMock = [52.3909553943508, 4.85309666406198];
+
 it(`Render map correctly`, () => {
   const tree = renderer
     .create(
         <Map
           coordinates={coordinatesMock}
+          activeCoordinates={activeCoordinatesMock}
         />, {
           createNodeMock: () => {
             return document.createElement(`div`);

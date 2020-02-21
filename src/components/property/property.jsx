@@ -1,10 +1,18 @@
 import React, {
   PureComponent
 } from "react";
+import PropTypes from "prop-types";
+import {
+  ModificatorClass
+} from "../../consts.js";
 import Header from "../header/header.jsx";
+import ReviewsList from "../reviews-list/reviews-list.jsx";
+import Map from "../map/map.jsx";
+import Places from "../places/places.jsx";
 
 import {
-  offerPropTypes
+  offerPropTypes,
+  reviewsPropTypes
 } from "../../types.js";
 
 class Property extends PureComponent {
@@ -12,24 +20,37 @@ class Property extends PureComponent {
     super(props);
   }
 
-  render() {
-    const ONE_STAR = 20;
-    const STARS = [1, 2, 3, 4, 5];
+  _coordinatesWithoutActive(activeID) {
+    return (
+      this.props.offers
+        .filter((offer) => offer.id !== activeID)
+        .map((offer) => offer.coordinate)
+    );
+  }
 
+  render() {
     const {
-      activeCard
+      activeCard,
+      reviews,
+      offers,
+      handleHeaderOfferClick
     } = this.props;
 
     const {
+      id,
       src,
       price,
       rating,
       name,
-      description,
       type,
       mark,
-      insideItems
+      insideItems,
+      coordinate
     } = activeCard;
+
+    const ONE_STAR = 20;
+    const STARS = [1, 2, 3, 4, 5];
+    const NUMBER_OFFERS = reviews.length;
 
     return (
       <div className="page">
@@ -50,7 +71,7 @@ class Property extends PureComponent {
                 {mark ?
                   <div className="property__mark">
                     <span>
-                      {mark}
+                      Premium
                     </span>
                   </div>
                   :
@@ -72,7 +93,9 @@ class Property extends PureComponent {
                     <span style={{width: `${ONE_STAR * rating}%`}}></span>
                     <span className="visually-hidden">Rating</span>
                   </div>
-                  <span className="property__rating-value rating__value">4.8</span>
+                  <span className="property__rating-value rating__value">
+                    {rating}
+                  </span>
                 </div>
                 <ul className="property__features">
                   <li className="property__feature property__feature--entire">
@@ -117,31 +140,14 @@ class Property extends PureComponent {
                   </div>
                 </div>
                 <section className="property__reviews reviews">
-                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
-                  <ul className="reviews__list">
-                    <li className="reviews__item">
-                      <div className="reviews__user user">
-                        <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                          <img className="reviews__avatar user__avatar" src="img/avatar-max.jpg" width="54" height="54" alt="Reviews avatar" />
-                        </div>
-                        <span className="reviews__user-name">
-                          Max
-                        </span>
-                      </div>
-                      <div className="reviews__info">
-                        <div className="reviews__rating rating">
-                          <div className="reviews__stars rating__stars">
-                            <span style={{width: `80%`}}></span>
-                            <span className="visually-hidden">Rating</span>
-                          </div>
-                        </div>
-                        <p className="reviews__text">
-                          {description}
-                        </p>
-                        <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
-                      </div>
-                    </li>
-                  </ul>
+                  <h2 className="reviews__title">Reviews &middot;
+                    <span className="reviews__amount">
+                      {NUMBER_OFFERS}
+                    </span>
+                  </h2>
+                  {<ReviewsList
+                    reviews={reviews}
+                  />}
                   <form className="reviews__form form" action="#" method="post">
                     <label className="reviews__label form__label" htmlFor="review">Your review</label>
                     <div className="reviews__rating-form form__rating">
@@ -176,8 +182,31 @@ class Property extends PureComponent {
                 </section>
               </div>
             </div>
-            <section className="property__map map"></section>
+            {<Map
+              modificatorClass={
+                ModificatorClass.PROPERTY_MAP
+              }
+              coordinates={
+                this._coordinatesWithoutActive(id)
+              }
+              activeCoordinates={
+                coordinate
+              }
+            />}
           </section>
+          <div className="container">
+            {<Places
+              modificatorClass={
+                ModificatorClass.NEAR_PLACES
+              }
+              offers={
+                offers
+              }
+              handleHeaderOfferClick={
+                handleHeaderOfferClick
+              }
+            />}
+          </div>
         </main>
       </div>
     );
@@ -185,7 +214,14 @@ class Property extends PureComponent {
 }
 
 Property.propTypes = {
-  activeCard: offerPropTypes
+  offers: PropTypes.arrayOf(
+      offerPropTypes
+  ).isRequired,
+  activeCard: offerPropTypes,
+  reviews: PropTypes.arrayOf(
+      reviewsPropTypes
+  ).isRequired,
+  handleHeaderOfferClick: PropTypes.func.isRequired,
 };
 
 export default Property;

@@ -31,7 +31,8 @@ const offers = [
       `Dishwasher`,
       `Cabel TV`,
       `Fridge`
-    ]
+    ],
+    coordinate: [52.3909553943508, 4.85309666406198],
   },
   {
     id: 242,
@@ -61,7 +62,8 @@ const offers = [
       `Dishwasher`,
       `Cabel TV`,
       `Fridge`
-    ]
+    ],
+    coordinate: [52.3909553943508, 4.85309666406198],
   },
   {
     id: 232,
@@ -91,7 +93,8 @@ const offers = [
       `Dishwasher`,
       `Cabel TV`,
       `Fridge`
-    ]
+    ],
+    coordinate: [52.3909553943508, 4.85309666406198],
   },
   {
     id: 522,
@@ -121,7 +124,8 @@ const offers = [
       `Dishwasher`,
       `Cabel TV`,
       `Fridge`
-    ]
+    ],
+    coordinate: [52.3909553943508, 4.85309666406198],
   }
 ];
 

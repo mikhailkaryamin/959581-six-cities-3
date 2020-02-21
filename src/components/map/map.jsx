@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import leaflet from "leaflet";
 import {
   CoordinatesCity
-} from "../../mocks/consts.js";
+} from "../../mocks/constsMock.js";
 
 class Map extends PureComponent {
   constructor(props) {
@@ -24,6 +24,7 @@ class Map extends PureComponent {
       } = CoordinatesCity;
       const zoom = 12;
       const offerCoordinates = this.props.coordinates;
+
       const icon = leaflet.icon({
         iconUrl: `img/pin.svg`,
         iconSize: [30, 30]
@@ -51,6 +52,18 @@ class Map extends PureComponent {
         .marker(markerCoordinate, {icon})
         .addTo(map)
       );
+
+      if (this.props.activeCoordinates !== undefined) {
+        const activeCoordinates = this.props.activeCoordinates;
+        const iconActive = leaflet.icon({
+          iconUrl: `img/pin-active.png`,
+          iconSize: [30, 30]
+        });
+
+        leaflet
+          .marker(activeCoordinates, {iconActive})
+          .addTo(map);
+      }
     }
   }
 
@@ -72,11 +85,14 @@ Map.propTypes = {
       PropTypes.arrayOf(
           PropTypes.number.isRequired
       )
+  ),
+  activeCoordinates: PropTypes.arrayOf(
+      PropTypes.number.isRequired
   )
 };
 
 Map.defaultProps = {
-  modificatorClass: ``
+  modificatorClass: ``,
 };
 
 export default Map;

@@ -22,9 +22,12 @@ const getRandomArray = (elements, lengthArray, isUnique) => {
 
 const getRandomElement = (elements) => elements[getRandomNumber(elements.length - 1)];
 
+const getRandomDate = (start, end) => new Date(getRandomNumber(end, start));
+
 export {
   getRandomArray,
   getRandomNumber,
-  getRandomElement
+  getRandomElement,
+  getRandomDate
 };
 

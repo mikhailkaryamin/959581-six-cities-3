@@ -10,7 +10,8 @@ import {
 
 import PropTypes from "prop-types";
 import {
-  offerPropTypes
+  offerPropTypes,
+  reviewsPropTypes
 } from "../../types.js";
 import Main from "../main/main.jsx";
 import Property from "../property/property.jsx";
@@ -34,7 +35,8 @@ class App extends PureComponent {
 
   _renderApp() {
     const {
-      offers
+      offers,
+      reviews
     } = this.props;
 
     const {
@@ -44,8 +46,12 @@ class App extends PureComponent {
     if (activeCard === null) {
       return (
         <Main
-          offers = {offers}
-          handleHeaderOfferClick={this._setActiveCard}
+          offers = {
+            offers
+          }
+          handleHeaderOfferClick={
+            this._setActiveCard
+          }
         />
       );
     } else {
@@ -54,6 +60,15 @@ class App extends PureComponent {
           activeCard={
             this.state.activeCard
           }
+          reviews = {
+            reviews
+          }
+          offers = {
+            offers
+          }
+          handleHeaderOfferClick={
+            this._setActiveCard
+          }
         />
       );
     }
@@ -61,7 +76,8 @@ class App extends PureComponent {
 
   render() {
     const {
-      offers
+      offers,
+      reviews
     } = this.props;
 
     return (
@@ -77,6 +93,15 @@ class App extends PureComponent {
               activeCard={
                 offers[0]
               }
+              reviews = {
+                reviews
+              }
+              offers = {
+                offers
+              }
+              handleHeaderOfferClick={
+                this._setActiveCard
+              }
             />
           </Route>
         </Switch>
@@ -88,6 +113,9 @@ class App extends PureComponent {
 App.propTypes = {
   offers: PropTypes.arrayOf(
       offerPropTypes
+  ).isRequired,
+  reviews: PropTypes.arrayOf(
+      reviewsPropTypes
   ).isRequired,
 };
 

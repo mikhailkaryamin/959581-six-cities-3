@@ -48,6 +48,11 @@ Main.propTypes = {
       offerPropTypes
   ).isRequired,
   handleHeaderOfferClick: PropTypes.func.isRequired,
+  coordinates: PropTypes.arrayOf(
+      PropTypes.arrayOf(
+          PropTypes.number.isRequired
+      )
+  ),
 };
 
 export default Main;

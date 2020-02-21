@@ -8,6 +8,9 @@ import PropTypes from "prop-types";
 import {
   offerPropTypes
 } from "../../types.js";
+import {
+  ModificatorClass
+} from "../../consts.js";
 
 class Cities extends PureComponent {
   constructor(props) {
@@ -15,18 +18,15 @@ class Cities extends PureComponent {
   }
 
   _coordinates() {
-
     return (
       this.props.offers.map((offer) => offer.coordinate)
     );
   }
 
   render() {
-    const MODIFICATOR_CLASS_MAP = `cities__map`;
-
     const {
       offers,
-      handleHeaderOfferClick
+      handleHeaderOfferClick,
     } = this.props;
 
     return (
@@ -39,11 +39,14 @@ class Cities extends PureComponent {
             handleHeaderOfferClick={
               handleHeaderOfferClick
             }
+            modificatorClass={
+              ModificatorClass.CITIES_PLACES
+            }
           />
           <div className="cities__right-section">
             <Map
               modificatorClass={
-                MODIFICATOR_CLASS_MAP
+                ModificatorClass.CITIES_MAP
               }
               coordinates={
                 this._coordinates()

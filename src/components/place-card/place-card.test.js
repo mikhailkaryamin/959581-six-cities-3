@@ -30,7 +30,8 @@ const offer = {
     `Dishwasher`,
     `Cabel TV`,
     `Fridge`
-  ]
+  ],
+  coordinate: [52.3909553943508, 4.85309666406198],
 };
 const handleHeaderOfferClick = () => {};
 const onMouseEnter = () => {};

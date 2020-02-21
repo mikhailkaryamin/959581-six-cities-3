@@ -8,7 +8,7 @@ exports[`Render citites correctly 1`] = `
     className="cities__places-container container"
   >
     <section
-      className="cities__places places"
+      className="places cities__places"
     >
       <h2
         className="visually-hidden"
@@ -76,7 +76,7 @@ exports[`Render citites correctly 1`] = `
         </ul>
       </form>
       <div
-        className="cities__places-list places__list tabs__content"
+        className="places__list cities__places-list tabs__content"
       >
         <article
           className="cities__place-card place-card"

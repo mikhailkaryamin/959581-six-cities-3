@@ -5,7 +5,7 @@ import {
   getRandomArray,
   getRandomNumber,
   getRandomElement
-} from "./utils.js";
+} from "../utils.js";
 
 const {Max} = Offer;
 
@@ -14,6 +14,9 @@ const offers = [];
 for (let i = 0; i < Offer.NUMBER_OFFERS; i++) {
   offers.push({
     id: getRandomNumber(Max.ID),
+    city: {
+      name: getRandomElement(Offer.CITIES),
+    },
     src: getRandomArray(Offer.SRC, Max.IMAGES),
     price: getRandomNumber(Max.PRICE),
     rating: getRandomNumber(Max.RATING),

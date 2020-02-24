@@ -1,59 +1,44 @@
-import React,
-{
-  PureComponent
-} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import {
-  offerPropTypes
-} from "../../types.js";
+  connect
+} from "react-redux";
 import Header from "../header/header.jsx";
 import Locations from "../locations/locations.jsx";
 import Cities from "../cities/cities.jsx";
 
-class Main extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const Main = ({locations}) => {
 
-  render() {
-    const {
-      offers,
-      handleHeaderOfferClick
-    } = this.props;
-
-    return (
-      <div className="page page--gray page--main">
-        {<Header />}
-        <main className="page__main page__main--index">
-          <h1 className="visually-hidden">Cities</h1>
-          <div className="tabs">
-            {<Locations />}
-          </div>
-          {<Cities
-            offers={
-              offers
-            }
-            handleHeaderOfferClick={
-              handleHeaderOfferClick
+  return (
+    <div className="page page--gray page--main">
+      {<Header />}
+      <main className="page__main page__main--index">
+        <h1 className="visually-hidden">Cities</h1>
+        <div className="tabs">
+          {<Locations
+            locations={
+              locations
             }
           />}
-        </main>
-      </div>
-    );
-  }
-}
-
-Main.propTypes = {
-  offers: PropTypes.arrayOf(
-      offerPropTypes
-  ).isRequired,
-  handleHeaderOfferClick: PropTypes.func.isRequired,
-  coordinates: PropTypes.arrayOf(
-      PropTypes.arrayOf(
-          PropTypes.number.isRequired
-      )
-  ),
+        </div>
+        {<Cities />}
+      </main>
+    </div>
+  );
 };
 
-export default Main;
+Main.propTypes = {
+  locations: PropTypes.arrayOf(
+      PropTypes.string.isRequired
+  ).isRequired,
+};
 
+const mapStateToProps = (state) => ({
+  locations: state.locations,
+});
+
+export {
+  Main
+};
+
+export default connect(mapStateToProps)(Main);

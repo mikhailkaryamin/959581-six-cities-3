@@ -8,7 +8,7 @@ import {
   getRandomNumber,
   getRandomElement,
   getRandomDate
-} from "./utils.js";
+} from "../utils.js";
 
 const NUMBER_REVIEWS = getRandomNumber(Reviews.MAX_REVIEWS);
 const reviews = [];

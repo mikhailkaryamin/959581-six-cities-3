@@ -79,7 +79,8 @@ class PlaceCard extends PureComponent {
           <h2
             className="place-card__name"
             onClick={() => {
-              handleHeaderOfferClick(offer);
+              console.log(`11222`)
+             return handleHeaderOfferClick(offer);
             }}
           >
             <a href="#" >

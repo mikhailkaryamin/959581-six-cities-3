@@ -30,7 +30,7 @@ class Property extends PureComponent {
 
   render() {
     const {
-      activeCard,
+      activeOffer,
       reviews,
       offers,
       handleHeaderOfferClick
@@ -46,7 +46,7 @@ class Property extends PureComponent {
       mark,
       insideItems,
       coordinate
-    } = activeCard;
+    } = activeOffer;
 
     const ONE_STAR = 20;
     const STARS = [1, 2, 3, 4, 5];
@@ -217,7 +217,7 @@ Property.propTypes = {
   offers: PropTypes.arrayOf(
       offerPropTypes
   ).isRequired,
-  activeCard: offerPropTypes,
+  activeOffer: offerPropTypes.isRequired,
   reviews: PropTypes.arrayOf(
       reviewsPropTypes
   ).isRequired,

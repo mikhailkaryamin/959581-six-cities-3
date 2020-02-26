@@ -11,12 +11,7 @@ import {
   connect
 } from "react-redux";
 import {
-  ActionCreator
-} from "../../reducer.js";
-import PropTypes from "prop-types";
-import {
   offerPropTypes,
-  reviewsPropTypes
 } from "../../types.js";
 import Main from "../main/main.jsx";
 import Property from "../property/property.jsx";
@@ -59,23 +54,13 @@ class App extends PureComponent {
 
 App.propTypes = {
   activeOffer: offerPropTypes,
-  reviews: PropTypes.arrayOf(
-      reviewsPropTypes
-  ).isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  offers: state.offers,
   activeOffer: state.activeOffer,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  handleHeaderOfferClick(offer) {
-    dispatch(ActionCreator.setActiveOffer(offer));
-  },
 });
 
 export {
   App
 };
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

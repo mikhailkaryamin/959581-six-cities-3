@@ -54,8 +54,8 @@ exports[`Render correctly reviews list 1`] = `
         className="reviews__text"
       >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Curabitur ornare nunc a blandit ultricies.
-    Integer a urna in nunc congue efficitur.
+        Curabitur ornare nunc a blandit ultricies.
+        Integer a urna in nunc congue efficitur.
       </p>
       <time
         className="reviews__time"

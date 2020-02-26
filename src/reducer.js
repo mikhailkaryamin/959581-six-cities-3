@@ -15,6 +15,7 @@ const initialLocations = Array.from(
       .map((offer) => offer.city.name
   )
 ));
+
 const initialCity = initialLocations[0];
 const initialOffers = getFilteredOffers(initialCity);
 const initialCoordinates = getCoordinates(initialOffers);
@@ -24,18 +25,23 @@ const initialState = {
   currentCity: initialCity,
   offers: initialOffers,
   coordinates: initialCoordinates,
+  availableOffers: initialOffers.length,
   reviews,
+  numberReviews: reviews.length
 };
 
 const ActionType = {
-  CHANGE_CITY: `CHANGE_CITY`,
+  SET_CURRENT_CITY: `SET_CURRENT_CITY`,
   GET_OFFERS_LIST: `GET_OFFERS_LIST`,
   SET_ACTIVE_OFFER: `SET_ACTIVE_OFFER`,
+  SET_FOCUS_OFFER: `SET_FOCUS_OFFER`,
+  REMOVE_ACTIVE_OFFER: `REMOVE_ACTIVE_OFFER`,
+  GET_AVAILABLE_OFFERS: `GET_AVAILABLE_OFFERS`,
 };
 
 const ActionCreator = {
-  changeCity: (city) => ({
-    type: ActionType.CHANGE_CITY,
+  setCurrentCity: (city) => ({
+    type: ActionType.SET_CURRENT_CITY,
     payload: city,
   }),
 
@@ -47,12 +53,26 @@ const ActionCreator = {
   setActiveOffer: (offer) => ({
     type: ActionType.SET_ACTIVE_OFFER,
     payload: offer,
-  })
+  }),
+
+  setFocusOffer: (offer) => ({
+    type: ActionType.SET_FOCUS_OFFER,
+    payload: offer,
+  }),
+
+  removeFocusOffer: () => ({
+    type: ActionType.REMOVE_ACTIVE_OFFER,
+    payload: null,
+  }),
+
+  getAvailableOffers: () => ({
+    type: ActionType.GET_AVAILABLE_OFFERS,
+  }),
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.CHANGE_CITY:
+    case ActionType.SET_CURRENT_CITY:
       return {
         ...state,
         currentCity: action.payload,
@@ -66,6 +86,21 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         activeOffer: action.payload,
+      }
+    case ActionType.GET_AVAILABLE_OFFERS:
+      return {
+        ...state,
+        availableOffers: state.offers.length,
+      }
+    case ActionType.SET_FOCUS_OFFER:
+      return {
+        ...state,
+        focusOffer: action.payload,
+      }
+    case ActionType.REMOVE_FOCUS_OFFER:
+      return {
+        ...state,
+        focusOffer: action.payload,
       }
   }
 

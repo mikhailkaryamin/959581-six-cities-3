@@ -6,6 +6,15 @@ import PropTypes from "prop-types";
 import {
   offerPropTypes
 } from "../../types.js";
+import {
+  ActionCreator
+} from "../../reducer.js";
+import {
+  ONE_STAR
+} from "../../consts.js";
+import {
+  connect
+} from "react-redux";
 
 class PlaceCard extends PureComponent {
   constructor(props) {
@@ -13,13 +22,11 @@ class PlaceCard extends PureComponent {
   }
 
   render() {
-    const ONE_STAR = 20;
-
     const {
       offer,
       handleHeaderOfferClick,
-      onMouseEnter,
-      onMouseLeave,
+      handlePlaceCardMouseEnter,
+      handlePlaceCardMouseLeave,
     } = this.props;
 
     const {
@@ -35,10 +42,10 @@ class PlaceCard extends PureComponent {
       <article
         className="cities__place-card place-card"
         onMouseEnter={() => {
-          onMouseEnter(offer);
+          handlePlaceCardMouseEnter(offer);
         }}
         onMouseLeave={() => {
-          onMouseLeave();
+          handlePlaceCardMouseLeave();
         }}
       >
         {mark ?
@@ -79,8 +86,7 @@ class PlaceCard extends PureComponent {
           <h2
             className="place-card__name"
             onClick={() => {
-              console.log(`11222`)
-             return handleHeaderOfferClick(offer);
+              handleHeaderOfferClick(offer);
             }}
           >
             <a href="#" >
@@ -99,8 +105,24 @@ class PlaceCard extends PureComponent {
 PlaceCard.propTypes = {
   offer: offerPropTypes,
   handleHeaderOfferClick: PropTypes.func.isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
+  handlePlaceCardMouseEnter: PropTypes.func.isRequired,
+  handlePlaceCardMouseLeave: PropTypes.func.isRequired,
 };
 
-export default PlaceCard;
+const mapDispatchToProps = (dispatch) => ({
+  handleHeaderOfferClick(offer) {
+    dispatch(ActionCreator.setActiveOffer(offer));
+  },
+  handlePlaceCardMouseEnter(offer) {
+    dispatch(ActionCreator.setFocusOffer(offer));
+  },
+  handlePlaceCardMouseLeave() {
+    dispatch(ActionCreator.removeFocusOffer());
+  }
+});
+
+export {
+  PlaceCard
+};
+
+export default connect(null, mapDispatchToProps)(PlaceCard);

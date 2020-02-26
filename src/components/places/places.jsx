@@ -2,11 +2,11 @@ import React,
 {
   PureComponent
 } from "react";
-import PropTypes from "prop-types";
 import {
-  offerPropTypes
-} from "../../types.js";
-import PlacesList from "../places-list/places-list.jsx";
+  connect
+} from "react-redux";
+import PropTypes from "prop-types";
+import PlacesCardList from "../place-card-list/place-card-list.jsx";
 import {
   ModificatorClass
 } from "../../consts.js";
@@ -18,12 +18,10 @@ class Places extends PureComponent {
 
   render() {
     const {
-      offers,
-      handleHeaderOfferClick,
+      availableOffers,
+      currentCity,
       modificatorClass
     } = this.props;
-
-    const AVAILABLE = offers.length;
 
     return (
       <section className={`places ${modificatorClass}`}>
@@ -32,8 +30,10 @@ class Places extends PureComponent {
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">
               {
-                AVAILABLE
-              } places to stay in Amsterdam
+                availableOffers
+              } places to stay in {
+                currentCity
+              }
             </b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
@@ -50,13 +50,7 @@ class Places extends PureComponent {
                 <li className="places__option" tabIndex="0">Top rated first</li>
               </ul>
             </form>
-            {<PlacesList
-              offers={
-                offers
-              }
-              handleHeaderOfferClick={
-                handleHeaderOfferClick
-              }
+            {<PlacesCardList
               modificatorClass={
                 ModificatorClass.CITIES_PLACES_LIST
               }
@@ -68,13 +62,7 @@ class Places extends PureComponent {
           <React.Fragment>
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
-            {<PlacesList
-              offers={
-                offers
-              }
-              handleHeaderOfferClick={
-                handleHeaderOfferClick
-              }
+            {<PlacesCardList
               modificatorClass={
                 ModificatorClass.NEAR_PLACES_LIST
               }
@@ -87,10 +75,18 @@ class Places extends PureComponent {
 }
 
 Places.propTypes = {
-  offers: PropTypes.arrayOf(
-      offerPropTypes
-  ).isRequired,
-  handleHeaderOfferClick: PropTypes.func.isRequired,
-  modificatorClass: PropTypes.string.isRequired
+  availableOffers: PropTypes.number.isRequired,
+  modificatorClass: PropTypes.string.isRequired,
+  currentCity: PropTypes.string.isRequired,
 };
-export default Places;
+
+const mapStateToProps = (state) => ({
+  availableOffers: state.availableOffers,
+  currentCity: state.currentCity,
+});
+
+export {
+  Places
+};
+
+export default connect(mapStateToProps)(Places);

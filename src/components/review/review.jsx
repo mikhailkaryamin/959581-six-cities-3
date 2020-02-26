@@ -4,6 +4,9 @@ import React, {
 import {
   reviewsPropTypes
 } from "../../types.js";
+import {
+  ONE_STAR
+} from "../../consts.js";
 
 class Review extends PureComponent {
   constructor(props) {
@@ -26,7 +29,6 @@ class Review extends PureComponent {
       avatarURL
     } = user;
 
-    const ONE_STAR = 20;
     const dateTime = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
     const dateMonthYearOptions = {
       month: `long`,

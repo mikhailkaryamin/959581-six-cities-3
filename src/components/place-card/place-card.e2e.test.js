@@ -33,7 +33,7 @@ const offer = {
   coordinate: [52.3909553943508, 4.85309666406198],
 };
 
-const onMouseLeave = () => {};
+const handlePlaceCardMouseLeave = () => {};
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -41,7 +41,7 @@ Enzyme.configure({
 
 it(`Should headline button click and send state offer`, () => {
   const handleHeaderOfferClick = jest.fn();
-  const onMouseEnter = jest.fn();
+  const handlePlaceCardMouseEnter = jest.fn();
 
   const placeCard = shallow(
       <PlaceCard
@@ -52,10 +52,10 @@ it(`Should headline button click and send state offer`, () => {
           handleHeaderOfferClick
         }
         onMouseEnter={
-          onMouseEnter
+          handlePlaceCardMouseEnter
         }
         onMouseLeave={
-          onMouseLeave
+          handlePlaceCardMouseLeave
         }
       />
   );
@@ -69,7 +69,7 @@ it(`Should headline button click and send state offer`, () => {
   expect(handleHeaderOfferClick.mock.calls[0][0]).toMatchObject(offer);
   expect(handleHeaderOfferClick.mock.calls.length).toBe(1);
 
-  expect(onMouseEnter.mock.calls[0][0]).toMatchObject(offer);
-  expect(onMouseEnter.mock.calls.length).toBe(1);
+  expect(handlePlaceCardMouseEnter.mock.calls[0][0]).toMatchObject(offer);
+  expect(handlePlaceCardMouseEnter.mock.calls.length).toBe(1);
 });
 

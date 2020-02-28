@@ -28,11 +28,7 @@ class App extends PureComponent {
       );
     } else {
       return (
-        <Property
-          activeOffer={
-            activeOffer
-          }
-        />
+        <Property />
       );
     }
   }

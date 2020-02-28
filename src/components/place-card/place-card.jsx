@@ -4,11 +4,10 @@ import React,
 } from "react";
 import PropTypes from "prop-types";
 import {
-  offerPropTypes
-} from "../../types.js";
-import {
-  ActionCreator
-} from "../../reducer.js";
+  setActiveOffer,
+  setFocusOffer,
+  removeFocusOffer
+} from "../../actions.js";
 import {
   ONE_STAR
 } from "../../consts.js";
@@ -103,7 +102,16 @@ class PlaceCard extends PureComponent {
 }
 
 PlaceCard.propTypes = {
-  offer: offerPropTypes,
+  offer: PropTypes.shape({
+    src: PropTypes.arrayOf(
+        PropTypes.string.isRequired
+    ).isRequired,
+    price: PropTypes.number.isRequired,
+    rating: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    mark: PropTypes.bool.isRequired,
+  }).isRequired,
   handleHeaderOfferClick: PropTypes.func.isRequired,
   handlePlaceCardMouseEnter: PropTypes.func.isRequired,
   handlePlaceCardMouseLeave: PropTypes.func.isRequired,
@@ -111,13 +119,13 @@ PlaceCard.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   handleHeaderOfferClick(offer) {
-    dispatch(ActionCreator.setActiveOffer(offer));
+    dispatch(setActiveOffer(offer));
   },
   handlePlaceCardMouseEnter(offer) {
-    dispatch(ActionCreator.setFocusOffer(offer));
+    dispatch(setFocusOffer(offer));
   },
   handlePlaceCardMouseLeave() {
-    dispatch(ActionCreator.removeFocusOffer());
+    dispatch(removeFocusOffer());
   }
 });
 

@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {
-  ActionCreator
-} from "../../reducer";
+  setCurrentCity,
+  getOffersList,
+  getAvailableOffers
+} from "../../actions.js";
 import {
   connect
 } from "react-redux";
@@ -50,9 +52,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   handleLocationClick(location) {
-    dispatch(ActionCreator.setCurrentCity(location));
-    dispatch(ActionCreator.getOffersList(location));
-    dispatch(ActionCreator.getAvailableOffers());
+    dispatch(setCurrentCity(location));
+    dispatch(getOffersList(location));
+    dispatch(getAvailableOffers());
   },
 });
 

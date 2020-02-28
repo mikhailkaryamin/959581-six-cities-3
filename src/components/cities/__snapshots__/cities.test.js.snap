@@ -18,8 +18,9 @@ exports[`Render citites correctly 1`] = `
       <b
         className="places__found"
       >
-        4
-         places to stay in Amsterdam
+        300
+         places to stay in 
+        Paris
       </b>
       <form
         action="#"

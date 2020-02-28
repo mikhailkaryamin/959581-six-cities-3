@@ -5,21 +5,13 @@ import configureStore from "redux-mock-store";
 import {
   Provider
 } from "react-redux";
+import initialState from "../../mocks/initialState.js";
 
 const mockStore = configureStore([]);
 
 const handleLocationClick = () => {};
 it(`Render locations correctly`, () => {
-  const store = mockStore({
-    locations: [
-      `Paris`,
-      `Cologne`,
-      `Brussels`,
-      `Amsterdam`,
-      `Hamburg`,
-      `Dusseldorf`
-    ]
-  });
+  const store = mockStore(initialState);
   const tree = renderer
     .create(
         <Provider store={

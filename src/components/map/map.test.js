@@ -5,20 +5,14 @@ import configureStore from "redux-mock-store";
 import {
   Provider
 } from "react-redux";
+import initialState from "../../mocks/initialState.js";
 
 const mockStore = configureStore([]);
 
 const activeCoordinatesMock = [52.3909553943508, 4.85309666406198];
 
 it(`Render map correctly`, () => {
-  const store = mockStore({
-    coordinates: [
-      [52.3909553943508, 4.85309666406198],
-      [52.369553943508, 4.85309666406198],
-      [52.3909553943508, 4.929309666406198],
-      [52.3809553943508, 4.939309666406198]
-    ]
-  });
+  const store = mockStore(initialState);
   const tree = renderer
     .create(
         <Provider store={store}>

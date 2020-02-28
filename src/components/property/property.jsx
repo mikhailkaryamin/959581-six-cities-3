@@ -5,8 +5,8 @@ import {
   connect
 } from "react-redux";
 import {
-  ActionCreator
-} from "../../reducer.js";
+  setActiveOffer
+} from "../../actions.js";
 import PropTypes from "prop-types";
 import {
   ModificatorClass
@@ -20,7 +20,6 @@ import {
 } from "../../consts.js";
 import {
   offerPropTypes,
-  reviewsPropTypes
 } from "../../types.js";
 
 
@@ -174,21 +173,17 @@ Property.propTypes = {
       offerPropTypes
   ).isRequired,
   activeOffer: offerPropTypes.isRequired,
-  reviews: PropTypes.arrayOf(
-      reviewsPropTypes
-  ).isRequired,
   handleHeaderOfferClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  reviews: state.reviews,
   offers: state.offers,
-  numberReviews: state.numberReviews,
+  activeOffer: state.activeOffer,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   handleHeaderOfferClick(offer) {
-    dispatch(ActionCreator.setActiveOffer(offer));
+    dispatch(setActiveOffer(offer));
   }
 });
 

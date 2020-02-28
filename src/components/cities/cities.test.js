@@ -5,11 +5,12 @@ import configureStore from "redux-mock-store";
 import {
   Provider
 } from "react-redux";
+import initialState from "../../mocks/initialState.js";
+
 const mockStore = configureStore([]);
 
 it(`Render citites correctly`, () => {
-  const store = mockStore({});
-
+  const store = mockStore(initialState);
   const tree = renderer
     .create(
         <Provider store={store}>

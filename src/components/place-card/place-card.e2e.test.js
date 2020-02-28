@@ -1,8 +1,10 @@
 import React from "react";
 import Adapter from "enzyme-adapter-react-16";
-import Enzyme, {shallow} from "enzyme";
+import Enzyme, {mount, shallow} from "enzyme";
 import PlaceCard from "./place-card.jsx";
+import configureStore from "redux-mock-store";
 
+const mockStore = configureStore([]);
 const offer = {
   id: 123,
   src: [
@@ -42,34 +44,35 @@ Enzyme.configure({
 it(`Should headline button click and send state offer`, () => {
   const handleHeaderOfferClick = jest.fn();
   const handlePlaceCardMouseEnter = jest.fn();
-
+  const store = mockStore({});
   const placeCard = shallow(
       <PlaceCard
+        store={
+          store
+        }
         offer={
           offer
         }
         handleHeaderOfferClick={
           handleHeaderOfferClick
         }
-        onMouseEnter={
+        handlePlaceCardMouseEnter={
           handlePlaceCardMouseEnter
         }
-        onMouseLeave={
+        handlePlaceCardMouseLeave={
           handlePlaceCardMouseLeave
         }
       />
   );
 
-  const placeCardElement = placeCard.find(`.place-card`);
-  const headerOfferElement = placeCard.find(`.place-card__name`);
-
-  headerOfferElement.simulate(`click`);
+  const placeCardElement = placeCard.dive().find(`.place-card`);
   placeCardElement.simulate(`mouseenter`);
-
-  expect(handleHeaderOfferClick.mock.calls[0][0]).toMatchObject(offer);
-  expect(handleHeaderOfferClick.mock.calls.length).toBe(1);
-
   expect(handlePlaceCardMouseEnter.mock.calls[0][0]).toMatchObject(offer);
   expect(handlePlaceCardMouseEnter.mock.calls.length).toBe(1);
+
+  const headerOfferElement = placeCard.dive().find(`.place-card__name`);
+  headerOfferElement.simulate(`click`);
+  expect(handleHeaderOfferClick.mock.calls[0][0]).toMatchObject(offer);
+  expect(handleHeaderOfferClick.mock.calls.length).toBe(1);
 });
 

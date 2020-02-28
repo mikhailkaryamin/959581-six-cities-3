@@ -1,5 +1,6 @@
 import offers from "./mocks/offers.js";
 import reviews from "./mocks/reviews.js";
+import ActionType from "./actionType.js";
 
 const getFilteredOffers = (city) => {
   return offers
@@ -30,46 +31,6 @@ const initialState = {
   numberReviews: reviews.length
 };
 
-const ActionType = {
-  SET_CURRENT_CITY: `SET_CURRENT_CITY`,
-  GET_OFFERS_LIST: `GET_OFFERS_LIST`,
-  SET_ACTIVE_OFFER: `SET_ACTIVE_OFFER`,
-  SET_FOCUS_OFFER: `SET_FOCUS_OFFER`,
-  REMOVE_ACTIVE_OFFER: `REMOVE_ACTIVE_OFFER`,
-  GET_AVAILABLE_OFFERS: `GET_AVAILABLE_OFFERS`,
-};
-
-const ActionCreator = {
-  setCurrentCity: (city) => ({
-    type: ActionType.SET_CURRENT_CITY,
-    payload: city,
-  }),
-
-  getOffersList: (city) => ({
-    type: ActionType.GET_OFFERS_LIST,
-    payload: getFilteredOffers(city),
-  }),
-
-  setActiveOffer: (offer) => ({
-    type: ActionType.SET_ACTIVE_OFFER,
-    payload: offer,
-  }),
-
-  setFocusOffer: (offer) => ({
-    type: ActionType.SET_FOCUS_OFFER,
-    payload: offer,
-  }),
-
-  removeFocusOffer: () => ({
-    type: ActionType.REMOVE_ACTIVE_OFFER,
-    payload: null,
-  }),
-
-  getAvailableOffers: () => ({
-    type: ActionType.GET_AVAILABLE_OFFERS,
-  }),
-};
-
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.SET_CURRENT_CITY:
@@ -78,9 +39,10 @@ const reducer = (state = initialState, action) => {
         currentCity: action.payload,
       }
     case ActionType.GET_OFFERS_LIST:
+      const offersList = getFilteredOffers(action.payload);
       return {
         ...state,
-        offers: action.payload,
+        offers: offersList,
       }
     case ActionType.SET_ACTIVE_OFFER:
       return {
@@ -108,7 +70,5 @@ const reducer = (state = initialState, action) => {
 };
 
 export {
-  reducer,
-  ActionCreator,
-  ActionType,
+  reducer
 }

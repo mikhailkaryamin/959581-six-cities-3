@@ -75,6 +75,7 @@ exports[`Main render correctly 1`] = `
         >
           <li
             className="locations__item"
+            onClick={[Function]}
           >
             <a
               className="locations__item-link tabs__item"
@@ -87,6 +88,7 @@ exports[`Main render correctly 1`] = `
           </li>
           <li
             className="locations__item"
+            onClick={[Function]}
           >
             <a
               className="locations__item-link tabs__item"
@@ -99,6 +101,7 @@ exports[`Main render correctly 1`] = `
           </li>
           <li
             className="locations__item"
+            onClick={[Function]}
           >
             <a
               className="locations__item-link tabs__item"
@@ -111,6 +114,7 @@ exports[`Main render correctly 1`] = `
           </li>
           <li
             className="locations__item"
+            onClick={[Function]}
           >
             <a
               className="locations__item-link tabs__item"
@@ -123,6 +127,7 @@ exports[`Main render correctly 1`] = `
           </li>
           <li
             className="locations__item"
+            onClick={[Function]}
           >
             <a
               className="locations__item-link tabs__item"
@@ -135,6 +140,7 @@ exports[`Main render correctly 1`] = `
           </li>
           <li
             className="locations__item"
+            onClick={[Function]}
           >
             <a
               className="locations__item-link tabs__item"
@@ -165,8 +171,9 @@ exports[`Main render correctly 1`] = `
           <b
             className="places__found"
           >
-            4
-             places to stay in Amsterdam
+            300
+             places to stay in 
+            Paris
           </b>
           <form
             action="#"

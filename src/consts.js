@@ -8,3 +8,6 @@ export const ModificatorClass = {
   NEAR_PLACES: `near-places`,
   NEAR_PLACES_LIST: `near-places__list`,
 };
+
+export const ONE_STAR = 20;
+export const STARS = [1, 2, 3, 4, 5];

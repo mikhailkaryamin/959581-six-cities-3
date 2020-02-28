@@ -1,23 +1,28 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Cities from "./cities.jsx";
+import PlacesList from "./place-card-list.jsx";
 import configureStore from "redux-mock-store";
 import {
   Provider
 } from "react-redux";
 import initialState from "../../mocks/initialState.js";
 
-const mockStore = configureStore([]);
 
-it(`Render citites correctly`, () => {
+const mockStore = configureStore([]);
+const modificatorClass = `cities__places-list tabs__content`;
+
+it(`Render places-list correctly`, () => {
   const store = mockStore(initialState);
   const tree = renderer
     .create(
         <Provider store={store}>
-          <Cities />
+          <PlacesList
+            modificatorClass={
+              modificatorClass
+            }
+          />
         </Provider>
-    )
-    .toJSON();
+    ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

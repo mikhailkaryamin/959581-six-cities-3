@@ -4,8 +4,16 @@ import React,
 } from "react";
 import PropTypes from "prop-types";
 import {
-  offerPropTypes
-} from "../../types.js";
+  setActiveOffer,
+  setFocusOffer,
+  removeFocusOffer
+} from "../../actions.js";
+import {
+  ONE_STAR
+} from "../../consts.js";
+import {
+  connect
+} from "react-redux";
 
 class PlaceCard extends PureComponent {
   constructor(props) {
@@ -13,13 +21,11 @@ class PlaceCard extends PureComponent {
   }
 
   render() {
-    const ONE_STAR = 20;
-
     const {
       offer,
       handleHeaderOfferClick,
-      onMouseEnter,
-      onMouseLeave,
+      handlePlaceCardMouseEnter,
+      handlePlaceCardMouseLeave,
     } = this.props;
 
     const {
@@ -35,10 +41,10 @@ class PlaceCard extends PureComponent {
       <article
         className="cities__place-card place-card"
         onMouseEnter={() => {
-          onMouseEnter(offer);
+          handlePlaceCardMouseEnter(offer);
         }}
         onMouseLeave={() => {
-          onMouseLeave();
+          handlePlaceCardMouseLeave();
         }}
       >
         {mark ?
@@ -96,10 +102,35 @@ class PlaceCard extends PureComponent {
 }
 
 PlaceCard.propTypes = {
-  offer: offerPropTypes,
+  offer: PropTypes.shape({
+    src: PropTypes.arrayOf(
+        PropTypes.string.isRequired
+    ).isRequired,
+    price: PropTypes.number.isRequired,
+    rating: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    mark: PropTypes.bool.isRequired,
+  }).isRequired,
   handleHeaderOfferClick: PropTypes.func.isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
+  handlePlaceCardMouseEnter: PropTypes.func.isRequired,
+  handlePlaceCardMouseLeave: PropTypes.func.isRequired,
 };
 
-export default PlaceCard;
+const mapDispatchToProps = (dispatch) => ({
+  handleHeaderOfferClick(offer) {
+    dispatch(setActiveOffer(offer));
+  },
+  handlePlaceCardMouseEnter(offer) {
+    dispatch(setFocusOffer(offer));
+  },
+  handlePlaceCardMouseLeave() {
+    dispatch(removeFocusOffer());
+  }
+});
+
+export {
+  PlaceCard
+};
+
+export default connect(null, mapDispatchToProps)(PlaceCard);

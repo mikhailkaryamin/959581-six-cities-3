@@ -2,6 +2,9 @@ import React, {
   PureComponent,
   createRef
 } from "react";
+import {
+  connect
+} from "react-redux";
 import PropTypes from "prop-types";
 import leaflet from "leaflet";
 import {
@@ -11,19 +14,19 @@ import {
 class Map extends PureComponent {
   constructor(props) {
     super(props);
-
     this._mapRef = createRef();
   }
 
   componentDidMount() {
     const mapRef = this._mapRef.current;
-
     if (mapRef) {
       const {
         AMSTERDAM
       } = CoordinatesCity;
       const zoom = 12;
-      const offerCoordinates = this.props.coordinates;
+      const {
+        coordinates
+      } = this.props;
 
       const icon = leaflet.icon({
         iconUrl: `img/pin.svg`,
@@ -47,7 +50,7 @@ class Map extends PureComponent {
         })
         .addTo(map);
 
-      offerCoordinates.map((markerCoordinate) =>
+      coordinates.map((markerCoordinate) =>
         leaflet
         .marker(markerCoordinate, {icon})
         .addTo(map)
@@ -88,11 +91,18 @@ Map.propTypes = {
   ),
   activeCoordinates: PropTypes.arrayOf(
       PropTypes.number.isRequired
-  )
+  ),
 };
 
 Map.defaultProps = {
   modificatorClass: ``,
 };
 
-export default Map;
+const mapStateToProps = (state) => ({
+  coordinates: state.coordinates
+});
+
+export {
+  Map
+};
+export default connect(mapStateToProps)(Map);

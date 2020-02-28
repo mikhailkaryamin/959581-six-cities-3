@@ -1,19 +1,27 @@
 import React, {
   PureComponent
 } from "react";
+import {
+  connect
+} from "react-redux";
+import {
+  setActiveOffer
+} from "../../actions.js";
 import PropTypes from "prop-types";
 import {
   ModificatorClass
 } from "../../consts.js";
 import Header from "../header/header.jsx";
-import ReviewsList from "../reviews-list/reviews-list.jsx";
+import Reviews from "../reviews/reviews.jsx";
 import Map from "../map/map.jsx";
 import Places from "../places/places.jsx";
-
+import {
+  ONE_STAR
+} from "../../consts.js";
 import {
   offerPropTypes,
-  reviewsPropTypes
 } from "../../types.js";
+
 
 class Property extends PureComponent {
   constructor(props) {
@@ -30,10 +38,7 @@ class Property extends PureComponent {
 
   render() {
     const {
-      activeCard,
-      reviews,
-      offers,
-      handleHeaderOfferClick
+      activeOffer,
     } = this.props;
 
     const {
@@ -46,11 +51,7 @@ class Property extends PureComponent {
       mark,
       insideItems,
       coordinate
-    } = activeCard;
-
-    const ONE_STAR = 20;
-    const STARS = [1, 2, 3, 4, 5];
-    const NUMBER_OFFERS = reviews.length;
+    } = activeOffer;
 
     return (
       <div className="page">
@@ -139,47 +140,7 @@ class Property extends PureComponent {
                     </p>
                   </div>
                 </div>
-                <section className="property__reviews reviews">
-                  <h2 className="reviews__title">Reviews &middot;
-                    <span className="reviews__amount">
-                      {NUMBER_OFFERS}
-                    </span>
-                  </h2>
-                  {<ReviewsList
-                    reviews={reviews}
-                  />}
-                  <form className="reviews__form form" action="#" method="post">
-                    <label className="reviews__label form__label" htmlFor="review">Your review</label>
-                    <div className="reviews__rating-form form__rating">
-                      { STARS.map((numberStars) => (
-                        <React.Fragment key={`${numberStars}-stars`}>
-                          <input className="form__rating-input visually-hidden"
-                            name="rating"
-                            value={numberStars}
-                            id={`${numberStars}-stars`}
-                            type="radio"
-                          />
-                          <label
-                            htmlFor={`${numberStars}-stars`}
-                            className="reviews__rating-label form__rating-label"
-                            title="perfect">
-                            <svg className="form__star-image" width="37" height="33">
-                              <use xlinkHref="#icon-star"></use>
-                            </svg>
-                          </label>
-                        </React.Fragment>
-                      ))
-                      }
-                    </div>
-                    <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
-                    <div className="reviews__button-wrapper">
-                      <p className="reviews__help">
-                        To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
-                      </p>
-                      <button className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
-                    </div>
-                  </form>
-                </section>
+                {<Reviews />}
               </div>
             </div>
             {<Map
@@ -199,12 +160,6 @@ class Property extends PureComponent {
               modificatorClass={
                 ModificatorClass.NEAR_PLACES
               }
-              offers={
-                offers
-              }
-              handleHeaderOfferClick={
-                handleHeaderOfferClick
-              }
             />}
           </div>
         </main>
@@ -217,11 +172,23 @@ Property.propTypes = {
   offers: PropTypes.arrayOf(
       offerPropTypes
   ).isRequired,
-  activeCard: offerPropTypes,
-  reviews: PropTypes.arrayOf(
-      reviewsPropTypes
-  ).isRequired,
+  activeOffer: offerPropTypes.isRequired,
   handleHeaderOfferClick: PropTypes.func.isRequired,
 };
 
-export default Property;
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+  activeOffer: state.activeOffer,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  handleHeaderOfferClick(offer) {
+    dispatch(setActiveOffer(offer));
+  }
+});
+
+export {
+  Property
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Property);

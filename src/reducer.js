@@ -1,21 +1,25 @@
 import offers from "./mocks/offers.js";
 import reviews from "./mocks/reviews.js";
 import ActionType from "./actionType.js";
+import {
+  extend
+} from "./utils.js";
 
 const getFilteredOffers = (city) => {
   return offers
     .slice()
-    .filter((offer) => offer.city.name === city)
-}
+    .filter((offer) => offer.city.name === city);
+};
 
 const getCoordinates = (offersList) => offersList.map((offer) => offer.coordinate);
 
 const initialLocations = Array.from(
-  new Set(
-    offers
-      .map((offer) => offer.city.name
-  )
-));
+    new Set(
+        offers
+          .map((offer) => offer.city.name
+          )
+    )
+);
 
 const initialCity = initialLocations[0];
 const initialOffers = getFilteredOffers(initialCity);
@@ -34,36 +38,30 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.SET_CURRENT_CITY:
-      return {
-        ...state,
+      return extend(state, {
         currentCity: action.payload,
-      }
+      });
     case ActionType.GET_OFFERS_LIST:
       const offersList = getFilteredOffers(action.payload);
-      return {
-        ...state,
+      return extend(state, {
         offers: offersList,
-      }
+      });
     case ActionType.SET_ACTIVE_OFFER:
-      return {
-        ...state,
+      return extend(state, {
         activeOffer: action.payload,
-      }
+      });
     case ActionType.GET_AVAILABLE_OFFERS:
-      return {
-        ...state,
+      return extend(state, {
         availableOffers: state.offers.length,
-      }
+      });
     case ActionType.SET_FOCUS_OFFER:
-      return {
-        ...state,
+      return extend(state, {
         focusOffer: action.payload,
-      }
+      });
     case ActionType.REMOVE_FOCUS_OFFER:
-      return {
-        ...state,
+      return extend(state, {
         focusOffer: action.payload,
-      }
+      });
   }
 
   return state;
@@ -71,4 +69,4 @@ const reducer = (state = initialState, action) => {
 
 export {
   reducer
-}
+};

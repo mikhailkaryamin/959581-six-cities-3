@@ -1,11 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Header from "./header.jsx";
+import ReviewsForm from "./reviews-form.jsx";
 
-it(`Render header correctly`, () => {
+test(`Render reviews form`, () => {
   const tree = renderer
     .create(
-        <Header />
+        <ReviewsForm />
     )
     .toJSON();
 

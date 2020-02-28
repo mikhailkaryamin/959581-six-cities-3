@@ -24,10 +24,16 @@ const getRandomElement = (elements) => elements[getRandomNumber(elements.length 
 
 const getRandomDate = (start, end) => new Date(getRandomNumber(end, start));
 
+const extend = (a, b) => {
+  return Object.assign({}, a, b);
+};
+
+
 export {
   getRandomArray,
   getRandomNumber,
   getRandomElement,
-  getRandomDate
+  getRandomDate,
+  extend
 };
 

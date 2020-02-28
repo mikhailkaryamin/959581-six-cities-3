@@ -1,10 +1,12 @@
 import React from "react";
 import Adapter from "enzyme-adapter-react-16";
-import Enzyme, {mount, shallow} from "enzyme";
-import PlaceCard from "./place-card.jsx";
-import configureStore from "redux-mock-store";
+import Enzyme, {
+  shallow
+} from "enzyme";
+import {
+  PlaceCard
+} from "./place-card.jsx";
 
-const mockStore = configureStore([]);
 const offer = {
   id: 123,
   src: [
@@ -35,44 +37,58 @@ const offer = {
   coordinate: [52.3909553943508, 4.85309666406198],
 };
 
-const handlePlaceCardMouseLeave = () => {};
-
 Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`Should headline button click and send state offer`, () => {
-  const handleHeaderOfferClick = jest.fn();
-  const handlePlaceCardMouseEnter = jest.fn();
-  const store = mockStore({});
-  const placeCard = shallow(
-      <PlaceCard
-        store={
-          store
-        }
-        offer={
-          offer
-        }
-        handleHeaderOfferClick={
-          handleHeaderOfferClick
-        }
-        handlePlaceCardMouseEnter={
-          handlePlaceCardMouseEnter
-        }
-        handlePlaceCardMouseLeave={
-          handlePlaceCardMouseLeave
-        }
-      />
-  );
+describe(`Place card e2e tests`, () => {
+  let placeCard;
+  let handleHeaderOfferClick;
+  let handlePlaceCardMouseEnter;
+  let handlePlaceCardMouseLeave;
 
-  const placeCardElement = placeCard.dive().find(`.place-card`);
-  placeCardElement.simulate(`mouseenter`);
-  expect(handlePlaceCardMouseEnter.mock.calls[0][0]).toMatchObject(offer);
-  expect(handlePlaceCardMouseEnter.mock.calls.length).toBe(1);
+  beforeEach(() => {
+    handleHeaderOfferClick = jest.fn();
+    handlePlaceCardMouseEnter = jest.fn();
+    handlePlaceCardMouseLeave = jest.fn();
 
-  const headerOfferElement = placeCard.dive().find(`.place-card__name`);
-  headerOfferElement.simulate(`click`);
-  expect(handleHeaderOfferClick.mock.calls[0][0]).toMatchObject(offer);
-  expect(handleHeaderOfferClick.mock.calls.length).toBe(1);
+    placeCard = shallow(
+        <PlaceCard
+          offer={
+            offer
+          }
+          handleHeaderOfferClick={
+            handleHeaderOfferClick
+          }
+          handlePlaceCardMouseEnter={
+            handlePlaceCardMouseEnter
+          }
+          handlePlaceCardMouseLeave={
+            handlePlaceCardMouseLeave
+          }
+        />
+    );
+  });
+
+  test(`When you press click and send state offer`, () => {
+    const headerOfferElement = placeCard.find(`.place-card__name`);
+    headerOfferElement.simulate(`click`);
+    expect(handleHeaderOfferClick.mock.calls[0][0]).toMatchObject(offer);
+    expect(handleHeaderOfferClick.mock.calls.length).toBe(1);
+  });
+
+  test(`When you mouseenter and send state offer`, () => {
+    const placeCardElement = placeCard.find(`.place-card`);
+    placeCardElement.simulate(`mouseenter`);
+    expect(handlePlaceCardMouseEnter.mock.calls[0][0]).toMatchObject(offer);
+    expect(handlePlaceCardMouseEnter.mock.calls.length).toBe(1);
+  });
+
+  test(`When you mouseenter and send state offer`, () => {
+    const placeCardElement = placeCard.find(`.place-card`);
+    placeCardElement.simulate(`mouseleave`);
+    expect(handlePlaceCardMouseLeave).toHaveBeenCalled();
+    expect(handlePlaceCardMouseLeave.mock.calls.length).toBe(1);
+  });
 });
 

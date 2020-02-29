@@ -10,7 +10,7 @@ import {
 } from "react-redux";
 import {
   reducer
-} from "./reducer.js";
+} from "./reducers/reducer.js";
 
 const store = createStore(
     reducer,

@@ -4,7 +4,7 @@ import {
   setCurrentCity,
   getOffersList,
   getAvailableOffers
-} from "../../actions.js";
+} from "../../actions/actions.js";
 import {
   connect
 } from "react-redux";

@@ -1,27 +1,23 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Map from "./map.jsx";
-import configureStore from "redux-mock-store";
 import {
-  Provider
-} from "react-redux";
-import initialState from "../../mocks/initialState.js";
+  Map
+} from "./map.jsx";
 
-const mockStore = configureStore([]);
-
-const activeCoordinatesMock = [52.3909553943508, 4.85309666406198];
+const coordinatesWithoutActive = [[52.3909553943508, 4.85309666406198], [52.3909553943508, 4.85309666406198]];
+const focusCoordinate = [52.3909553943508, 4.85309666406198];
 
 it(`Render map correctly`, () => {
-  const store = mockStore(initialState);
   const tree = renderer
     .create(
-        <Provider store={store}>
-          <Map
-            activeCoordinates={
-              activeCoordinatesMock
-            }
-          />
-        </Provider>, {
+        <Map
+          coordinatesWithoutActive={
+            coordinatesWithoutActive
+          }
+          focusCoordinate={
+            focusCoordinate
+          }
+        />, {
           createNodeMock: () => {
             return document.createElement(`div`);
           }

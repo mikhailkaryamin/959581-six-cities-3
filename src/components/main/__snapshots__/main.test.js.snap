@@ -179,11 +179,12 @@ exports[`Main render correctly 1`] = `
             action="#"
             className="places__sorting"
             method="get"
+            onClick={[Function]}
           >
             <span
               className="places__sorting-caption"
             >
-              Sort by
+              Sort by 
             </span>
             <span
               className="places__sorting-type"
@@ -204,25 +205,22 @@ exports[`Main render correctly 1`] = `
               className="places__options places__options--custom places__options--opened"
             >
               <li
-                className="places__option places__option--active"
-                tabIndex="0"
-              >
-                Popular
-              </li>
-              <li
                 className="places__option"
+                onClick={[Function]}
                 tabIndex="0"
               >
                 Price: low to high
               </li>
               <li
                 className="places__option"
+                onClick={[Function]}
                 tabIndex="0"
               >
                 Price: high to low
               </li>
               <li
                 className="places__option"
+                onClick={[Function]}
                 tabIndex="0"
               >
                 Top rated first

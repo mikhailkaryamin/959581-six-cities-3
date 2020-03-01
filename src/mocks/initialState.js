@@ -220,4 +220,8 @@ export default {
   availableOffers: 300,
   currentCity: `Paris`,
   numberReviews: 111,
+  currentSort: `Popular`,
+  coordinatesWithoutActive: [[52.3909553943508, 4.85309666406198], [52.3909553943508, 4.85309666406198]],
+  focusCoordinate: [52.3909553943508, 4.85309666406198],
+  isSortOpen: true,
 };

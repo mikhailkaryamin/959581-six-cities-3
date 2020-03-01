@@ -13,7 +13,7 @@ const offers = [];
 
 for (let i = 0; i < Offer.NUMBER_OFFERS; i++) {
   offers.push({
-    id: getRandomNumber(Max.ID),
+    id: i + 1,
     city: {
       name: getRandomElement(Offer.CITIES),
     },

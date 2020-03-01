@@ -6,7 +6,7 @@ import {
 } from "react-redux";
 import {
   setActiveOffer
-} from "../../actions.js";
+} from "../../actions/actions.js";
 import PropTypes from "prop-types";
 import {
   ModificatorClass
@@ -28,21 +28,12 @@ class Property extends PureComponent {
     super(props);
   }
 
-  _coordinatesWithoutActive(activeID) {
-    return (
-      this.props.offers
-        .filter((offer) => offer.id !== activeID)
-        .map((offer) => offer.coordinate)
-    );
-  }
-
   render() {
     const {
       activeOffer,
     } = this.props;
 
     const {
-      id,
       src,
       price,
       rating,
@@ -50,7 +41,6 @@ class Property extends PureComponent {
       type,
       mark,
       insideItems,
-      coordinate
     } = activeOffer;
 
     return (
@@ -146,12 +136,6 @@ class Property extends PureComponent {
             {<Map
               modificatorClass={
                 ModificatorClass.PROPERTY_MAP
-              }
-              coordinates={
-                this._coordinatesWithoutActive(id)
-              }
-              activeCoordinates={
-                coordinate
               }
             />}
           </section>

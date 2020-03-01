@@ -6,8 +6,11 @@ import PropTypes from "prop-types";
 import {
   setActiveOffer,
   setFocusOffer,
-  removeFocusOffer
-} from "../../actions.js";
+  removeFocusOffer,
+  getCoordinatesWithoutActive,
+  setFocusCoordinate,
+  removeFocusCoordinate
+} from "../../actions/actions.js";
 import {
   ONE_STAR
 } from "../../consts.js";
@@ -123,9 +126,13 @@ const mapDispatchToProps = (dispatch) => ({
   },
   handlePlaceCardMouseEnter(offer) {
     dispatch(setFocusOffer(offer));
+    dispatch(getCoordinatesWithoutActive());
+    dispatch(setFocusCoordinate(offer.coordinate));
   },
   handlePlaceCardMouseLeave() {
     dispatch(removeFocusOffer());
+    dispatch(removeFocusCoordinate());
+    dispatch(getCoordinatesWithoutActive());
   }
 });
 

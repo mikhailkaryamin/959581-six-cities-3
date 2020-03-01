@@ -25,4 +25,5 @@ const Cities = () => {
     </div>
   );
 };
+
 export default Cities;

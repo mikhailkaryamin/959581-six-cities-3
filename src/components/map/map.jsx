@@ -15,6 +15,7 @@ class Map extends PureComponent {
   constructor(props) {
     super(props);
     this._mapRef = createRef();
+    this._map = undefined;
   }
 
   componentDidMount() {
@@ -25,22 +26,23 @@ class Map extends PureComponent {
       } = CoordinatesCity;
       const zoom = 12;
       const {
-        coordinates
+        coordinatesWithoutActive,
+        focusCoordinate
       } = this.props;
 
-      const icon = leaflet.icon({
+      const iconDefault = leaflet.icon({
         iconUrl: `img/pin.svg`,
         iconSize: [30, 30]
       });
 
-      const map = leaflet.map(mapRef, {
+      this._map = leaflet.map(mapRef, {
         center: AMSTERDAM,
         zoom,
         zoomControl: false,
         marker: true
       });
 
-      map.setView(AMSTERDAM, zoom);
+      this._map.setView(AMSTERDAM, zoom);
 
       leaflet
         .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -48,25 +50,51 @@ class Map extends PureComponent {
           OpenStreetMap</a> contributors &copy;
           <a href="https://carto.com/attributions">CARTO</a>`
         })
-        .addTo(map);
+        .addTo(this._map);
 
-      coordinates.map((markerCoordinate) =>
+      coordinatesWithoutActive.map((markerCoordinate) =>
         leaflet
-        .marker(markerCoordinate, {icon})
-        .addTo(map)
+        .marker(markerCoordinate, {icon: iconDefault})
+        .addTo(this._map)
       );
 
-      if (this.props.activeCoordinates !== undefined) {
-        const activeCoordinates = this.props.activeCoordinates;
+      if (focusCoordinate !== undefined) {
         const iconActive = leaflet.icon({
-          iconUrl: `img/pin-active.png`,
+          iconUrl: `img/pin-active.svg`,
           iconSize: [30, 30]
         });
 
         leaflet
-          .marker(activeCoordinates, {iconActive})
-          .addTo(map);
+          .marker(focusCoordinate, {icon: iconActive})
+          .addTo(this._map);
       }
+    }
+  }
+
+  componentDidUpdate() {
+    const {
+      coordinatesWithoutActive,
+      focusCoordinate
+    } = this.props;
+    const iconDefault = leaflet.icon({
+      iconUrl: `img/pin.svg`,
+      iconSize: [30, 30]
+    });
+    coordinatesWithoutActive.map((markerCoordinate) =>
+      leaflet
+        .marker(markerCoordinate, {icon: iconDefault})
+        .addTo(this._map)
+    );
+
+    if (focusCoordinate) {
+      const iconActive = leaflet.icon({
+        iconUrl: `img/pin-active.svg`,
+        iconSize: [30, 30]
+      });
+
+      leaflet
+        .marker(focusCoordinate, {icon: iconActive})
+        .addTo(this._map);
     }
   }
 
@@ -84,12 +112,12 @@ class Map extends PureComponent {
 
 Map.propTypes = {
   modificatorClass: PropTypes.string,
-  coordinates: PropTypes.arrayOf(
+  coordinatesWithoutActive: PropTypes.arrayOf(
       PropTypes.arrayOf(
           PropTypes.number.isRequired
       )
   ),
-  activeCoordinates: PropTypes.arrayOf(
+  focusCoordinate: PropTypes.arrayOf(
       PropTypes.number.isRequired
   ),
 };
@@ -99,7 +127,8 @@ Map.defaultProps = {
 };
 
 const mapStateToProps = (state) => ({
-  coordinates: state.coordinates
+  coordinatesWithoutActive: state.coordinatesWithoutActive,
+  focusCoordinate: state.focusCoordinate,
 });
 
 export {

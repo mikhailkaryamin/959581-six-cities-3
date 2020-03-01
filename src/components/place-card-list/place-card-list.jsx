@@ -66,7 +66,7 @@ PlacesCardList.propTypes = {
 };
 
 PlacesCardList.defaultProps = {
-  modificatorClass: ``
+  modificatorClass: ``,
 };
 
 const mapStateToProps = (state) => ({

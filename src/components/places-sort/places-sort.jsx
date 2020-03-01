@@ -65,6 +65,13 @@ class PlacesSort extends PureComponent {
   }
 }
 
+PlacesSort.propTypes = {
+  currentSort: PropTypes.string.isRequired,
+  isSortOpen: PropTypes.bool.isRequired,
+  handleTypeClick: PropTypes.func.isRequired,
+  handleListClick: PropTypes.func.isRequired
+};
+
 const mapStateToProps = (state) => ({
   currentSort: state.currentSort,
   isSortOpen: state.isSortOpen,

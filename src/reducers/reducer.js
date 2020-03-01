@@ -1,6 +1,18 @@
 import offers from "../mocks/offers.js";
 import reviews from "../mocks/reviews.js";
-import ActionType from "../actionTypes/actionType.js";
+import {
+  SET_CURRENT_CITY,
+  GET_OFFERS_LIST,
+  SET_ACTIVE_OFFER,
+  SET_FOCUS_OFFER,
+  REMOVE_FOCUS_OFFER,
+  GET_AVAILABLE_OFFERS,
+  TOGGLE_SORT_LIST,
+  SET_CURRENT_SORT,
+  GET_COORDINATES_WITHOUT_FOCUS,
+  SET_FOCUS_COORDINATE,
+  REMOVE_FOCUS_COORDINATE
+} from "../actionTypes/actionType.js";
 import {
   extend
 } from "../utils.js";
@@ -46,40 +58,40 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.SET_CURRENT_CITY:
+    case SET_CURRENT_CITY:
       return extend(state, {
         currentCity: action.payload,
       });
-    case ActionType.GET_OFFERS_LIST:
+    case GET_OFFERS_LIST:
       const offersList = getFilteredOffers(action.payload);
       return extend(state, {
         offers: offersList,
       });
-    case ActionType.SET_ACTIVE_OFFER:
+    case SET_ACTIVE_OFFER:
       return extend(state, {
         activeOffer: action.payload,
       });
-    case ActionType.GET_AVAILABLE_OFFERS:
+    case GET_AVAILABLE_OFFERS:
       return extend(state, {
         availableOffers: state.offers.length,
       });
-    case ActionType.SET_FOCUS_OFFER:
+    case SET_FOCUS_OFFER:
       return extend(state, {
         focusOffer: action.payload,
       });
-    case ActionType.REMOVE_FOCUS_OFFER:
+    case REMOVE_FOCUS_OFFER:
       return extend(state, {
         focusOffer: action.payload,
       });
-    case ActionType.SET_CURRENT_SORT:
+    case SET_CURRENT_SORT:
       return extend(state, {
         currentSort: action.payload,
       });
-    case ActionType.TOGGLE_SORT_LIST:
+    case TOGGLE_SORT_LIST:
       return extend(state, {
         isSortOpen: !action.payload,
       });
-    case ActionType.GET_COORDINATES_WITHOUT_FOCUS:
+    case GET_COORDINATES_WITHOUT_FOCUS:
       if (state.focusOffer) {
         const activeID = state.focusOffer.id;
         const coordinatesWithoutActive = getCoordinatesWithoutFocus(state.offers, activeID);
@@ -91,11 +103,11 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         coordinatesWithoutActive: getCoordinatesWithoutFocus(state.offers)
       });
-    case ActionType.SET_FOCUS_COORDINATE:
+    case SET_FOCUS_COORDINATE:
       return extend(state, {
         focusCoordinate: action.payload,
       });
-    case ActionType.REMOVE_FOCUS_COORDINATE:
+    case REMOVE_FOCUS_COORDINATE:
       return extend(state, {
         focusCoordinate: action.payload,
       });

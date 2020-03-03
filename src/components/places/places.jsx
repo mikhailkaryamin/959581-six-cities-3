@@ -6,11 +6,25 @@ import {
   connect
 } from "react-redux";
 import PropTypes from "prop-types";
-import PlacesCardList from "../place-card-list/place-card-list.jsx";
-import PlacesSort from "../places-sort/places-sort.jsx";
 import {
   ModificatorClass
 } from "../../consts.js";
+import {
+  offerPropTypes
+} from "../../types.js";
+import {
+  setActiveOffer,
+  setFocusOffer,
+  removeFocusOffer,
+  getCoordinatesWithoutActive,
+  setFocusCoordinate,
+  removeFocusCoordinate
+} from "../../actions/actions.js";
+import PlacesCardList from "../place-card-list/place-card-list.jsx";
+import PlacesSort from "../places-sort/places-sort.jsx";
+import withToggleSort from "../../hocs/with-toggle-sort/with-toggle-sort.js";
+
+const PlacesSortWrapped = withToggleSort(PlacesSort);
 
 class Places extends PureComponent {
   constructor(props) {
@@ -21,7 +35,12 @@ class Places extends PureComponent {
     const {
       availableOffers,
       currentCity,
-      modificatorClass
+      modificatorClass,
+      offers,
+      currentSort,
+      handleHeaderOfferClick,
+      handlePlaceCardMouseEnter,
+      handlePlaceCardMouseLeave,
     } = this.props;
 
     return (
@@ -36,10 +55,25 @@ class Places extends PureComponent {
                 currentCity
               }
             </b>
-            {<PlacesSort />}
+            {<PlacesSortWrapped />}
             {<PlacesCardList
               modificatorClass={
                 ModificatorClass.CITIES_PLACES_LIST
+              }
+              offers={
+                offers
+              }
+              currentSort={
+                currentSort
+              }
+              handleHeaderOfferClick={
+                handleHeaderOfferClick
+              }
+              handlePlaceCardMouseEnter={
+                handlePlaceCardMouseEnter
+              }
+              handlePlaceCardMouseLeave={
+                handlePlaceCardMouseLeave
               }
             />}
           </React.Fragment>
@@ -53,6 +87,21 @@ class Places extends PureComponent {
               modificatorClass={
                 ModificatorClass.NEAR_PLACES_LIST
               }
+              offers={
+                offers
+              }
+              currentSort={
+                currentSort
+              }
+              handleHeaderOfferClick={
+                handleHeaderOfferClick
+              }
+              handlePlaceCardMouseEnter={
+                handlePlaceCardMouseEnter
+              }
+              handlePlaceCardMouseLeave={
+                handlePlaceCardMouseLeave
+              }
             />}
           </React.Fragment>
         }
@@ -62,18 +111,43 @@ class Places extends PureComponent {
 }
 
 Places.propTypes = {
+  offers: PropTypes.arrayOf(
+      offerPropTypes
+  ).isRequired,
   availableOffers: PropTypes.number.isRequired,
   modificatorClass: PropTypes.string.isRequired,
   currentCity: PropTypes.string.isRequired,
+  currentSort: PropTypes.string.isRequired,
+  handleHeaderOfferClick: PropTypes.func.isRequired,
+  handlePlaceCardMouseEnter: PropTypes.func.isRequired,
+  handlePlaceCardMouseLeave: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   availableOffers: state.availableOffers,
   currentCity: state.currentCity,
+  offers: state.offers,
+  currentSort: state.currentSort,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  handleHeaderOfferClick(offer) {
+    dispatch(setActiveOffer(offer));
+  },
+  handlePlaceCardMouseEnter(offer) {
+    dispatch(setFocusOffer(offer));
+    dispatch(getCoordinatesWithoutActive());
+    dispatch(setFocusCoordinate(offer.coordinate));
+  },
+  handlePlaceCardMouseLeave() {
+    dispatch(removeFocusOffer());
+    dispatch(removeFocusCoordinate());
+    dispatch(getCoordinatesWithoutActive());
+  }
 });
 
 export {
   Places
 };
 
-export default connect(mapStateToProps)(Places);
+export default connect(mapStateToProps, mapDispatchToProps)(Places);

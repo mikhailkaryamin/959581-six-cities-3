@@ -98,6 +98,10 @@ class Map extends PureComponent {
     }
   }
 
+  componentWillUnmount() {
+    this._map = null;
+  }
+
   render() {
     const {
       modificatorClass

@@ -1,9 +1,6 @@
 import React, {
   PureComponent
 } from "react";
-import {
-  connect
-} from "react-redux";
 import PropTypes from "prop-types";
 import {
   offerPropTypes
@@ -39,12 +36,28 @@ class PlacesCardList extends PureComponent {
   render() {
     const {
       modificatorClass,
+      handleHeaderOfferClick,
+      handlePlaceCardMouseEnter,
+      handlePlaceCardMouseLeave,
     } = this.props;
 
     const places = this._sortBy().map((offer) =>
       <PlaceCard
-        key={`${offer.id}`}
-        offer={offer}
+        key={
+          `${offer.id}`
+        }
+        offer={
+          offer
+        }
+        handleHeaderOfferClick={
+          handleHeaderOfferClick
+        }
+        handlePlaceCardMouseEnter={
+          handlePlaceCardMouseEnter
+        }
+        handlePlaceCardMouseLeave={
+          handlePlaceCardMouseLeave
+        }
       />);
 
     return (
@@ -63,20 +76,13 @@ PlacesCardList.propTypes = {
   ).isRequired,
   modificatorClass: PropTypes.string,
   currentSort: PropTypes.string.isRequired,
+  handleHeaderOfferClick: PropTypes.func.isRequired,
+  handlePlaceCardMouseEnter: PropTypes.func.isRequired,
+  handlePlaceCardMouseLeave: PropTypes.func.isRequired,
 };
 
 PlacesCardList.defaultProps = {
   modificatorClass: ``,
 };
 
-const mapStateToProps = (state) => ({
-  offers: state.offers,
-  currentSort: state.currentSort,
-});
-
-export {
-  PlacesCardList
-};
-
-export default connect(mapStateToProps)(PlacesCardList);
-
+export default PlacesCardList;

@@ -22,8 +22,8 @@ class PlacesSort extends PureComponent {
     const {
       handleTypeClick,
       currentSort,
-      isOpenSort,
-      onSortButtonClick,
+      isActive,
+      onToggleClick,
     } = this.props;
 
     return (
@@ -32,7 +32,7 @@ class PlacesSort extends PureComponent {
         action="#"
         method="get"
         onClick={() => {
-          onSortButtonClick();
+          onToggleClick();
         }}
       >
         <span className="places__sorting-caption">Sort by </span>
@@ -44,7 +44,7 @@ class PlacesSort extends PureComponent {
             <use xlinkHref="#icon-arrow-select"></use>
           </svg>
         </span>
-        <ul className={`places__options places__options--custom ${isOpenSort ? `places__options--opened` : ``}`
+        <ul className={`places__options places__options--custom ${isActive ? `places__options--opened` : ``}`
         }
         >
           {
@@ -69,9 +69,9 @@ class PlacesSort extends PureComponent {
 
 PlacesSort.propTypes = {
   currentSort: PropTypes.string.isRequired,
-  isOpenSort: PropTypes.bool.isRequired,
+  isActive: PropTypes.bool.isRequired,
   handleTypeClick: PropTypes.func.isRequired,
-  onSortButtonClick: PropTypes.func.isRequired,
+  onToggleClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

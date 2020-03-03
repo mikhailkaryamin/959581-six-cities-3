@@ -10,25 +10,60 @@ import {
 import {
   connect
 } from "react-redux";
+import PropTypes from "prop-types";
 import {
   offerPropTypes,
 } from "../../types.js";
+import {
+  setCurrentCity,
+  getOffersList,
+  getAvailableOffers,
+  setActiveOffer
+} from "../../actions/actions.js";
 import Main from "../main/main.jsx";
 import Property from "../property/property.jsx";
+import Locations from "../locations/locations.jsx";
+import Cities from "../cities/cities.jsx";
+import Page from "../page/page.jsx";
 
 class App extends PureComponent {
   _renderApp() {
     const {
-      activeOffer
+      activeOffer,
+      locations,
+      handleLocationClick,
+      offers,
+      currentCity,
+      currentSort,
+      handleHeaderOfferClick
     } = this.props;
 
     if (activeOffer === undefined) {
       return (
-        <Main />
+        <Page
+          className={
+            `page--gray page--main`
+          }
+        >
+          <Main>
+            <Locations
+              locations={locations}
+              handleLocationClick={handleLocationClick}
+              currentCity={currentCity}
+            />
+            <Cities
+              offers={offers}
+              currentSort={currentSort}
+              handleHeaderOfferClick={handleHeaderOfferClick}
+            />
+          </Main>
+        </Page>
       );
     } else {
       return (
-        <Property />
+        <Page>
+          <Property />
+        </Page>
       );
     }
   }
@@ -49,14 +84,39 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
+  offers: PropTypes.arrayOf(
+      offerPropTypes
+  ).isRequired,
   activeOffer: offerPropTypes,
+  handleLocationClick: PropTypes.func.isRequired,
+  locations: PropTypes.arrayOf(
+      PropTypes.string
+  ).isRequired,
+  currentCity: PropTypes.string.isRequired,
+  handleHeaderOfferClick: PropTypes.func.isRequired,
+  currentSort: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
+  offers: state.offers,
+  locations: state.locations,
   activeOffer: state.activeOffer,
+  currentCity: state.currentCity,
+  currentSort: state.currentSort,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  handleLocationClick(location) {
+    dispatch(setCurrentCity(location));
+    dispatch(getOffersList(location));
+    dispatch(getAvailableOffers());
+  },
+  handleHeaderOfferClick(offer) {
+    dispatch(setActiveOffer(offer));
+  }
 });
 
 export {
   App
 };
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -16,8 +16,8 @@ class PlaceCard extends PureComponent {
     const {
       offer,
       handleHeaderOfferClick,
-      handlePlaceCardMouseEnter,
-      handlePlaceCardMouseLeave,
+      onMouseEnter,
+      onMouseLeave,
     } = this.props;
 
     const {
@@ -33,10 +33,10 @@ class PlaceCard extends PureComponent {
       <article
         className="cities__place-card place-card"
         onMouseEnter={() => {
-          handlePlaceCardMouseEnter(offer);
+          onMouseEnter(offer);
         }}
         onMouseLeave={() => {
-          handlePlaceCardMouseLeave();
+          onMouseLeave();
         }}
       >
         {mark ?
@@ -105,8 +105,8 @@ PlaceCard.propTypes = {
     mark: PropTypes.bool.isRequired,
   }).isRequired,
   handleHeaderOfferClick: PropTypes.func.isRequired,
-  handlePlaceCardMouseEnter: PropTypes.func.isRequired,
-  handlePlaceCardMouseLeave: PropTypes.func.isRequired,
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired,
 };
 
 export default PlaceCard;

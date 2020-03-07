@@ -22,15 +22,15 @@ class Places extends PureComponent {
 
   render() {
     const {
-      availableOffers,
       currentCity,
       modificatorClass,
       offers,
       currentSort,
       handleHeaderOfferClick,
-      handlePlaceCardMouseEnter,
-      handlePlaceCardMouseLeave,
+      onCardHover
     } = this.props;
+
+    const AVAILABLE_OFFERS = offers.length;
 
     return (
       <section className={`places ${modificatorClass}`}>
@@ -39,31 +39,18 @@ class Places extends PureComponent {
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">
               {
-                availableOffers
+                AVAILABLE_OFFERS
               } places to stay in {
                 currentCity
               }
             </b>
             {<PlacesSortWrapped />}
             {<PlacesCardList
-              modificatorClass={
-                ModificatorClass.CITIES_PLACES_LIST
-              }
-              offers={
-                offers
-              }
-              currentSort={
-                currentSort
-              }
-              handleHeaderOfferClick={
-                handleHeaderOfferClick
-              }
-              // handlePlaceCardMouseEnter={
-              //   handlePlaceCardMouseEnter
-              // }
-              // handlePlaceCardMouseLeave={
-              //   handlePlaceCardMouseLeave
-              // }
+              modificatorClass={ModificatorClass.CITIES_PLACES_LIST}
+              offers={offers}
+              currentSort={currentSort}
+              handleHeaderOfferClick={handleHeaderOfferClick}
+              onCardHover={onCardHover}
             />}
           </React.Fragment>
         }
@@ -85,12 +72,7 @@ class Places extends PureComponent {
               handleHeaderOfferClick={
                 handleHeaderOfferClick
               }
-              // handlePlaceCardMouseEnter={
-              //   handlePlaceCardMouseEnter
-              // }
-              // handlePlaceCardMouseLeave={
-              //   handlePlaceCardMouseLeave
-              // }
+              onCardHover={onCardHover}
             />}
           </React.Fragment>
         }
@@ -103,36 +85,11 @@ Places.propTypes = {
   offers: PropTypes.arrayOf(
       offerPropTypes
   ).isRequired,
-  availableOffers: PropTypes.number.isRequired,
   modificatorClass: PropTypes.string.isRequired,
   currentCity: PropTypes.string.isRequired,
   currentSort: PropTypes.string.isRequired,
   handleHeaderOfferClick: PropTypes.func.isRequired,
-  handlePlaceCardMouseEnter: PropTypes.func.isRequired,
-  handlePlaceCardMouseLeave: PropTypes.func.isRequired,
+  onCardHover: PropTypes.func.isRequired,
 };
-
-const mapStateToProps = (state) => ({
-  availableOffers: state.availableOffers,
-  currentCity: state.currentCity,
-  offers: state.offers,
-  currentSort: state.currentSort,
-});
-
-// const mapDispatchToProps = (dispatch) => ({
-//   handleHeaderOfferClick(offer) {
-//     dispatch(setActiveOffer(offer));
-//   },
-//   handlePlaceCardMouseEnter(offer) {
-//     dispatch(setFocusOffer(offer));
-//     dispatch(getCoordinatesWithoutActive());
-//     dispatch(setFocusCoordinate(offer.coordinate));
-//   },
-//   handlePlaceCardMouseLeave() {
-//     dispatch(removeFocusOffer());
-//     dispatch(removeFocusCoordinate());
-//     dispatch(getCoordinatesWithoutActive());
-//   }
-// });
 
 export default Places;

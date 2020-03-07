@@ -5,9 +5,8 @@ const setCurrentCity = (city) => ({
   payload: city,
 });
 
-const getOffersList = (city) => ({
+const getOffersList = () => ({
   type: ActionType.GET_OFFERS_LIST,
-  payload: city,
 });
 
 const setActiveOffer = (offer) => ({

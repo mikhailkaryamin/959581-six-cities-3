@@ -9,6 +9,9 @@ import {
   TypeSort
 } from "../../consts.js";
 import PlaceCard from "../place-card/place-card.jsx";
+import withHover from "../../hocs/with-hover/with-hover.js";
+
+const PlaceCardWrapped = withHover(PlaceCard);
 
 class PlacesCardList extends PureComponent {
   constructor(props) {
@@ -18,7 +21,7 @@ class PlacesCardList extends PureComponent {
   _sortBy() {
     const {
       offers,
-      currentSort
+      currentSort,
     } = this.props;
 
     switch (currentSort) {
@@ -37,12 +40,11 @@ class PlacesCardList extends PureComponent {
     const {
       modificatorClass,
       handleHeaderOfferClick,
-      handlePlaceCardMouseEnter,
-      handlePlaceCardMouseLeave,
+      onCardHover
     } = this.props;
 
     const places = this._sortBy().map((offer) =>
-      <PlaceCard
+      <PlaceCardWrapped
         key={
           `${offer.id}`
         }
@@ -52,11 +54,8 @@ class PlacesCardList extends PureComponent {
         handleHeaderOfferClick={
           handleHeaderOfferClick
         }
-        handlePlaceCardMouseEnter={
-          handlePlaceCardMouseEnter
-        }
-        handlePlaceCardMouseLeave={
-          handlePlaceCardMouseLeave
+        onCardHover={
+          onCardHover
         }
       />);
 

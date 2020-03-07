@@ -28,12 +28,18 @@ const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
+const getOffersCurrentCity = (offers, currentCity) => {
+  return offers
+    .slice()
+    .filter((offer) => offer.city === currentCity);
+};
 
 export {
   getRandomArray,
   getRandomNumber,
   getRandomElement,
   getRandomDate,
-  extend
+  extend,
+  getOffersCurrentCity
 };
 

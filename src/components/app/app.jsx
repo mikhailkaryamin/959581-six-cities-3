@@ -17,8 +17,8 @@ import {
 import {
   setCurrentCity,
   getOffersList,
-  getAvailableOffers,
-  setActiveOffer
+  setActiveOffer,
+  setFocusOffer
 } from "../../actions/actions.js";
 import Main from "../main/main.jsx";
 import Property from "../property/property.jsx";
@@ -35,7 +35,9 @@ class App extends PureComponent {
       offers,
       currentCity,
       currentSort,
-      handleHeaderOfferClick
+      handleHeaderOfferClick,
+      onCardHover,
+      focusOffer
     } = this.props;
 
     if (activeOffer === undefined) {
@@ -55,6 +57,8 @@ class App extends PureComponent {
               offers={offers}
               currentSort={currentSort}
               handleHeaderOfferClick={handleHeaderOfferClick}
+              onCardHover={onCardHover}
+              focusOffer={focusOffer}
             />
           </Main>
         </Page>
@@ -95,6 +99,8 @@ App.propTypes = {
   currentCity: PropTypes.string.isRequired,
   handleHeaderOfferClick: PropTypes.func.isRequired,
   currentSort: PropTypes.string.isRequired,
+  onCardHover: PropTypes.func.isRequired,
+  focusOffer: offerPropTypes
 };
 
 const mapStateToProps = (state) => ({
@@ -108,11 +114,13 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   handleLocationClick(location) {
     dispatch(setCurrentCity(location));
-    dispatch(getOffersList(location));
-    dispatch(getAvailableOffers());
+    dispatch(getOffersList());
   },
   handleHeaderOfferClick(offer) {
     dispatch(setActiveOffer(offer));
+  },
+  onCardHover(offer) {
+    dispatch(setFocusOffer(offer));
   }
 });
 

@@ -34,12 +34,20 @@ const getOffersCurrentCity = (offers, currentCity) => {
     .filter((offer) => offer.city === currentCity);
 };
 
+const getUniqueArray = (array) => {
+  const uniqueSet = new Set(array);
+
+  return Array
+    .from(uniqueSet);
+};
+
 export {
   getRandomArray,
   getRandomNumber,
   getRandomElement,
   getRandomDate,
   extend,
-  getOffersCurrentCity
+  getOffersCurrentCity,
+  getUniqueArray,
 };
 

@@ -20,19 +20,19 @@ class PlacesCardList extends PureComponent {
 
   _sortBy() {
     const {
-      offers,
+      offersCurrentCity,
       currentSort,
     } = this.props;
 
     switch (currentSort) {
       case TypeSort.PRICE_LOW_TO_HIGH:
-        return offers.slice().sort((a, b) => a.price - b.price);
+        return offersCurrentCity.slice().sort((a, b) => a.price - b.price);
       case TypeSort.PRICE_HIGH_TO_LOW:
-        return offers.slice().sort((a, b) => b.price - a.price);
+        return offersCurrentCity.slice().sort((a, b) => b.price - a.price);
       case TypeSort.TOP_RATED_FIRST:
-        return offers.slice().sort((a, b) => b.rating - a.rating);
+        return offersCurrentCity.slice().sort((a, b) => b.rating - a.rating);
       default:
-        return offers;
+        return offersCurrentCity;
     }
   }
 
@@ -70,14 +70,13 @@ class PlacesCardList extends PureComponent {
 }
 
 PlacesCardList.propTypes = {
-  offers: PropTypes.arrayOf(
+  offersCurrentCity: PropTypes.arrayOf(
       offerPropTypes
   ).isRequired,
   modificatorClass: PropTypes.string,
   currentSort: PropTypes.string.isRequired,
   handleHeaderOfferClick: PropTypes.func.isRequired,
-  handlePlaceCardMouseEnter: PropTypes.func.isRequired,
-  handlePlaceCardMouseLeave: PropTypes.func.isRequired,
+  onCardHover: PropTypes.func.isRequired,
 };
 
 PlacesCardList.defaultProps = {

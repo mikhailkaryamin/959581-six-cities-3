@@ -18,11 +18,12 @@ class Cities extends PureComponent {
 
   render() {
     const {
-      offers,
+      offersCurrentCity,
       currentSort,
       handleHeaderOfferClick,
       onCardHover,
-      focusOffer
+      focusOffer,
+      handleSortChange,
     } = this.props;
 
     return (
@@ -30,22 +31,17 @@ class Cities extends PureComponent {
         <div className="cities__places-container container">
           <Places
             modificatorClass={ModificatorClass.CITIES_PLACES}
-            offers={offers}
+            offersCurrentCity={offersCurrentCity}
             currentSort={currentSort}
             handleHeaderOfferClick={handleHeaderOfferClick}
             onCardHover={onCardHover}
+            handleSortChange={handleSortChange}
           />
           <div className="cities__right-section">
             <Map
-              modificatorClass={
-                ModificatorClass.CITIES_MAP
-              }
-              offers={
-                offers
-              }
-              focusOffer={
-                focusOffer
-              }
+              modificatorClass={ModificatorClass.CITIES_MAP}
+              offersCurrentCity={offersCurrentCity}
+              focusOffer={focusOffer}
             />
           </div>
         </div>
@@ -55,13 +51,14 @@ class Cities extends PureComponent {
 }
 
 Cities.propTypes = {
-  offers: PropTypes.arrayOf(
+  offersCurrentCity: PropTypes.arrayOf(
       offerPropTypes
   ).isRequired,
   focusOffer: offerPropTypes,
   handleHeaderOfferClick: PropTypes.func.isRequired,
   currentSort: PropTypes.string.isRequired,
   onCardHover: PropTypes.func.isRequired,
+  handleSortChange: PropTypes.func.isRequired,
 };
 
 export default Cities;

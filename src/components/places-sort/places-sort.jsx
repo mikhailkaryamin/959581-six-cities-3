@@ -3,13 +3,6 @@ import React, {
 } from "react";
 import PropTypes from "prop-types";
 import {
-  connect
-} from "react-redux";
-import {
-  setCurrentSort,
-  toggleSortList
-} from "../../actions/actions.js";
-import {
   SORTING
 } from "../../consts.js";
 
@@ -20,10 +13,10 @@ class PlacesSort extends PureComponent {
 
   render() {
     const {
-      handleTypeClick,
       currentSort,
       isActive,
       onToggleClick,
+      handleSortChange
     } = this.props;
 
     return (
@@ -54,7 +47,7 @@ class PlacesSort extends PureComponent {
                 key={sort}
                 tabIndex="0"
                 onClick={()=> {
-                  handleTypeClick(sort);
+                  handleSortChange(sort);
                 }}
               >
                 {sort}
@@ -70,26 +63,8 @@ class PlacesSort extends PureComponent {
 PlacesSort.propTypes = {
   currentSort: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired,
-  handleTypeClick: PropTypes.func.isRequired,
   onToggleClick: PropTypes.func.isRequired,
+  handleSortChange: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  currentSort: state.currentSort,
-  isSortOpen: state.isSortOpen,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  handleTypeClick(sort) {
-    dispatch(setCurrentSort(sort));
-  },
-  handleListClick(isSortOpen) {
-    dispatch(toggleSortList(isSortOpen));
-  },
-});
-
-export {
-  PlacesSort
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PlacesSort);
+export default PlacesSort;

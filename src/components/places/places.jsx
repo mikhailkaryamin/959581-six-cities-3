@@ -22,15 +22,16 @@ class Places extends PureComponent {
 
   render() {
     const {
-      currentCity,
       modificatorClass,
-      offers,
+      offersCurrentCity,
       currentSort,
       handleHeaderOfferClick,
-      onCardHover
+      onCardHover,
+      handleSortChange,
     } = this.props;
 
-    const AVAILABLE_OFFERS = offers.length;
+    const AVAILABLE_OFFERS = offersCurrentCity.length;
+    const CURRENT_CITY = offersCurrentCity[0].city.name;
 
     return (
       <section className={`places ${modificatorClass}`}>
@@ -41,13 +42,16 @@ class Places extends PureComponent {
               {
                 AVAILABLE_OFFERS
               } places to stay in {
-                currentCity
+                CURRENT_CITY
               }
             </b>
-            {<PlacesSortWrapped />}
+            {<PlacesSortWrapped
+              handleSortChange={handleSortChange}
+              currentSort={currentSort}
+            />}
             {<PlacesCardList
               modificatorClass={ModificatorClass.CITIES_PLACES_LIST}
-              offers={offers}
+              offersCurrentCity={offersCurrentCity}
               currentSort={currentSort}
               handleHeaderOfferClick={handleHeaderOfferClick}
               onCardHover={onCardHover}
@@ -63,8 +67,8 @@ class Places extends PureComponent {
               modificatorClass={
                 ModificatorClass.NEAR_PLACES_LIST
               }
-              offers={
-                offers
+              offersCurrentCity={
+                offersCurrentCity
               }
               currentSort={
                 currentSort
@@ -82,14 +86,14 @@ class Places extends PureComponent {
 }
 
 Places.propTypes = {
-  offers: PropTypes.arrayOf(
+  offersCurrentCity: PropTypes.arrayOf(
       offerPropTypes
   ).isRequired,
   modificatorClass: PropTypes.string.isRequired,
-  currentCity: PropTypes.string.isRequired,
   currentSort: PropTypes.string.isRequired,
   handleHeaderOfferClick: PropTypes.func.isRequired,
   onCardHover: PropTypes.func.isRequired,
+  handleSortChange: PropTypes.func.isRequired,
 };
 
 export default Places;

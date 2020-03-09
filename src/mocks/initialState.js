@@ -1,43 +1,43 @@
 export default {
-  activeOffer: {
-    id: 123,
-    src: [
-      `img/apartment-03.jpg`,
-      `img/studio-01.jpg`,
-      `img/apartment-01.jpg`,
-      `img/room.jpg`,
-      `img/apartment-01.jpg`,
-      `img/apartment-02.jpg`,
-    ],
-    price: 120,
-    rating: 4,
-    name: `Beautiful &amp; luxurious apartment at great location`,
-    description: `An independent House, strategically located between Rembrand Square and National Opera,`
-    + ` but where the bustle of the city comes to rest in this alley flowery and colorful.`,
-    type: `Apartment`,
-    mark: true,
-    insideItems: [
-      `Wi-Fi`,
-      `Washing machine`,
-      `Towels`,
-      `Heating`,
-      `Coffee machine`,
-      `Baby seat`,
-      `Kitchen`,
-      `Dishwasher`,
-      `Cabel TV`,
-      `Fridge`
-    ],
-    coordinate: [52.3909553943508, 4.85309666406198],
-  },
-  locations: [
-    `Paris`,
-    `Cologne`,
-    `Brussels`,
-    `Amsterdam`,
-    `Hamburg`,
-    `Dusseldorf`
-  ],
+  // activeOffer: {
+  //   id: 123,
+  //   src: [
+  //     `img/apartment-03.jpg`,
+  //     `img/studio-01.jpg`,
+  //     `img/apartment-01.jpg`,
+  //     `img/room.jpg`,
+  //     `img/apartment-01.jpg`,
+  //     `img/apartment-02.jpg`,
+  //   ],
+  //   price: 120,
+  //   rating: 4,
+  //   name: `Beautiful &amp; luxurious apartment at great location`,
+  //   description: `An independent House, strategically located between Rembrand Square and National Opera,`
+  //   + ` but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+  //   type: `Apartment`,
+  //   mark: true,
+  //   insideItems: [
+  //     `Wi-Fi`,
+  //     `Washing machine`,
+  //     `Towels`,
+  //     `Heating`,
+  //     `Coffee machine`,
+  //     `Baby seat`,
+  //     `Kitchen`,
+  //     `Dishwasher`,
+  //     `Cabel TV`,
+  //     `Fridge`
+  //   ],
+  //   coordinate: [52.3909553943508, 4.85309666406198],
+  // },
+  // locations: [
+  //   `Paris`,
+  //   `Cologne`,
+  //   `Brussels`,
+  //   `Amsterdam`,
+  //   `Hamburg`,
+  //   `Dusseldorf`
+  // ],
   offers: [
     {
       id: 123,
@@ -69,6 +69,9 @@ export default {
         `Fridge`
       ],
       coordinate: [52.3909553943508, 4.85309666406198],
+      city: {
+        name: `Paris`
+      }
     },
     {
       id: 242,
@@ -100,6 +103,9 @@ export default {
         `Fridge`
       ],
       coordinate: [52.3909553943508, 4.85309666406198],
+      city: {
+        name: `Paris`
+      }
     },
     {
       id: 232,
@@ -131,6 +137,9 @@ export default {
         `Fridge`
       ],
       coordinate: [52.3909553943508, 4.85309666406198],
+      city: {
+        name: `Paris`
+      }
     },
     {
       id: 522,
@@ -162,6 +171,9 @@ export default {
         `Fridge`
       ],
       coordinate: [52.3909553943508, 4.85309666406198],
+      city: {
+        name: `Paris`
+      }
     }
   ],
   reviews: [
@@ -180,13 +192,13 @@ export default {
       date: new Date(2010, 10, 1)
     }
   ],
-  coordinates: [
-    [52.3909553943508, 4.85309666406198],
-    [52.369553943508, 4.85309666406198],
-    [52.3909553943508, 4.929309666406198],
-    [52.3809553943508, 4.939309666406198]
-  ],
-  offer: {
+  // coordinates: [
+  //   [52.3909553943508, 4.85309666406198],
+  //   [52.369553943508, 4.85309666406198],
+  //   [52.3909553943508, 4.929309666406198],
+  //   [52.3809553943508, 4.939309666406198]
+  // ],
+  focusOffer: {
     id: 123,
     src: [
       `img/apartment-03.jpg`,
@@ -216,12 +228,10 @@ export default {
       `Fridge`
     ],
     coordinate: [52.3909553943508, 4.85309666406198],
+    city: {
+      name: `Paris`
+    }
   },
-  availableOffers: 300,
   currentCity: `Paris`,
-  numberReviews: 111,
   currentSort: `Popular`,
-  coordinatesWithoutActive: [[52.3909553943508, 4.85309666406198], [52.3909553943508, 4.85309666406198]],
-  focusCoordinate: [52.3909553943508, 4.85309666406198],
-  isSortOpen: true,
 };

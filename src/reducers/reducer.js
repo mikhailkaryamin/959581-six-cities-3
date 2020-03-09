@@ -9,12 +9,13 @@ import {
 } from "../consts.js";
 
 
-const initialOffers = offers;
-
 const initialState = {
-  currentCity: initialOffers[0].city.name,
-  offers: initialOffers,
-  currentSort: TypeSort.POPULAR
+  currentCity: offers[0].city.name,
+  offers,
+  currentSort: TypeSort.POPULAR,
+  reviews,
+  activeOffer: undefined,
+  focusOffer: undefined,
 };
 
 const reducer = (state = initialState, action) => {

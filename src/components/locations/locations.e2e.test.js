@@ -3,11 +3,9 @@ import Enzyme, {
   shallow
 } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import {
-  Locations
-} from "./locations.jsx";
+import Locations from "./locations.jsx";
 
-const LOCATIONS = [
+const locations = [
   `Paris`,
   `Cologne`,
   `Brussels`,
@@ -15,6 +13,7 @@ const LOCATIONS = [
   `Hamburg`,
   `Dusseldorf`
 ];
+const currentCity = `Paris`;
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -22,19 +21,21 @@ Enzyme.configure({
 
 test(`When user press click location`, () => {
   const handleLocationClick = jest.fn();
+  const handleActiveItem = jest.fn();
+
   const locationsScreen = shallow(
       <Locations
-        locations={
-          LOCATIONS
-        }
-        handleLocationClick={
-          handleLocationClick
-        }
+        currentCity={currentCity}
+        locations={locations}
+        handleLocationClick={handleLocationClick}
+        handleActiveItem={handleActiveItem}
       />
   );
 
   const locationButton = locationsScreen.find(`.locations__item`);
   locationButton.first().simulate(`click`);
-  expect(handleLocationClick.mock.calls[0][0]).toEqual(LOCATIONS[0]);
+  expect(handleLocationClick.mock.calls[0][0]).toEqual(locations[0]);
   expect(handleLocationClick.mock.calls.length).toBe(1);
+  expect(handleActiveItem.mock.calls[0][0]).toEqual(locations[0]);
+  expect(handleActiveItem.mock.calls.length).toBe(1);
 });

@@ -1,12 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main.jsx";
+import Page from "./page.jsx";
 
-it(`Main render correctly`, () => {
+test(`Render correctly page`, () => {
   const tree = renderer
     .create(
-        <Main />
-    )
-    .toJSON();
+        <Page />
+    ).toJSON();
+
   expect(tree).toMatchSnapshot();
 });

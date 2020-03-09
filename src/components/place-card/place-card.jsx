@@ -18,6 +18,7 @@ class PlaceCard extends PureComponent {
       handleHeaderOfferClick,
       onMouseEnter,
       onMouseLeave,
+      handleActiveItem,
     } = this.props;
 
     const {
@@ -78,6 +79,7 @@ class PlaceCard extends PureComponent {
             className="place-card__name"
             onClick={() => {
               handleHeaderOfferClick(offer);
+              handleActiveItem(offer);
             }}
           >
             <a href="#" >
@@ -107,6 +109,7 @@ PlaceCard.propTypes = {
   handleHeaderOfferClick: PropTypes.func.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
+  handleActiveItem: PropTypes.func.isRequired,
 };
 
 export default PlaceCard;

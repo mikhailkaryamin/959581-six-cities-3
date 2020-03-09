@@ -40,23 +40,17 @@ class PlacesCardList extends PureComponent {
     const {
       modificatorClass,
       handleHeaderOfferClick,
-      onCardHover
+      onCardHover,
+      handleActiveItem
     } = this.props;
 
     const places = this._sortBy().map((offer) =>
       <PlaceCardWrapped
-        key={
-          `${offer.id}`
-        }
-        offer={
-          offer
-        }
-        handleHeaderOfferClick={
-          handleHeaderOfferClick
-        }
-        onCardHover={
-          onCardHover
-        }
+        key={`${offer.id}`}
+        offer={offer}
+        handleHeaderOfferClick={handleHeaderOfferClick}
+        onCardHover={onCardHover}
+        handleActiveItem={handleActiveItem}
       />);
 
     return (
@@ -77,6 +71,7 @@ PlacesCardList.propTypes = {
   currentSort: PropTypes.string.isRequired,
   handleHeaderOfferClick: PropTypes.func.isRequired,
   onCardHover: PropTypes.func.isRequired,
+  handleActiveItem: PropTypes.func.isRequired,
 };
 
 PlacesCardList.defaultProps = {

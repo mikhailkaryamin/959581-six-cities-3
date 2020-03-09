@@ -13,6 +13,7 @@ import {
 import PropTypes from "prop-types";
 import {
   offerPropTypes,
+  reviewsPropTypes
 } from "../../types.js";
 import {
   setCurrentCity,
@@ -28,6 +29,9 @@ import Property from "../property/property.jsx";
 import Locations from "../locations/locations.jsx";
 import Cities from "../cities/cities.jsx";
 import Page from "../page/page.jsx";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+
+const LocationsWrapped = withActiveItem(Locations);
 
 class App extends PureComponent {
   _getLocations(offers) {
@@ -51,7 +55,8 @@ class App extends PureComponent {
       handleHeaderOfferClick,
       handleSortChange,
       onCardHover,
-      focusOffer
+      focusOffer,
+      reviews
     } = this.props;
 
     const locations = this._getLocations(offers);
@@ -65,26 +70,36 @@ class App extends PureComponent {
           }
         >
           <Main>
-            <Locations
-              locations={locations}
-              handleLocationClick={handleLocationClick}
-              currentCity={currentCity}
-            />
-            <Cities
-              offersCurrentCity={offersCurrentCity}
-              currentSort={currentSort}
-              handleHeaderOfferClick={handleHeaderOfferClick}
-              onCardHover={onCardHover}
-              focusOffer={focusOffer}
-              handleSortChange={handleSortChange}
-            />
+            <React.Fragment>
+              <LocationsWrapped
+                locations={locations}
+                handleLocationClick={handleLocationClick}
+                currentCity={currentCity}
+              />
+              <Cities
+                offersCurrentCity={offersCurrentCity}
+                currentSort={currentSort}
+                handleHeaderOfferClick={handleHeaderOfferClick}
+                onCardHover={onCardHover}
+                focusOffer={focusOffer}
+                handleSortChange={handleSortChange}
+              />
+            </React.Fragment>
           </Main>
         </Page>
       );
     } else {
       return (
         <Page>
-          <Property />
+          <Property
+            activeOffer={activeOffer}
+            reviews={reviews}
+            offersCurrentCity={offersCurrentCity}
+            currentSort={currentSort}
+            onCardHover={onCardHover}
+            focusOffer={focusOffer}
+            handleHeaderOfferClick={handleHeaderOfferClick}
+          />
         </Page>
       );
     }
@@ -117,6 +132,9 @@ App.propTypes = {
   onCardHover: PropTypes.func.isRequired,
   focusOffer: offerPropTypes,
   handleSortChange: PropTypes.func.isRequired,
+  reviews: PropTypes.arrayOf(
+      reviewsPropTypes
+  ).isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -125,6 +143,7 @@ const mapStateToProps = (state) => ({
   currentCity: state.currentCity,
   currentSort: state.currentSort,
   focusOffer: state.focusOffer,
+  reviews: state.reviews,
 });
 
 const mapDispatchToProps = (dispatch) => ({

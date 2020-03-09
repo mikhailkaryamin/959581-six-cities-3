@@ -1,9 +1,6 @@
 import React, {
   PureComponent
 } from "react";
-import {
-  connect
-} from "react-redux";
 import PropTypes from "prop-types";
 import Review from "../review/review.jsx";
 import {
@@ -39,12 +36,4 @@ ReviewsList.propTypes = {
   ).isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  reviews: state.reviews
-});
-
-export {
-  ReviewsList
-};
-
-export default connect(mapStateToProps)(ReviewsList);
+export default ReviewsList;

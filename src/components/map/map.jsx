@@ -16,6 +16,7 @@ class Map extends PureComponent {
     super(props);
     this._mapRef = createRef();
     this._map = undefined;
+    this._markers = {};
   }
 
   _getCoordinates(offersCurrentCity) {
@@ -66,7 +67,7 @@ class Map extends PureComponent {
         })
         .addTo(this._map);
 
-      COORDINATES.map((markerCoordinate) =>
+      this._markers = COORDINATES.map((markerCoordinate) =>
         leaflet
         .marker(markerCoordinate, {icon: iconDefault})
         .addTo(this._map)
@@ -85,6 +86,10 @@ class Map extends PureComponent {
       iconSize: [30, 30]
     });
 
+    if (this._markers !== undefined) {
+      this._markers.forEach((marker) => this._map.removeLayer(marker));
+    }
+
     if (focusOffer !== undefined) {
       const COORDINATES_WITH_ID = this._getCoordinatesWithID(offersCurrentCity);
       const FOCUS_OFFER_ID = focusOffer.id;
@@ -94,7 +99,7 @@ class Map extends PureComponent {
         iconSize: [30, 30]
       });
 
-      COORDINATES_WITH_ID.map((offer) => {
+      this._markers = COORDINATES_WITH_ID.map((offer) => {
         if (offer.id !== FOCUS_OFFER_ID) {
           return leaflet
           .marker(offer.coordinate, {icon: iconDefault})
@@ -105,10 +110,10 @@ class Map extends PureComponent {
           .addTo(this._map);
         }
       });
-    } else {
-      const COORDINATES = this._getCoordinates(offersCurrentCity);
 
-      COORDINATES.map((coordinate) =>
+    } else if (focusOffer === undefined) {
+      const COORDINATES = this._getCoordinates(offersCurrentCity);
+      this._markers = COORDINATES.map((coordinate) =>
         leaflet
           .marker(coordinate, {icon: iconDefault})
           .addTo(this._map)

@@ -1,30 +1,20 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {
-  PlacesSort
-} from "./places-sort.jsx";
+import PlacesSort from "./places-sort.jsx";
 
-const handleTypeClick = () => {};
-const handleListClick = () => {};
 const currentSort = `Popular`;
-const isSortOpen = true;
+const isActive = true;
+const onToggleClick = () => {};
+const handleSortChange = () => {};
 
 it(`Render places sort`, () => {
   const tree = renderer
     .create(
         <PlacesSort
-          handleTypeClick={
-            handleTypeClick
-          }
-          handleListClick={
-            handleListClick
-          }
-          currentSort={
-            currentSort
-          }
-          isSortOpen={
-            isSortOpen
-          }
+          currentSort={currentSort}
+          isActive={isActive}
+          onToggleClick={onToggleClick}
+          handleSortChange={handleSortChange}
         />
     ).toJSON();
 

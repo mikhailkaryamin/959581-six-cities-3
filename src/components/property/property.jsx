@@ -1,17 +1,10 @@
 import React, {
   PureComponent
 } from "react";
-import {
-  connect
-} from "react-redux";
-import {
-  setActiveOffer
-} from "../../actions/actions.js";
 import PropTypes from "prop-types";
 import {
   ModificatorClass
 } from "../../consts.js";
-import Header from "../header/header.jsx";
 import Reviews from "../reviews/reviews.jsx";
 import Map from "../map/map.jsx";
 import Places from "../places/places.jsx";
@@ -20,6 +13,7 @@ import {
 } from "../../consts.js";
 import {
   offerPropTypes,
+  reviewsPropTypes,
 } from "../../types.js";
 
 
@@ -31,8 +25,13 @@ class Property extends PureComponent {
   render() {
     const {
       activeOffer,
+      offersCurrentCity,
+      focusOffer,
+      currentSort,
+      handleHeaderOfferClick,
+      onCardHover,
+      reviews
     } = this.props;
-
     const {
       src,
       price,
@@ -128,20 +127,24 @@ class Property extends PureComponent {
                   </p>
                 </div>
               </div>
-              {<Reviews />}
+              {<Reviews
+                reviews={reviews}
+              />}
             </div>
           </div>
           {<Map
-            modificatorClass={
-              ModificatorClass.PROPERTY_MAP
-            }
+            modificatorClass={ModificatorClass.PROPERTY_MAP}
+            offersCurrentCity={offersCurrentCity}
+            focusOffer={focusOffer}
           />}
         </section>
         <div className="container">
           {<Places
-            modificatorClass={
-              ModificatorClass.NEAR_PLACES
-            }
+            modificatorClass={ModificatorClass.NEAR_PLACES}
+            offersCurrentCity={offersCurrentCity}
+            currentSort={currentSort}
+            handleHeaderOfferClick={handleHeaderOfferClick}
+            onCardHover={onCardHover}
           />}
         </div>
       </main>
@@ -150,26 +153,22 @@ class Property extends PureComponent {
 }
 
 Property.propTypes = {
-  offers: PropTypes.arrayOf(
+  offersCurrentCity: PropTypes.arrayOf(
       offerPropTypes
   ).isRequired,
+  reviews: PropTypes.arrayOf(
+      reviewsPropTypes
+  ),
   activeOffer: offerPropTypes.isRequired,
   handleHeaderOfferClick: PropTypes.func.isRequired,
+  focusOffer: offerPropTypes,
+  onCardHover: PropTypes.func.isRequired,
+  currentSort: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  offers: state.offers,
-  activeOffer: state.activeOffer,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  handleHeaderOfferClick(offer) {
-    dispatch(setActiveOffer(offer));
-  }
-});
-
-export {
-  Property
+Property.defaultProps = {
+  reviews: [],
+  currentSort: `Popular`
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Property);
+export default Property;

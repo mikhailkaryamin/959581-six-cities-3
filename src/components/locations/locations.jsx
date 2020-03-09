@@ -6,6 +6,7 @@ const Locations = (props) => {
     locations,
     handleLocationClick,
     currentCity,
+    handleActiveItem,
   } = props;
   return (
     <div className="tabs">
@@ -19,6 +20,7 @@ const Locations = (props) => {
               }
               onClick={() => {
                 handleLocationClick(location);
+                handleActiveItem(location);
               }}
             >
               <a className={
@@ -44,6 +46,7 @@ Locations.propTypes = {
   ).isRequired,
   handleLocationClick: PropTypes.func.isRequired,
   currentCity: PropTypes.string.isRequired,
+  handleActiveItem: PropTypes.func.isRequired,
 };
 
 export default Locations;

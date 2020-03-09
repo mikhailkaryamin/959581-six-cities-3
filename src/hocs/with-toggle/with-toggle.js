@@ -28,9 +28,7 @@ const withToggle = (Component) => {
       return (
         <Component
           {...this.props}
-          isActive={
-            isActive
-          }
+          isActive={isActive}
           onToggleClick={() => {
             this._handleToggleClick();
           }}

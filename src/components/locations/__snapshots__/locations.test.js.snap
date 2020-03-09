@@ -1,90 +1,94 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Render locations correctly 1`] = `
-<section
-  className="locations container"
+<div
+  className="tabs"
 >
-  <ul
-    className="locations__list tabs__list"
+  <section
+    className="locations container"
   >
-    <li
-      className="locations__item"
-      onClick={[Function]}
+    <ul
+      className="locations__list tabs__list"
     >
-      <a
-        className="locations__item-link tabs__item"
-        href="#"
+      <li
+        className="locations__item"
+        onClick={[Function]}
       >
-        <span>
-          Paris
-        </span>
-      </a>
-    </li>
-    <li
-      className="locations__item"
-      onClick={[Function]}
-    >
-      <a
-        className="locations__item-link tabs__item"
-        href="#"
+        <a
+          className="locations__item-link tabs__item tabs__item--active"
+          href="#"
+        >
+          <span>
+            Paris
+          </span>
+        </a>
+      </li>
+      <li
+        className="locations__item"
+        onClick={[Function]}
       >
-        <span>
-          Cologne
-        </span>
-      </a>
-    </li>
-    <li
-      className="locations__item"
-      onClick={[Function]}
-    >
-      <a
-        className="locations__item-link tabs__item"
-        href="#"
+        <a
+          className="locations__item-link tabs__item "
+          href="#"
+        >
+          <span>
+            Cologne
+          </span>
+        </a>
+      </li>
+      <li
+        className="locations__item"
+        onClick={[Function]}
       >
-        <span>
-          Brussels
-        </span>
-      </a>
-    </li>
-    <li
-      className="locations__item"
-      onClick={[Function]}
-    >
-      <a
-        className="locations__item-link tabs__item"
-        href="#"
+        <a
+          className="locations__item-link tabs__item "
+          href="#"
+        >
+          <span>
+            Brussels
+          </span>
+        </a>
+      </li>
+      <li
+        className="locations__item"
+        onClick={[Function]}
       >
-        <span>
-          Amsterdam
-        </span>
-      </a>
-    </li>
-    <li
-      className="locations__item"
-      onClick={[Function]}
-    >
-      <a
-        className="locations__item-link tabs__item"
-        href="#"
+        <a
+          className="locations__item-link tabs__item "
+          href="#"
+        >
+          <span>
+            Amsterdam
+          </span>
+        </a>
+      </li>
+      <li
+        className="locations__item"
+        onClick={[Function]}
       >
-        <span>
-          Hamburg
-        </span>
-      </a>
-    </li>
-    <li
-      className="locations__item"
-      onClick={[Function]}
-    >
-      <a
-        className="locations__item-link tabs__item"
-        href="#"
+        <a
+          className="locations__item-link tabs__item "
+          href="#"
+        >
+          <span>
+            Hamburg
+          </span>
+        </a>
+      </li>
+      <li
+        className="locations__item"
+        onClick={[Function]}
       >
-        <span>
-          Dusseldorf
-        </span>
-      </a>
-    </li>
-  </ul>
-</section>
+        <a
+          className="locations__item-link tabs__item "
+          href="#"
+        >
+          <span>
+            Dusseldorf
+          </span>
+        </a>
+      </li>
+    </ul>
+  </section>
+</div>
 `;

@@ -2,15 +2,21 @@ import React,
 {
   PureComponent
 } from "react";
-import {
-  connect
-} from "react-redux";
 import PropTypes from "prop-types";
-import PlacesCardList from "../place-card-list/place-card-list.jsx";
-import PlacesSort from "../places-sort/places-sort.jsx";
 import {
   ModificatorClass
 } from "../../consts.js";
+import {
+  offerPropTypes,
+  reviewsPropTypes,
+} from "../../types.js";
+import PlacesCardList from "../place-card-list/place-card-list.jsx";
+import PlacesSort from "../places-sort/places-sort.jsx";
+import withToggle from "../../hocs/with-toggle/with-toggle.js";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+
+const PlacesSortWrapped = withToggle(PlacesSort);
+const PlacesCardListWrapped = withActiveItem(PlacesCardList);
 
 class Places extends PureComponent {
   constructor(props) {
@@ -19,10 +25,16 @@ class Places extends PureComponent {
 
   render() {
     const {
-      availableOffers,
-      currentCity,
-      modificatorClass
+      modificatorClass,
+      offersCurrentCity,
+      currentSort,
+      handleHeaderOfferClick,
+      onCardHover,
+      handleSortChange,
     } = this.props;
+
+    const AVAILABLE_OFFERS = offersCurrentCity.length;
+    const CURRENT_CITY = offersCurrentCity[0].city.name;
 
     return (
       <section className={`places ${modificatorClass}`}>
@@ -31,16 +43,21 @@ class Places extends PureComponent {
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">
               {
-                availableOffers
+                AVAILABLE_OFFERS
               } places to stay in {
-                currentCity
+                CURRENT_CITY
               }
             </b>
-            {<PlacesSort />}
-            {<PlacesCardList
-              modificatorClass={
-                ModificatorClass.CITIES_PLACES_LIST
-              }
+            {<PlacesSortWrapped
+              handleSortChange={handleSortChange}
+              currentSort={currentSort}
+            />}
+            {<PlacesCardListWrapped
+              modificatorClass={ModificatorClass.CITIES_PLACES_LIST}
+              offersCurrentCity={offersCurrentCity}
+              currentSort={currentSort}
+              handleHeaderOfferClick={handleHeaderOfferClick}
+              onCardHover={onCardHover}
             />}
           </React.Fragment>
         }
@@ -49,10 +66,12 @@ class Places extends PureComponent {
           <React.Fragment>
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
-            {<PlacesCardList
-              modificatorClass={
-                ModificatorClass.NEAR_PLACES_LIST
-              }
+            {<PlacesCardListWrapped
+              modificatorClass={ModificatorClass.NEAR_PLACES_LIST}
+              offersCurrentCity={offersCurrentCity}
+              currentSort={currentSort}
+              handleHeaderOfferClick={handleHeaderOfferClick}
+              onCardHover={onCardHover}
             />}
           </React.Fragment>
         }
@@ -62,18 +81,23 @@ class Places extends PureComponent {
 }
 
 Places.propTypes = {
-  availableOffers: PropTypes.number.isRequired,
+  offersCurrentCity: PropTypes.arrayOf(
+      offerPropTypes
+  ).isRequired,
+  reviews: PropTypes.arrayOf(
+      reviewsPropTypes
+  ),
   modificatorClass: PropTypes.string.isRequired,
-  currentCity: PropTypes.string.isRequired,
+  currentSort: PropTypes.string,
+  handleHeaderOfferClick: PropTypes.func.isRequired,
+  onCardHover: PropTypes.func.isRequired,
+  handleSortChange: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({
-  availableOffers: state.availableOffers,
-  currentCity: state.currentCity,
-});
-
-export {
-  Places
+Places.defaultProps = {
+  reviews: [],
+  currentSort: `Popular`,
+  handleSortChange: () => {},
 };
 
-export default connect(mapStateToProps)(Places);
+export default Places;

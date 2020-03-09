@@ -1,21 +1,20 @@
 import React from "react";
-import Header from "../header/header.jsx";
-import Locations from "../locations/locations.jsx";
-import Cities from "../cities/cities.jsx";
+import PropTypes from "prop-types";
 
-const Main = () => {
+const Main = (props) => {
+  const {
+    children
+  } = props;
+
   return (
-    <div className="page page--gray page--main">
-      {<Header />}
-      <main className="page__main page__main--index">
-        <h1 className="visually-hidden">Cities</h1>
-        <div className="tabs">
-          {<Locations />}
-        </div>
-        {<Cities />}
-      </main>
-    </div>
+    <main className="page__main page__main--index">
+      <h1 className="visually-hidden">Cities</h1>
+      {children}
+    </main>
   );
 };
 
+Main.propTypes = {
+  children: PropTypes.element,
+};
 export default Main;

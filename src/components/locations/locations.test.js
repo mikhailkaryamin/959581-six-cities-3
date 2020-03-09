@@ -1,28 +1,28 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Locatons from "./locations.jsx";
-import configureStore from "redux-mock-store";
-import {
-  Provider
-} from "react-redux";
-import initialState from "../../mocks/initialState.js";
 
-const mockStore = configureStore([]);
-
+const locations = [
+  `Paris`,
+  `Cologne`,
+  `Brussels`,
+  `Amsterdam`,
+  `Hamburg`,
+  `Dusseldorf`
+];
+const currentCity = `Paris`;
 const handleLocationClick = () => {};
+const handleActiveItem = () => {};
+
 it(`Render locations correctly`, () => {
-  const store = mockStore(initialState);
   const tree = renderer
     .create(
-        <Provider store={
-          store
-        }>
-          <Locatons
-            handleLocationClick={
-              handleLocationClick
-            }
-          />
-        </Provider>
+        <Locatons
+          currentCity={currentCity}
+          locations={locations}
+          handleLocationClick={handleLocationClick}
+          handleActiveItem={handleActiveItem}
+        />
     )
     .toJSON();
   expect(tree).toMatchSnapshot();

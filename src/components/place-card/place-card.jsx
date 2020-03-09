@@ -4,19 +4,8 @@ import React,
 } from "react";
 import PropTypes from "prop-types";
 import {
-  setActiveOffer,
-  setFocusOffer,
-  removeFocusOffer,
-  getCoordinatesWithoutActive,
-  setFocusCoordinate,
-  removeFocusCoordinate
-} from "../../actions/actions.js";
-import {
   ONE_STAR
 } from "../../consts.js";
-import {
-  connect
-} from "react-redux";
 
 class PlaceCard extends PureComponent {
   constructor(props) {
@@ -27,8 +16,9 @@ class PlaceCard extends PureComponent {
     const {
       offer,
       handleHeaderOfferClick,
-      handlePlaceCardMouseEnter,
-      handlePlaceCardMouseLeave,
+      onMouseEnter,
+      onMouseLeave,
+      handleActiveItem,
     } = this.props;
 
     const {
@@ -44,10 +34,10 @@ class PlaceCard extends PureComponent {
       <article
         className="cities__place-card place-card"
         onMouseEnter={() => {
-          handlePlaceCardMouseEnter(offer);
+          onMouseEnter(offer);
         }}
         onMouseLeave={() => {
-          handlePlaceCardMouseLeave();
+          onMouseLeave();
         }}
       >
         {mark ?
@@ -89,6 +79,7 @@ class PlaceCard extends PureComponent {
             className="place-card__name"
             onClick={() => {
               handleHeaderOfferClick(offer);
+              handleActiveItem(offer);
             }}
           >
             <a href="#" >
@@ -116,28 +107,9 @@ PlaceCard.propTypes = {
     mark: PropTypes.bool.isRequired,
   }).isRequired,
   handleHeaderOfferClick: PropTypes.func.isRequired,
-  handlePlaceCardMouseEnter: PropTypes.func.isRequired,
-  handlePlaceCardMouseLeave: PropTypes.func.isRequired,
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired,
+  handleActiveItem: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  handleHeaderOfferClick(offer) {
-    dispatch(setActiveOffer(offer));
-  },
-  handlePlaceCardMouseEnter(offer) {
-    dispatch(setFocusOffer(offer));
-    dispatch(getCoordinatesWithoutActive());
-    dispatch(setFocusCoordinate(offer.coordinate));
-  },
-  handlePlaceCardMouseLeave() {
-    dispatch(removeFocusOffer());
-    dispatch(removeFocusCoordinate());
-    dispatch(getCoordinatesWithoutActive());
-  }
-});
-
-export {
-  PlaceCard
-};
-
-export default connect(null, mapDispatchToProps)(PlaceCard);
+export default PlaceCard;

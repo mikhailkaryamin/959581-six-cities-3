@@ -2,11 +2,11 @@ import React, {
   PureComponent,
   createRef
 } from "react";
-import {
-  connect
-} from "react-redux";
 import PropTypes from "prop-types";
 import leaflet from "leaflet";
+import {
+  offerPropTypes,
+} from "../../types.js";
 import {
   CoordinatesCity
 } from "../../mocks/constsMock.js";
@@ -16,6 +16,20 @@ class Map extends PureComponent {
     super(props);
     this._mapRef = createRef();
     this._map = undefined;
+    this._markers = {};
+  }
+
+  _getCoordinates(offersCurrentCity) {
+    return offersCurrentCity
+      .map((offer) => offer.coordinate);
+  }
+
+  _getCoordinatesWithID(offersCurrentCity) {
+    return offersCurrentCity
+      .map((offer) => ({
+        coordinate: offer.coordinate,
+        id: offer.id,
+      }));
   }
 
   componentDidMount() {
@@ -26,9 +40,10 @@ class Map extends PureComponent {
       } = CoordinatesCity;
       const zoom = 12;
       const {
-        coordinatesWithoutActive,
-        focusCoordinate
+        offersCurrentCity
       } = this.props;
+
+      const COORDINATES = this._getCoordinates(offersCurrentCity);
 
       const iconDefault = leaflet.icon({
         iconUrl: `img/pin.svg`,
@@ -52,50 +67,62 @@ class Map extends PureComponent {
         })
         .addTo(this._map);
 
-      coordinatesWithoutActive.map((markerCoordinate) =>
+      this._markers = COORDINATES.map((markerCoordinate) =>
         leaflet
         .marker(markerCoordinate, {icon: iconDefault})
         .addTo(this._map)
       );
-
-      if (focusCoordinate !== undefined) {
-        const iconActive = leaflet.icon({
-          iconUrl: `img/pin-active.svg`,
-          iconSize: [30, 30]
-        });
-
-        leaflet
-          .marker(focusCoordinate, {icon: iconActive})
-          .addTo(this._map);
-      }
     }
   }
 
   componentDidUpdate() {
     const {
-      coordinatesWithoutActive,
-      focusCoordinate
+      focusOffer,
+      offersCurrentCity,
     } = this.props;
+
     const iconDefault = leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
     });
-    coordinatesWithoutActive.map((markerCoordinate) =>
-      leaflet
-        .marker(markerCoordinate, {icon: iconDefault})
-        .addTo(this._map)
-    );
 
-    if (focusCoordinate) {
+    if (this._markers !== undefined) {
+      this._markers.forEach((marker) => this._map.removeLayer(marker));
+    }
+
+    if (focusOffer !== undefined) {
+      const COORDINATES_WITH_ID = this._getCoordinatesWithID(offersCurrentCity);
+      const FOCUS_OFFER_ID = focusOffer.id;
+
       const iconActive = leaflet.icon({
         iconUrl: `img/pin-active.svg`,
         iconSize: [30, 30]
       });
 
-      leaflet
-        .marker(focusCoordinate, {icon: iconActive})
-        .addTo(this._map);
+      this._markers = COORDINATES_WITH_ID.map((offer) => {
+        if (offer.id !== FOCUS_OFFER_ID) {
+          return leaflet
+          .marker(offer.coordinate, {icon: iconDefault})
+          .addTo(this._map);
+        } else {
+          return leaflet
+          .marker(offer.coordinate, {icon: iconActive})
+          .addTo(this._map);
+        }
+      });
+
+    } else if (focusOffer === undefined) {
+      const COORDINATES = this._getCoordinates(offersCurrentCity);
+      this._markers = COORDINATES.map((coordinate) =>
+        leaflet
+          .marker(coordinate, {icon: iconDefault})
+          .addTo(this._map)
+      );
     }
+  }
+
+  componentWillUnmount() {
+    this._map = null;
   }
 
   render() {
@@ -112,26 +139,14 @@ class Map extends PureComponent {
 
 Map.propTypes = {
   modificatorClass: PropTypes.string,
-  coordinatesWithoutActive: PropTypes.arrayOf(
-      PropTypes.arrayOf(
-          PropTypes.number.isRequired
-      )
-  ),
-  focusCoordinate: PropTypes.arrayOf(
-      PropTypes.number.isRequired
-  ),
+  offersCurrentCity: PropTypes.arrayOf(
+      offerPropTypes
+  ).isRequired,
+  focusOffer: offerPropTypes,
 };
 
 Map.defaultProps = {
   modificatorClass: ``,
 };
 
-const mapStateToProps = (state) => ({
-  coordinatesWithoutActive: state.coordinatesWithoutActive,
-  focusCoordinate: state.focusCoordinate,
-});
-
-export {
-  Map
-};
-export default connect(mapStateToProps)(Map);
+export default Map;

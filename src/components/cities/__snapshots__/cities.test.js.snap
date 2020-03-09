@@ -18,7 +18,7 @@ exports[`Render citites correctly 1`] = `
       <b
         className="places__found"
       >
-        300
+        4
          places to stay in 
         Paris
       </b>
@@ -49,7 +49,7 @@ exports[`Render citites correctly 1`] = `
           </svg>
         </span>
         <ul
-          className="places__options places__options--custom places__options--opened"
+          className="places__options places__options--custom "
         >
           <li
             className="places__option"

@@ -1,9 +1,6 @@
 import React, {
   PureComponent
 } from "react";
-import {
-  connect
-} from "react-redux";
 import PropTypes from "prop-types";
 import {
   offerPropTypes
@@ -12,6 +9,9 @@ import {
   TypeSort
 } from "../../consts.js";
 import PlaceCard from "../place-card/place-card.jsx";
+import withHover from "../../hocs/with-hover/with-hover.js";
+
+const PlaceCardWrapped = withHover(PlaceCard);
 
 class PlacesCardList extends PureComponent {
   constructor(props) {
@@ -20,31 +20,37 @@ class PlacesCardList extends PureComponent {
 
   _sortBy() {
     const {
-      offers,
-      currentSort
+      offersCurrentCity,
+      currentSort,
     } = this.props;
 
     switch (currentSort) {
       case TypeSort.PRICE_LOW_TO_HIGH:
-        return offers.slice().sort((a, b) => a.price - b.price);
+        return offersCurrentCity.slice().sort((a, b) => a.price - b.price);
       case TypeSort.PRICE_HIGH_TO_LOW:
-        return offers.slice().sort((a, b) => b.price - a.price);
+        return offersCurrentCity.slice().sort((a, b) => b.price - a.price);
       case TypeSort.TOP_RATED_FIRST:
-        return offers.slice().sort((a, b) => b.rating - a.rating);
+        return offersCurrentCity.slice().sort((a, b) => b.rating - a.rating);
       default:
-        return offers;
+        return offersCurrentCity;
     }
   }
 
   render() {
     const {
       modificatorClass,
+      handleHeaderOfferClick,
+      onCardHover,
+      handleActiveItem
     } = this.props;
 
     const places = this._sortBy().map((offer) =>
-      <PlaceCard
+      <PlaceCardWrapped
         key={`${offer.id}`}
         offer={offer}
+        handleHeaderOfferClick={handleHeaderOfferClick}
+        onCardHover={onCardHover}
+        handleActiveItem={handleActiveItem}
       />);
 
     return (
@@ -58,25 +64,18 @@ class PlacesCardList extends PureComponent {
 }
 
 PlacesCardList.propTypes = {
-  offers: PropTypes.arrayOf(
+  offersCurrentCity: PropTypes.arrayOf(
       offerPropTypes
   ).isRequired,
   modificatorClass: PropTypes.string,
   currentSort: PropTypes.string.isRequired,
+  handleHeaderOfferClick: PropTypes.func.isRequired,
+  onCardHover: PropTypes.func.isRequired,
+  handleActiveItem: PropTypes.func.isRequired,
 };
 
 PlacesCardList.defaultProps = {
   modificatorClass: ``,
 };
 
-const mapStateToProps = (state) => ({
-  offers: state.offers,
-  currentSort: state.currentSort,
-});
-
-export {
-  PlacesCardList
-};
-
-export default connect(mapStateToProps)(PlacesCardList);
-
+export default PlacesCardList;

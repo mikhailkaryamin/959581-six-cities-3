@@ -1,120 +1,119 @@
 import {
   reducer
 } from "./reducer.js";
-import {
-  offers,
-  activeOffer
-} from "../mocks/initialState.js";
-import {
-  SET_CURRENT_CITY,
-  GET_OFFERS_LIST,
-  SET_ACTIVE_OFFER,
-  SET_FOCUS_OFFER,
-  REMOVE_FOCUS_OFFER,
-  GET_AVAILABLE_OFFERS,
-  TOGGLE_SORT_LIST,
-  SET_CURRENT_SORT,
-  GET_COORDINATES_WITHOUT_FOCUS,
-  SET_FOCUS_COORDINATE,
-  REMOVE_FOCUS_COORDINATE
-} from "../actionTypes/actionType.js";
+import ActionType from "../actionTypes/actionType.js";
+
+const focusOffer = {
+  id: 123,
+  src: [
+    `img/apartment-03.jpg`,
+    `img/studio-01.jpg`,
+    `img/apartment-01.jpg`,
+    `img/room.jpg`,
+    `img/apartment-01.jpg`,
+    `img/apartment-02.jpg`,
+  ],
+  price: 120,
+  rating: 4,
+  name: `Beautiful &amp; luxurious apartment at great location`,
+  description: `An independent House, strategically located between Rembrand Square and National Opera,`
+  + ` but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+  type: `Apartment`,
+  mark: true,
+  insideItems: [
+    `Wi-Fi`,
+    `Washing machine`,
+    `Towels`,
+    `Heating`,
+    `Coffee machine`,
+    `Baby seat`,
+    `Kitchen`,
+    `Dishwasher`,
+    `Cabel TV`,
+    `Fridge`
+  ],
+  coordinate: [52.3909553943508, 4.85309666406198],
+  city: {
+    name: `Paris`
+  }
+};
+const activeOffer = {
+  id: 123,
+  src: [
+    `img/apartment-03.jpg`,
+    `img/studio-01.jpg`,
+    `img/apartment-01.jpg`,
+    `img/room.jpg`,
+    `img/apartment-01.jpg`,
+    `img/apartment-02.jpg`,
+  ],
+  price: 120,
+  rating: 4,
+  name: `Beautiful &amp; luxurious apartment at great location`,
+  description: `An independent House, strategically located between Rembrand Square and National Opera,`
+  + ` but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+  type: `Apartment`,
+  mark: true,
+  insideItems: [
+    `Wi-Fi`,
+    `Washing machine`,
+    `Towels`,
+    `Heating`,
+    `Coffee machine`,
+    `Baby seat`,
+    `Kitchen`,
+    `Dishwasher`,
+    `Cabel TV`,
+    `Fridge`
+  ],
+  coordinate: [52.3909553943508, 4.85309666406198],
+  city: {
+    name: `Paris`
+  }
+};
 
 test(`Reducer should set current city`, () => {
   expect(reducer({
     currentCity: `Amsterdam`,
   }, {
-    type: SET_CURRENT_CITY,
+    type: ActionType.SET_CURRENT_CITY,
     payload: `Amsterdam`
-  }));
+  })).toEqual({
+    currentCity: `Amsterdam`,
+  });
 });
 
-test(`Reducer should get offers list`, () => {
-  expect(reducer({
-    offersList: offers,
-  }, {
-    type: GET_OFFERS_LIST,
-    payload: offers
-  }));
-});
 
 test(`Reducer should set active offer`, () => {
   expect(reducer({
     activeOffer,
   }, {
-    type: SET_ACTIVE_OFFER,
+    type: ActionType.SET_ACTIVE_OFFER,
     payload: activeOffer
-  }));
+  })).toEqual({
+    activeOffer,
+  });
 });
 
 test(`Reducer should focus offer`, () => {
   expect(reducer({
-    focusOffer: activeOffer,
+    focusOffer,
   }, {
-    type: SET_FOCUS_OFFER,
+    type: ActionType.SET_FOCUS_OFFER,
     payload: activeOffer
-  }));
-});
-
-test(`Reducer should remove focus offer`, () => {
-  expect(reducer({
-    focusOffer: undefined,
-  }, {
-    type: REMOVE_FOCUS_OFFER,
-    payload: undefined
-  }));
+  })).toEqual({
+    focusOffer,
+  });
 });
 
 test(`Reducer should set current sort`, () => {
   expect(reducer({
     currentSort: `Popular`,
   }, {
-    type: SET_CURRENT_SORT,
+    type: ActionType.SET_CURRENT_SORT,
     payload: `Popular`
-  }));
-});
-
-test(`Reducer should toggle sort list`, () => {
-  expect(reducer({
-    isSortOpen: true,
-  }, {
-    type: TOGGLE_SORT_LIST,
-    payload: false
-  }));
-});
-
-test(`Reducer should get coordinates without focus`, () => {
-  expect(reducer({
-    coordinatesWithoutActive: [52.3909553943508, 4.85309666406198],
-  }, {
-    type: GET_COORDINATES_WITHOUT_FOCUS,
-    payload: [52.3909553943508, 4.85309666406198]
-  }));
-});
-
-test(`Reducer should set focus coordinate`, () => {
-  expect(reducer({
-    focusCoordinate: [52.3909553943508, 4.85309666406198],
-  }, {
-    type: SET_FOCUS_COORDINATE,
-    payload: [52.3909553943508, 4.85309666406198]
-  }));
-});
-
-test(`Reducer should remove focus coordinate`, () => {
-  expect(reducer({
-    focusCoordinate: undefined,
-  }, {
-    type: REMOVE_FOCUS_COORDINATE,
-    payload: undefined
-  }));
-});
-
-test(`Reducer should set current city`, () => {
-  expect(reducer({
-    availableOffers: 312,
-  }, {
-    type: GET_AVAILABLE_OFFERS,
-    payload: 312
-  }));
+  })).toEqual({
+    currentSort: `Popular`,
+  });
 });
 

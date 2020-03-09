@@ -28,12 +28,26 @@ const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
+const getOffersCurrentCity = (offers, currentCity) => {
+  return offers
+    .slice()
+    .filter((offer) => offer.city === currentCity);
+};
+
+const getUniqueArray = (array) => {
+  const uniqueSet = new Set(array);
+
+  return Array
+    .from(uniqueSet);
+};
 
 export {
   getRandomArray,
   getRandomNumber,
   getRandomElement,
   getRandomDate,
-  extend
+  extend,
+  getOffersCurrentCity,
+  getUniqueArray,
 };
 

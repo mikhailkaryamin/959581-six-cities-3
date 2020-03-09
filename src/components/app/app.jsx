@@ -69,7 +69,7 @@ class App extends PureComponent {
             `page--gray page--main`
           }
         >
-          <Main>
+          <Main isEmpty={offers.length === 0}>
             <React.Fragment>
               <LocationsWrapped
                 locations={locations}

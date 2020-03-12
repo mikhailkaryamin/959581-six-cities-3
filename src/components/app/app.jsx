@@ -16,12 +16,6 @@ import {
   reviewsPropTypes
 } from "../../types.js";
 import {
-  setCurrentCity,
-  setCurrentSort,
-  setActiveOffer,
-  setFocusOffer
-} from "../../actions/actions.js";
-import {
   getUniqueArray
 } from "../../utils.js";
 import Main from "../main/main.jsx";
@@ -30,6 +24,28 @@ import Locations from "../locations/locations.jsx";
 import Cities from "../cities/cities.jsx";
 import Page from "../page/page.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+import {
+  getCurrentCity,
+} from '../../reducer/city/selectors.js';
+import {
+  getOffers,
+} from '../../reducer/data/selectors.js';
+import {
+  getActiveOffer,
+  getFocusOffer,
+} from '../../reducer/offer/selectors.js';
+import {
+  getCurrentSort,
+} from '../../reducer/sort/selectors.js';
+import {
+  ActionCreator as ActionCity
+} from '../../reducer/city/city.js';
+import {
+  ActionCreator as ActionOffer
+} from '../../reducer/offer/offer.js';
+import {
+  ActionCreator as ActionSort
+} from '../../reducer/sort/sort.js';
 
 const LocationsWrapped = withActiveItem(Locations);
 
@@ -78,6 +94,7 @@ class App extends PureComponent {
               />
               <Cities
                 offersCurrentCity={offersCurrentCity}
+                currentCity={currentCity}
                 currentSort={currentSort}
                 handleHeaderOfferClick={handleHeaderOfferClick}
                 onCardHover={onCardHover}
@@ -138,26 +155,25 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  offers: state.offers,
-  activeOffer: state.activeOffer,
-  currentCity: state.currentCity,
-  currentSort: state.currentSort,
-  focusOffer: state.focusOffer,
-  reviews: state.reviews,
+  activeOffer: getActiveOffer(state),
+  currentCity: getCurrentCity(state),
+  currentSort: getCurrentSort(state),
+  focusOffer: getFocusOffer(state),
+  offers: getOffers(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   handleLocationClick(location) {
-    dispatch(setCurrentCity(location));
+    dispatch(ActionCity.setCurrentCity(location));
   },
   handleHeaderOfferClick(offer) {
-    dispatch(setActiveOffer(offer));
+    dispatch(ActionOffer.setActiveOffer(offer));
   },
   onCardHover(offer) {
-    dispatch(setFocusOffer(offer));
+    dispatch(ActionOffer.setFocusOffer(offer));
   },
   handleSortChange(sort) {
-    dispatch(setCurrentSort(sort));
+    dispatch(ActionSort.setCurrentSort(sort));
   }
 });
 

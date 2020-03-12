@@ -29,7 +29,7 @@ class PlaceCard extends PureComponent {
       type,
       mark
     } = offer;
-
+    
     return (
       <article
         className="cities__place-card place-card"
@@ -51,7 +51,7 @@ class PlaceCard extends PureComponent {
         }
         <div className="cities__image-wrapper place-card__image-wrapper">
           <a href="#">
-            <img className="place-card__image" src={src[0]} width="260" height="200" alt="Place image" />
+            <img className="place-card__image" src={preview_image} width="260" height="200" alt="Place image" />
           </a>
         </div>
         <div className="place-card__info">

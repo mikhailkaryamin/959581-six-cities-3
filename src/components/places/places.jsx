@@ -31,10 +31,10 @@ class Places extends PureComponent {
       handleHeaderOfferClick,
       onCardHover,
       handleSortChange,
+      currentCity,
     } = this.props;
-
+    
     const AVAILABLE_OFFERS = offersCurrentCity.length;
-    const CURRENT_CITY = offersCurrentCity[0].city.name;
 
     return (
       <section className={`places ${modificatorClass}`}>
@@ -45,7 +45,7 @@ class Places extends PureComponent {
               {
                 AVAILABLE_OFFERS
               } places to stay in {
-                CURRENT_CITY
+                currentCity
               }
             </b>
             {<PlacesSortWrapped
@@ -92,6 +92,7 @@ Places.propTypes = {
   handleHeaderOfferClick: PropTypes.func.isRequired,
   onCardHover: PropTypes.func.isRequired,
   handleSortChange: PropTypes.func,
+  currentCity: PropTypes.string.isRequired,
 };
 
 Places.defaultProps = {

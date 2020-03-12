@@ -24,12 +24,14 @@ class Cities extends PureComponent {
       onCardHover,
       focusOffer,
       handleSortChange,
+      currentCity,
     } = this.props;
 
     return (
       <div className="cities">
         <div className="cities__places-container container">
           <Places
+            currentCity={currentCity}
             modificatorClass={ModificatorClass.CITIES_PLACES}
             offersCurrentCity={offersCurrentCity}
             currentSort={currentSort}
@@ -59,6 +61,7 @@ Cities.propTypes = {
   currentSort: PropTypes.string.isRequired,
   onCardHover: PropTypes.func.isRequired,
   handleSortChange: PropTypes.func.isRequired,
+  currentCity: PropTypes.string.isRequired,
 };
 
 export default Cities;

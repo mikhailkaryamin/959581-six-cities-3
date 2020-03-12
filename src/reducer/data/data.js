@@ -1,20 +1,20 @@
 import {
   extend
-} from '../../utils.js';
+} from "../../utils.js";
 
 const initialState = {
   offers: [],
 };
 
 const ActionType = {
-  LOAD_OFFERS: `LOAD_OFFERS`,
+  LOAD_OFFERS: `LOAD_OFFERS`
 };
 
 const ActionCreator = {
   loadOffers: (offers) => {
     return {
       type: ActionType.LOAD_OFFERS,
-      payload: offers,
+      payload: offers
     };
   }
 };
@@ -35,12 +35,13 @@ const reducer = (state = initialState, action) => {
         offers: action.payload,
       });
   }
+
+  return state;
 };
 
 export {
   reducer,
-  ActionCreator,
   ActionType,
-  Operation
+  ActionCreator,
+  Operation,
 };
-

@@ -7,9 +7,6 @@ import leaflet from "leaflet";
 import {
   offerPropTypes,
 } from "../../types.js";
-import {
-  CoordinatesCity
-} from "../../mocks/constsMock.js";
 
 class Map extends PureComponent {
   constructor(props) {
@@ -19,31 +16,40 @@ class Map extends PureComponent {
     this._markers = {};
   }
 
-  _getCoordinates(offersCurrentCity) {
-    return offersCurrentCity
-      .map((offer) => offer.coordinate);
+  _getCoordinates(currentCityOffers) {
+    return currentCityOffers
+      .map((offer) => ({
+        lat: offer.location.latitude,
+        lng: offer.location.longitude,
+      }));
   }
 
-  _getCoordinatesWithID(offersCurrentCity) {
-    return offersCurrentCity
+  _getCoordinatesWithID(currentCityOffers) {
+    return currentCityOffers
       .map((offer) => ({
-        coordinate: offer.coordinate,
+        lat: offer.location.latitude,
+        lng: offer.location.longitude,
         id: offer.id,
       }));
+  }
+
+  _getCurrentCityCoordinates(currentCityOffers) {
+    return ({
+      lat: currentCityOffers[0].city.location.latitude,
+      lng: currentCityOffers[0].city.location.longitude,
+      zoom: currentCityOffers[0].city.location.zoom,
+    });
   }
 
   componentDidMount() {
     const mapRef = this._mapRef.current;
     if (mapRef) {
       const {
-        AMSTERDAM
-      } = CoordinatesCity;
-      const zoom = 12;
-      const {
-        offersCurrentCity
+        currentCityOffers
       } = this.props;
 
-      const COORDINATES = this._getCoordinates(offersCurrentCity);
+      const COORDINATES = this._getCoordinates(currentCityOffers);
+      const CURRENT_CITY = this._getCurrentCityCoordinates(currentCityOffers);
 
       const iconDefault = leaflet.icon({
         iconUrl: `img/pin.svg`,
@@ -51,13 +57,11 @@ class Map extends PureComponent {
       });
 
       this._map = leaflet.map(mapRef, {
-        center: AMSTERDAM,
-        zoom,
+        center: CURRENT_CITY,
+        zoom: CURRENT_CITY.zoom,
         zoomControl: false,
         marker: true
       });
-
-      this._map.setView(AMSTERDAM, zoom);
 
       leaflet
         .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -78,7 +82,7 @@ class Map extends PureComponent {
   componentDidUpdate() {
     const {
       focusOffer,
-      offersCurrentCity,
+      currentCityOffers,
     } = this.props;
 
     const iconDefault = leaflet.icon({
@@ -86,12 +90,15 @@ class Map extends PureComponent {
       iconSize: [30, 30]
     });
 
+    const CURRENT_CITY = this._getCurrentCityCoordinates(currentCityOffers);
+    this._map.setView(CURRENT_CITY, CURRENT_CITY.zoom);
+
     if (this._markers !== undefined) {
       this._markers.forEach((marker) => this._map.removeLayer(marker));
     }
 
     if (focusOffer !== undefined) {
-      const COORDINATES_WITH_ID = this._getCoordinatesWithID(offersCurrentCity);
+      const COORDINATES_WITH_ID = this._getCoordinatesWithID(currentCityOffers);
       const FOCUS_OFFER_ID = focusOffer.id;
 
       const iconActive = leaflet.icon({
@@ -99,20 +106,20 @@ class Map extends PureComponent {
         iconSize: [30, 30]
       });
 
-      this._markers = COORDINATES_WITH_ID.map((offer) => {
-        if (offer.id !== FOCUS_OFFER_ID) {
+      this._markers = COORDINATES_WITH_ID.map((markerCoordinate) => {
+        if (markerCoordinate.id !== FOCUS_OFFER_ID) {
           return leaflet
-          .marker(offer.coordinate, {icon: iconDefault})
+          .marker(markerCoordinate, {icon: iconDefault})
           .addTo(this._map);
         } else {
           return leaflet
-          .marker(offer.coordinate, {icon: iconActive})
+          .marker(markerCoordinate, {icon: iconActive})
           .addTo(this._map);
         }
       });
 
     } else if (focusOffer === undefined) {
-      const COORDINATES = this._getCoordinates(offersCurrentCity);
+      const COORDINATES = this._getCoordinates(currentCityOffers);
       this._markers = COORDINATES.map((coordinate) =>
         leaflet
           .marker(coordinate, {icon: iconDefault})
@@ -139,7 +146,7 @@ class Map extends PureComponent {
 
 Map.propTypes = {
   modificatorClass: PropTypes.string,
-  offersCurrentCity: PropTypes.arrayOf(
+  currentCityOffers: PropTypes.arrayOf(
       offerPropTypes
   ).isRequired,
   focusOffer: offerPropTypes,

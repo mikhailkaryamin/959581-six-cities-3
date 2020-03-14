@@ -4,7 +4,7 @@ import React, {
 import PropTypes from "prop-types";
 import Review from "../review/review.jsx";
 import {
-  reviewsPropTypes
+  commentsPropTypes
 } from "../../types.js";
 
 class ReviewsList extends PureComponent {
@@ -14,15 +14,15 @@ class ReviewsList extends PureComponent {
 
   render() {
     const {
-      reviews
+      comments
     } = this.props;
 
     return (
       <ul className="reviews__list">
-        {reviews.map((review) =>
+        {comments.map((comment) =>
           <Review
-            key={`${review.id}`}
-            review={review}
+            key={`${comment.id}`}
+            comment={comment}
           />
         )}
       </ul>
@@ -31,8 +31,8 @@ class ReviewsList extends PureComponent {
 }
 
 ReviewsList.propTypes = {
-  reviews: PropTypes.arrayOf(
-      reviewsPropTypes
+  comments: PropTypes.arrayOf(
+      commentsPropTypes
   ).isRequired,
 };
 

@@ -18,7 +18,7 @@ class Cities extends PureComponent {
 
   render() {
     const {
-      offersCurrentCity,
+      currentCityOffers,
       currentSort,
       handleHeaderOfferClick,
       onCardHover,
@@ -33,7 +33,7 @@ class Cities extends PureComponent {
           <Places
             currentCity={currentCity}
             modificatorClass={ModificatorClass.CITIES_PLACES}
-            offersCurrentCity={offersCurrentCity}
+            currentCityOffers={currentCityOffers}
             currentSort={currentSort}
             handleHeaderOfferClick={handleHeaderOfferClick}
             onCardHover={onCardHover}
@@ -42,7 +42,7 @@ class Cities extends PureComponent {
           <div className="cities__right-section">
             <Map
               modificatorClass={ModificatorClass.CITIES_MAP}
-              offersCurrentCity={offersCurrentCity}
+              currentCityOffers={currentCityOffers}
               focusOffer={focusOffer}
             />
           </div>
@@ -53,7 +53,7 @@ class Cities extends PureComponent {
 }
 
 Cities.propTypes = {
-  offersCurrentCity: PropTypes.arrayOf(
+  currentCityOffers: PropTypes.arrayOf(
       offerPropTypes
   ).isRequired,
   focusOffer: offerPropTypes,

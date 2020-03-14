@@ -26,7 +26,7 @@ class Places extends PureComponent {
   render() {
     const {
       modificatorClass,
-      offersCurrentCity,
+      currentCityOffers,
       currentSort,
       handleHeaderOfferClick,
       onCardHover,
@@ -34,7 +34,7 @@ class Places extends PureComponent {
       currentCity,
     } = this.props;
     
-    const AVAILABLE_OFFERS = offersCurrentCity.length;
+    const AVAILABLE_OFFERS = currentCityOffers.length;
 
     return (
       <section className={`places ${modificatorClass}`}>
@@ -54,7 +54,7 @@ class Places extends PureComponent {
             />}
             {<PlacesCardListWrapped
               modificatorClass={ModificatorClass.CITIES_PLACES_LIST}
-              offersCurrentCity={offersCurrentCity}
+              currentCityOffers={currentCityOffers}
               currentSort={currentSort}
               handleHeaderOfferClick={handleHeaderOfferClick}
               onCardHover={onCardHover}
@@ -68,7 +68,7 @@ class Places extends PureComponent {
 
             {<PlacesCardListWrapped
               modificatorClass={ModificatorClass.NEAR_PLACES_LIST}
-              offersCurrentCity={offersCurrentCity}
+              currentCityOffers={currentCityOffers}
               currentSort={currentSort}
               handleHeaderOfferClick={handleHeaderOfferClick}
               onCardHover={onCardHover}
@@ -81,7 +81,7 @@ class Places extends PureComponent {
 }
 
 Places.propTypes = {
-  offersCurrentCity: PropTypes.arrayOf(
+  currentCityOffers: PropTypes.arrayOf(
       offerPropTypes
   ).isRequired,
   reviews: PropTypes.arrayOf(

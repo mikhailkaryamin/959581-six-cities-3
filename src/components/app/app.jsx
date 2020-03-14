@@ -1,91 +1,78 @@
-import React,
-{
+import PropTypes from "prop-types";
+import React, {
   PureComponent
 } from "react";
 import {
-  Switch,
-  Route,
-  BrowserRouter
-} from "react-router-dom";
-import {
   connect
 } from "react-redux";
-import PropTypes from "prop-types";
-import {
-  offerPropTypes,
-  reviewsPropTypes
-} from "../../types.js";
-import {
-  getUniqueArray
-} from "../../utils.js";
-import Main from "../main/main.jsx";
-import Property from "../property/property.jsx";
-import Locations from "../locations/locations.jsx";
-import Cities from "../cities/cities.jsx";
-import Page from "../page/page.jsx";
+import { 
+  BrowserRouter,
+  Route,
+  Switch
+} from "react-router-dom";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
-import {
-  getCurrentCity,
-} from '../../reducer/city/selectors.js';
-import {
-  getOffers,
-} from '../../reducer/data/selectors.js';
-import {
-  getActiveOffer,
-  getFocusOffer,
-} from '../../reducer/offer/selectors.js';
-import {
-  getCurrentSort,
-} from '../../reducer/sort/selectors.js';
 import {
   ActionCreator as ActionCity
 } from '../../reducer/city/city.js';
 import {
+  getCurrentCity
+} from '../../reducer/city/selectors.js';
+import {
+  Operation as DataOperation
+} from '../../reducer/data/data.js';
+import {
+  getLocations,
+  getOffersCurrentCity,
+  getComments
+} from '../../reducer/data/selectors.js';
+import {
   ActionCreator as ActionOffer
 } from '../../reducer/offer/offer.js';
 import {
+  getActiveOffer, getFocusOffer
+} from '../../reducer/offer/selectors.js';
+import {
+  getCurrentSort
+} from '../../reducer/sort/selectors.js';
+import {
   ActionCreator as ActionSort
 } from '../../reducer/sort/sort.js';
+import {
+  commentsPropTypes,
+  offerPropTypes
+} from "../../types.js";
+import Cities from "../cities/cities.jsx";
+import Locations from "../locations/locations.jsx";
+import Main from "../main/main.jsx";
+import Page from "../page/page.jsx";
+import Property from "../property/property.jsx";
 
 const LocationsWrapped = withActiveItem(Locations);
 
 class App extends PureComponent {
-  _getLocations(offers) {
-    const locations = offers
-      .map((offer) => offer.city.name);
-    return getUniqueArray(locations);
-  }
-
-  _getOffersCurrentCity(offers, currentCity) {
-    return offers
-      .filter((offer) => offer.city.name === currentCity);
-  }
-
   _renderApp() {
     const {
       activeOffer,
-      handleLocationClick,
-      offers,
       currentCity,
       currentSort,
+      locations,
+      handleLocationClick,
       handleHeaderOfferClick,
       handleSortChange,
       onCardHover,
       focusOffer,
-      reviews
+      currentCityOffers,
+      comments
     } = this.props;
 
-    const locations = this._getLocations(offers);
-    const offersCurrentCity = this._getOffersCurrentCity(offers, currentCity);
-
-    if (activeOffer === undefined) {
+    if (activeOffer === undefined && currentCityOffers.length !== 0) {
       return (
         <Page
           className={
             `page--gray page--main`
           }
         >
-          <Main isEmpty={offers.length === 0}>
+          <Main>
             <React.Fragment>
               <LocationsWrapped
                 locations={locations}
@@ -93,7 +80,7 @@ class App extends PureComponent {
                 currentCity={currentCity}
               />
               <Cities
-                offersCurrentCity={offersCurrentCity}
+                currentCityOffers={currentCityOffers}
                 currentCity={currentCity}
                 currentSort={currentSort}
                 handleHeaderOfferClick={handleHeaderOfferClick}
@@ -105,21 +92,37 @@ class App extends PureComponent {
           </Main>
         </Page>
       );
-    } else {
+    } else if (activeOffer !== undefined) {
       return (
         <Page>
           <Property
             activeOffer={activeOffer}
-            reviews={reviews}
-            offersCurrentCity={offersCurrentCity}
+            currentCityOffers={currentCityOffers}
             currentSort={currentSort}
             onCardHover={onCardHover}
             focusOffer={focusOffer}
             handleHeaderOfferClick={handleHeaderOfferClick}
+            comments={comments}
           />
         </Page>
       );
     }
+
+    return (
+      <Page
+        className={
+          `page--gray page--main`
+        }
+      >
+        <Main isEmpty={true}>
+          <LocationsWrapped
+            locations={locations}
+            handleLocationClick={handleLocationClick}
+            currentCity={currentCity}
+          />
+        </Main>
+      </Page>
+    );
   }
 
   render() {
@@ -138,7 +141,7 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  offers: PropTypes.arrayOf(
+  currentCityOffers: PropTypes.arrayOf(
       offerPropTypes
   ).isRequired,
   activeOffer: offerPropTypes,
@@ -149,9 +152,12 @@ App.propTypes = {
   onCardHover: PropTypes.func.isRequired,
   focusOffer: offerPropTypes,
   handleSortChange: PropTypes.func.isRequired,
-  reviews: PropTypes.arrayOf(
-      reviewsPropTypes
+  locations: PropTypes.arrayOf(
+      PropTypes.string
   ).isRequired,
+  comments: PropTypes.arrayOf(
+      commentsPropTypes
+  ),
 };
 
 const mapStateToProps = (state) => ({
@@ -159,7 +165,9 @@ const mapStateToProps = (state) => ({
   currentCity: getCurrentCity(state),
   currentSort: getCurrentSort(state),
   focusOffer: getFocusOffer(state),
-  offers: getOffers(state),
+  currentCityOffers: getOffersCurrentCity(state),
+  locations: getLocations(state),
+  comments: getComments(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -168,6 +176,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   handleHeaderOfferClick(offer) {
     dispatch(ActionOffer.setActiveOffer(offer));
+    dispatch(DataOperation.loadComments());
   },
   onCardHover(offer) {
     dispatch(ActionOffer.setFocusOffer(offer));

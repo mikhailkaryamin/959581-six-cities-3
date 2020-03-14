@@ -18,10 +18,6 @@ import {
 
 
 class Property extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const {
       activeOffer,
@@ -30,16 +26,19 @@ class Property extends PureComponent {
       currentSort,
       handleHeaderOfferClick,
       onCardHover,
-      reviews
+      comments
     } = this.props;
     const {
-      src,
+      images,
+      is_premium,
       price,
       rating,
-      name,
+      title,
       type,
-      mark,
-      insideItems,
+      bedrooms,
+      max_adults,
+      goods,
+      host,
     } = activeOffer;
 
     return (
@@ -47,7 +46,7 @@ class Property extends PureComponent {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {src.map((img, i) =>
+              {images.map((img, i) =>
                 <div key={`${i}${img}`} className="property__image-wrapper">
                   <img className="property__image" src={img} alt="Photo studio" />
                 </div>
@@ -56,7 +55,7 @@ class Property extends PureComponent {
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
-              {mark ?
+              {is_premium ?
                 <div className="property__mark">
                   <span>
                     Premium
@@ -67,7 +66,7 @@ class Property extends PureComponent {
               }
               <div className="property__name-wrapper">
                 <h1 className="property__name">
-                  {name}
+                  {title}
                 </h1>
                 <button className="property__bookmark-button button" type="button">
                   <svg className="property__bookmark-icon" width="31" height="33">
@@ -90,10 +89,10 @@ class Property extends PureComponent {
                   {type}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  3 Bedrooms
+                  {bedrooms} Bedrooms
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max 4 adults
+                  Max {max_adults} adults
                 </li>
               </ul>
               <div className="property__price">
@@ -105,7 +104,7 @@ class Property extends PureComponent {
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  {insideItems.map((item) =>
+                  {goods.map((item) =>
                     <li key={item} className="property__inside-item">
                       {item}
                     </li>)
@@ -115,11 +114,11 @@ class Property extends PureComponent {
               <div className="property__host">
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
-                  <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                    <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar" />
+                  <div className={`property__avatar-wrapper ${host.is_pro ? `property__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
+                    <img className="property__avatar user__avatar" src={host.avatar_url} width="74" height="74" alt="Host avatar" />
                   </div>
                   <span className="property__user-name">
-                    Angelina
+                    {host.name}
                   </span>
                 </div>
                 <div className="property__description">
@@ -128,24 +127,24 @@ class Property extends PureComponent {
                 </div>
               </div>
               {<Reviews
-                reviews={reviews}
+                comments={comments}
               />}
             </div>
           </div>
-          {<Map
+          {/* {<Map
             modificatorClass={ModificatorClass.PROPERTY_MAP}
             offersCurrentCity={offersCurrentCity}
             focusOffer={focusOffer}
-          />}
+          />} */}
         </section>
         <div className="container">
-          {<Places
+          {/* {<Places
             modificatorClass={ModificatorClass.NEAR_PLACES}
             offersCurrentCity={offersCurrentCity}
             currentSort={currentSort}
             handleHeaderOfferClick={handleHeaderOfferClick}
             onCardHover={onCardHover}
-          />}
+          />} */}
         </div>
       </main>
     );

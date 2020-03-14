@@ -25,13 +25,13 @@ export const offerPropTypes = shape({
   ).isRequired
 });
 
-export const reviewsPropTypes = shape({
+export const commentsPropTypes = shape({
   id: number.isRequired,
   user: shape({
     id: number.isRequired,
-    isPro: bool.isRequired,
+    is_Pro: bool.isRequired,
     name: string.isRequired,
-    avatarURL: string.isRequired,
+    avatar_url: string.isRequired,
   }).isRequired,
   rating: number.isRequired,
   comment: string.isRequired,

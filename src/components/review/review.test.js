@@ -14,7 +14,7 @@ const comment = {
   comment: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   Curabitur ornare nunc a blandit ultricies.
   Integer a urna in nunc congue efficitur.`,
-  date: new Date(2010, 10, 1)
+  date: `April 2010`
 };
 
 it(`Render correctly review`, () => {

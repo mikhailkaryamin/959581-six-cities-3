@@ -90,7 +90,7 @@ const currentCityOffers = [
       isPro: true,
       name: `Angelina`
     },
-    id: 1,
+    id: 2,
     images: [`img/1.png`, `img/2.png`],
     isFavorite: false,
     isPremium: false,
@@ -124,7 +124,7 @@ const currentCityOffers = [
       isPro: true,
       name: `Angelina`
     },
-    id: 1,
+    id: 3,
     images: [`img/1.png`, `img/2.png`],
     isFavorite: false,
     isPremium: false,
@@ -158,7 +158,7 @@ const currentCityOffers = [
       isPro: true,
       name: `Angelina`
     },
-    id: 1,
+    id: 4,
     images: [`img/1.png`, `img/2.png`],
     isFavorite: false,
     isPremium: false,

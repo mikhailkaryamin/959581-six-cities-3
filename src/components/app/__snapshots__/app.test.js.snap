@@ -332,9 +332,9 @@ exports[`App render correctly App render correctly with active offer 1`] = `
                   </p>
                   <time
                     className="reviews__time"
-                    dateTime={2010-10-31T21:00:00.000Z}
+                    dateTime="April 2010"
                   >
-                    November 2010
+                    April 2010
                   </time>
                 </div>
               </li>

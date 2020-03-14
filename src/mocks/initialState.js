@@ -53,7 +53,7 @@ export const storeWithActiveOffer = {
           isPro: true,
           name: `Angelina`
         },
-        id: 1,
+        id: 2,
         images: [`img/1.png`, `img/2.png`],
         isFavorite: false,
         isPremium: false,
@@ -87,7 +87,7 @@ export const storeWithActiveOffer = {
           isPro: true,
           name: `Angelina`
         },
-        id: 1,
+        id: 3,
         images: [`img/1.png`, `img/2.png`],
         isFavorite: false,
         isPremium: false,
@@ -121,7 +121,7 @@ export const storeWithActiveOffer = {
           isPro: true,
           name: `Angelina`
         },
-        id: 1,
+        id: 4,
         images: [`img/1.png`, `img/2.png`],
         isFavorite: false,
         isPremium: false,
@@ -199,7 +199,7 @@ export const storeWithActiveOffer = {
           isPro: true,
           name: `Angelina`
         },
-        id: 1,
+        id: 2,
         images: [`img/1.png`, `img/2.png`],
         isFavorite: false,
         isPremium: false,
@@ -233,7 +233,7 @@ export const storeWithActiveOffer = {
           isPro: true,
           name: `Angelina`
         },
-        id: 1,
+        id: 3,
         images: [`img/1.png`, `img/2.png`],
         isFavorite: false,
         isPremium: false,
@@ -267,7 +267,7 @@ export const storeWithActiveOffer = {
           isPro: true,
           name: `Angelina`
         },
-        id: 1,
+        id: 4,
         images: [`img/1.png`, `img/2.png`],
         isFavorite: false,
         isPremium: false,
@@ -337,7 +337,7 @@ export const storeWithActiveOffer = {
           isPro: true,
           name: `Angelina`
         },
-        id: 1,
+        id: 2,
         images: [`img/1.png`, `img/2.png`],
         isFavorite: false,
         isPremium: false,
@@ -371,7 +371,7 @@ export const storeWithActiveOffer = {
           isPro: true,
           name: `Angelina`
         },
-        id: 1,
+        id: 3,
         images: [`img/1.png`, `img/2.png`],
         isFavorite: false,
         isPremium: false,
@@ -405,7 +405,7 @@ export const storeWithActiveOffer = {
           isPro: true,
           name: `Angelina`
         },
-        id: 1,
+        id: 4,
         images: [`img/1.png`, `img/2.png`],
         isFavorite: false,
         isPremium: false,
@@ -435,7 +435,7 @@ export const storeWithActiveOffer = {
         comment: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Curabitur ornare nunc a blandit ultricies.
         Integer a urna in nunc congue efficitur.`,
-        date: new Date(2010, 10, 1)
+        date: `April 2010`
       }
     ],
   },
@@ -572,7 +572,7 @@ export const storeWithoutActiveOffer = {
           isPro: true,
           name: `Angelina`
         },
-        id: 1,
+        id: 2,
         images: [`img/1.png`, `img/2.png`],
         isFavorite: false,
         isPremium: false,
@@ -606,7 +606,7 @@ export const storeWithoutActiveOffer = {
           isPro: true,
           name: `Angelina`
         },
-        id: 1,
+        id: 3,
         images: [`img/1.png`, `img/2.png`],
         isFavorite: false,
         isPremium: false,
@@ -640,7 +640,7 @@ export const storeWithoutActiveOffer = {
           isPro: true,
           name: `Angelina`
         },
-        id: 1,
+        id: 4,
         images: [`img/1.png`, `img/2.png`],
         isFavorite: false,
         isPremium: false,
@@ -718,7 +718,7 @@ export const storeWithoutActiveOffer = {
           isPro: true,
           name: `Angelina`
         },
-        id: 1,
+        id: 2,
         images: [`img/1.png`, `img/2.png`],
         isFavorite: false,
         isPremium: false,
@@ -752,7 +752,7 @@ export const storeWithoutActiveOffer = {
           isPro: true,
           name: `Angelina`
         },
-        id: 1,
+        id: 3,
         images: [`img/1.png`, `img/2.png`],
         isFavorite: false,
         isPremium: false,
@@ -786,7 +786,7 @@ export const storeWithoutActiveOffer = {
           isPro: true,
           name: `Angelina`
         },
-        id: 1,
+        id: 4,
         images: [`img/1.png`, `img/2.png`],
         isFavorite: false,
         isPremium: false,
@@ -856,7 +856,7 @@ export const storeWithoutActiveOffer = {
           isPro: true,
           name: `Angelina`
         },
-        id: 1,
+        id: 2,
         images: [`img/1.png`, `img/2.png`],
         isFavorite: false,
         isPremium: false,
@@ -890,7 +890,7 @@ export const storeWithoutActiveOffer = {
           isPro: true,
           name: `Angelina`
         },
-        id: 1,
+        id: 3,
         images: [`img/1.png`, `img/2.png`],
         isFavorite: false,
         isPremium: false,
@@ -924,7 +924,7 @@ export const storeWithoutActiveOffer = {
           isPro: true,
           name: `Angelina`
         },
-        id: 1,
+        id: 4,
         images: [`img/1.png`, `img/2.png`],
         isFavorite: false,
         isPremium: false,
@@ -954,7 +954,7 @@ export const storeWithoutActiveOffer = {
         comment: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Curabitur ornare nunc a blandit ultricies.
         Integer a urna in nunc congue efficitur.`,
-        date: new Date(2010, 10, 1)
+        date: `April 2010`
       }
     ],
   },

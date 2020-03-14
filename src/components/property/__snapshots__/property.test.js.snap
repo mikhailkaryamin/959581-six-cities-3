@@ -19,7 +19,7 @@ exports[`Render property correctly 1`] = `
           <img
             alt="Photo studio"
             className="property__image"
-            src="img/apartment-03.jpg"
+            src="img/1.png"
           />
         </div>
         <div
@@ -28,43 +28,7 @@ exports[`Render property correctly 1`] = `
           <img
             alt="Photo studio"
             className="property__image"
-            src="img/studio-01.jpg"
-          />
-        </div>
-        <div
-          className="property__image-wrapper"
-        >
-          <img
-            alt="Photo studio"
-            className="property__image"
-            src="img/apartment-01.jpg"
-          />
-        </div>
-        <div
-          className="property__image-wrapper"
-        >
-          <img
-            alt="Photo studio"
-            className="property__image"
-            src="img/room.jpg"
-          />
-        </div>
-        <div
-          className="property__image-wrapper"
-        >
-          <img
-            alt="Photo studio"
-            className="property__image"
-            src="img/apartment-01.jpg"
-          />
-        </div>
-        <div
-          className="property__image-wrapper"
-        >
-          <img
-            alt="Photo studio"
-            className="property__image"
-            src="img/apartment-02.jpg"
+            src="img/2.png"
           />
         </div>
       </div>
@@ -75,20 +39,14 @@ exports[`Render property correctly 1`] = `
       <div
         className="property__wrapper"
       >
-        <div
-          className="property__mark"
-        >
-          <span>
-            Premium
-          </span>
-        </div>
+        
         <div
           className="property__name-wrapper"
         >
           <h1
             className="property__name"
           >
-            Beautiful &amp; luxurious apartment at great location
+            Beautiful & luxurious studio at great location
           </h1>
           <button
             className="property__bookmark-button button"
@@ -119,7 +77,7 @@ exports[`Render property correctly 1`] = `
             <span
               style={
                 Object {
-                  "width": "80%",
+                  "width": "96%",
                 }
               }
             />
@@ -132,7 +90,7 @@ exports[`Render property correctly 1`] = `
           <span
             className="property__rating-value rating__value"
           >
-            4
+            4.8
           </span>
         </div>
         <ul
@@ -141,17 +99,20 @@ exports[`Render property correctly 1`] = `
           <li
             className="property__feature property__feature--entire"
           >
-            Apartment
+            apartment
           </li>
           <li
             className="property__feature property__feature--bedrooms"
           >
-            3 Bedrooms
+            3
+             Bedrooms
           </li>
           <li
             className="property__feature property__feature--adults"
           >
-            Max 4 adults
+            Max 
+            4
+             adults
           </li>
         </ul>
         <div
@@ -183,32 +144,7 @@ exports[`Render property correctly 1`] = `
             <li
               className="property__inside-item"
             >
-              Wi-Fi
-            </li>
-            <li
-              className="property__inside-item"
-            >
-              Washing machine
-            </li>
-            <li
-              className="property__inside-item"
-            >
-              Towels
-            </li>
-            <li
-              className="property__inside-item"
-            >
               Heating
-            </li>
-            <li
-              className="property__inside-item"
-            >
-              Coffee machine
-            </li>
-            <li
-              className="property__inside-item"
-            >
-              Baby seat
             </li>
             <li
               className="property__inside-item"
@@ -218,17 +154,22 @@ exports[`Render property correctly 1`] = `
             <li
               className="property__inside-item"
             >
+              Cable TV
+            </li>
+            <li
+              className="property__inside-item"
+            >
+              Washing machine
+            </li>
+            <li
+              className="property__inside-item"
+            >
+              Coffee machine
+            </li>
+            <li
+              className="property__inside-item"
+            >
               Dishwasher
-            </li>
-            <li
-              className="property__inside-item"
-            >
-              Cabel TV
-            </li>
-            <li
-              className="property__inside-item"
-            >
-              Fridge
             </li>
           </ul>
         </div>
@@ -244,13 +185,13 @@ exports[`Render property correctly 1`] = `
             className="property__host-user user"
           >
             <div
-              className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper"
+              className="property__avatar-wrapper  user__avatar-wrapper"
             >
               <img
                 alt="Host avatar"
                 className="property__avatar user__avatar"
                 height="74"
-                src="img/avatar-angelina.jpg"
+                src="img/1.png"
                 width="74"
               />
             </div>
@@ -297,15 +238,12 @@ exports[`Render property correctly 1`] = `
                     alt="Reviews avatar"
                     className="reviews__avatar user__avatar"
                     height="54"
-                    src="img/avatar-max.jpg"
                     width="54"
                   />
                 </div>
                 <span
                   className="reviews__user-name"
-                >
-                  Mi
-                </span>
+                />
               </div>
               <div
                 className="reviews__info"
@@ -339,9 +277,9 @@ exports[`Render property correctly 1`] = `
                 </p>
                 <time
                   className="reviews__time"
-                  dateTime="2010-10-1"
+                  dateTime="April 2010"
                 >
-                  November 1, 2010
+                  April 2010
                 </time>
               </div>
             </li>
@@ -532,13 +470,7 @@ exports[`Render property correctly 1`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="place-card__mark"
-          >
-            <span>
-              Premium
-            </span>
-          </div>
+          
           <div
             className="cities__image-wrapper place-card__image-wrapper"
           >
@@ -549,7 +481,7 @@ exports[`Render property correctly 1`] = `
                 alt="Place image"
                 className="place-card__image"
                 height="200"
-                src="img/apartment-03.jpg"
+                src="img/1.png"
                 width="260"
               />
             </a>
@@ -604,7 +536,7 @@ exports[`Render property correctly 1`] = `
                 <span
                   style={
                     Object {
-                      "width": "80%",
+                      "width": "96%",
                     }
                   }
                 />
@@ -622,13 +554,13 @@ exports[`Render property correctly 1`] = `
               <a
                 href="#"
               >
-                Beautiful &amp; luxurious apartment at great location
+                Beautiful & luxurious studio at great location
               </a>
             </h2>
             <p
               className="place-card__type"
             >
-              Apartment
+              apartment
             </p>
           </div>
         </article>
@@ -637,13 +569,7 @@ exports[`Render property correctly 1`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="place-card__mark"
-          >
-            <span>
-              Premium
-            </span>
-          </div>
+          
           <div
             className="cities__image-wrapper place-card__image-wrapper"
           >
@@ -654,7 +580,7 @@ exports[`Render property correctly 1`] = `
                 alt="Place image"
                 className="place-card__image"
                 height="200"
-                src="img/apartment-02.jpg"
+                src="img/1.png"
                 width="260"
               />
             </a>
@@ -672,7 +598,7 @@ exports[`Render property correctly 1`] = `
                   className="place-card__price-value"
                 >
                   €
-                  80
+                  120
                 </b>
                 <span
                   className="place-card__price-text"
@@ -709,7 +635,7 @@ exports[`Render property correctly 1`] = `
                 <span
                   style={
                     Object {
-                      "width": "80%",
+                      "width": "96%",
                     }
                   }
                 />
@@ -727,13 +653,13 @@ exports[`Render property correctly 1`] = `
               <a
                 href="#"
               >
-                Wood and stone place
+                Beautiful & luxurious studio at great location
               </a>
             </h2>
             <p
               className="place-card__type"
             >
-              Private room
+              apartment
             </p>
           </div>
         </article>
@@ -742,13 +668,7 @@ exports[`Render property correctly 1`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="place-card__mark"
-          >
-            <span>
-              Premium
-            </span>
-          </div>
+          
           <div
             className="cities__image-wrapper place-card__image-wrapper"
           >
@@ -759,7 +679,7 @@ exports[`Render property correctly 1`] = `
                 alt="Place image"
                 className="place-card__image"
                 height="200"
-                src="img/apartment-01.jpg"
+                src="img/1.png"
                 width="260"
               />
             </a>
@@ -777,7 +697,7 @@ exports[`Render property correctly 1`] = `
                   className="place-card__price-value"
                 >
                   €
-                  132
+                  120
                 </b>
                 <span
                   className="place-card__price-text"
@@ -814,7 +734,7 @@ exports[`Render property correctly 1`] = `
                 <span
                   style={
                     Object {
-                      "width": "100%",
+                      "width": "96%",
                     }
                   }
                 />
@@ -832,13 +752,13 @@ exports[`Render property correctly 1`] = `
               <a
                 href="#"
               >
-                Canal View Prinsengracht
+                Beautiful & luxurious studio at great location
               </a>
             </h2>
             <p
               className="place-card__type"
             >
-              Room
+              apartment
             </p>
           </div>
         </article>
@@ -847,13 +767,7 @@ exports[`Render property correctly 1`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="place-card__mark"
-          >
-            <span>
-              Premium
-            </span>
-          </div>
+          
           <div
             className="cities__image-wrapper place-card__image-wrapper"
           >
@@ -864,7 +778,7 @@ exports[`Render property correctly 1`] = `
                 alt="Place image"
                 className="place-card__image"
                 height="200"
-                src="img/apartment-03.jpg"
+                src="img/1.png"
                 width="260"
               />
             </a>
@@ -882,7 +796,7 @@ exports[`Render property correctly 1`] = `
                   className="place-card__price-value"
                 >
                   €
-                  115
+                  120
                 </b>
                 <span
                   className="place-card__price-text"
@@ -919,7 +833,7 @@ exports[`Render property correctly 1`] = `
                 <span
                   style={
                     Object {
-                      "width": "80%",
+                      "width": "96%",
                     }
                   }
                 />
@@ -937,13 +851,13 @@ exports[`Render property correctly 1`] = `
               <a
                 href="#"
               >
-                Nice, cozy, warm big bed apartment
+                Beautiful & luxurious studio at great location
               </a>
             </h2>
             <p
               className="place-card__type"
             >
-              Hotel
+              apartment
             </p>
           </div>
         </article>

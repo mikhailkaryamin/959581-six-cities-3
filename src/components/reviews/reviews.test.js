@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import Reviews from "./reviews.jsx";
 
-const reviews = [
+const comments = [
   {
     id: 1,
     user: {
@@ -15,7 +15,7 @@ const reviews = [
     comment: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     Curabitur ornare nunc a blandit ultricies.
     Integer a urna in nunc congue efficitur.`,
-    date: new Date(2010, 10, 1)
+    date: `April 2010`
   }
 ];
 
@@ -23,7 +23,7 @@ test(`Render reviews`, () => {
   const tree = renderer
     .create(
         <Reviews
-          reviews={reviews}
+          comments={comments}
         />
     ).toJSON();
 

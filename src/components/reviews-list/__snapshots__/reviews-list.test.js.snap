@@ -17,15 +17,12 @@ exports[`Render correctly reviews list 1`] = `
           alt="Reviews avatar"
           className="reviews__avatar user__avatar"
           height="54"
-          src="img/avatar-max.jpg"
           width="54"
         />
       </div>
       <span
         className="reviews__user-name"
-      >
-        Mi
-      </span>
+      />
     </div>
     <div
       className="reviews__info"
@@ -59,9 +56,9 @@ exports[`Render correctly reviews list 1`] = `
       </p>
       <time
         className="reviews__time"
-        dateTime="2010-10-1"
+        dateTime="April 2010"
       >
-        November 1, 2010
+        April 2010
       </time>
     </div>
   </li>

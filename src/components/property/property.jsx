@@ -13,41 +13,45 @@ import {
 } from "../../consts.js";
 import {
   offerPropTypes,
-  reviewsPropTypes,
+  commentsPropTypes
 } from "../../types.js";
 
 
 class Property extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const {
       activeOffer,
-      offersCurrentCity,
       focusOffer,
       currentSort,
+      comments,
+      offersNearby,
       handleHeaderOfferClick,
       onCardHover,
-      reviews
     } = this.props;
+
     const {
-      src,
+      images,
+      isPremium,
       price,
       rating,
-      name,
+      title,
       type,
-      mark,
-      insideItems,
+      bedrooms,
+      maxAdults,
+      goods,
+      host,
     } = activeOffer;
+
+    if (offersNearby.length === 0) {
+      return ``;
+    }
 
     return (
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {src.map((img, i) =>
+              {images.map((img, i) =>
                 <div key={`${i}${img}`} className="property__image-wrapper">
                   <img className="property__image" src={img} alt="Photo studio" />
                 </div>
@@ -56,7 +60,7 @@ class Property extends PureComponent {
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
-              {mark ?
+              {isPremium ?
                 <div className="property__mark">
                   <span>
                     Premium
@@ -67,7 +71,7 @@ class Property extends PureComponent {
               }
               <div className="property__name-wrapper">
                 <h1 className="property__name">
-                  {name}
+                  {title}
                 </h1>
                 <button className="property__bookmark-button button" type="button">
                   <svg className="property__bookmark-icon" width="31" height="33">
@@ -90,10 +94,10 @@ class Property extends PureComponent {
                   {type}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  3 Bedrooms
+                  {bedrooms} Bedrooms
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max 4 adults
+                  Max {maxAdults} adults
                 </li>
               </ul>
               <div className="property__price">
@@ -105,7 +109,7 @@ class Property extends PureComponent {
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  {insideItems.map((item) =>
+                  {goods.map((item) =>
                     <li key={item} className="property__inside-item">
                       {item}
                     </li>)
@@ -115,11 +119,11 @@ class Property extends PureComponent {
               <div className="property__host">
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
-                  <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                    <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar" />
+                  <div className={`property__avatar-wrapper ${host.is_pro ? `property__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
+                    <img className="property__avatar user__avatar" src={host.avatarUrl} width="74" height="74" alt="Host avatar" />
                   </div>
                   <span className="property__user-name">
-                    Angelina
+                    {host.name}
                   </span>
                 </div>
                 <div className="property__description">
@@ -128,20 +132,20 @@ class Property extends PureComponent {
                 </div>
               </div>
               {<Reviews
-                reviews={reviews}
+                comments={comments}
               />}
             </div>
           </div>
           {<Map
             modificatorClass={ModificatorClass.PROPERTY_MAP}
-            offersCurrentCity={offersCurrentCity}
+            currentCityOffers={offersNearby}
             focusOffer={focusOffer}
           />}
         </section>
         <div className="container">
           {<Places
             modificatorClass={ModificatorClass.NEAR_PLACES}
-            offersCurrentCity={offersCurrentCity}
+            currentCityOffers={offersNearby}
             currentSort={currentSort}
             handleHeaderOfferClick={handleHeaderOfferClick}
             onCardHover={onCardHover}
@@ -155,15 +159,18 @@ class Property extends PureComponent {
 Property.propTypes = {
   offersCurrentCity: PropTypes.arrayOf(
       offerPropTypes
-  ).isRequired,
-  reviews: PropTypes.arrayOf(
-      reviewsPropTypes
   ),
   activeOffer: offerPropTypes.isRequired,
   handleHeaderOfferClick: PropTypes.func.isRequired,
   focusOffer: offerPropTypes,
   onCardHover: PropTypes.func.isRequired,
   currentSort: PropTypes.string.isRequired,
+  offersNearby: PropTypes.arrayOf(
+      offerPropTypes
+  ).isRequired,
+  comments: PropTypes.arrayOf(
+      commentsPropTypes
+  ),
 };
 
 Property.defaultProps = {

@@ -22,12 +22,11 @@ class PlaceCard extends PureComponent {
     } = this.props;
 
     const {
-      src,
-      price,
+      previewImage,
+      isPremium,
       rating,
-      name,
+      title,
       type,
-      mark
     } = offer;
 
     return (
@@ -40,7 +39,7 @@ class PlaceCard extends PureComponent {
           onMouseLeave();
         }}
       >
-        {mark ?
+        {isPremium ?
           <div className="place-card__mark">
             <span>
               Premium
@@ -51,14 +50,14 @@ class PlaceCard extends PureComponent {
         }
         <div className="cities__image-wrapper place-card__image-wrapper">
           <a href="#">
-            <img className="place-card__image" src={src[0]} width="260" height="200" alt="Place image" />
+            <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
           </a>
         </div>
         <div className="place-card__info">
           <div className="place-card__price-wrapper">
             <div className="place-card__price">
               <b className="place-card__price-value">&euro;
-                {price}
+                {offer.price}
               </b>
               <span className="place-card__price-text">&#47;&nbsp;night</span>
             </div>
@@ -83,7 +82,7 @@ class PlaceCard extends PureComponent {
             }}
           >
             <a href="#" >
-              {name}
+              {title}
             </a>
           </h2>
           <p className="place-card__type">
@@ -97,14 +96,12 @@ class PlaceCard extends PureComponent {
 
 PlaceCard.propTypes = {
   offer: PropTypes.shape({
-    src: PropTypes.arrayOf(
-        PropTypes.string.isRequired
-    ).isRequired,
+    previewImage: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     rating: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    mark: PropTypes.bool.isRequired,
+    isPremium: PropTypes.bool.isRequired,
   }).isRequired,
   handleHeaderOfferClick: PropTypes.func.isRequired,
   onMouseEnter: PropTypes.func.isRequired,

@@ -3,38 +3,37 @@ import {
   arrayOf,
   number,
   string,
-  bool,
-  instanceOf
+  bool
 } from "prop-types";
 
 export const offerPropTypes = shape({
-  id: number.isRequired,
+  id: number,
   src: arrayOf(
-      string.isRequired
-  ).isRequired,
-  price: number.isRequired,
-  rating: number.isRequired,
-  name: string.isRequired,
-  type: string.isRequired,
-  mark: bool.isRequired,
+      string
+  ),
+  price: number,
+  rating: number,
+  name: string,
+  type: string,
+  mark: bool,
   insideItems: arrayOf(
-      string.isRequired
-  ).isRequired,
+      string
+  ),
   coordinate: arrayOf(
-      number.isRequired
-  ).isRequired
+      number
+  )
 });
 
-export const reviewsPropTypes = shape({
-  id: number.isRequired,
+export const commentsPropTypes = shape({
+  id: number,
   user: shape({
-    id: number.isRequired,
-    isPro: bool.isRequired,
-    name: string.isRequired,
-    avatarURL: string.isRequired,
-  }).isRequired,
-  rating: number.isRequired,
-  comment: string.isRequired,
-  date: instanceOf(Date)
+    id: number,
+    isPro: bool,
+    name: string,
+    avatarUrl: string,
+  }),
+  rating: number,
+  comment: string,
+  date: string
 });
 

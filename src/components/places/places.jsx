@@ -8,7 +8,6 @@ import {
 } from "../../consts.js";
 import {
   offerPropTypes,
-  reviewsPropTypes,
 } from "../../types.js";
 import PlacesCardList from "../place-card-list/place-card-list.jsx";
 import PlacesSort from "../places-sort/places-sort.jsx";
@@ -26,15 +25,15 @@ class Places extends PureComponent {
   render() {
     const {
       modificatorClass,
-      offersCurrentCity,
+      currentCityOffers,
       currentSort,
+      currentCity,
       handleHeaderOfferClick,
       onCardHover,
       handleSortChange,
     } = this.props;
 
-    const AVAILABLE_OFFERS = offersCurrentCity.length;
-    const CURRENT_CITY = offersCurrentCity[0].city.name;
+    const AVAILABLE_OFFERS = currentCityOffers.length;
 
     return (
       <section className={`places ${modificatorClass}`}>
@@ -45,7 +44,7 @@ class Places extends PureComponent {
               {
                 AVAILABLE_OFFERS
               } places to stay in {
-                CURRENT_CITY
+                currentCity
               }
             </b>
             {<PlacesSortWrapped
@@ -54,7 +53,7 @@ class Places extends PureComponent {
             />}
             {<PlacesCardListWrapped
               modificatorClass={ModificatorClass.CITIES_PLACES_LIST}
-              offersCurrentCity={offersCurrentCity}
+              currentCityOffers={currentCityOffers}
               currentSort={currentSort}
               handleHeaderOfferClick={handleHeaderOfferClick}
               onCardHover={onCardHover}
@@ -68,7 +67,7 @@ class Places extends PureComponent {
 
             {<PlacesCardListWrapped
               modificatorClass={ModificatorClass.NEAR_PLACES_LIST}
-              offersCurrentCity={offersCurrentCity}
+              currentCityOffers={currentCityOffers}
               currentSort={currentSort}
               handleHeaderOfferClick={handleHeaderOfferClick}
               onCardHover={onCardHover}
@@ -81,17 +80,15 @@ class Places extends PureComponent {
 }
 
 Places.propTypes = {
-  offersCurrentCity: PropTypes.arrayOf(
+  currentCityOffers: PropTypes.arrayOf(
       offerPropTypes
   ).isRequired,
-  reviews: PropTypes.arrayOf(
-      reviewsPropTypes
-  ),
   modificatorClass: PropTypes.string.isRequired,
   currentSort: PropTypes.string,
   handleHeaderOfferClick: PropTypes.func.isRequired,
   onCardHover: PropTypes.func.isRequired,
   handleSortChange: PropTypes.func,
+  currentCity: PropTypes.string,
 };
 
 Places.defaultProps = {

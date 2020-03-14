@@ -18,6 +18,10 @@ export const getComments = (state) => {
   return state[NameSpace.DATA].comments;
 };
 
+export const getOffersNearby = (state) => {
+  return state[NameSpace.DATA].offersNearby;
+};
+
 export const getLocations = createSelector(
     getOffers,
     (offers) => {

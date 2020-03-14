@@ -5,7 +5,7 @@ import React, {
 import {
   connect
 } from "react-redux";
-import { 
+import {
   BrowserRouter,
   Route,
   Switch
@@ -23,7 +23,8 @@ import {
 import {
   getLocations,
   getOffersCurrentCity,
-  getComments
+  getComments,
+  getOffersNearby,
 } from '../../reducer/data/selectors.js';
 import {
   ActionCreator as ActionOffer
@@ -62,17 +63,20 @@ class App extends PureComponent {
       onCardHover,
       focusOffer,
       currentCityOffers,
-      comments
+      comments,
+      offersNearby
     } = this.props;
 
-    if (activeOffer === undefined && currentCityOffers.length !== 0) {
+    const isLoading = currentCityOffers.length === 0;
+
+    if (activeOffer === undefined && !isLoading) {
       return (
         <Page
           className={
             `page--gray page--main`
           }
         >
-          <Main>
+          <Main isEmpty={false}>
             <React.Fragment>
               <LocationsWrapped
                 locations={locations}
@@ -103,6 +107,7 @@ class App extends PureComponent {
             focusOffer={focusOffer}
             handleHeaderOfferClick={handleHeaderOfferClick}
             comments={comments}
+            offersNearby={offersNearby}
           />
         </Page>
       );
@@ -158,6 +163,9 @@ App.propTypes = {
   comments: PropTypes.arrayOf(
       commentsPropTypes
   ),
+  offersNearby: PropTypes.arrayOf(
+      offerPropTypes
+  ).isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -168,6 +176,7 @@ const mapStateToProps = (state) => ({
   currentCityOffers: getOffersCurrentCity(state),
   locations: getLocations(state),
   comments: getComments(state),
+  offersNearby: getOffersNearby(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -177,6 +186,7 @@ const mapDispatchToProps = (dispatch) => ({
   handleHeaderOfferClick(offer) {
     dispatch(ActionOffer.setActiveOffer(offer));
     dispatch(DataOperation.loadComments());
+    dispatch(DataOperation.loadOffersNearby());
   },
   onCardHover(offer) {
     dispatch(ActionOffer.setFocusOffer(offer));

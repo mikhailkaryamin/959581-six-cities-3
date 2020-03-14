@@ -6,13 +6,7 @@ exports[`Render place card 1`] = `
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
-  <div
-    className="place-card__mark"
-  >
-    <span>
-      Premium
-    </span>
-  </div>
+  
   <div
     className="cities__image-wrapper place-card__image-wrapper"
   >
@@ -23,7 +17,7 @@ exports[`Render place card 1`] = `
         alt="Place image"
         className="place-card__image"
         height="200"
-        src="img/apartment-03.jpg"
+        src="img/1.png"
         width="260"
       />
     </a>
@@ -78,7 +72,7 @@ exports[`Render place card 1`] = `
         <span
           style={
             Object {
-              "width": "80%",
+              "width": "96%",
             }
           }
         />
@@ -96,13 +90,13 @@ exports[`Render place card 1`] = `
       <a
         href="#"
       >
-        Beautiful &amp; luxurious apartment at great location
+        Beautiful & luxurious studio at great location
       </a>
     </h2>
     <p
       className="place-card__type"
     >
-      Apartment
+      apartment
     </p>
   </div>
 </article>

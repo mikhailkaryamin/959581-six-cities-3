@@ -21,6 +21,14 @@ class PlaceCard extends PureComponent {
       handleActiveItem,
     } = this.props;
 
+    const {
+      previewImage,
+      isPremium,
+      rating,
+      title,
+      type,
+    } = offer;
+
     return (
       <article
         className="cities__place-card place-card"
@@ -31,7 +39,7 @@ class PlaceCard extends PureComponent {
           onMouseLeave();
         }}
       >
-        {offer.is_premium ?
+        {isPremium ?
           <div className="place-card__mark">
             <span>
               Premium
@@ -42,7 +50,7 @@ class PlaceCard extends PureComponent {
         }
         <div className="cities__image-wrapper place-card__image-wrapper">
           <a href="#">
-            <img className="place-card__image" src={offer.preview_image} width="260" height="200" alt="Place image" />
+            <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
           </a>
         </div>
         <div className="place-card__info">
@@ -62,7 +70,7 @@ class PlaceCard extends PureComponent {
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span style={{width: `${ONE_STAR * offer.rating}%`}}></span>
+              <span style={{width: `${ONE_STAR * rating}%`}}></span>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>
@@ -74,11 +82,11 @@ class PlaceCard extends PureComponent {
             }}
           >
             <a href="#" >
-              {offer.title}
+              {title}
             </a>
           </h2>
           <p className="place-card__type">
-            {offer.type}
+            {type}
           </p>
         </div>
       </article>
@@ -88,12 +96,12 @@ class PlaceCard extends PureComponent {
 
 PlaceCard.propTypes = {
   offer: PropTypes.shape({
-    preview_image: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     rating: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    is_premium: PropTypes.bool.isRequired,
+    isPremium: PropTypes.bool.isRequired,
   }).isRequired,
   handleHeaderOfferClick: PropTypes.func.isRequired,
   onMouseEnter: PropTypes.func.isRequired,

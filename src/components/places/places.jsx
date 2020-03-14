@@ -8,7 +8,6 @@ import {
 } from "../../consts.js";
 import {
   offerPropTypes,
-  reviewsPropTypes,
 } from "../../types.js";
 import PlacesCardList from "../place-card-list/place-card-list.jsx";
 import PlacesSort from "../places-sort/places-sort.jsx";
@@ -28,12 +27,12 @@ class Places extends PureComponent {
       modificatorClass,
       currentCityOffers,
       currentSort,
+      currentCity,
       handleHeaderOfferClick,
       onCardHover,
       handleSortChange,
-      currentCity,
     } = this.props;
-    
+
     const AVAILABLE_OFFERS = currentCityOffers.length;
 
     return (
@@ -84,15 +83,12 @@ Places.propTypes = {
   currentCityOffers: PropTypes.arrayOf(
       offerPropTypes
   ).isRequired,
-  reviews: PropTypes.arrayOf(
-      reviewsPropTypes
-  ),
   modificatorClass: PropTypes.string.isRequired,
   currentSort: PropTypes.string,
   handleHeaderOfferClick: PropTypes.func.isRequired,
   onCardHover: PropTypes.func.isRequired,
   handleSortChange: PropTypes.func,
-  currentCity: PropTypes.string.isRequired,
+  currentCity: PropTypes.string,
 };
 
 Places.defaultProps = {

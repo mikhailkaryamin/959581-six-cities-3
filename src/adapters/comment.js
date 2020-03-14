@@ -1,7 +1,7 @@
 class Comment {
   constructor(comment) {
     this.comment = comment[`comment`];
-    this.date = new Date(comment[`date`]);
+    this.date = comment[`date`];
     this.id = comment[`id`];
     this.rating = comment[`rating`];
     this.user = {
@@ -15,7 +15,7 @@ class Comment {
   toRAW() {
     return {
       'comment': this.comment,
-      'date': this.date.toISOString(),
+      'date': this.date,
       'id': this.id,
       'rating': this.rating,
       'user': {

@@ -20,11 +20,11 @@ class Cities extends PureComponent {
     const {
       currentCityOffers,
       currentSort,
+      focusOffer,
+      currentCity,
       handleHeaderOfferClick,
       onCardHover,
-      focusOffer,
       handleSortChange,
-      currentCity,
     } = this.props;
 
     return (

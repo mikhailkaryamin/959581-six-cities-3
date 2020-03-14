@@ -47,7 +47,6 @@ class Map extends PureComponent {
       const {
         currentCityOffers
       } = this.props;
-
       const COORDINATES = this._getCoordinates(currentCityOffers);
       const CURRENT_CITY = this._getCurrentCityCoordinates(currentCityOffers);
 
@@ -134,7 +133,7 @@ class Map extends PureComponent {
 
   render() {
     const {
-      modificatorClass
+      modificatorClass,
     } = this.props;
 
     return (

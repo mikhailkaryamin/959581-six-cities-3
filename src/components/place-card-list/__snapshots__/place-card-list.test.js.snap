@@ -9,13 +9,7 @@ exports[`Render places-list correctly 1`] = `
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="place-card__mark"
-    >
-      <span>
-        Premium
-      </span>
-    </div>
+    
     <div
       className="cities__image-wrapper place-card__image-wrapper"
     >
@@ -26,7 +20,7 @@ exports[`Render places-list correctly 1`] = `
           alt="Place image"
           className="place-card__image"
           height="200"
-          src="img/apartment-03.jpg"
+          src="img/1.png"
           width="260"
         />
       </a>
@@ -81,7 +75,7 @@ exports[`Render places-list correctly 1`] = `
           <span
             style={
               Object {
-                "width": "80%",
+                "width": "96%",
               }
             }
           />
@@ -99,13 +93,13 @@ exports[`Render places-list correctly 1`] = `
         <a
           href="#"
         >
-          Beautiful &amp; luxurious apartment at great location
+          Beautiful & luxurious studio at great location
         </a>
       </h2>
       <p
         className="place-card__type"
       >
-        Apartment
+        apartment
       </p>
     </div>
   </article>
@@ -114,13 +108,7 @@ exports[`Render places-list correctly 1`] = `
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="place-card__mark"
-    >
-      <span>
-        Premium
-      </span>
-    </div>
+    
     <div
       className="cities__image-wrapper place-card__image-wrapper"
     >
@@ -131,7 +119,7 @@ exports[`Render places-list correctly 1`] = `
           alt="Place image"
           className="place-card__image"
           height="200"
-          src="img/apartment-02.jpg"
+          src="img/1.png"
           width="260"
         />
       </a>
@@ -149,7 +137,7 @@ exports[`Render places-list correctly 1`] = `
             className="place-card__price-value"
           >
             €
-            80
+            120
           </b>
           <span
             className="place-card__price-text"
@@ -186,7 +174,7 @@ exports[`Render places-list correctly 1`] = `
           <span
             style={
               Object {
-                "width": "80%",
+                "width": "96%",
               }
             }
           />
@@ -204,13 +192,13 @@ exports[`Render places-list correctly 1`] = `
         <a
           href="#"
         >
-          Wood and stone place
+          Beautiful & luxurious studio at great location
         </a>
       </h2>
       <p
         className="place-card__type"
       >
-        Private room
+        apartment
       </p>
     </div>
   </article>
@@ -219,13 +207,7 @@ exports[`Render places-list correctly 1`] = `
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="place-card__mark"
-    >
-      <span>
-        Premium
-      </span>
-    </div>
+    
     <div
       className="cities__image-wrapper place-card__image-wrapper"
     >
@@ -236,7 +218,7 @@ exports[`Render places-list correctly 1`] = `
           alt="Place image"
           className="place-card__image"
           height="200"
-          src="img/apartment-01.jpg"
+          src="img/1.png"
           width="260"
         />
       </a>
@@ -254,7 +236,7 @@ exports[`Render places-list correctly 1`] = `
             className="place-card__price-value"
           >
             €
-            132
+            120
           </b>
           <span
             className="place-card__price-text"
@@ -291,7 +273,7 @@ exports[`Render places-list correctly 1`] = `
           <span
             style={
               Object {
-                "width": "100%",
+                "width": "96%",
               }
             }
           />
@@ -309,13 +291,13 @@ exports[`Render places-list correctly 1`] = `
         <a
           href="#"
         >
-          Canal View Prinsengracht
+          Beautiful & luxurious studio at great location
         </a>
       </h2>
       <p
         className="place-card__type"
       >
-        Room
+        apartment
       </p>
     </div>
   </article>
@@ -324,13 +306,7 @@ exports[`Render places-list correctly 1`] = `
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="place-card__mark"
-    >
-      <span>
-        Premium
-      </span>
-    </div>
+    
     <div
       className="cities__image-wrapper place-card__image-wrapper"
     >
@@ -341,7 +317,7 @@ exports[`Render places-list correctly 1`] = `
           alt="Place image"
           className="place-card__image"
           height="200"
-          src="img/apartment-03.jpg"
+          src="img/1.png"
           width="260"
         />
       </a>
@@ -359,7 +335,7 @@ exports[`Render places-list correctly 1`] = `
             className="place-card__price-value"
           >
             €
-            115
+            120
           </b>
           <span
             className="place-card__price-text"
@@ -396,7 +372,7 @@ exports[`Render places-list correctly 1`] = `
           <span
             style={
               Object {
-                "width": "80%",
+                "width": "96%",
               }
             }
           />
@@ -414,13 +390,13 @@ exports[`Render places-list correctly 1`] = `
         <a
           href="#"
         >
-          Nice, cozy, warm big bed apartment
+          Beautiful & luxurious studio at great location
         </a>
       </h2>
       <p
         className="place-card__type"
       >
-        Hotel
+        apartment
       </p>
     </div>
   </article>

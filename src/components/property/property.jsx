@@ -13,7 +13,7 @@ import {
 } from "../../consts.js";
 import {
   offerPropTypes,
-  reviewsPropTypes,
+  commentsPropTypes
 } from "../../types.js";
 
 
@@ -21,25 +21,30 @@ class Property extends PureComponent {
   render() {
     const {
       activeOffer,
-      offersCurrentCity,
       focusOffer,
       currentSort,
+      comments,
+      offersNearby,
       handleHeaderOfferClick,
       onCardHover,
-      comments
     } = this.props;
+
     const {
       images,
-      is_premium,
+      isPremium,
       price,
       rating,
       title,
       type,
       bedrooms,
-      max_adults,
+      maxAdults,
       goods,
       host,
     } = activeOffer;
+
+    if (offersNearby.length === 0) {
+      return ``;
+    }
 
     return (
       <main className="page__main page__main--property">
@@ -55,7 +60,7 @@ class Property extends PureComponent {
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
-              {is_premium ?
+              {isPremium ?
                 <div className="property__mark">
                   <span>
                     Premium
@@ -92,7 +97,7 @@ class Property extends PureComponent {
                   {bedrooms} Bedrooms
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max {max_adults} adults
+                  Max {maxAdults} adults
                 </li>
               </ul>
               <div className="property__price">
@@ -115,7 +120,7 @@ class Property extends PureComponent {
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
                   <div className={`property__avatar-wrapper ${host.is_pro ? `property__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
-                    <img className="property__avatar user__avatar" src={host.avatar_url} width="74" height="74" alt="Host avatar" />
+                    <img className="property__avatar user__avatar" src={host.avatarUrl} width="74" height="74" alt="Host avatar" />
                   </div>
                   <span className="property__user-name">
                     {host.name}
@@ -131,20 +136,20 @@ class Property extends PureComponent {
               />}
             </div>
           </div>
-          {/* {<Map
+          {<Map
             modificatorClass={ModificatorClass.PROPERTY_MAP}
-            offersCurrentCity={offersCurrentCity}
+            currentCityOffers={offersNearby}
             focusOffer={focusOffer}
-          />} */}
+          />}
         </section>
         <div className="container">
-          {/* {<Places
+          {<Places
             modificatorClass={ModificatorClass.NEAR_PLACES}
-            offersCurrentCity={offersCurrentCity}
+            currentCityOffers={offersNearby}
             currentSort={currentSort}
             handleHeaderOfferClick={handleHeaderOfferClick}
             onCardHover={onCardHover}
-          />} */}
+          />}
         </div>
       </main>
     );
@@ -154,15 +159,18 @@ class Property extends PureComponent {
 Property.propTypes = {
   offersCurrentCity: PropTypes.arrayOf(
       offerPropTypes
-  ).isRequired,
-  reviews: PropTypes.arrayOf(
-      reviewsPropTypes
   ),
   activeOffer: offerPropTypes.isRequired,
   handleHeaderOfferClick: PropTypes.func.isRequired,
   focusOffer: offerPropTypes,
   onCardHover: PropTypes.func.isRequired,
   currentSort: PropTypes.string.isRequired,
+  offersNearby: PropTypes.arrayOf(
+      offerPropTypes
+  ).isRequired,
+  comments: PropTypes.arrayOf(
+      commentsPropTypes
+  ),
 };
 
 Property.defaultProps = {

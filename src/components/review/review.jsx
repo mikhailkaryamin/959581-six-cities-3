@@ -2,7 +2,7 @@ import React, {
   PureComponent
 } from "react";
 import {
-  reviewsPropTypes
+  commentsPropTypes
 } from "../../types.js";
 import {
   ONE_STAR
@@ -13,24 +13,41 @@ class Review extends PureComponent {
     super(props);
   }
 
+  _getDate(date) {
+    const dateMonthYearOptions = {
+      month: `long`,
+      year: `numeric`
+    };
+
+    return `${
+      new Date(date)
+        .toLocaleString(`en-EN`, dateMonthYearOptions)
+    }`;
+  }
+
   render() {
     const {
       comment
     } = this.props;
-    console.log(new Date(comment.date))
 
-    // const dateTime = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
-    // const dateMonthYearOptions = {
-    //   month: `long`,
-    //   day: `numeric`,
-    //   year: `numeric`
-    // };
+    const {
+      user,
+      rating,
+      name,
+      date
+    } = comment;
 
     return (
       <li className="reviews__item">
         <div className="reviews__user user">
           <div className="reviews__avatar-wrapper user__avatar-wrapper">
-            <img className="reviews__avatar user__avatar" src={comment.user.avatar_url} width="54" height="54" alt="Reviews avatar" />
+            <img
+              className="reviews__avatar user__avatar"
+              src={user.avatarUrl}
+              width="54"
+              height="54"
+              alt="Reviews avatar"
+            />
           </div>
           <span className="reviews__user-name">
             {name}
@@ -39,15 +56,15 @@ class Review extends PureComponent {
         <div className="reviews__info">
           <div className="reviews__rating rating">
             <div className="reviews__stars rating__stars">
-              <span style={{width: `${ONE_STAR * comment.rating}%`}}></span>
+              <span style={{width: `${ONE_STAR * rating}%`}}></span>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>
           <p className="reviews__text">
             {comment.comment}
           </p>
-          <time className="reviews__time" dateTime={comment.date}>
-            {comment.date}
+          <time className="reviews__time" dateTime={date}>
+            {this._getDate(date)}
           </time>
         </div>
       </li>
@@ -56,6 +73,6 @@ class Review extends PureComponent {
 }
 
 Review.propTypes = {
-  review: reviewsPropTypes,
+  comment: commentsPropTypes,
 };
 export default Review;

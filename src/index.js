@@ -20,8 +20,17 @@ import {
 import {
   createAPI
 } from './api.js';
+import {
+  Operation as UserOperation,
+  ActionCreator,
+  AuthorizationStatus
+} from "./reducer/user/user.js";
 
-const api = createAPI();
+const onUnauthorized = () => {
+  store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+};
+
+const api = createAPI(onUnauthorized);
 
 const store = createStore(
     reducer,
@@ -31,6 +40,7 @@ const store = createStore(
 );
 
 store.dispatch(DataOperation.loadOffers());
+store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(
     <Provider store={

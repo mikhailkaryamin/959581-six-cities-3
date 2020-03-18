@@ -27,6 +27,7 @@ class Property extends PureComponent {
       offersNearby,
       handleHeaderOfferClick,
       onCardHover,
+      onCommentSubmit,
     } = this.props;
 
     const {
@@ -132,6 +133,7 @@ class Property extends PureComponent {
                 </div>
               </div>
               {<Reviews
+                onCommentSubmit={onCommentSubmit}
                 comments={comments}
               />}
             </div>
@@ -171,6 +173,7 @@ Property.propTypes = {
   comments: PropTypes.arrayOf(
       commentsPropTypes
   ),
+  onCommentSubmit: PropTypes.func.isRequired,
 };
 
 Property.defaultProps = {

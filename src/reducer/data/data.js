@@ -13,8 +13,9 @@ const initialState = {
 
 const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
-  LOAD_COMMENTS: `LOAD_COMMENTS`,
   LOAD_OFFERS_NEARBY: `LOAD_OFFERS_NEARBY`,
+  UPLOAD_COMMENTS: `UPLOAD_COMMENTS`,
+  LOAD_COMMENTS: `LOAD_COMMENTS`,
 };
 
 const ActionCreator = {
@@ -24,16 +25,22 @@ const ActionCreator = {
       payload: offers,
     };
   },
+  loadOffersNearby: (offers) => {
+    return {
+      type: ActionType.LOAD_OFFERS_NEARBY,
+      payload: offers,
+    };
+  },
   loadComments: (comments) => {
     return {
       type: ActionType.LOAD_COMMENTS,
       payload: comments,
     };
   },
-  loadOffersNearby: (offers) => {
+  uploadComments: (comments) => {
     return {
-      type: ActionType.LOAD_OFFERS_NEARBY,
-      payload: offers,
+      type: ActionType.UPLOAD_COMMENTS,
+      payload: comments,
     };
   }
 };
@@ -46,6 +53,15 @@ const Operation = {
         dispatch(ActionCreator.loadOffers(offers));
       });
   },
+  loadOffersNearby: () => (dispatch, getState, api) => {
+    const REQUEST = `/hotels/${getState()[NameSpace.OFFER].activeOffer.id}/nearby`;
+
+    return api.get(REQUEST)
+      .then((response) => {
+        const offers = Offer.parseOffers(response.data);
+        dispatch(ActionCreator.loadOffersNearby(offers));
+      });
+  },
   loadComments: () => (dispatch, getState, api) => {
     const REQUEST = `/comments/${getState()[NameSpace.OFFER].activeOffer.id}`;
 
@@ -55,15 +71,18 @@ const Operation = {
         dispatch(ActionCreator.loadComments(comments));
       });
   },
-  loadOffersNearby: () => (dispatch, getState, api) => {
-    const REQUEST = `/hotels/${getState()[NameSpace.OFFER].activeOffer.id}/nearby`;
+  uploadComments: (comment) => (dispatch, getState, api) => {
+    const REQUEST = `/comments/${getState()[NameSpace.OFFER].activeOffer.id}`;
 
-    return api.get(REQUEST)
+    return api.post(REQUEST, {
+      rating: comment.rating,
+      comment: comment.text,
+    })
       .then((response) => {
-        const offers = Offer.parseOffers(response.data);
-        dispatch(ActionCreator.loadOffersNearby(offers));
+        const comments = Comment.parseComments(response.data);
+        dispatch(ActionCreator.uploadComments(comments));
       });
-  }
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -79,6 +98,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_OFFERS_NEARBY:
       return extend(state, {
         offersNearby: action.payload,
+      });
+    case ActionType.UPLOAD_COMMENTS:
+      return extend(state, {
+        comments: action.payload,
       });
   }
 

@@ -24,7 +24,7 @@ const TypeSort = {
 };
 
 const ONE_STAR = 20;
-const STARS = [1, 2, 3, 4, 5];
+const STARS = [5, 4, 3, 2, 1];
 
 export {
   MS_IN_WEEK,

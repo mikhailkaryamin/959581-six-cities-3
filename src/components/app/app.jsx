@@ -64,7 +64,8 @@ class App extends PureComponent {
       focusOffer,
       currentCityOffers,
       comments,
-      offersNearby
+      offersNearby,
+      onCommentSubmit
     } = this.props;
 
     const isLoading = currentCityOffers.length === 0;
@@ -108,6 +109,7 @@ class App extends PureComponent {
             handleHeaderOfferClick={handleHeaderOfferClick}
             comments={comments}
             offersNearby={offersNearby}
+            onCommentSubmit={onCommentSubmit}
           />
         </Page>
       );
@@ -166,6 +168,7 @@ App.propTypes = {
   offersNearby: PropTypes.arrayOf(
       offerPropTypes
   ).isRequired,
+  onCommentSubmit: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -193,7 +196,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   handleSortChange(sort) {
     dispatch(ActionSort.setCurrentSort(sort));
-  }
+  },
+  onCommentSubmit(comment) {
+    dispatch(DataOperation.uploadComments(comment));
+  },
 });
 
 export {

@@ -436,6 +436,20 @@ export const storeWithActiveOffer = {
         Curabitur ornare nunc a blandit ultricies.
         Integer a urna in nunc congue efficitur.`,
         date: `April 2010`
+      },
+      {
+        id: 2,
+        user: {
+          id: 2,
+          isPro: true,
+          name: `Mi2`,
+          avatarURL: `img/avatar-max.jpg`
+        },
+        rating: 4,
+        comment: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Curabitur ornare nunc a blandit ultricies.
+        Integer a urna in nunc congue efficitur.`,
+        date: `April 2011`
       }
     ],
   },

@@ -43,3 +43,5 @@ const SignIn = (props) => {
 SignIn.propTypes = {
   currentCity: PropTypes.string.isRequired
 };
+
+export default SignIn;

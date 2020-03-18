@@ -13,6 +13,9 @@ import {
 import {
   reducer as offer
 } from './offer/offer.js';
+import {
+  reducer as user
+} from './user/user.js';
 import NameSpace from './name-space.js';
 
 export default combineReducers({
@@ -20,4 +23,5 @@ export default combineReducers({
   [NameSpace.SORT]: sort,
   [NameSpace.OFFER]: offer,
   [NameSpace.CITY]: city,
+  [NameSpace.USER]: user,
 });

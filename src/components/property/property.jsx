@@ -1,13 +1,20 @@
 import React, {
   PureComponent
 } from "react";
+import {
+  connect
+} from 'react-redux';
 import PropTypes from "prop-types";
 import {
   ModificatorClass
 } from "../../consts.js";
-import Reviews from "../reviews/reviews.jsx";
-import Map from "../map/map.jsx";
-import Places from "../places/places.jsx";
+import {
+  getComments,
+  getOffersNearby,
+} from '../../reducer/data/selectors.js';
+import {
+  Operation as DataOperation
+} from '../../reducer/data/data.js';
 import {
   ONE_STAR
 } from "../../consts.js";
@@ -15,7 +22,9 @@ import {
   offerPropTypes,
   commentsPropTypes
 } from "../../types.js";
-
+import Reviews from "../reviews/reviews.jsx";
+import Map from "../map/map.jsx";
+import Places from "../places/places.jsx";
 
 class Property extends PureComponent {
   render() {
@@ -163,9 +172,7 @@ Property.propTypes = {
       offerPropTypes
   ),
   activeOffer: offerPropTypes.isRequired,
-  handleHeaderOfferClick: PropTypes.func.isRequired,
   focusOffer: offerPropTypes,
-  onCardHover: PropTypes.func.isRequired,
   currentSort: PropTypes.string.isRequired,
   offersNearby: PropTypes.arrayOf(
       offerPropTypes
@@ -173,7 +180,9 @@ Property.propTypes = {
   comments: PropTypes.arrayOf(
       commentsPropTypes
   ),
+  handleHeaderOfferClick: PropTypes.func.isRequired,
   onCommentSubmit: PropTypes.func.isRequired,
+  onCardHover: PropTypes.func.isRequired,
 };
 
 Property.defaultProps = {
@@ -181,4 +190,19 @@ Property.defaultProps = {
   currentSort: `Popular`
 };
 
-export default Property;
+const mapStateToProps = (state) => ({
+  comments: getComments(state),
+  offersNearby: getOffersNearby(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onCommentSubmit(comment) {
+    dispatch(DataOperation.uploadComments(comment));
+  },
+});
+
+export {
+  Property
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Property);

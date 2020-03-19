@@ -3,8 +3,8 @@ import {
 } from '../../utils.js';
 
 const initialState = {
-  activeOffer: undefined,
-  focusOffer: undefined,
+  activeOffer: null,
+  focusOffer: null,
 };
 
 const ActionType = {

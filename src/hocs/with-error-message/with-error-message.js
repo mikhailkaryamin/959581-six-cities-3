@@ -6,19 +6,34 @@ import ErrorMessage from '../../components/error-message/error-message.jsx';
 
 const withErrorMessage = (Component) => {
   class WithErrorMessage extends PureComponent {
+    _isErrorCode(responseStatus) {
+      if (responseStatus === null) {
+        return false;
+      }
+
+      const firstNumber = responseStatus
+        .toString()[0];
+
+      if (firstNumber === `4`) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
     render() {
       const {
-        errorCode,
-        onErrorReset,
+        responseStatus,
+        onResetError,
       } = this.props;
 
       return (
         <React.Fragment>
-          {errorCode && <ErrorMessage
-            errorCode={errorCode}
-            onErrorReset={onErrorReset}
+          {this._isErrorCode(responseStatus) && <ErrorMessage
+            errorCode={responseStatus}
+            onResetError={onResetError}
           />}
-          {errorCode || ``}
+          {this._isErrorCode(responseStatus) || ``}
           <Component
             {...this.props}
           />
@@ -28,8 +43,8 @@ const withErrorMessage = (Component) => {
   }
 
   WithErrorMessage.propTypes = {
-    errorCode: PropTypes.number.isRequired,
-    onErrorReset: PropTypes.func.isRequired,
+    responseStatus: PropTypes.number.isRequired,
+    onResetError: PropTypes.func.isRequired,
   };
 
   return WithErrorMessage;

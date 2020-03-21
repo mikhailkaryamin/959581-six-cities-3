@@ -6,7 +6,7 @@ import {
 } from 'react-redux';
 import PropTypes from "prop-types";
 import {
-  ModificatorClass
+  ClassModificator
 } from "../../consts.js";
 import {
   getComments,
@@ -148,14 +148,14 @@ class Property extends PureComponent {
             </div>
           </div>
           {<Map
-            modificatorClass={ModificatorClass.PROPERTY_MAP}
+            classModificator={ClassModificator.PROPERTY_MAP}
             currentCityOffers={offersNearby}
             focusOffer={focusOffer}
           />}
         </section>
         <div className="container">
           {<Places
-            modificatorClass={ModificatorClass.NEAR_PLACES}
+            classModificator={ClassModificator.NEAR_PLACES}
             currentCityOffers={offersNearby}
             currentSort={currentSort}
             handleHeaderOfferClick={handleHeaderOfferClick}

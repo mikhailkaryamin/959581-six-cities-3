@@ -6,7 +6,8 @@ import {
   offerPropTypes
 } from "../../types.js";
 import {
-  TypeSort
+  TypeSort,
+  ClassModificator,
 } from "../../consts.js";
 import PlaceCard from "../place-card/place-card.jsx";
 import withHover from "../../hocs/with-hover/with-hover.js";
@@ -38,7 +39,7 @@ class PlacesCardList extends PureComponent {
 
   render() {
     const {
-      modificatorClass,
+      classModificator,
       handleHeaderOfferClick,
       onCardHover,
       handleActiveItem
@@ -51,10 +52,11 @@ class PlacesCardList extends PureComponent {
         handleHeaderOfferClick={handleHeaderOfferClick}
         onCardHover={onCardHover}
         handleActiveItem={handleActiveItem}
+        classModificator={ClassModificator.CITIES}
       />);
 
     return (
-      <div className={`places__list ${modificatorClass}`}>
+      <div className={`places__list ${classModificator}`}>
         {
           places
         }
@@ -67,7 +69,7 @@ PlacesCardList.propTypes = {
   currentCityOffers: PropTypes.arrayOf(
       offerPropTypes
   ).isRequired,
-  modificatorClass: PropTypes.string,
+  classModificator: PropTypes.string,
   currentSort: PropTypes.string.isRequired,
   handleHeaderOfferClick: PropTypes.func.isRequired,
   onCardHover: PropTypes.func.isRequired,
@@ -75,7 +77,7 @@ PlacesCardList.propTypes = {
 };
 
 PlacesCardList.defaultProps = {
-  modificatorClass: ``,
+  classModificator: ``,
 };
 
 export default PlacesCardList;

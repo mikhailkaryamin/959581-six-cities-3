@@ -150,7 +150,7 @@ it(`Render places (modificator - cities) correctly`, () => {
   const tree = renderer
     .create(
         <Places
-          modificatorClass={`cities__places`}
+          classModificator={`cities__places`}
           currentCityOffers={currentCityOffers}
           currentCity={currentCity}
           currentSort={currentSort}
@@ -167,7 +167,7 @@ it(`Render places (modificator - near) correctly`, () => {
   const tree = renderer
     .create(
         <Places
-          modificatorClass={`near-places`}
+          classModificator={`near-places`}
           currentCityOffers={currentCityOffers}
           currentSort={currentSort}
           handleHeaderOfferClick={handleHeaderOfferClick}

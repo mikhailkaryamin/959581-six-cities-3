@@ -8,7 +8,7 @@ import {
   offerPropTypes,
 } from "../../types.js";
 import {
-  ModificatorClass
+  ClassModificator
 } from "../../consts.js";
 
 class Cities extends PureComponent {
@@ -32,7 +32,7 @@ class Cities extends PureComponent {
         <div className="cities__places-container container">
           <Places
             currentCity={currentCity}
-            modificatorClass={ModificatorClass.CITIES_PLACES}
+            classModificator={ClassModificator.CITIES_PLACES}
             currentCityOffers={currentCityOffers}
             currentSort={currentSort}
             handleHeaderOfferClick={handleHeaderOfferClick}
@@ -41,7 +41,7 @@ class Cities extends PureComponent {
           />
           <div className="cities__right-section">
             <Map
-              modificatorClass={ModificatorClass.CITIES_MAP}
+              classModificator={ClassModificator.CITIES_MAP}
               currentCityOffers={currentCityOffers}
               focusOffer={focusOffer}
             />

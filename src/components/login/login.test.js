@@ -1,13 +1,13 @@
 import React from 'react';
 import renderer from "react-test-renderer";
-import SignIn from './sign-in.jsx';
+import Login from './login.jsx';
 
 const currentCity = `Paris`;
 
 test(`Render correctly sign in`, () => {
   const tree = renderer
   .create(
-      <SignIn
+      <Login
         currentCity={currentCity}
       />
   )

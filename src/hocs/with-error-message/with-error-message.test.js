@@ -9,6 +9,7 @@ import withErrorMessage from './with-error-message.js';
 configure({
   adapter: new Adapter()
 });
+
 const MockComponent = () => <div />;
 const mockFn = () => {};
 const MockComponentWrapped = withErrorMessage(MockComponent);
@@ -17,8 +18,8 @@ describe(`withMessage HOC`, () => {
   test(`withMessage render correctly with error message`, () => {
     const wrapper = mount(
         <MockComponentWrapped
-          errorCode={404}
-          onErrorReset={mockFn}
+          responseStatus={404}
+          onResetError={mockFn}
         />
     );
     expect(wrapper.exists(`.error-message`)).toBe(true);
@@ -28,8 +29,8 @@ describe(`withMessage HOC`, () => {
   test(`withMessage render correctly without error message`, () => {
     const wrapper = mount(
         <MockComponentWrapped
-          errorCode={0}
-          onErrorReset={mockFn}
+          responseStatus={0}
+          onResetError={mockFn}
         />
     );
     expect(wrapper.exists(`.error-message`)).toBe(false);

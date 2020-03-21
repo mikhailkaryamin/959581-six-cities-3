@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import PlacesList from "./place-card-list.jsx";
 
-const modificatorClass = ``;
+const classModificator = ``;
 const currentSort = `Popular`;
 const currentCityOffers = [
   {
@@ -150,7 +150,7 @@ it(`Render places-list correctly`, () => {
   const tree = renderer
     .create(
         <PlacesList
-          modificatorClass={modificatorClass}
+          classModificator={classModificator}
           handleActiveItem={handleActiveItem}
           onCardHover={onCardHover}
           handleHeaderOfferClick={handleHeaderOfferClick}

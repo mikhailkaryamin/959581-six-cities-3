@@ -4,7 +4,7 @@ import React,
 } from "react";
 import PropTypes from "prop-types";
 import {
-  ModificatorClass
+  ClassModificator
 } from "../../consts.js";
 import {
   offerPropTypes,
@@ -24,7 +24,7 @@ class Places extends PureComponent {
 
   render() {
     const {
-      modificatorClass,
+      classModificator,
       currentCityOffers,
       currentSort,
       currentCity,
@@ -36,8 +36,8 @@ class Places extends PureComponent {
     const AVAILABLE_OFFERS = currentCityOffers.length;
 
     return (
-      <section className={`places ${modificatorClass}`}>
-        {modificatorClass === ModificatorClass.CITIES_PLACES &&
+      <section className={`places ${classModificator}`}>
+        {classModificator === ClassModificator.CITIES_PLACES &&
           <React.Fragment>
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">
@@ -52,7 +52,7 @@ class Places extends PureComponent {
               currentSort={currentSort}
             />}
             {<PlacesCardListWrapped
-              modificatorClass={ModificatorClass.CITIES_PLACES_LIST}
+              classModificator={ClassModificator.CITIES_PLACES_LIST}
               currentCityOffers={currentCityOffers}
               currentSort={currentSort}
               handleHeaderOfferClick={handleHeaderOfferClick}
@@ -61,12 +61,12 @@ class Places extends PureComponent {
           </React.Fragment>
         }
 
-        {modificatorClass === ModificatorClass.NEAR_PLACES &&
+        {classModificator === ClassModificator.NEAR_PLACES &&
           <React.Fragment>
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
             {<PlacesCardListWrapped
-              modificatorClass={ModificatorClass.NEAR_PLACES_LIST}
+              classModificator={ClassModificator.NEAR_PLACES_LIST}
               currentCityOffers={currentCityOffers}
               currentSort={currentSort}
               handleHeaderOfferClick={handleHeaderOfferClick}
@@ -83,7 +83,7 @@ Places.propTypes = {
   currentCityOffers: PropTypes.arrayOf(
       offerPropTypes
   ).isRequired,
-  modificatorClass: PropTypes.string.isRequired,
+  classModificator: PropTypes.string.isRequired,
   currentSort: PropTypes.string,
   handleHeaderOfferClick: PropTypes.func.isRequired,
   onCardHover: PropTypes.func.isRequired,

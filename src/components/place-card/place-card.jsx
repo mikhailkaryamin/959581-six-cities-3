@@ -2,9 +2,13 @@ import React,
 {
   PureComponent
 } from "react";
+import {
+  Link
+} from 'react-router-dom';
 import PropTypes from "prop-types";
 import {
-  ONE_STAR
+  ONE_STAR,
+  ClassModificator
 } from "../../consts.js";
 
 class PlaceCard extends PureComponent {
@@ -14,6 +18,7 @@ class PlaceCard extends PureComponent {
 
   render() {
     const {
+      classModificator,
       offer,
       handleHeaderOfferClick,
       onMouseEnter,
@@ -27,11 +32,12 @@ class PlaceCard extends PureComponent {
       rating,
       title,
       type,
+      id,
     } = offer;
 
     return (
       <article
-        className="cities__place-card place-card"
+        className={`${classModificator}__place-card place-card`}
         onMouseEnter={() => {
           onMouseEnter(offer);
         }}
@@ -39,7 +45,7 @@ class PlaceCard extends PureComponent {
           onMouseLeave();
         }}
       >
-        {isPremium ?
+        {isPremium && classModificator !== ClassModificator.FAVORITES ?
           <div className="place-card__mark">
             <span>
               Premium
@@ -50,7 +56,13 @@ class PlaceCard extends PureComponent {
         }
         <div className="cities__image-wrapper place-card__image-wrapper">
           <a href="#">
-            <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
+            <img
+              className="place-card__image"
+              src={previewImage}
+              width={classModificator === ClassModificator.FAVORITES ? 150 : 260}
+              height={classModificator === ClassModificator.FAVORITES ? 110 : 200}
+              alt="Place image"
+            />
           </a>
         </div>
         <div className="place-card__info">
@@ -82,7 +94,7 @@ class PlaceCard extends PureComponent {
             }}
           >
             <a href="#" >
-              {title}
+              <Link to={`/offer/${id}`}>{title}</Link>
             </a>
           </h2>
           <p className="place-card__type">
@@ -102,11 +114,13 @@ PlaceCard.propTypes = {
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     isPremium: PropTypes.bool.isRequired,
+    id: PropTypes.number.isRequired,
   }).isRequired,
   handleHeaderOfferClick: PropTypes.func.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
   handleActiveItem: PropTypes.func.isRequired,
+  classModificator: PropTypes.string.isRequired,
 };
 
 export default PlaceCard;

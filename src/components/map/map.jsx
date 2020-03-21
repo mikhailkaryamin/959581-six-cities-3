@@ -133,18 +133,18 @@ class Map extends PureComponent {
 
   render() {
     const {
-      modificatorClass,
+      classModificator,
     } = this.props;
 
     return (
-      <section ref={this._mapRef} className={`map ${modificatorClass}`}>
+      <section ref={this._mapRef} className={`map ${classModificator}`}>
       </section>
     );
   }
 }
 
 Map.propTypes = {
-  modificatorClass: PropTypes.string,
+  classModificator: PropTypes.string,
   currentCityOffers: PropTypes.arrayOf(
       offerPropTypes
   ).isRequired,
@@ -152,7 +152,7 @@ Map.propTypes = {
 };
 
 Map.defaultProps = {
-  modificatorClass: ``,
+  classModificator: ``,
 };
 
 export default Map;

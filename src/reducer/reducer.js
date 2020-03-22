@@ -19,6 +19,9 @@ import {
 import {
   reducer as response
 } from './response/response.js';
+import {
+  reducer as favorite
+} from './favorite/favorite.js';
 import NameSpace from './name-space.js';
 
 export default combineReducers({
@@ -28,4 +31,5 @@ export default combineReducers({
   [NameSpace.CITY]: city,
   [NameSpace.USER]: user,
   [NameSpace.RESPONSE]: response,
+  [NameSpace.FAVORITE]: favorite,
 });

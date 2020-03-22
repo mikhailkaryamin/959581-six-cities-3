@@ -25,7 +25,7 @@ const withHover = (Component) => {
       this.setState({
         isHovered: false,
       });
-      this.props.onCardHover(undefined);
+      this.props.onCardLeave();
     }
 
     render() {
@@ -41,6 +41,7 @@ const withHover = (Component) => {
 
   WithHover.propTypes = {
     onCardHover: PropTypes.func.isRequired,
+    onCardLeave: PropTypes.func.isRequired,
   };
 
   return WithHover;

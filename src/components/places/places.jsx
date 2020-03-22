@@ -12,10 +12,8 @@ import {
 import PlacesCardList from "../place-card-list/place-card-list.jsx";
 import PlacesSort from "../places-sort/places-sort.jsx";
 import withToggle from "../../hocs/with-toggle/with-toggle.js";
-import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 
 const PlacesSortWrapped = withToggle(PlacesSort);
-const PlacesCardListWrapped = withActiveItem(PlacesCardList);
 
 class Places extends PureComponent {
   constructor(props) {
@@ -28,8 +26,8 @@ class Places extends PureComponent {
       currentCityOffers,
       currentSort,
       currentCity,
-      handleHeaderOfferClick,
       onCardHover,
+      onCardLeave,
       handleSortChange,
     } = this.props;
 
@@ -51,12 +49,12 @@ class Places extends PureComponent {
               handleSortChange={handleSortChange}
               currentSort={currentSort}
             />}
-            {<PlacesCardListWrapped
+            {<PlacesCardList
               classModificator={ClassModificator.CITIES_PLACES_LIST}
               currentCityOffers={currentCityOffers}
               currentSort={currentSort}
-              handleHeaderOfferClick={handleHeaderOfferClick}
               onCardHover={onCardHover}
+              onCardLeave={onCardLeave}
             />}
           </React.Fragment>
         }
@@ -65,12 +63,12 @@ class Places extends PureComponent {
           <React.Fragment>
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
-            {<PlacesCardListWrapped
+            {<PlacesCardList
               classModificator={ClassModificator.NEAR_PLACES_LIST}
               currentCityOffers={currentCityOffers}
               currentSort={currentSort}
-              handleHeaderOfferClick={handleHeaderOfferClick}
               onCardHover={onCardHover}
+              onCardLeave={onCardLeave}
             />}
           </React.Fragment>
         }
@@ -85,8 +83,8 @@ Places.propTypes = {
   ).isRequired,
   classModificator: PropTypes.string.isRequired,
   currentSort: PropTypes.string,
-  handleHeaderOfferClick: PropTypes.func.isRequired,
   onCardHover: PropTypes.func.isRequired,
+  onCardLeave: PropTypes.func.isRequired,
   handleSortChange: PropTypes.func,
   currentCity: PropTypes.string,
 };

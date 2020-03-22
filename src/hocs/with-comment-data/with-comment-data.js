@@ -4,8 +4,8 @@ import React,
 } from 'react';
 import PropTypes from 'prop-types';
 
-const withRating = (Component) => {
-  class WithRating extends PureComponent {
+const withCommentData = (Component) => {
+  class WithCommentData extends PureComponent {
     constructor(props) {
       super(props);
       this.state = {
@@ -62,11 +62,11 @@ const withRating = (Component) => {
     }
   }
 
-  WithRating.propTypes = {
+  WithCommentData.propTypes = {
     onCommentSubmit: PropTypes.func.isRequired,
   };
 
-  return WithRating;
+  return WithCommentData;
 };
 
-export default withRating;
+export default withCommentData;

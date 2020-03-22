@@ -10,6 +10,7 @@ import {
   ONE_STAR,
   ClassModificator
 } from "../../consts.js";
+import FavoriteButton from "../favorite-button/favorite-button.jsx";
 
 class PlaceCard extends PureComponent {
   constructor(props) {
@@ -20,7 +21,6 @@ class PlaceCard extends PureComponent {
     const {
       classModificator,
       offer,
-      handleHeaderOfferClick,
       onMouseEnter,
       onMouseLeave,
       handleActiveItem,
@@ -33,6 +33,7 @@ class PlaceCard extends PureComponent {
       title,
       type,
       id,
+      price,
     } = offer;
 
     return (
@@ -69,16 +70,16 @@ class PlaceCard extends PureComponent {
           <div className="place-card__price-wrapper">
             <div className="place-card__price">
               <b className="place-card__price-value">&euro;
-                {offer.price}
+                {price}
               </b>
               <span className="place-card__price-text">&#47;&nbsp;night</span>
             </div>
-            <button className="place-card__bookmark-button button" type="button">
-              <svg className="place-card__bookmark-icon" width="18" height="19">
-                <use xlinkHref="#icon-bookmark"></use>
-              </svg>
-              <span className="visually-hidden">To bookmarks</span>
-            </button>
+            <FavoriteButton
+              id={id}
+              width={18}
+              height={19}
+              classModificator={classModificator}
+            />
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
@@ -89,13 +90,10 @@ class PlaceCard extends PureComponent {
           <h2
             className="place-card__name"
             onClick={() => {
-              handleHeaderOfferClick(offer);
               handleActiveItem(offer);
             }}
           >
-            <a href="#" >
-              <Link to={`/offer/${id}`}>{title}</Link>
-            </a>
+            <Link to={`/offer/${id}`}>{title}</Link>
           </h2>
           <p className="place-card__type">
             {type}
@@ -116,10 +114,8 @@ PlaceCard.propTypes = {
     isPremium: PropTypes.bool.isRequired,
     id: PropTypes.number.isRequired,
   }).isRequired,
-  handleHeaderOfferClick: PropTypes.func.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
-  handleActiveItem: PropTypes.func.isRequired,
   classModificator: PropTypes.string.isRequired,
 };
 

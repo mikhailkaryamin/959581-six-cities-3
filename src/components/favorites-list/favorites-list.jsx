@@ -23,7 +23,9 @@ class FavoritesList extends PureComponent {
     const {
       favorites,
       favoritesLocations,
-      currentCity
+      currentCity,
+      onCardHover,
+      onCardLeave,
     } = this.props;
 
     return (
@@ -32,6 +34,8 @@ class FavoritesList extends PureComponent {
         <ul className="favorites__list">
           {favoritesLocations.map((location, i) => (
             <FavoriteItem
+              onCardHover={onCardHover}
+              onCardLeave={onCardLeave}
               key={location}
               city={location}
               offers={this._getOffersForLocation(favorites, favoritesLocations[i])}
@@ -50,7 +54,9 @@ FavoritesList.propTypes = {
     .arrayOf(
         PropTypes.string
     ).isRequired,
-  currentCity: PropTypes.string.isRequired
+  currentCity: PropTypes.string.isRequired,
+  onCardHover: PropTypes.func.isRequired,
+  onCardLeave: PropTypes.func.isRequired,
 };
 
 export default FavoritesList;

@@ -8,6 +8,12 @@ import {
 
 const getFavorites = (state) => state[NameSpace.FAVORITE].favorites;
 
+const checkFavorite = (state, id) => {
+  return state[NameSpace.FAVORITE]
+    .favorites
+    .some((offer) => offer.id === id);
+};
+
 const getFavoritesLocations = createSelector(
     getFavorites,
     (favorites) => getUniqueArray(favorites
@@ -16,6 +22,7 @@ const getFavoritesLocations = createSelector(
 );
 
 export {
+  checkFavorite,
   getFavorites,
   getFavoritesLocations,
 };

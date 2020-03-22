@@ -40,8 +40,8 @@ class PlacesCardList extends PureComponent {
   render() {
     const {
       classModificator,
-      handleHeaderOfferClick,
       onCardHover,
+      onCardLeave,
       handleActiveItem
     } = this.props;
 
@@ -49,8 +49,8 @@ class PlacesCardList extends PureComponent {
       <PlaceCardWrapped
         key={`${offer.id}`}
         offer={offer}
-        handleHeaderOfferClick={handleHeaderOfferClick}
         onCardHover={onCardHover}
+        onCardLeave={onCardLeave}
         handleActiveItem={handleActiveItem}
         classModificator={ClassModificator.CITIES}
       />);
@@ -71,9 +71,8 @@ PlacesCardList.propTypes = {
   ).isRequired,
   classModificator: PropTypes.string,
   currentSort: PropTypes.string.isRequired,
-  handleHeaderOfferClick: PropTypes.func.isRequired,
   onCardHover: PropTypes.func.isRequired,
-  handleActiveItem: PropTypes.func.isRequired,
+  onCardLeave: PropTypes.func.isRequired,
 };
 
 PlacesCardList.defaultProps = {

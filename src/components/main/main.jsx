@@ -16,9 +16,6 @@ import {
   offerPropTypes
 } from "../../types.js";
 import Cities from "../cities/cities.jsx";
-import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
-
-const LocationsWrapped = withActiveItem(Locations);
 
 class Main extends PureComponent {
   constructor(props) {
@@ -34,16 +31,16 @@ class Main extends PureComponent {
       currentSort,
       focusOffer,
       handleLocationClick,
-      handleHeaderOfferClick,
       handleSortChange,
       onCardHover,
+      onCardLeave,
     } = this.props;
 
     return (
       <main className={`page__main page__main--index ${isEmpty ? `page__main--index-empty` : ``}`}>
         <h1 className="visually-hidden">Cities</h1>
         {isEmpty || <React.Fragment>
-          <LocationsWrapped
+          <Locations
             locations={locations}
             handleLocationClick={handleLocationClick}
             currentCity={currentCity}
@@ -52,13 +49,13 @@ class Main extends PureComponent {
             currentCityOffers={currentCityOffers}
             currentCity={currentCity}
             currentSort={currentSort}
-            handleHeaderOfferClick={handleHeaderOfferClick}
             onCardHover={onCardHover}
+            onCardLeave={onCardLeave}
             focusOffer={focusOffer}
             handleSortChange={handleSortChange}
           />
         </React.Fragment>}
-        {isEmpty && <LocationsWrapped
+        {isEmpty && <Locations
           locations={locations}
           handleLocationClick={handleLocationClick}
           currentCity={currentCity}
@@ -81,8 +78,8 @@ Main.propTypes = {
   currentCity: PropTypes.string.isRequired,
   handleLocationClick: PropTypes.func.isRequired,
   handleSortChange: PropTypes.func.isRequired,
-  handleHeaderOfferClick: PropTypes.func.isRequired,
   onCardHover: PropTypes.func.isRequired,
+  onCardLeave: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

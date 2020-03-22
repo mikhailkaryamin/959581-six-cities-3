@@ -15,7 +15,9 @@ const FavoriteItem = (props) => {
   const {
     city,
     offers,
-    isCurrentCity
+    isCurrentCity,
+    onCardHover,
+    onCardLeave,
   } = props;
 
   return (
@@ -33,6 +35,8 @@ const FavoriteItem = (props) => {
             key={offer.id}
             classModificator={ClassModificator.FAVORITES}
             offer={offer}
+            onCardHover={onCardHover}
+            onCardLeave={onCardLeave}
           />
         ))}
       </div>
@@ -45,7 +49,9 @@ FavoriteItem.propTypes = {
   city: PropTypes.string.isRequired,
   offers: PropTypes
       .arrayOf(offerPropTypes)
-      .isRequired
+      .isRequired,
+  onCardHover: PropTypes.func.isRequired,
+  onCardLeave: PropTypes.func.isRequired,
 };
 
 export default FavoriteItem;

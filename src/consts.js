@@ -7,6 +7,9 @@ const ClassModificator = {
   NEAR_PLACES: `near-places`,
   NEAR_PLACES_LIST: `near-places__list`,
   FAVORITES: `favorites`,
+  PAGE_MAIN: `page--gray page--main`,
+  PAGE_LOGIN: `page--gray page--login`,
+  PAGE_PROPERTY: `page__main--property`,
 };
 
 const SORTING = [

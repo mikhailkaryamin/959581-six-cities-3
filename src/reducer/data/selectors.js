@@ -14,15 +14,15 @@ const getCurrentCity = (state) => {
   return state[NameSpace.CITY].currentCity;
 };
 
-export const getComments = (state) => {
+const getComments = (state) => {
   return state[NameSpace.DATA].comments;
 };
 
-export const getOffersNearby = (state) => {
+const getOffersNearby = (state) => {
   return state[NameSpace.DATA].offersNearby;
 };
 
-export const getLocations = createSelector(
+const getLocations = createSelector(
     getOffers,
     (offers) => {
       const locations = offers
@@ -31,7 +31,7 @@ export const getLocations = createSelector(
     }
 );
 
-export const getOffersCurrentCity = createSelector(
+const getOffersCurrentCity = createSelector(
     getOffers,
     getCurrentCity,
 
@@ -40,3 +40,11 @@ export const getOffersCurrentCity = createSelector(
         .filter((offer) => offer.city.name === currentCity);
     }
 );
+
+export {
+  getOffers,
+  getComments,
+  getOffersNearby,
+  getLocations,
+  getOffersCurrentCity,
+};

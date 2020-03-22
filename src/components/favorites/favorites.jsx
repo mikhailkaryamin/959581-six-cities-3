@@ -6,9 +6,19 @@ import {
   connect
 } from 'react-redux';
 import {
+  userPropTypes
+} from "../../types.js";
+import {
   getFavorites,
   getFavoritesLocations,
 } from '../../reducer/favorite/selectors';
+import {
+  getAuthorizationStatus,
+  getUser,
+} from '../../reducer/user/selectors.js';
+import {
+  AuthorizationStatus
+} from '../../reducer/user/user.js';
 import Page from '../page/page.jsx';
 import FavoritesEmpty from '../favorites-empty/favorites-empty.jsx';
 import FavoritesList from '../favorites-list/favorites-list.jsx';
@@ -37,13 +47,20 @@ class Favorites extends PureComponent {
       favorites,
       favoritesLocations,
       currentCity,
+      authStatus,
+      user,
+      onCardHover,
+      onCardLeave,
     } = this.props;
 
     const isEmpty = favorites.length === 0;
+    const isAuth = authStatus === AuthorizationStatus.AUTH;
 
     return (
       <Page
         className={this._setClassModificator()}
+        isAuth={isAuth}
+        user={user}
       >
         <React.Fragment>
           <main className={`page__main page__main--favorites ${isEmpty ? `page__main--favorites-empty` : ``}`}>
@@ -53,6 +70,8 @@ class Favorites extends PureComponent {
               }
               {isEmpty ||
                 <FavoritesList
+                  onCardHover={onCardHover}
+                  onCardLeave={onCardLeave}
                   favorites={favorites}
                   favoritesLocations={favoritesLocations}
                   currentCity={currentCity}
@@ -64,7 +83,7 @@ class Favorites extends PureComponent {
             <a className="footer__logo-link" href="main.html">
               <img
                 className="footer__logo"
-                src="img/logo.svg"
+                src="../img/logo.svg"
                 alt="6 cities logo"
                 width="64"
                 height="33"
@@ -78,14 +97,23 @@ class Favorites extends PureComponent {
 }
 
 Favorites.propTypes = {
+  user: userPropTypes,
+  authStatus: PropTypes.string.isRequired,
   favorites: PropTypes.array.isRequired,
-  favoritesLocations: PropTypes.arrayOf(PropTypes.string).isRequired,
-  currentCity: PropTypes.string.isRequired
+  favoritesLocations: PropTypes
+    .arrayOf(
+        PropTypes.string
+    ).isRequired,
+  currentCity: PropTypes.string.isRequired,
+  onCardHover: PropTypes.func.isRequired,
+  onCardLeave: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   favorites: getFavorites(state),
   favoritesLocations: getFavoritesLocations(state),
+  authStatus: getAuthorizationStatus(state),
+  user: getUser(state),
 });
 
 export {

@@ -5,14 +5,15 @@ import {
 } from "../../types.js";
 import ReviewsList from "../reviews-list/reviews-list.jsx";
 import ReviewsForm from "../reviews-form/reviews-form.jsx";
-import withRating from '../../hocs/with-rating/with-rating.js';
+import withCommentData from '../../hocs/with-comment-data/with-comment-data.js';
 
-const ReviewsFormWrapped = withRating(ReviewsForm);
+const ReviewsFormWrapped = withCommentData(ReviewsForm);
 
 const Reviews = (props) => {
   const {
     comments,
     onCommentSubmit,
+    isAuth,
   } = props;
 
   const NUMBER_REVIEWS = comments.length;
@@ -27,9 +28,11 @@ const Reviews = (props) => {
       {<ReviewsList
         comments={comments}
       />}
-      {<ReviewsFormWrapped
-        onCommentSubmit={onCommentSubmit}
-      />}
+      {isAuth &&
+        <ReviewsFormWrapped
+          onCommentSubmit={onCommentSubmit}
+        />
+      }
     </section>
   );
 };
@@ -39,6 +42,7 @@ Reviews.propTypes = {
       commentsPropTypes
   ),
   onCommentSubmit: PropTypes.func.isRequired,
+  isAuth: PropTypes.bool.isRequired,
 };
 
 export default Reviews;

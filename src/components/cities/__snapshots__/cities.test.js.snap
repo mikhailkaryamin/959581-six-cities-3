@@ -93,7 +93,7 @@ exports[`Render citites correctly 1`] = `
                 alt="Place image"
                 className="place-card__image"
                 height="200"
-                src="img/1.png"
+                src="../img/1.png"
                 width="260"
               />
             </a>
@@ -192,7 +192,7 @@ exports[`Render citites correctly 1`] = `
                 alt="Place image"
                 className="place-card__image"
                 height="200"
-                src="img/1.png"
+                src="../img/1.png"
                 width="260"
               />
             </a>
@@ -291,7 +291,7 @@ exports[`Render citites correctly 1`] = `
                 alt="Place image"
                 className="place-card__image"
                 height="200"
-                src="img/1.png"
+                src="../img/1.png"
                 width="260"
               />
             </a>
@@ -390,7 +390,7 @@ exports[`Render citites correctly 1`] = `
                 alt="Place image"
                 className="place-card__image"
                 height="200"
-                src="img/1.png"
+                src="../img/1.png"
                 width="260"
               />
             </a>

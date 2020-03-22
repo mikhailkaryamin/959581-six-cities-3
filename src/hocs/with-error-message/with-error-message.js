@@ -43,7 +43,7 @@ const withErrorMessage = (Component) => {
   }
 
   WithErrorMessage.propTypes = {
-    responseStatus: PropTypes.number.isRequired,
+    responseStatus: PropTypes.number,
     onResetError: PropTypes.func.isRequired,
   };
 

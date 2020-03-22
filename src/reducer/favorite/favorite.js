@@ -10,8 +10,8 @@ const initialState = {
 
 const ActionType = {
   LOAD_FAVORITES: `LOAD_FAVORITES`,
-  ADD_FAVORITES: `ADD_FAVORITES`,
-  REMOVE_FAVORITES: `REMOVE_FAVORITES`,
+  ADD_FAVORITE: `ADD_FAVORITE`,
+  REMOVE_FAVORITE: `REMOVE_FAVORITE`,
 };
 
 const ActionCreator = {
@@ -19,12 +19,12 @@ const ActionCreator = {
     type: ActionType.LOAD_FAVORITES,
     payload: favoriteOffers,
   }),
-  addFavorites: (favoriteOffer) => ({
-    type: ActionType.ADD_FAVORITES,
+  addFavorite: (favoriteOffer) => ({
+    type: ActionType.ADD_FAVORITE,
     payload: favoriteOffer,
   }),
-  removeFavorites: (favoriteOffer) => ({
-    type: ActionType.REMOVE_FAVORITES,
+  removeFavorite: (favoriteOffer) => ({
+    type: ActionType.REMOVE_FAVORITE,
     payload: favoriteOffer,
   })
 };
@@ -38,10 +38,10 @@ const Operation = {
       });
   },
 
-  addFavorites: () => (dispatch, getState, api) => {
+  addFavorite: () => (dispatch, getState, api) => {
     const status = 0.5;
     let id;
-    if (getState()[NameSpace.OFFER].activeOffer.id !== null) {
+    if (getState()[NameSpace.OFFER].activeOffer !== null) {
       id = getState()[NameSpace.OFFER].activeOffer.id;
     } else {
       id = getState()[NameSpace.OFFER].focusOffer.id;
@@ -60,7 +60,7 @@ const Operation = {
   removeFavorite: () => (dispatch, getState, api) => {
     const status = 0;
     let id;
-    if (getState()[NameSpace.OFFER].activeOffer.id !== null) {
+    if (getState()[NameSpace.OFFER].activeOffer !== null) {
       id = getState()[NameSpace.OFFER].activeOffer.id;
     } else {
       id = getState()[NameSpace.OFFER].focusOffer.id;

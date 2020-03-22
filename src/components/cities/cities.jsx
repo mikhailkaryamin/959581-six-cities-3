@@ -24,6 +24,7 @@ class Cities extends PureComponent {
       currentCity,
       handleHeaderOfferClick,
       onCardHover,
+      onCardLeave,
       handleSortChange,
     } = this.props;
 
@@ -35,8 +36,8 @@ class Cities extends PureComponent {
             classModificator={ClassModificator.CITIES_PLACES}
             currentCityOffers={currentCityOffers}
             currentSort={currentSort}
-            handleHeaderOfferClick={handleHeaderOfferClick}
             onCardHover={onCardHover}
+            onCardLeave={onCardLeave}
             handleSortChange={handleSortChange}
           />
           <div className="cities__right-section">
@@ -57,9 +58,9 @@ Cities.propTypes = {
       offerPropTypes
   ).isRequired,
   focusOffer: offerPropTypes,
-  handleHeaderOfferClick: PropTypes.func.isRequired,
   currentSort: PropTypes.string.isRequired,
   onCardHover: PropTypes.func.isRequired,
+  onCardLeave: PropTypes.func.isRequired,
   handleSortChange: PropTypes.func.isRequired,
   currentCity: PropTypes.string.isRequired,
 };

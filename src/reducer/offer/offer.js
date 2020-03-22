@@ -10,6 +10,7 @@ const initialState = {
 const ActionType = {
   SET_ACTIVE_OFFER: `SET_ACTIVE_OFFER`,
   SET_FOCUS_OFFER: `SET_FOCUS_OFFER`,
+  RESET_FOCUS_OFFER: `RESET_FOCUS_OFFER`,
 };
 
 const ActionCreator = {
@@ -22,6 +23,11 @@ const ActionCreator = {
     type: ActionType.SET_FOCUS_OFFER,
     payload: offer,
   }),
+
+  resetFocusOffer: () => ({
+    type: ActionType.RESET_FOCUS_OFFER,
+    payload: null,
+  }),
 };
 
 const reducer = (state = initialState, action) => {
@@ -31,6 +37,10 @@ const reducer = (state = initialState, action) => {
         activeOffer: action.payload,
       });
     case ActionType.SET_FOCUS_OFFER:
+      return extend(state, {
+        focusOffer: action.payload,
+      });
+    case ActionType.RESET_FOCUS_OFFER:
       return extend(state, {
         focusOffer: action.payload,
       });

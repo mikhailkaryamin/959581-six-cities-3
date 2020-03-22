@@ -51,7 +51,7 @@ class Map extends PureComponent {
       const CURRENT_CITY = this._getCurrentCityCoordinates(currentCityOffers);
 
       const iconDefault = leaflet.icon({
-        iconUrl: `img/pin.svg`,
+        iconUrl: `../img/pin.svg`,
         iconSize: [30, 30]
       });
 
@@ -85,7 +85,7 @@ class Map extends PureComponent {
     } = this.props;
 
     const iconDefault = leaflet.icon({
-      iconUrl: `img/pin.svg`,
+      iconUrl: `../img/pin.svg`,
       iconSize: [30, 30]
     });
 
@@ -96,12 +96,12 @@ class Map extends PureComponent {
       this._markers.forEach((marker) => this._map.removeLayer(marker));
     }
 
-    if (focusOffer !== undefined) {
+    if (focusOffer !== null) {
       const COORDINATES_WITH_ID = this._getCoordinatesWithID(currentCityOffers);
       const FOCUS_OFFER_ID = focusOffer.id;
 
       const iconActive = leaflet.icon({
-        iconUrl: `img/pin-active.svg`,
+        iconUrl: `../img/pin-active.svg`,
         iconSize: [30, 30]
       });
 
@@ -117,7 +117,7 @@ class Map extends PureComponent {
         }
       });
 
-    } else if (focusOffer === undefined) {
+    } else if (focusOffer === null) {
       const COORDINATES = this._getCoordinates(currentCityOffers);
       this._markers = COORDINATES.map((coordinate) =>
         leaflet

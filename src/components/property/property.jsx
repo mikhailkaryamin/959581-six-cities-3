@@ -13,10 +13,19 @@ import {
   getOffersNearby,
 } from '../../reducer/data/selectors.js';
 import {
+  getActiveOffer,
+} from '../../reducer/offer/selectors.js';
+import {
+  getAuthorizationStatus,
+} from '../../reducer/user/selectors.js';
+import {
   Operation as DataOperation
 } from '../../reducer/data/data.js';
 import {
-  ONE_STAR
+  AuthorizationStatus
+} from '../../reducer/user/user.js';
+import {
+  ONE_STAR,
 } from "../../consts.js";
 import {
   offerPropTypes,
@@ -27,6 +36,16 @@ import Map from "../map/map.jsx";
 import Places from "../places/places.jsx";
 
 class Property extends PureComponent {
+  componentDidMount() {
+    this.props.onLoadDataProperty();
+  }
+
+  componentDidUpdate({offersNearby}) {
+    if (!offersNearby) {
+      this.props.onLoadDataProperty();
+    }
+  }
+
   render() {
     const {
       activeOffer,
@@ -34,10 +53,15 @@ class Property extends PureComponent {
       currentSort,
       comments,
       offersNearby,
-      handleHeaderOfferClick,
       onCardHover,
       onCommentSubmit,
+      onCardLeave,
+      authStatus,
     } = this.props;
+
+    if (offersNearby.length === 0 || activeOffer === null) {
+      return ``;
+    }
 
     const {
       images,
@@ -52,9 +76,7 @@ class Property extends PureComponent {
       host,
     } = activeOffer;
 
-    if (offersNearby.length === 0) {
-      return ``;
-    }
+    const isAuth = authStatus === AuthorizationStatus.AUTH;
 
     return (
       <main className="page__main page__main--property">
@@ -130,7 +152,7 @@ class Property extends PureComponent {
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
                   <div className={`property__avatar-wrapper ${host.is_pro ? `property__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
-                    <img className="property__avatar user__avatar" src={host.avatarUrl} width="74" height="74" alt="Host avatar" />
+                    <img className="property__avatar user__avatar" src={`../${host.avatarUrl}`} width="74" height="74" alt="Host avatar" />
                   </div>
                   <span className="property__user-name">
                     {host.name}
@@ -142,6 +164,7 @@ class Property extends PureComponent {
                 </div>
               </div>
               {<Reviews
+                isAuth={isAuth}
                 onCommentSubmit={onCommentSubmit}
                 comments={comments}
               />}
@@ -158,8 +181,8 @@ class Property extends PureComponent {
             classModificator={ClassModificator.NEAR_PLACES}
             currentCityOffers={offersNearby}
             currentSort={currentSort}
-            handleHeaderOfferClick={handleHeaderOfferClick}
             onCardHover={onCardHover}
+            onCardLeave={onCardLeave}
           />}
         </div>
       </main>
@@ -180,9 +203,11 @@ Property.propTypes = {
   comments: PropTypes.arrayOf(
       commentsPropTypes
   ),
-  handleHeaderOfferClick: PropTypes.func.isRequired,
+  authStatus: PropTypes.string.isRequired,
   onCommentSubmit: PropTypes.func.isRequired,
   onCardHover: PropTypes.func.isRequired,
+  onCardLeave: PropTypes.func.isRequired,
+  onLoadDataProperty: PropTypes.func.isRequired,
 };
 
 Property.defaultProps = {
@@ -191,13 +216,19 @@ Property.defaultProps = {
 };
 
 const mapStateToProps = (state) => ({
+  activeOffer: getActiveOffer(state),
   comments: getComments(state),
   offersNearby: getOffersNearby(state),
+  authStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onCommentSubmit(comment) {
     dispatch(DataOperation.uploadComments(comment));
+  },
+  onLoadDataProperty() {
+    dispatch(DataOperation.loadComments());
+    dispatch(DataOperation.loadOffersNearby());
   },
 });
 

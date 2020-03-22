@@ -16,7 +16,7 @@ class LoginForm extends PureComponent {
       login,
       password,
     } = this.props;
-    this.props.signInUser({
+    this.props.signIn({
       login,
       password,
     });
@@ -70,7 +70,7 @@ LoginForm.propTypes = {
   login: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  signInUser: PropTypes.func.isRequired,
+  signIn: PropTypes.func.isRequired,
 };
 
 export default LoginForm;

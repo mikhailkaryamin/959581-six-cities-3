@@ -4,6 +4,9 @@ import {
 import NameSpace from '../name-space.js';
 import Comment from '../../adapters/comment.js';
 import Offer from '../../adapters/offer.js';
+import {
+  ActionCreator as ActionCity
+} from '../city/city.js';
 
 const initialState = {
   offers: [],
@@ -51,6 +54,7 @@ const Operation = {
       .then((response) => {
         const offers = Offer.parseOffers(response.data);
         dispatch(ActionCreator.loadOffers(offers));
+        dispatch(ActionCity.setCurrentCity(offers[0].city.name));
       });
   },
   loadOffersNearby: () => (dispatch, getState, api) => {

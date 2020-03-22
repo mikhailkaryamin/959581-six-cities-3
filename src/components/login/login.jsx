@@ -7,7 +7,7 @@ const LoginFormWrapped = withAuthorization(LoginForm);
 
 const Login = (props) => {
   const {
-    signInUser,
+    signIn,
     currentCity
   } = props;
 
@@ -19,7 +19,7 @@ const Login = (props) => {
             Sign in
           </h1>
           <LoginFormWrapped
-            signInUser={signInUser}
+            signIn={signIn}
           />
         </section>
         <section className="locations locations--login locations--current">
@@ -38,7 +38,7 @@ const Login = (props) => {
 
 Login.propTypes = {
   currentCity: PropTypes.string.isRequired,
-  signInUser: PropTypes.func.isRequired,
+  signIn: PropTypes.func.isRequired,
   responseStatusCode: PropTypes.number.isRequired,
 };
 

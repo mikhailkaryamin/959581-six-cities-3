@@ -19,7 +19,7 @@ exports[`Render property correctly 1`] = `
           <img
             alt="Photo studio"
             className="property__image"
-            src="img/1.png"
+            src="../img/1.png"
           />
         </div>
         <div
@@ -28,7 +28,7 @@ exports[`Render property correctly 1`] = `
           <img
             alt="Photo studio"
             className="property__image"
-            src="img/2.png"
+            src="../img/2.png"
           />
         </div>
       </div>
@@ -191,7 +191,7 @@ exports[`Render property correctly 1`] = `
                 alt="Host avatar"
                 className="property__avatar user__avatar"
                 height="74"
-                src="img/1.png"
+                src="../img/1.png"
                 width="74"
               />
             </div>
@@ -481,7 +481,7 @@ exports[`Render property correctly 1`] = `
                 alt="Place image"
                 className="place-card__image"
                 height="200"
-                src="img/1.png"
+                src="../img/1.png"
                 width="260"
               />
             </a>
@@ -580,7 +580,7 @@ exports[`Render property correctly 1`] = `
                 alt="Place image"
                 className="place-card__image"
                 height="200"
-                src="img/1.png"
+                src="../img/1.png"
                 width="260"
               />
             </a>
@@ -679,7 +679,7 @@ exports[`Render property correctly 1`] = `
                 alt="Place image"
                 className="place-card__image"
                 height="200"
-                src="img/1.png"
+                src="../img/1.png"
                 width="260"
               />
             </a>
@@ -778,7 +778,7 @@ exports[`Render property correctly 1`] = `
                 alt="Place image"
                 className="place-card__image"
                 height="200"
-                src="img/1.png"
+                src="../img/1.png"
                 width="260"
               />
             </a>

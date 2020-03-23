@@ -1,6 +1,13 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import Adapter from "enzyme-adapter-react-16";
+import Enzyme, {
+  shallow
+} from "enzyme";
 import Reviews from "./reviews.jsx";
+
+Enzyme.configure({
+  adapter: new Adapter(),
+});
 
 const comments = [
   {
@@ -18,14 +25,17 @@ const comments = [
     date: `April 2010`
   }
 ];
+const isAuth = true;
+const onCommentSubmit = () => {};
 
 test(`Render reviews`, () => {
-  const tree = renderer
-    .create(
-        <Reviews
-          comments={comments}
-        />
-    ).toJSON();
+  const tree = shallow(
+      <Reviews
+        comments={comments}
+        isAuth={isAuth}
+        onCommentSubmit={onCommentSubmit}
+      />
+  ).html();
 
   expect(tree).toMatchSnapshot();
 });

@@ -7,7 +7,7 @@ import {
 describe(`City reducer works correctly`, () => {
   test(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
-      currentCity: `Amsterdam`
+      currentCity: ``
     });
   });
 

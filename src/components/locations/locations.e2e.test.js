@@ -21,14 +21,12 @@ Enzyme.configure({
 
 test(`When user press click location`, () => {
   const handleLocationClick = jest.fn();
-  const handleActiveItem = jest.fn();
 
   const locationsScreen = shallow(
       <Locations
         currentCity={currentCity}
         locations={locations}
         handleLocationClick={handleLocationClick}
-        handleActiveItem={handleActiveItem}
       />
   );
 
@@ -36,6 +34,4 @@ test(`When user press click location`, () => {
   locationButton.first().simulate(`click`);
   expect(handleLocationClick.mock.calls[0][0]).toEqual(locations[0]);
   expect(handleLocationClick.mock.calls.length).toBe(1);
-  expect(handleActiveItem.mock.calls[0][0]).toEqual(locations[0]);
-  expect(handleActiveItem.mock.calls.length).toBe(1);
 });

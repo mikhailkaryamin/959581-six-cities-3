@@ -14,7 +14,7 @@ describe(`User reducer works correctly`, () => {
     });
   });
 
-  it(`Reducer should change authorizationStatus by a given value`, () => {
+  test(`Reducer should change authorizationStatus by a given value`, () => {
     expect(reducer({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
       user: DEFAULT_USER
@@ -60,7 +60,7 @@ describe(`User reducer works correctly`, () => {
     });
   });
 
-  it(`Reducer should set user`, () => {
+  test(`Reducer should set user`, () => {
     const nextUser = {
       id: 1,
       email: `gg@wp.com`,
@@ -72,7 +72,7 @@ describe(`User reducer works correctly`, () => {
       authorizationStatus: AuthorizationStatus.AUTH,
       user: DEFAULT_USER
     }, {
-      type: ActionType.SIGN_IN_USER,
+      type: ActionType.SET_USER,
       payload: nextUser
     })).toEqual({
       authorizationStatus: AuthorizationStatus.AUTH,
@@ -82,7 +82,7 @@ describe(`User reducer works correctly`, () => {
 });
 
 describe(`Action creators work correctly`, () => {
-  it(`Action creator for require authorization returns correct action`, () => {
+  test(`Action creator for require authorization returns correct action`, () => {
     expect(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)).toEqual({
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: AuthorizationStatus.NO_AUTH

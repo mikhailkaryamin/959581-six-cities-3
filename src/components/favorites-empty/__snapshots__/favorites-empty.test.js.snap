@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render FavoritesEmpty correctly 1`] = `
+exports[`Should render FavoritesEmpty correctly 1`] = `
 <section
   className="favorites favorites--empty"
 >

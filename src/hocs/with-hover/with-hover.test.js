@@ -15,10 +15,12 @@ const MockComponentWrapped = withHover(MockComponent);
 
 test(`with hover HOC`, () => {
   const onCardHover = jest.fn();
+  const onCardLeave = jest.fn();
 
   const wrapper = shallow(
       <MockComponentWrapped
         onCardHover={onCardHover}
+        onCardLeave={onCardLeave}
       />
   );
 
@@ -26,5 +28,5 @@ test(`with hover HOC`, () => {
   expect(onCardHover).toHaveBeenCalledTimes(1);
 
   wrapper.simulate(`mouseleave`);
-  expect(onCardHover).toHaveBeenCalledTimes(2);
+  expect(onCardLeave).toHaveBeenCalledTimes(1);
 });

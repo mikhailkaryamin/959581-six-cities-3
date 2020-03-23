@@ -1,6 +1,18 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import configureStore from "redux-mock-store";
+import {
+  Provider
+} from "react-redux";
+import {
+  BrowserRouter
+} from 'react-router-dom';
+import {
+  storeWithAuth
+} from "../../mocks/initialState.js";
 import PlacesList from "./place-card-list.jsx";
+
+const mockStore = configureStore([]);
 
 const classModificator = ``;
 const currentSort = `Popular`;
@@ -142,21 +154,27 @@ const currentCityOffers = [
     type: `apartment`
   }
 ];
-const handleHeaderOfferClick = () => {};
 const onCardHover = () => {};
-const handleActiveItem = () => {};
+const onCardLeave = () => {};
+
 
 it(`Render places-list correctly`, () => {
+  const store = mockStore(storeWithAuth);
   const tree = renderer
     .create(
-        <PlacesList
-          classModificator={classModificator}
-          handleActiveItem={handleActiveItem}
-          onCardHover={onCardHover}
-          handleHeaderOfferClick={handleHeaderOfferClick}
-          currentSort={currentSort}
-          currentCityOffers={currentCityOffers}
-        />
+        <Provider
+          store={store}
+        >
+          <BrowserRouter>
+            <PlacesList
+              classModificator={classModificator}
+              currentSort={currentSort}
+              currentCityOffers={currentCityOffers}
+              onCardHover={onCardHover}
+              onCardLeave={onCardLeave}
+            />
+          </BrowserRouter>
+        </Provider>
     ).toJSON();
 
   expect(tree).toMatchSnapshot();

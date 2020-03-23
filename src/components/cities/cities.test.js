@@ -1,6 +1,18 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import configureStore from "redux-mock-store";
+import {
+  Provider
+} from "react-redux";
+import {
+  BrowserRouter
+} from 'react-router-dom';
+import {
+  storeWithAuth
+} from "../../mocks/initialState.js";
 import Cities from "./cities.jsx";
+
+const mockStore = configureStore([]);
 
 const currentCityOffers = [
   {
@@ -176,22 +188,29 @@ const focusOffer = {
 };
 const currentSort = `Popular`;
 const currentCity = `Amsterdam`;
-const handleHeaderOfferClick = () => {};
 const onCardHover = () => {};
+const onCardLeave = () => {};
 const handleSortChange = () => {};
 
-it(`Render citites correctly`, () => {
+it(`Render cities correctly`, () => {
+  const store = mockStore(storeWithAuth);
   const tree = renderer
     .create(
-        <Cities
-          currentCityOffers={currentCityOffers}
-          currentSort={currentSort}
-          currentCity={currentCity}
-          focusOffer={focusOffer}
-          handleHeaderOfferClick={handleHeaderOfferClick}
-          onCardHover={onCardHover}
-          handleSortChange={handleSortChange}
-        />
+        <Provider
+          store={store}
+        >
+          <BrowserRouter>
+            <Cities
+              currentCityOffers={currentCityOffers}
+              currentSort={currentSort}
+              currentCity={currentCity}
+              focusOffer={focusOffer}
+              onCardHover={onCardHover}
+              handleSortChange={handleSortChange}
+              onCardLeave={onCardLeave}
+            />
+          </BrowserRouter>
+        </Provider>
     )
     .toJSON();
 

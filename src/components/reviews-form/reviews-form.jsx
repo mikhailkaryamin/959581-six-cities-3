@@ -109,9 +109,7 @@ class ReviewsForm extends PureComponent {
 
 ReviewsForm.propTypes = {
   comment: string.isRequired,
-  numberComments: number.isRequired,
   onChange: func.isRequired,
-  onCommentSubmit: func.isRequired,
   onSubmit: func.isRequired,
   rating: number.isRequired,
 };

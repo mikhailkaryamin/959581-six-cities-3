@@ -6,24 +6,20 @@ import {
   Provider
 } from "react-redux";
 import {
-  storeWithActiveOffer
+  storeWithoutActiveOffer
 } from "../../mocks/initialState.js";
 
 const mockStore = configureStore([]);
 
 describe(`App render correctly`, () => {
   it(`App render correctly with active offer`, () => {
-    const store = mockStore(storeWithActiveOffer);
+    const store = mockStore(storeWithoutActiveOffer);
     const tree = renderer
       .create(
           <Provider
             store={
               store
             }
-            handleLocationClick={() => {}}
-            handleHeaderOfferClick={() => {}}
-            onCardHover={() => {}}
-            handleSortChange={() => {}}
           >
             <App />
           </Provider>

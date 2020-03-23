@@ -6,7 +6,7 @@ test(`Error message`, () => {
   const tree = renderer.create(
       <ErrorMessage
         errorCode={401}
-        onErrorReset={()=> {}}
+        onResetError={()=> {}}
       />
   ).toJSON();
   expect(tree).toMatchSnapshot();

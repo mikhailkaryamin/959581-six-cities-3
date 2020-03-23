@@ -12,12 +12,14 @@ const initialState = {
   offers: [],
   comments: [],
   offersNearby: [],
+  loadStatus: false,
 };
 
 const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
   LOAD_OFFERS_NEARBY: `LOAD_OFFERS_NEARBY`,
   LOAD_COMMENTS: `LOAD_COMMENTS`,
+  LOAD_STATUS: `LOAD_STATUS`,
   UPLOAD_COMMENTS: `UPLOAD_COMMENTS`,
 };
 
@@ -40,6 +42,12 @@ const ActionCreator = {
       payload: comments,
     };
   },
+  loadStatus: () => {
+    return {
+      type: ActionType.LOAD_STATUS,
+      payload: true,
+    };
+  },
   uploadComments: (comments) => {
     return {
       type: ActionType.UPLOAD_COMMENTS,
@@ -54,7 +62,10 @@ const Operation = {
       .then((response) => {
         const offers = Offer.parseOffers(response.data);
         dispatch(ActionCreator.loadOffers(offers));
-        dispatch(ActionCity.setCurrentCity(offers[0].city.name));
+        dispatch(ActionCreator.loadStatus());
+        if (offers.length !== 0) {
+          dispatch(ActionCity.setCurrentCity(offers[0].city.name));
+        }
       });
   },
   loadOffersNearby: () => (dispatch, getState, api) => {
@@ -102,6 +113,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_OFFERS_NEARBY:
       return extend(state, {
         offersNearby: action.payload,
+      });
+    case ActionType.LOAD_STATUS:
+      return extend(state, {
+        loadStatus: action.payload,
       });
     case ActionType.UPLOAD_COMMENTS:
       return extend(state, {

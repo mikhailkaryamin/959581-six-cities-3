@@ -22,6 +22,10 @@ const getOffersNearby = (state) => {
   return state[NameSpace.DATA].offersNearby;
 };
 
+const getLoadStatus = (state) => {
+  return state[NameSpace.DATA].loadStatus;
+};
+
 const getLocations = createSelector(
     getOffers,
     (offers) => {
@@ -47,4 +51,5 @@ export {
   getOffersNearby,
   getLocations,
   getOffersCurrentCity,
+  getLoadStatus,
 };

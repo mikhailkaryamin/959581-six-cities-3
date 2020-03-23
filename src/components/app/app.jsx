@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import {
   arrayOf,
+  bool,
   func,
   number,
   string,
@@ -33,6 +34,8 @@ import {
 import {
   getLocations,
   getOffersCurrentCity,
+  getLoadStatus,
+  getOffers,
 } from '../../reducer/data/selectors.js';
 import {
   getAuthorizationStatus,
@@ -56,6 +59,7 @@ import Main from "../main/main.jsx";
 import Property from "../property/property.jsx";
 import RouteWithPage from '../route-with-page/route-with-page.jsx';
 import RouteForFavorites from '../route-for-favorites/route-for-favorites.jsx';
+import NotAvailableOffers from '../not-available-offers/not-available-offers.jsx';
 
 const FavoritesWrapped = withErrorMessage(Favorites);
 const LoginWrapped = withErrorMessage(Login);
@@ -71,6 +75,8 @@ class App extends PureComponent {
       currentCityOffers,
       focusOffer,
       locations,
+      loadStatus,
+      offers,
       onCardHover,
       onCardLeave,
       onResetError,
@@ -78,12 +84,9 @@ class App extends PureComponent {
       signIn,
     } = this.props;
 
-    const isLoading = currentCityOffers.length === 0;
+    const isLoading = loadStatus !== true;
+    const isNotAvailableOffers = offers.length === 0;
     const isAuth = authStatus === AuthorizationStatus.AUTH;
-
-    if (isLoading) {
-      return ``;
-    }
 
     return (
       <BrowserRouter>
@@ -91,13 +94,14 @@ class App extends PureComponent {
           <RouteWithPage
             exact
             path={AppRoute.ROOT}
-            component={
+            component={(!isLoading && isNotAvailableOffers) ?
+              <NotAvailableOffers />
+              :
               <MainWrapped
                 currentCity={currentCity}
                 currentCityOffers={currentCityOffers}
                 currentSort={currentSort}
                 focusOffer={focusOffer}
-                isEmpty={false}
                 locations={locations}
                 onCardHover={onCardHover}
                 onCardLeave={onCardLeave}
@@ -142,6 +146,7 @@ class App extends PureComponent {
                 onCardLeave={onCardLeave}
                 onResetError={onResetError}
                 responseStatus={responseStatus}
+                currentCity={currentCity}
               />
             )}
           />
@@ -162,6 +167,10 @@ App.propTypes = {
   locations: arrayOf(
       string
   ).isRequired,
+  loadStatus: bool.isRequired,
+  offers: arrayOf(
+      offerPropTypes
+  ).isRequired,
   onCardHover: func.isRequired,
   onCardLeave: func.isRequired,
   onResetError: func.isRequired,
@@ -175,7 +184,9 @@ const mapStateToProps = (state) => ({
   currentCity: getCurrentCity(state),
   currentSort: getCurrentSort(state),
   currentCityOffers: getOffersCurrentCity(state),
+  offers: getOffers(state),
   locations: getLocations(state),
+  loadStatus: getLoadStatus(state),
   responseStatus: getResponseStatusCode(state),
 });
 

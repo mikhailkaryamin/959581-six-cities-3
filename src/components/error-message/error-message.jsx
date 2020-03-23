@@ -13,9 +13,10 @@ const Styles = {
     right: `50%`,
     left: `50%`,
     zIndex: `50`,
+    width: `250px`,
     color: `#ffffff`,
     padding: `25px`,
-    backgroundColor: `#FF6347`,
+    backgroundColor: `rgba(255, 99, 71, 0.75)`,
     borderRadius: `5px`,
   },
   header: {
@@ -53,12 +54,12 @@ class ErrorMessage extends PureComponent {
   }
 
   _handleMessageClose() {
-    this.props.onErrorReset();
+    this.props.onResetError();
   }
 
   _onEscKeyDown(evt) {
     if (evt.key === `Escape` || evt.key === `Esc`) {
-      this.props.onErrorReset();
+      this.props.onResetError();
     }
   }
 
@@ -91,7 +92,7 @@ class ErrorMessage extends PureComponent {
 
 ErrorMessage.propTypes = {
   errorCode: number.isRequired,
-  onErrorReset: func.isRequired,
+  onResetError: func.isRequired,
 };
 
 export default ErrorMessage;

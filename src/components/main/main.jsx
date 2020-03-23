@@ -6,7 +6,6 @@ import {
 } from 'react-redux';
 import {
   arrayOf,
-  bool,
   func,
   string,
 } from "prop-types";
@@ -35,40 +34,34 @@ class Main extends PureComponent {
       focusOffer,
       handleLocationClick,
       handleSortChange,
-      isEmpty,
       locations,
       onCardHover,
       onCardLeave,
     } = this.props;
 
+    const isLoadingCurrentCityOffers = currentCityOffers.length === 0;
+
+    if (isLoadingCurrentCityOffers) {
+      return ``;
+    }
+
     return (
-      <main className={`page__main page__main--index ${isEmpty ? `page__main--index-empty` : ``}`}>
+      <main className={`page__main page__main--index`}>
         <h1 className="visually-hidden">Cities</h1>
-        {isEmpty ||
-          <React.Fragment>
-            <Locations
-              currentCity={currentCity}
-              handleLocationClick={handleLocationClick}
-              locations={locations}
-            />
-            <Cities
-              currentCityOffers={currentCityOffers}
-              focusOffer={focusOffer}
-              currentCity={currentCity}
-              currentSort={currentSort}
-              handleSortChange={handleSortChange}
-              onCardHover={onCardHover}
-              onCardLeave={onCardLeave}
-            />
-          </React.Fragment>
-        }
-        {isEmpty &&
-          <Locations
-            currentCity={currentCity}
-            locations={locations}
-            handleLocationClick={handleLocationClick}
-          />
-        }
+        <Locations
+          currentCity={currentCity}
+          handleLocationClick={handleLocationClick}
+          locations={locations}
+        />
+        <Cities
+          currentCityOffers={currentCityOffers}
+          focusOffer={focusOffer}
+          currentCity={currentCity}
+          currentSort={currentSort}
+          handleSortChange={handleSortChange}
+          onCardHover={onCardHover}
+          onCardLeave={onCardLeave}
+        />
       </main>
     );
   }
@@ -83,7 +76,6 @@ Main.propTypes = {
   focusOffer: offerPropTypes,
   handleLocationClick: func.isRequired,
   handleSortChange: func.isRequired,
-  isEmpty: bool.isRequired,
   locations: arrayOf(
       string
   ).isRequired,

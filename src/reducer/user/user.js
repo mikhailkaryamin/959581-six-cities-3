@@ -1,6 +1,12 @@
 import {
   extend
 } from '../../utils.js';
+import {
+  ActionCreator as ResponseAction
+} from '../response/response.js';
+import {
+  RESPONSE_STATUS_OK
+} from '../../consts.js';
 import User from '../../adapters/user.js';
 
 const DEFAULT_USER = {
@@ -77,7 +83,12 @@ const Operation = {
       password: authData.password,
     })
       .then((response) => {
-        onUserSignInSuccess(response, dispatch);
+        const responseCode = response.status;
+        dispatch(ResponseAction.setResponseStatusCode(responseCode));
+
+        if (responseCode === RESPONSE_STATUS_OK) {
+          onUserSignInSuccess(response, dispatch);
+        }
       });
   },
 };

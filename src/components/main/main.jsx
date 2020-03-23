@@ -1,22 +1,99 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, {
+  PureComponent
+} from "react";
+import {
+  connect
+} from 'react-redux';
+import {
+  arrayOf,
+  func,
+  string,
+} from "prop-types";
+import {
+  offerPropTypes
+} from "../../types.js";
+import {
+  ActionCreator as ActionCity
+} from '../../reducer/city/city.js';
+import {
+  ActionCreator as ActionSort
+} from '../../reducer/sort/sort.js';
+import Cities from "../cities/cities.jsx";
+import Locations from "../locations/locations.jsx";
 
-const Main = (props) => {
-  const {
-    isEmpty,
-    children
-  } = props;
+class Main extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <main className={`page__main page__main--index ${isEmpty ? `page__main--index-empty` : ``}`}>
-      <h1 className="visually-hidden">Cities</h1>
-      {children}
-    </main>
-  );
-};
+  render() {
+    const {
+      currentCityOffers,
+      currentCity,
+      currentSort,
+      focusOffer,
+      handleLocationClick,
+      handleSortChange,
+      locations,
+      onCardHover,
+      onCardLeave,
+    } = this.props;
+
+    const isLoadingCurrentCityOffers = currentCityOffers.length === 0;
+
+    if (isLoadingCurrentCityOffers) {
+      return ``;
+    }
+
+    return (
+      <main className={`page__main page__main--index`}>
+        <h1 className="visually-hidden">Cities</h1>
+        <Locations
+          currentCity={currentCity}
+          handleLocationClick={handleLocationClick}
+          locations={locations}
+        />
+        <Cities
+          currentCityOffers={currentCityOffers}
+          focusOffer={focusOffer}
+          currentCity={currentCity}
+          currentSort={currentSort}
+          handleSortChange={handleSortChange}
+          onCardHover={onCardHover}
+          onCardLeave={onCardLeave}
+        />
+      </main>
+    );
+  }
+}
 
 Main.propTypes = {
-  isEmpty: PropTypes.bool.isRequired,
-  children: PropTypes.element,
+  currentCityOffers: arrayOf(
+      offerPropTypes
+  ).isRequired,
+  currentSort: string.isRequired,
+  currentCity: string.isRequired,
+  focusOffer: offerPropTypes,
+  handleLocationClick: func.isRequired,
+  handleSortChange: func.isRequired,
+  locations: arrayOf(
+      string
+  ).isRequired,
+  onCardHover: func.isRequired,
+  onCardLeave: func.isRequired,
 };
-export default Main;
+
+const mapDispatchToProps = (dispatch) => ({
+  handleLocationClick(location) {
+    dispatch(ActionCity.setCurrentCity(location));
+  },
+  handleSortChange(sort) {
+    dispatch(ActionSort.setCurrentSort(sort));
+  },
+});
+
+export {
+  Main
+};
+
+export default connect(null, mapDispatchToProps)(Main);

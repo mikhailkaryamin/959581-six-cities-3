@@ -7,8 +7,8 @@ import {
 describe(`Offer reducer works correctly`, () => {
   test(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
-      activeOffer: undefined,
-      focusOffer: undefined,
+      activeOffer: null,
+      focusOffer: null,
     });
   });
 
@@ -16,14 +16,14 @@ describe(`Offer reducer works correctly`, () => {
     const nextActiveOffer = `nextActiveOffer`;
 
     expect(reducer({
-      activeOffer: undefined,
-      focusOffer: undefined,
+      activeOffer: null,
+      focusOffer: null,
     }, {
       type: ActionType.SET_ACTIVE_OFFER,
       payload: nextActiveOffer,
     })).toEqual({
       activeOffer: nextActiveOffer,
-      focusOffer: undefined,
+      focusOffer: null,
     });
   });
 
@@ -31,13 +31,13 @@ describe(`Offer reducer works correctly`, () => {
     const nextFocusOffer = `FocusOffer`;
 
     expect(reducer({
-      activeOffer: undefined,
-      focusOffer: undefined,
+      activeOffer: null,
+      focusOffer: null,
     }, {
       type: ActionType.SET_FOCUS_OFFER,
       payload: nextFocusOffer,
     })).toEqual({
-      activeOffer: undefined,
+      activeOffer: null,
       focusOffer: nextFocusOffer,
     });
   });

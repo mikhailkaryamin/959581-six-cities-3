@@ -6,23 +6,27 @@ import {
 } from '../../utils.js';
 import NameSpace from '../name-space.js';
 
-const getOffers = (state) => {
-  return state[NameSpace.DATA].offers;
-};
-
 const getCurrentCity = (state) => {
   return state[NameSpace.CITY].currentCity;
 };
 
-export const getComments = (state) => {
+const getComments = (state) => {
   return state[NameSpace.DATA].comments;
 };
 
-export const getOffersNearby = (state) => {
+const getOffers = (state) => {
+  return state[NameSpace.DATA].offers;
+};
+
+const getOffersNearby = (state) => {
   return state[NameSpace.DATA].offersNearby;
 };
 
-export const getLocations = createSelector(
+const getLoadStatus = (state) => {
+  return state[NameSpace.DATA].loadStatus;
+};
+
+const getLocations = createSelector(
     getOffers,
     (offers) => {
       const locations = offers
@@ -31,7 +35,7 @@ export const getLocations = createSelector(
     }
 );
 
-export const getOffersCurrentCity = createSelector(
+const getOffersCurrentCity = createSelector(
     getOffers,
     getCurrentCity,
 
@@ -40,3 +44,12 @@ export const getOffersCurrentCity = createSelector(
         .filter((offer) => offer.city.name === currentCity);
     }
 );
+
+export {
+  getOffers,
+  getComments,
+  getOffersNearby,
+  getLocations,
+  getOffersCurrentCity,
+  getLoadStatus,
+};

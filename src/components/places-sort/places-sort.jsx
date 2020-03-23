@@ -1,7 +1,11 @@
 import React, {
   PureComponent
 } from "react";
-import PropTypes from "prop-types";
+import {
+  bool,
+  func,
+  string
+} from "prop-types";
 import {
   SORTING
 } from "../../consts.js";
@@ -14,9 +18,9 @@ class PlacesSort extends PureComponent {
   render() {
     const {
       currentSort,
+      handleSortChange,
       isActive,
       onToggleClick,
-      handleSortChange
     } = this.props;
 
     return (
@@ -24,9 +28,7 @@ class PlacesSort extends PureComponent {
         className="places__sorting"
         action="#"
         method="get"
-        onClick={() => {
-          onToggleClick();
-        }}
+        onClick={onToggleClick}
       >
         <span className="places__sorting-caption">Sort by </span>
         <span className="places__sorting-type" tabIndex="0">
@@ -61,10 +63,10 @@ class PlacesSort extends PureComponent {
 }
 
 PlacesSort.propTypes = {
-  currentSort: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired,
-  onToggleClick: PropTypes.func.isRequired,
-  handleSortChange: PropTypes.func.isRequired,
+  currentSort: string.isRequired,
+  handleSortChange: func.isRequired,
+  isActive: bool.isRequired,
+  onToggleClick: func.isRequired
 };
 
 export default PlacesSort;

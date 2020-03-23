@@ -3,7 +3,7 @@ import {
 } from '../../utils.js';
 
 const initialState = {
-  currentCity: `Amsterdam`,
+  currentCity: ``,
 };
 
 const ActionType = {

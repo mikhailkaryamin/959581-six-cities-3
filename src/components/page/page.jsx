@@ -1,24 +1,38 @@
 import React from "react";
-import PropTypes from "prop-types";
+import {
+  bool,
+  element,
+  string,
+} from "prop-types";
+import {
+  userPropTypes
+} from '../../types.js';
 import Header from "../header/header.jsx";
 
 const Page = (props) => {
   const {
     className,
-    children
+    children,
+    isAuth,
+    user,
   } = props;
 
   return (
     <div className={`page ${className}`}>
-      {<Header />}
+      {<Header
+        isAuth={isAuth}
+        user={user}
+      />}
       {children}
     </div>
   );
 };
 
 Page.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.element,
+  className: string,
+  children: element,
+  isAuth: bool.isRequired,
+  user: userPropTypes,
 };
 
 Page.defaultProps = {

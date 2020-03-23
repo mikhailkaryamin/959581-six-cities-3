@@ -4,17 +4,23 @@ import {
 import NameSpace from '../name-space.js';
 import Comment from '../../adapters/comment.js';
 import Offer from '../../adapters/offer.js';
+import {
+  ActionCreator as ActionCity
+} from '../city/city.js';
 
 const initialState = {
   offers: [],
   comments: [],
   offersNearby: [],
+  loadStatus: false,
 };
 
 const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
-  LOAD_COMMENTS: `LOAD_COMMENTS`,
   LOAD_OFFERS_NEARBY: `LOAD_OFFERS_NEARBY`,
+  LOAD_COMMENTS: `LOAD_COMMENTS`,
+  LOAD_STATUS: `LOAD_STATUS`,
+  UPLOAD_COMMENTS: `UPLOAD_COMMENTS`,
 };
 
 const ActionCreator = {
@@ -24,16 +30,28 @@ const ActionCreator = {
       payload: offers,
     };
   },
+  loadOffersNearby: (offers) => {
+    return {
+      type: ActionType.LOAD_OFFERS_NEARBY,
+      payload: offers,
+    };
+  },
   loadComments: (comments) => {
     return {
       type: ActionType.LOAD_COMMENTS,
       payload: comments,
     };
   },
-  loadOffersNearby: (offers) => {
+  loadStatus: () => {
     return {
-      type: ActionType.LOAD_OFFERS_NEARBY,
-      payload: offers,
+      type: ActionType.LOAD_STATUS,
+      payload: true,
+    };
+  },
+  uploadComments: (comments) => {
+    return {
+      type: ActionType.UPLOAD_COMMENTS,
+      payload: comments,
     };
   }
 };
@@ -44,6 +62,19 @@ const Operation = {
       .then((response) => {
         const offers = Offer.parseOffers(response.data);
         dispatch(ActionCreator.loadOffers(offers));
+        dispatch(ActionCreator.loadStatus());
+        if (offers.length !== 0) {
+          dispatch(ActionCity.setCurrentCity(offers[0].city.name));
+        }
+      });
+  },
+  loadOffersNearby: () => (dispatch, getState, api) => {
+    const REQUEST = `/hotels/${getState()[NameSpace.OFFER].activeOffer.id}/nearby`;
+
+    return api.get(REQUEST)
+      .then((response) => {
+        const offers = Offer.parseOffers(response.data);
+        dispatch(ActionCreator.loadOffersNearby(offers));
       });
   },
   loadComments: () => (dispatch, getState, api) => {
@@ -55,15 +86,18 @@ const Operation = {
         dispatch(ActionCreator.loadComments(comments));
       });
   },
-  loadOffersNearby: () => (dispatch, getState, api) => {
-    const REQUEST = `/hotels/${getState()[NameSpace.OFFER].activeOffer.id}/nearby`;
+  uploadComments: (comment) => (dispatch, getState, api) => {
+    const REQUEST = `/comments/${getState()[NameSpace.OFFER].activeOffer.id}`;
 
-    return api.get(REQUEST)
+    return api.post(REQUEST, {
+      rating: comment.rating,
+      comment: comment.text,
+    })
       .then((response) => {
-        const offers = Offer.parseOffers(response.data);
-        dispatch(ActionCreator.loadOffersNearby(offers));
+        const comments = Comment.parseComments(response.data);
+        dispatch(ActionCreator.uploadComments(comments));
       });
-  }
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -79,6 +113,14 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_OFFERS_NEARBY:
       return extend(state, {
         offersNearby: action.payload,
+      });
+    case ActionType.LOAD_STATUS:
+      return extend(state, {
+        loadStatus: action.payload,
+      });
+    case ActionType.UPLOAD_COMMENTS:
+      return extend(state, {
+        comments: action.payload,
       });
   }
 

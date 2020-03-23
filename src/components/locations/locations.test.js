@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Locatons from "./locations.jsx";
+import Locations from "./locations.jsx";
 
 const locations = [
   `Paris`,
@@ -12,16 +12,14 @@ const locations = [
 ];
 const currentCity = `Paris`;
 const handleLocationClick = () => {};
-const handleActiveItem = () => {};
 
 it(`Render locations correctly`, () => {
   const tree = renderer
     .create(
-        <Locatons
+        <Locations
           currentCity={currentCity}
           locations={locations}
           handleLocationClick={handleLocationClick}
-          handleActiveItem={handleActiveItem}
         />
     )
     .toJSON();

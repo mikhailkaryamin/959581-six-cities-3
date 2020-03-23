@@ -1,15 +1,19 @@
 import React, {
   PureComponent
 } from "react";
-import Places from "../places/places.jsx";
-import Map from "../map/map.jsx";
-import PropTypes from "prop-types";
+import {
+  arrayOf,
+  string,
+  func,
+} from "prop-types";
 import {
   offerPropTypes,
 } from "../../types.js";
 import {
-  ModificatorClass
+  ClassModificator
 } from "../../consts.js";
+import Map from "../map/map.jsx";
+import Places from "../places/places.jsx";
 
 class Cities extends PureComponent {
   constructor(props) {
@@ -20,28 +24,28 @@ class Cities extends PureComponent {
     const {
       currentCityOffers,
       currentSort,
-      focusOffer,
       currentCity,
-      handleHeaderOfferClick,
-      onCardHover,
+      focusOffer,
       handleSortChange,
+      onCardHover,
+      onCardLeave,
     } = this.props;
 
     return (
       <div className="cities">
         <div className="cities__places-container container">
           <Places
+            classModificator={ClassModificator.CITIES_PLACES}
             currentCity={currentCity}
-            modificatorClass={ModificatorClass.CITIES_PLACES}
             currentCityOffers={currentCityOffers}
             currentSort={currentSort}
-            handleHeaderOfferClick={handleHeaderOfferClick}
-            onCardHover={onCardHover}
             handleSortChange={handleSortChange}
+            onCardHover={onCardHover}
+            onCardLeave={onCardLeave}
           />
           <div className="cities__right-section">
             <Map
-              modificatorClass={ModificatorClass.CITIES_MAP}
+              classModificator={ClassModificator.CITIES_MAP}
               currentCityOffers={currentCityOffers}
               focusOffer={focusOffer}
             />
@@ -53,15 +57,15 @@ class Cities extends PureComponent {
 }
 
 Cities.propTypes = {
-  currentCityOffers: PropTypes.arrayOf(
+  currentCityOffers: arrayOf(
       offerPropTypes
   ).isRequired,
+  currentSort: string.isRequired,
+  currentCity: string.isRequired,
+  handleSortChange: func.isRequired,
   focusOffer: offerPropTypes,
-  handleHeaderOfferClick: PropTypes.func.isRequired,
-  currentSort: PropTypes.string.isRequired,
-  onCardHover: PropTypes.func.isRequired,
-  handleSortChange: PropTypes.func.isRequired,
-  currentCity: PropTypes.string.isRequired,
+  onCardHover: func.isRequired,
+  onCardLeave: func.isRequired,
 };
 
 export default Cities;

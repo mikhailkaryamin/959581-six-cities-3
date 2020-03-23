@@ -1,7 +1,25 @@
 import React from "react";
+import {
+  bool,
+} from 'prop-types';
+import {
+  Link
+} from 'react-router-dom';
+import {
+  AppRoute,
+  SITE_URL
+} from '../../consts.js';
+import {
+  userPropTypes
+} from '../../types.js';
 import Logotype from "../logotype/logotype.jsx";
 
-const Header = () => {
+const Header = (props) => {
+  const {
+    isAuth,
+    user,
+  } = props;
+
   return (
     <header className="header">
       <div className="container">
@@ -12,11 +30,22 @@ const Header = () => {
           <nav className="header__nav">
             <ul className="header__nav-list">
               <li className="header__nav-item user">
-                <a className="header__nav-link header__nav-link--profile" href="#">
-                  <div className="header__avatar-wrapper user__avatar-wrapper">
-                  </div>
-                  <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                </a>
+                {isAuth &&
+                  <Link className="header__nav-link header__nav-link--profile"
+                    to={AppRoute.FAVORITE}
+                  >
+                    <div className="header__avatar-wrapper user__avatar-wrapper"
+                      style={{backgroundImage: `url(${SITE_URL}${user.avatarUrl})`}}
+                    />
+                    <span className="header__user-name user__name">{user.email}</span>
+                  </Link>
+                }
+                {isAuth ||
+                  <Link to={AppRoute.LOGIN} className="header__nav-link header__nav-link--profile">
+                    <div className="header__avatar-wrapper user__avatar-wrapper"/>
+                    <span className="header__user-name user__name">Sign in</span>
+                  </Link>
+                }
               </li>
             </ul>
           </nav>
@@ -24,6 +53,11 @@ const Header = () => {
       </div>
     </header>
   );
+};
+
+Header.propTypes = {
+  isAuth: bool.isRequired,
+  user: userPropTypes,
 };
 
 export default Header;

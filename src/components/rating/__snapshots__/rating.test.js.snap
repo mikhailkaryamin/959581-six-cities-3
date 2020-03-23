@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rating render correctly Rating place card render correctly 1`] = `
+<div
+  className="place-card__rating rating"
+>
+  <div
+    className="place-card__stars rating__stars"
+  >
+    <span
+      style={
+        Object {
+          "width": "60%",
+        }
+      }
+    />
+    <span
+      className="visually-hidden"
+    >
+      Rating
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Rating render correctly Rating property render correctly 1`] = `
+<div
+  className="property__rating rating"
+>
+  <div
+    className="property__stars rating__stars"
+  >
+    <span
+      style={
+        Object {
+          "width": "60%",
+        }
+      }
+    />
+    <span
+      className="visually-hidden"
+    >
+      Rating
+    </span>
+  </div>
+  <span
+    className="property__rating-value rating__value"
+  >
+    3
+  </span>
+</div>
+`;

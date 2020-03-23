@@ -3,6 +3,9 @@ import Adapter from "enzyme-adapter-react-16";
 import Enzyme, {
   shallow
 } from "enzyme";
+import {
+  ClassModificator
+} from "../../consts.js";
 import PlaceCard from "./place-card.jsx";
 
 const offer = {
@@ -46,40 +49,21 @@ Enzyme.configure({
 
 describe(`Place card e2e tests`, () => {
   let placeCard;
-  let handleHeaderOfferClick;
   let onMouseEnter;
   let onMouseLeave;
-  let handleActiveItem;
 
   beforeEach(() => {
-    handleHeaderOfferClick = jest.fn();
-    handleActiveItem = jest.fn();
     onMouseEnter = jest.fn();
     onMouseLeave = jest.fn();
 
     placeCard = shallow(
         <PlaceCard
           offer={offer}
-          handleHeaderOfferClick={handleHeaderOfferClick}
-          handleActiveItem={handleActiveItem}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
+          classModificator={ClassModificator.CITIES}
         />
     );
-  });
-
-  test(`When you press click and send state offer`, () => {
-    const headerOfferElement = placeCard.find(`.place-card__name`);
-    headerOfferElement.simulate(`click`);
-    expect(handleHeaderOfferClick.mock.calls[0][0]).toMatchObject(offer);
-    expect(handleHeaderOfferClick.mock.calls.length).toBe(1);
-  });
-
-  test(`When you press click and send active item`, () => {
-    const headerOfferElement = placeCard.find(`.place-card__name`);
-    headerOfferElement.simulate(`click`);
-    expect(handleActiveItem.mock.calls[0][0]).toMatchObject(offer);
-    expect(handleActiveItem.mock.calls.length).toBe(1);
   });
 
   test(`When you mouseenter and send state offer`, () => {

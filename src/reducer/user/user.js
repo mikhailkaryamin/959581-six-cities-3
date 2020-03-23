@@ -1,6 +1,12 @@
 import {
   extend
 } from '../../utils.js';
+import {
+  ActionCreator as ResponseAction
+} from '../response/response.js';
+import {
+  RESPONSE_STATUS_OK
+} from '../../consts.js';
 import User from '../../adapters/user.js';
 
 const DEFAULT_USER = {
@@ -23,7 +29,7 @@ const initialState = {
 
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
-  SIGN_IN_USER: `SIGN_IN_USER`,
+  SET_USER: `SET_USER`,
 };
 
 const ActionCreator = {
@@ -33,8 +39,8 @@ const ActionCreator = {
       payload: status,
     };
   },
-  signInUser: (user) => ({
-    type: ActionType.SIGN_IN_USER,
+  setUser: (user) => ({
+    type: ActionType.SET_USER,
     payload: user,
   })
 };
@@ -42,7 +48,7 @@ const ActionCreator = {
 const onUserSignInSuccess = (response, dispatch) => {
   const user = User.parseUser(response.data);
   dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-  dispatch(ActionCreator.signInUser(user));
+  dispatch(ActionCreator.setUser(user));
 };
 
 const reducer = (state = initialState, action) => {
@@ -51,7 +57,7 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         authorizationStatus: action.payload,
       });
-    case ActionType.SIGN_IN_USER:
+    case ActionType.SET_USER:
       return extend(state, {
         user: action.payload
       });
@@ -71,13 +77,18 @@ const Operation = {
       });
   },
 
-  login: (authData) => (dispatch, getState, api) => {
+  signIn: (authData) => (dispatch, getState, api) => {
     return api.post(`/login`, {
       email: authData.login,
       password: authData.password,
     })
       .then((response) => {
-        onUserSignInSuccess(response, dispatch);
+        const responseCode = response.status;
+        dispatch(ResponseAction.setResponseStatusCode(responseCode));
+
+        if (responseCode === RESPONSE_STATUS_OK) {
+          onUserSignInSuccess(response, dispatch);
+        }
       });
   },
 };

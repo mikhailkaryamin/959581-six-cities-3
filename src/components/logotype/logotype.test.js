@@ -1,11 +1,16 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {
+  BrowserRouter
+} from 'react-router-dom';
 import Logotype from "./logotype.jsx";
 
 it(`Render logo correctly`, () => {
   const tree = renderer
     .create(
-        <Logotype />
+        <BrowserRouter>
+          <Logotype />
+        </BrowserRouter>
     )
     .toJSON();
 

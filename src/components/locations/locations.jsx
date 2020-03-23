@@ -1,12 +1,15 @@
 import React from "react";
-import PropTypes from "prop-types";
+import {
+  arrayOf,
+  func,
+  string,
+} from "prop-types";
 
 const Locations = (props) => {
   const {
+    currentCity,
     locations,
     handleLocationClick,
-    currentCity,
-    handleActiveItem,
   } = props;
   return (
     <div className="tabs">
@@ -20,7 +23,6 @@ const Locations = (props) => {
               }
               onClick={() => {
                 handleLocationClick(location);
-                handleActiveItem(location);
               }}
             >
               <a className={
@@ -41,12 +43,11 @@ const Locations = (props) => {
 };
 
 Locations.propTypes = {
-  locations: PropTypes.arrayOf(
-      PropTypes.string.isRequired
+  currentCity: string.isRequired,
+  locations: arrayOf(
+      string.isRequired
   ).isRequired,
-  handleLocationClick: PropTypes.func.isRequired,
-  currentCity: PropTypes.string.isRequired,
-  handleActiveItem: PropTypes.func.isRequired,
+  handleLocationClick: func.isRequired,
 };
 
 export default Locations;

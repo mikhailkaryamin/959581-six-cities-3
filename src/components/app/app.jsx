@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React, {
   PureComponent
 } from "react";
@@ -7,138 +6,150 @@ import {
 } from "react-redux";
 import {
   BrowserRouter,
-  Route,
-  Switch
+  Switch,
 } from "react-router-dom";
-import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {
-  ActionCreator as ActionCity
-} from '../../reducer/city/city.js';
-import {
-  getCurrentCity
-} from '../../reducer/city/selectors.js';
-import {
-  Operation as DataOperation
-} from '../../reducer/data/data.js';
-import {
-  getLocations,
-  getOffersCurrentCity,
-  getComments,
-  getOffersNearby,
-} from '../../reducer/data/selectors.js';
+  arrayOf,
+  bool,
+  func,
+  number,
+  string,
+} from "prop-types";
 import {
   ActionCreator as ActionOffer
 } from '../../reducer/offer/offer.js';
 import {
-  getActiveOffer, getFocusOffer
+  Operation as UserOperation,
+  AuthorizationStatus,
+} from '../../reducer/user/user.js';
+import {
+  ActionCreator as ResetResponseStatus
+} from '../../reducer/response/response.js';
+import {
+  getResponseStatusCode
+} from '../../reducer/response/selectors.js';
+import {
+  getCurrentCity
+} from '../../reducer/city/selectors.js';
+import {
+  getLocations,
+  getOffersCurrentCity,
+  getLoadStatus,
+  getOffers,
+} from '../../reducer/data/selectors.js';
+import {
+  getAuthorizationStatus,
+} from '../../reducer/user/selectors.js';
+import {
+  getFocusOffer
 } from '../../reducer/offer/selectors.js';
 import {
   getCurrentSort
 } from '../../reducer/sort/selectors.js';
 import {
-  ActionCreator as ActionSort
-} from '../../reducer/sort/sort.js';
-import {
-  commentsPropTypes,
-  offerPropTypes
+  offerPropTypes,
 } from "../../types.js";
-import Cities from "../cities/cities.jsx";
-import Locations from "../locations/locations.jsx";
+import {
+  AppRoute,
+} from '../../consts.js';
+import withErrorMessage from '../../hocs/with-error-message/with-error-message.js';
+import Favorites from '../favorites/favorites.jsx';
+import Login from '../login/login.jsx';
 import Main from "../main/main.jsx";
-import Page from "../page/page.jsx";
 import Property from "../property/property.jsx";
+import RouteWithPage from '../route-with-page/route-with-page.jsx';
+import RouteForFavorites from '../route-for-favorites/route-for-favorites.jsx';
+import NotAvailableOffers from '../not-available-offers/not-available-offers.jsx';
 
-const LocationsWrapped = withActiveItem(Locations);
+const FavoritesWrapped = withErrorMessage(Favorites);
+const LoginWrapped = withErrorMessage(Login);
+const MainWrapped = withErrorMessage(Main);
+const PropertyWrapped = withErrorMessage(Property);
 
 class App extends PureComponent {
-  _renderApp() {
+  render() {
     const {
-      activeOffer,
+      authStatus,
       currentCity,
       currentSort,
-      locations,
-      handleLocationClick,
-      handleHeaderOfferClick,
-      handleSortChange,
-      onCardHover,
-      focusOffer,
       currentCityOffers,
-      comments,
-      offersNearby
+      focusOffer,
+      locations,
+      loadStatus,
+      offers,
+      onCardHover,
+      onCardLeave,
+      onResetError,
+      responseStatus,
+      signIn,
     } = this.props;
 
-    const isLoading = currentCityOffers.length === 0;
+    const isLoading = loadStatus !== true;
+    const isNotAvailableOffers = offers.length === 0;
+    const isAuth = authStatus === AuthorizationStatus.AUTH;
 
-    if (activeOffer === undefined && !isLoading) {
-      return (
-        <Page
-          className={
-            `page--gray page--main`
-          }
-        >
-          <Main isEmpty={false}>
-            <React.Fragment>
-              <LocationsWrapped
-                locations={locations}
-                handleLocationClick={handleLocationClick}
-                currentCity={currentCity}
-              />
-              <Cities
-                currentCityOffers={currentCityOffers}
-                currentCity={currentCity}
-                currentSort={currentSort}
-                handleHeaderOfferClick={handleHeaderOfferClick}
-                onCardHover={onCardHover}
-                focusOffer={focusOffer}
-                handleSortChange={handleSortChange}
-              />
-            </React.Fragment>
-          </Main>
-        </Page>
-      );
-    } else if (activeOffer !== undefined) {
-      return (
-        <Page>
-          <Property
-            activeOffer={activeOffer}
-            currentCityOffers={currentCityOffers}
-            currentSort={currentSort}
-            onCardHover={onCardHover}
-            focusOffer={focusOffer}
-            handleHeaderOfferClick={handleHeaderOfferClick}
-            comments={comments}
-            offersNearby={offersNearby}
-          />
-        </Page>
-      );
-    }
-
-    return (
-      <Page
-        className={
-          `page--gray page--main`
-        }
-      >
-        <Main isEmpty={true}>
-          <LocationsWrapped
-            locations={locations}
-            handleLocationClick={handleLocationClick}
-            currentCity={currentCity}
-          />
-        </Main>
-      </Page>
-    );
-  }
-
-  render() {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/">
-            {
-              this._renderApp()
+          <RouteWithPage
+            exact
+            path={AppRoute.ROOT}
+            component={(!isLoading && isNotAvailableOffers) ?
+              <NotAvailableOffers />
+              :
+              <MainWrapped
+                currentCity={currentCity}
+                currentCityOffers={currentCityOffers}
+                currentSort={currentSort}
+                focusOffer={focusOffer}
+                locations={locations}
+                onCardHover={onCardHover}
+                onCardLeave={onCardLeave}
+                onResetError={onResetError}
+                responseStatus={responseStatus}
+              />
             }
-          </Route>
+          />
+          <RouteWithPage
+            exact
+            path={AppRoute.LOGIN}
+            component={
+              <LoginWrapped
+                currentCity={currentCity}
+                isAuth={isAuth}
+                onResetError={onResetError}
+                responseStatus={responseStatus}
+                signIn={signIn}
+              />
+            }
+          />
+          <RouteWithPage
+            exact
+            path={AppRoute.OFFER}
+            component={
+              <PropertyWrapped
+                currentSort={currentSort}
+                focusOffer={focusOffer}
+                onCardHover={onCardHover}
+                onCardLeave={onCardLeave}
+                onResetError={onResetError}
+                responseStatus={responseStatus}
+              />
+            }
+          />
+          <RouteForFavorites
+            exact
+            path={AppRoute.FAVORITE}
+            render={() => (
+              <FavoritesWrapped
+                onCardHover={onCardHover}
+                onCardLeave={onCardLeave}
+                onResetError={onResetError}
+                responseStatus={responseStatus}
+                currentCity={currentCity}
+              />
+            )}
+          />
         </Switch>
       </BrowserRouter>
     );
@@ -146,53 +157,51 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  currentCityOffers: PropTypes.arrayOf(
+  authStatus: string.isRequired,
+  currentCityOffers: arrayOf(
       offerPropTypes
   ).isRequired,
-  activeOffer: offerPropTypes,
-  handleLocationClick: PropTypes.func.isRequired,
-  currentCity: PropTypes.string.isRequired,
-  handleHeaderOfferClick: PropTypes.func.isRequired,
-  currentSort: PropTypes.string.isRequired,
-  onCardHover: PropTypes.func.isRequired,
+  currentCity: string.isRequired,
+  currentSort: string.isRequired,
   focusOffer: offerPropTypes,
-  handleSortChange: PropTypes.func.isRequired,
-  locations: PropTypes.arrayOf(
-      PropTypes.string
+  locations: arrayOf(
+      string
   ).isRequired,
-  comments: PropTypes.arrayOf(
-      commentsPropTypes
-  ),
-  offersNearby: PropTypes.arrayOf(
+  loadStatus: bool.isRequired,
+  offers: arrayOf(
       offerPropTypes
   ).isRequired,
+  onCardHover: func.isRequired,
+  onCardLeave: func.isRequired,
+  onResetError: func.isRequired,
+  responseStatus: number,
+  signIn: func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  activeOffer: getActiveOffer(state),
+  authStatus: getAuthorizationStatus(state),
+  focusOffer: getFocusOffer(state),
   currentCity: getCurrentCity(state),
   currentSort: getCurrentSort(state),
-  focusOffer: getFocusOffer(state),
   currentCityOffers: getOffersCurrentCity(state),
+  offers: getOffers(state),
   locations: getLocations(state),
-  comments: getComments(state),
-  offersNearby: getOffersNearby(state),
+  loadStatus: getLoadStatus(state),
+  responseStatus: getResponseStatusCode(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handleLocationClick(location) {
-    dispatch(ActionCity.setCurrentCity(location));
-  },
-  handleHeaderOfferClick(offer) {
-    dispatch(ActionOffer.setActiveOffer(offer));
-    dispatch(DataOperation.loadComments());
-    dispatch(DataOperation.loadOffersNearby());
-  },
   onCardHover(offer) {
     dispatch(ActionOffer.setFocusOffer(offer));
   },
-  handleSortChange(sort) {
-    dispatch(ActionSort.setCurrentSort(sort));
+  onCardLeave() {
+    dispatch(ActionOffer.resetFocusOffer());
+  },
+  onResetError() {
+    dispatch(ResetResponseStatus.resetResponseStatusCode());
+  },
+  signIn(authData) {
+    dispatch(UserOperation.signIn(authData));
   }
 });
 

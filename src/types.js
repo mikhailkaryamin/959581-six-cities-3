@@ -6,7 +6,7 @@ import {
   bool
 } from "prop-types";
 
-export const offerPropTypes = shape({
+const offerPropTypes = shape({
   id: number,
   src: arrayOf(
       string
@@ -24,7 +24,7 @@ export const offerPropTypes = shape({
   )
 });
 
-export const commentsPropTypes = shape({
+const commentsPropTypes = shape({
   id: number,
   user: shape({
     id: number,
@@ -37,3 +37,16 @@ export const commentsPropTypes = shape({
   date: string
 });
 
+const userPropTypes = shape({
+  id: number,
+  email: string,
+  name: string,
+  avatarUrl: string,
+  isPro: bool,
+});
+
+export {
+  offerPropTypes,
+  commentsPropTypes,
+  userPropTypes,
+};

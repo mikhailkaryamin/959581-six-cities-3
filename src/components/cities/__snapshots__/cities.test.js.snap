@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render citites correctly 1`] = `
+exports[`Render cities correctly 1`] = `
 <div
   className="cities"
 >
@@ -82,7 +82,6 @@ exports[`Render citites correctly 1`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          
           <div
             className="cities__image-wrapper place-card__image-wrapper"
           >
@@ -92,9 +91,9 @@ exports[`Render citites correctly 1`] = `
               <img
                 alt="Place image"
                 className="place-card__image"
-                height="200"
+                height={200}
                 src="img/1.png"
-                width="260"
+                width={260}
               />
             </a>
           </div>
@@ -120,13 +119,14 @@ exports[`Render citites correctly 1`] = `
                 </span>
               </div>
               <button
-                className="place-card__bookmark-button button"
+                className="cities__bookmark-button button "
+                onClick={[Function]}
                 type="button"
               >
                 <svg
                   className="place-card__bookmark-icon"
-                  height="19"
-                  width="18"
+                  height={19}
+                  width={18}
                 >
                   <use
                     xlinkHref="#icon-bookmark"
@@ -148,7 +148,7 @@ exports[`Render citites correctly 1`] = `
                 <span
                   style={
                     Object {
-                      "width": "96%",
+                      "width": "100%",
                     }
                   }
                 />
@@ -161,10 +161,10 @@ exports[`Render citites correctly 1`] = `
             </div>
             <h2
               className="place-card__name"
-              onClick={[Function]}
             >
               <a
-                href="#"
+                href="/offer/1"
+                onClick={[Function]}
               >
                 Beautiful & luxurious studio at great location
               </a>
@@ -181,7 +181,6 @@ exports[`Render citites correctly 1`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          
           <div
             className="cities__image-wrapper place-card__image-wrapper"
           >
@@ -191,9 +190,9 @@ exports[`Render citites correctly 1`] = `
               <img
                 alt="Place image"
                 className="place-card__image"
-                height="200"
+                height={200}
                 src="img/1.png"
-                width="260"
+                width={260}
               />
             </a>
           </div>
@@ -219,13 +218,14 @@ exports[`Render citites correctly 1`] = `
                 </span>
               </div>
               <button
-                className="place-card__bookmark-button button"
+                className="cities__bookmark-button button "
+                onClick={[Function]}
                 type="button"
               >
                 <svg
                   className="place-card__bookmark-icon"
-                  height="19"
-                  width="18"
+                  height={19}
+                  width={18}
                 >
                   <use
                     xlinkHref="#icon-bookmark"
@@ -247,7 +247,7 @@ exports[`Render citites correctly 1`] = `
                 <span
                   style={
                     Object {
-                      "width": "96%",
+                      "width": "100%",
                     }
                   }
                 />
@@ -260,10 +260,10 @@ exports[`Render citites correctly 1`] = `
             </div>
             <h2
               className="place-card__name"
-              onClick={[Function]}
             >
               <a
-                href="#"
+                href="/offer/2"
+                onClick={[Function]}
               >
                 Beautiful & luxurious studio at great location
               </a>
@@ -280,7 +280,6 @@ exports[`Render citites correctly 1`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          
           <div
             className="cities__image-wrapper place-card__image-wrapper"
           >
@@ -290,9 +289,9 @@ exports[`Render citites correctly 1`] = `
               <img
                 alt="Place image"
                 className="place-card__image"
-                height="200"
+                height={200}
                 src="img/1.png"
-                width="260"
+                width={260}
               />
             </a>
           </div>
@@ -318,13 +317,14 @@ exports[`Render citites correctly 1`] = `
                 </span>
               </div>
               <button
-                className="place-card__bookmark-button button"
+                className="cities__bookmark-button button "
+                onClick={[Function]}
                 type="button"
               >
                 <svg
                   className="place-card__bookmark-icon"
-                  height="19"
-                  width="18"
+                  height={19}
+                  width={18}
                 >
                   <use
                     xlinkHref="#icon-bookmark"
@@ -346,7 +346,7 @@ exports[`Render citites correctly 1`] = `
                 <span
                   style={
                     Object {
-                      "width": "96%",
+                      "width": "100%",
                     }
                   }
                 />
@@ -359,10 +359,10 @@ exports[`Render citites correctly 1`] = `
             </div>
             <h2
               className="place-card__name"
-              onClick={[Function]}
             >
               <a
-                href="#"
+                href="/offer/3"
+                onClick={[Function]}
               >
                 Beautiful & luxurious studio at great location
               </a>
@@ -379,7 +379,6 @@ exports[`Render citites correctly 1`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          
           <div
             className="cities__image-wrapper place-card__image-wrapper"
           >
@@ -389,9 +388,9 @@ exports[`Render citites correctly 1`] = `
               <img
                 alt="Place image"
                 className="place-card__image"
-                height="200"
+                height={200}
                 src="img/1.png"
-                width="260"
+                width={260}
               />
             </a>
           </div>
@@ -417,13 +416,14 @@ exports[`Render citites correctly 1`] = `
                 </span>
               </div>
               <button
-                className="place-card__bookmark-button button"
+                className="cities__bookmark-button button "
+                onClick={[Function]}
                 type="button"
               >
                 <svg
                   className="place-card__bookmark-icon"
-                  height="19"
-                  width="18"
+                  height={19}
+                  width={18}
                 >
                   <use
                     xlinkHref="#icon-bookmark"
@@ -445,7 +445,7 @@ exports[`Render citites correctly 1`] = `
                 <span
                   style={
                     Object {
-                      "width": "96%",
+                      "width": "100%",
                     }
                   }
                 />
@@ -458,10 +458,10 @@ exports[`Render citites correctly 1`] = `
             </div>
             <h2
               className="place-card__name"
-              onClick={[Function]}
             >
               <a
-                href="#"
+                href="/offer/4"
+                onClick={[Function]}
               >
                 Beautiful & luxurious studio at great location
               </a>

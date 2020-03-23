@@ -1,11 +1,22 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {
+  BrowserRouter
+} from 'react-router-dom';
+import {
+  user,
+} from '../../mocks/testMock.js';
 import Header from "./header.jsx";
 
 it(`Render header correctly`, () => {
   const tree = renderer
     .create(
-        <Header />
+        <BrowserRouter>
+          <Header
+            isAuth={false}
+            user={user}
+          />
+        </BrowserRouter>
     )
     .toJSON();
 

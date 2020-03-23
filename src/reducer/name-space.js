@@ -4,6 +4,8 @@ const NameSpace = {
   OFFER: `OFFER`,
   SORT: `SORT`,
   USER: `USER`,
+  FAVORITE: `FAVORITE`,
+  RESPONSE: `RESPONSE`,
 };
 
 export default NameSpace;

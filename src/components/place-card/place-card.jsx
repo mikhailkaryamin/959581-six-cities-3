@@ -2,10 +2,21 @@ import React,
 {
   PureComponent
 } from "react";
-import PropTypes from "prop-types";
 import {
-  ONE_STAR
+  Link
+} from 'react-router-dom';
+import {
+  bool,
+  func,
+  number,
+  shape,
+  string,
+} from "prop-types";
+import {
+  ClassModificator
 } from "../../consts.js";
+import FavoriteButton from "../favorite-button/favorite-button.jsx";
+import Rating from '../rating/rating.jsx';
 
 class PlaceCard extends PureComponent {
   constructor(props) {
@@ -14,16 +25,17 @@ class PlaceCard extends PureComponent {
 
   render() {
     const {
+      classModificator,
       offer,
-      handleHeaderOfferClick,
       onMouseEnter,
       onMouseLeave,
-      handleActiveItem,
     } = this.props;
 
     const {
-      previewImage,
+      id,
       isPremium,
+      previewImage,
+      price,
       rating,
       title,
       type,
@@ -31,7 +43,7 @@ class PlaceCard extends PureComponent {
 
     return (
       <article
-        className="cities__place-card place-card"
+        className={`${classModificator}__place-card place-card`}
         onMouseEnter={() => {
           onMouseEnter(offer);
         }}
@@ -39,51 +51,47 @@ class PlaceCard extends PureComponent {
           onMouseLeave();
         }}
       >
-        {isPremium ?
+        {(isPremium && classModificator !== ClassModificator.FAVORITES) &&
           <div className="place-card__mark">
             <span>
               Premium
             </span>
           </div>
-          :
-          ``
         }
         <div className="cities__image-wrapper place-card__image-wrapper">
           <a href="#">
-            <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
+            <img
+              className="place-card__image"
+              src={previewImage}
+              width={classModificator === ClassModificator.FAVORITES ? 150 : 260}
+              height={classModificator === ClassModificator.FAVORITES ? 110 : 200}
+              alt="Place image"
+            />
           </a>
         </div>
         <div className="place-card__info">
           <div className="place-card__price-wrapper">
             <div className="place-card__price">
               <b className="place-card__price-value">&euro;
-                {offer.price}
+                {price}
               </b>
               <span className="place-card__price-text">&#47;&nbsp;night</span>
             </div>
-            <button className="place-card__bookmark-button button" type="button">
-              <svg className="place-card__bookmark-icon" width="18" height="19">
-                <use xlinkHref="#icon-bookmark"></use>
-              </svg>
-              <span className="visually-hidden">To bookmarks</span>
-            </button>
+            <FavoriteButton
+              classModificator={classModificator}
+              id={id}
+              height={19}
+              width={18}
+            />
           </div>
-          <div className="place-card__rating rating">
-            <div className="place-card__stars rating__stars">
-              <span style={{width: `${ONE_STAR * rating}%`}}></span>
-              <span className="visually-hidden">Rating</span>
-            </div>
-          </div>
+          <Rating
+            classModificator={ClassModificator.PLACE_CARD}
+            rating={rating}
+          />
           <h2
             className="place-card__name"
-            onClick={() => {
-              handleHeaderOfferClick(offer);
-              handleActiveItem(offer);
-            }}
           >
-            <a href="#" >
-              {title}
-            </a>
+            <Link to={`/offer/${id}`}>{title}</Link>
           </h2>
           <p className="place-card__type">
             {type}
@@ -95,18 +103,18 @@ class PlaceCard extends PureComponent {
 }
 
 PlaceCard.propTypes = {
-  offer: PropTypes.shape({
-    previewImage: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    isPremium: PropTypes.bool.isRequired,
+  classModificator: string.isRequired,
+  offer: shape({
+    previewImage: string.isRequired,
+    price: number.isRequired,
+    rating: number.isRequired,
+    title: string.isRequired,
+    type: string.isRequired,
+    isPremium: bool.isRequired,
+    id: number.isRequired,
   }).isRequired,
-  handleHeaderOfferClick: PropTypes.func.isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
-  handleActiveItem: PropTypes.func.isRequired,
+  onMouseEnter: func.isRequired,
+  onMouseLeave: func.isRequired,
 };
 
 export default PlaceCard;

@@ -1,9 +1,18 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import configureStore from "redux-mock-store";
+import {
+  Provider
+} from "react-redux";
+import {
+  BrowserRouter
+} from 'react-router-dom';
+import {
+  storeWithAuth
+} from "../../mocks/initialState.js";
 import PlaceCard from "./place-card.jsx";
 
-const handleHeaderOfferClick = () => {};
-const handleActiveItem = () => {};
+const mockStore = configureStore([]);
 const onMouseEnter = () => {};
 const onMouseLeave = () => {};
 const offer = {
@@ -40,17 +49,24 @@ const offer = {
   title: `Beautiful & luxurious studio at great location`,
   type: `apartment`
 };
+const classModificator = ``;
 
 it(`Render place card`, () => {
+  const store = mockStore(storeWithAuth);
   const tree = renderer
     .create(
-        <PlaceCard
-          handleHeaderOfferClick={handleHeaderOfferClick}
-          handleActiveItem={handleActiveItem}
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}
-          offer={offer}
-        />
+        <Provider
+          store={store}
+        >
+          <BrowserRouter>
+            <PlaceCard
+              classModificator={classModificator}
+              onMouseEnter={onMouseEnter}
+              onMouseLeave={onMouseLeave}
+              offer={offer}
+            />
+          </BrowserRouter>
+        </Provider>
     )
     .toJSON();
 

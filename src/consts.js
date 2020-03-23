@@ -1,12 +1,24 @@
-const MS_IN_WEEK = 604800000;
+const AppRoute = {
+  ROOT: `/`,
+  OFFER: `/offer/:id`,
+  LOGIN: `/login`,
+  FAVORITE: `/favorite/`,
+};
 
-const ModificatorClass = {
+const ClassModificator = {
+  CITIES: `cities`,
   CITIES_MAP: `cities__map`,
   CITIES_PLACES: `cities__places`,
   CITIES_PLACES_LIST: `cities__places-list tabs__content`,
   PROPERTY_MAP: `property__map`,
+  PROPERTY: `property`,
+  PLACE_CARD: `place-card`,
   NEAR_PLACES: `near-places`,
   NEAR_PLACES_LIST: `near-places__list`,
+  FAVORITES: `favorites`,
+  PAGE_MAIN: `page--gray page--main`,
+  PAGE_LOGIN: `page--gray page--login`,
+  PAGE_PROPERTY: `page__main--property`,
 };
 
 const SORTING = [
@@ -23,14 +35,26 @@ const TypeSort = {
   TOP_RATED_FIRST: `Top rated first`,
 };
 
+const TypeInputLogin = {
+  EMAIL: `email`,
+  PASSWORD: `password`,
+};
+
+const MS_IN_WEEK = 604800000;
 const ONE_STAR = 20;
-const STARS = [1, 2, 3, 4, 5];
+const STARS = [5, 4, 3, 2, 1];
+const SITE_URL = `https://htmlacademy-react-3.appspot.com/six-cities`;
+const RESPONSE_STATUS_OK = 200;
 
 export {
   MS_IN_WEEK,
-  ModificatorClass,
   SORTING,
   ONE_STAR,
   STARS,
-  TypeSort
+  SITE_URL,
+  RESPONSE_STATUS_OK,
+  AppRoute,
+  TypeSort,
+  ClassModificator,
+  TypeInputLogin,
 };

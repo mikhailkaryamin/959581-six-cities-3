@@ -1,6 +1,21 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import configureStore from "redux-mock-store";
+import {
+  Provider
+} from "react-redux";
+import {
+  BrowserRouter
+} from 'react-router-dom';
+import {
+  storeWithAuth
+} from "../../mocks/initialState.js";
+import {
+  ClassModificator
+} from "../../consts.js";
 import Places from "./places.jsx";
+
+const mockStore = configureStore([]);
 
 const currentCityOffers = [
   {
@@ -142,38 +157,52 @@ const currentCityOffers = [
 ];
 const currentSort = `Popular`;
 const currentCity = `Paris`;
-const handleHeaderOfferClick = () => {};
 const onCardHover = () => {};
+const onCardLeave = () => {};
 const handleSortChange = () => {};
 
 it(`Render places (modificator - cities) correctly`, () => {
+  const store = mockStore(storeWithAuth);
   const tree = renderer
     .create(
-        <Places
-          modificatorClass={`cities__places`}
-          currentCityOffers={currentCityOffers}
-          currentCity={currentCity}
-          currentSort={currentSort}
-          handleHeaderOfferClick={handleHeaderOfferClick}
-          onCardHover={onCardHover}
-          handleSortChange={handleSortChange}
-        />
+        <Provider
+          store={store}
+        >
+          <BrowserRouter>
+            <Places
+              classModificator={ClassModificator.CITIES_PLACES}
+              currentCityOffers={currentCityOffers}
+              currentCity={currentCity}
+              currentSort={currentSort}
+              onCardHover={onCardHover}
+              handleSortChange={handleSortChange}
+              onCardLeave={onCardLeave}
+            />
+          </BrowserRouter>
+        </Provider>
     ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
 
 it(`Render places (modificator - near) correctly`, () => {
+  const store = mockStore(storeWithAuth);
   const tree = renderer
     .create(
-        <Places
-          modificatorClass={`near-places`}
-          currentCityOffers={currentCityOffers}
-          currentSort={currentSort}
-          handleHeaderOfferClick={handleHeaderOfferClick}
-          onCardHover={onCardHover}
-          handleSortChange={handleSortChange}
-        />
+        <Provider
+          store={store}
+        >
+          <BrowserRouter>
+            <Places
+              classModificator={ClassModificator.NEAR_PLACES}
+              currentCityOffers={currentCityOffers}
+              currentSort={currentSort}
+              onCardHover={onCardHover}
+              onCardLeave={onCardLeave}
+            />
+          </BrowserRouter>
+        </Provider>
+
     ).toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -2,9 +2,13 @@ import React,
 {
   PureComponent
 } from "react";
-import PropTypes from "prop-types";
 import {
-  ModificatorClass
+  arrayOf,
+  func,
+  string,
+} from "prop-types";
+import {
+  ClassModificator
 } from "../../consts.js";
 import {
   offerPropTypes,
@@ -12,10 +16,8 @@ import {
 import PlacesCardList from "../place-card-list/place-card-list.jsx";
 import PlacesSort from "../places-sort/places-sort.jsx";
 import withToggle from "../../hocs/with-toggle/with-toggle.js";
-import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 
 const PlacesSortWrapped = withToggle(PlacesSort);
-const PlacesCardListWrapped = withActiveItem(PlacesCardList);
 
 class Places extends PureComponent {
   constructor(props) {
@@ -24,20 +26,20 @@ class Places extends PureComponent {
 
   render() {
     const {
-      modificatorClass,
+      classModificator,
       currentCityOffers,
       currentSort,
       currentCity,
-      handleHeaderOfferClick,
-      onCardHover,
       handleSortChange,
+      onCardHover,
+      onCardLeave,
     } = this.props;
 
     const AVAILABLE_OFFERS = currentCityOffers.length;
 
     return (
-      <section className={`places ${modificatorClass}`}>
-        {modificatorClass === ModificatorClass.CITIES_PLACES &&
+      <section className={`places ${classModificator}`}>
+        {classModificator === ClassModificator.CITIES_PLACES &&
           <React.Fragment>
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">
@@ -48,29 +50,29 @@ class Places extends PureComponent {
               }
             </b>
             {<PlacesSortWrapped
-              handleSortChange={handleSortChange}
               currentSort={currentSort}
+              handleSortChange={handleSortChange}
             />}
-            {<PlacesCardListWrapped
-              modificatorClass={ModificatorClass.CITIES_PLACES_LIST}
+            {<PlacesCardList
+              classModificator={ClassModificator.CITIES_PLACES_LIST}
               currentCityOffers={currentCityOffers}
               currentSort={currentSort}
-              handleHeaderOfferClick={handleHeaderOfferClick}
               onCardHover={onCardHover}
+              onCardLeave={onCardLeave}
             />}
           </React.Fragment>
         }
 
-        {modificatorClass === ModificatorClass.NEAR_PLACES &&
+        {classModificator === ClassModificator.NEAR_PLACES &&
           <React.Fragment>
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
-            {<PlacesCardListWrapped
-              modificatorClass={ModificatorClass.NEAR_PLACES_LIST}
+            {<PlacesCardList
+              classModificator={ClassModificator.NEAR_PLACES_LIST}
               currentCityOffers={currentCityOffers}
               currentSort={currentSort}
-              handleHeaderOfferClick={handleHeaderOfferClick}
               onCardHover={onCardHover}
+              onCardLeave={onCardLeave}
             />}
           </React.Fragment>
         }
@@ -80,15 +82,15 @@ class Places extends PureComponent {
 }
 
 Places.propTypes = {
-  currentCityOffers: PropTypes.arrayOf(
+  classModificator: string.isRequired,
+  currentCityOffers: arrayOf(
       offerPropTypes
   ).isRequired,
-  modificatorClass: PropTypes.string.isRequired,
-  currentSort: PropTypes.string,
-  handleHeaderOfferClick: PropTypes.func.isRequired,
-  onCardHover: PropTypes.func.isRequired,
-  handleSortChange: PropTypes.func,
-  currentCity: PropTypes.string,
+  currentSort: string,
+  currentCity: string,
+  handleSortChange: func,
+  onCardHover: func.isRequired,
+  onCardLeave: func.isRequired,
 };
 
 Places.defaultProps = {

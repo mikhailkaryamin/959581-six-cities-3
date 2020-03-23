@@ -1,7 +1,9 @@
 import React, {
   PureComponent
 } from "react";
-import PropTypes from "prop-types";
+import {
+  func,
+} from "prop-types";
 
 const withHover = (Component) => {
   class WithHover extends PureComponent {
@@ -25,7 +27,7 @@ const withHover = (Component) => {
       this.setState({
         isHovered: false,
       });
-      this.props.onCardHover(undefined);
+      this.props.onCardLeave();
     }
 
     render() {
@@ -40,7 +42,8 @@ const withHover = (Component) => {
   }
 
   WithHover.propTypes = {
-    onCardHover: PropTypes.func.isRequired,
+    onCardHover: func.isRequired,
+    onCardLeave: func.isRequired,
   };
 
   return WithHover;

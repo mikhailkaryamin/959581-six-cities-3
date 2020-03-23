@@ -8,12 +8,18 @@ import {
   BrowserRouter,
   Switch,
 } from "react-router-dom";
-import PropTypes from "prop-types";
+import {
+  arrayOf,
+  func,
+  number,
+  string,
+} from "prop-types";
 import {
   ActionCreator as ActionOffer
 } from '../../reducer/offer/offer.js';
 import {
   Operation as UserOperation,
+  AuthorizationStatus,
 } from '../../reducer/user/user.js';
 import {
   ActionCreator as ResetResponseStatus
@@ -29,6 +35,9 @@ import {
   getOffersCurrentCity,
 } from '../../reducer/data/selectors.js';
 import {
+  getAuthorizationStatus,
+} from '../../reducer/user/selectors.js';
+import {
   getFocusOffer
 } from '../../reducer/offer/selectors.js';
 import {
@@ -41,34 +50,36 @@ import {
   AppRoute,
 } from '../../consts.js';
 import withErrorMessage from '../../hocs/with-error-message/with-error-message.js';
+import Favorites from '../favorites/favorites.jsx';
+import Login from '../login/login.jsx';
 import Main from "../main/main.jsx";
 import Property from "../property/property.jsx";
-import Login from '../login/login.jsx';
-import Favorites from '../favorites/favorites.jsx';
 import RouteWithPage from '../route-with-page/route-with-page.jsx';
 import RouteForFavorites from '../route-for-favorites/route-for-favorites.jsx';
 
+const FavoritesWrapped = withErrorMessage(Favorites);
+const LoginWrapped = withErrorMessage(Login);
 const MainWrapped = withErrorMessage(Main);
 const PropertyWrapped = withErrorMessage(Property);
-const LoginWrapped = withErrorMessage(Login);
-const FavoritesWrapped = withErrorMessage(Favorites);
 
 class App extends PureComponent {
   render() {
     const {
+      authStatus,
       currentCity,
       currentSort,
+      currentCityOffers,
+      focusOffer,
       locations,
       onCardHover,
       onCardLeave,
-      focusOffer,
-      currentCityOffers,
-      signIn,
       onResetError,
       responseStatus,
+      signIn,
     } = this.props;
 
     const isLoading = currentCityOffers.length === 0;
+    const isAuth = authStatus === AuthorizationStatus.AUTH;
 
     if (isLoading) {
       return ``;
@@ -82,16 +93,16 @@ class App extends PureComponent {
             path={AppRoute.ROOT}
             component={
               <MainWrapped
-                isEmpty={false}
-                locations={locations}
                 currentCity={currentCity}
                 currentCityOffers={currentCityOffers}
                 currentSort={currentSort}
+                focusOffer={focusOffer}
+                isEmpty={false}
+                locations={locations}
                 onCardHover={onCardHover}
                 onCardLeave={onCardLeave}
-                focusOffer={focusOffer}
-                responseStatus={responseStatus}
                 onResetError={onResetError}
+                responseStatus={responseStatus}
               />
             }
           />
@@ -101,9 +112,10 @@ class App extends PureComponent {
             component={
               <LoginWrapped
                 currentCity={currentCity}
-                signIn={signIn}
+                isAuth={isAuth}
                 onResetError={onResetError}
                 responseStatus={responseStatus}
+                signIn={signIn}
               />
             }
           />
@@ -113,11 +125,11 @@ class App extends PureComponent {
             component={
               <PropertyWrapped
                 currentSort={currentSort}
+                focusOffer={focusOffer}
                 onCardHover={onCardHover}
                 onCardLeave={onCardLeave}
-                focusOffer={focusOffer}
-                responseStatus={responseStatus}
                 onResetError={onResetError}
+                responseStatus={responseStatus}
               />
             }
           />
@@ -128,8 +140,8 @@ class App extends PureComponent {
               <FavoritesWrapped
                 onCardHover={onCardHover}
                 onCardLeave={onCardLeave}
-                responseStatus={responseStatus}
                 onResetError={onResetError}
+                responseStatus={responseStatus}
               />
             )}
           />
@@ -140,26 +152,28 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  currentCityOffers: PropTypes.arrayOf(
+  authStatus: string.isRequired,
+  currentCityOffers: arrayOf(
       offerPropTypes
   ).isRequired,
-  locations: PropTypes.arrayOf(
-      PropTypes.string
-  ).isRequired,
-  currentCity: PropTypes.string.isRequired,
-  currentSort: PropTypes.string.isRequired,
+  currentCity: string.isRequired,
+  currentSort: string.isRequired,
   focusOffer: offerPropTypes,
-  onCardHover: PropTypes.func.isRequired,
-  onCardLeave: PropTypes.func.isRequired,
-  signIn: PropTypes.func.isRequired,
-  onResetError: PropTypes.func.isRequired,
-  responseStatus: PropTypes.number,
+  locations: arrayOf(
+      string
+  ).isRequired,
+  onCardHover: func.isRequired,
+  onCardLeave: func.isRequired,
+  onResetError: func.isRequired,
+  responseStatus: number,
+  signIn: func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
+  authStatus: getAuthorizationStatus(state),
+  focusOffer: getFocusOffer(state),
   currentCity: getCurrentCity(state),
   currentSort: getCurrentSort(state),
-  focusOffer: getFocusOffer(state),
   currentCityOffers: getOffersCurrentCity(state),
   locations: getLocations(state),
   responseStatus: getResponseStatusCode(state),

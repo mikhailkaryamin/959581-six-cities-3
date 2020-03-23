@@ -9,19 +9,19 @@ const initialState = {
 };
 
 const ActionType = {
-  LOAD_FAVORITES: `LOAD_FAVORITES`,
   ADD_FAVORITE: `ADD_FAVORITE`,
+  LOAD_FAVORITES: `LOAD_FAVORITES`,
   REMOVE_FAVORITE: `REMOVE_FAVORITE`,
 };
 
 const ActionCreator = {
-  loadFavorites: (favoriteOffers) => ({
-    type: ActionType.LOAD_FAVORITES,
-    payload: favoriteOffers,
-  }),
   addFavorite: (favoriteOffer) => ({
     type: ActionType.ADD_FAVORITE,
     payload: favoriteOffer,
+  }),
+  loadFavorites: (favoriteOffers) => ({
+    type: ActionType.LOAD_FAVORITES,
+    payload: favoriteOffers,
   }),
   removeFavorite: (favoriteOffer) => ({
     type: ActionType.REMOVE_FAVORITE,
@@ -30,14 +30,6 @@ const ActionCreator = {
 };
 
 const Operation = {
-  loadFavorites: () => (dispatch, getState, api) => {
-    return api.get(`/favorite`)
-      .then((response) => {
-        const favoriteOffers = Offer.parseOffers(response.data);
-        dispatch(ActionCreator.loadFavorites(favoriteOffers));
-      });
-  },
-
   addFavorite: () => (dispatch, getState, api) => {
     const status = 0.5;
     let id;
@@ -54,6 +46,14 @@ const Operation = {
       .then((response) => {
         const favoriteOffer = Offer.parseOffer(response.data);
         dispatch(ActionCreator.addFavorite(favoriteOffer));
+      });
+  },
+
+  loadFavorites: () => (dispatch, getState, api) => {
+    return api.get(`/favorite`)
+      .then((response) => {
+        const favoriteOffers = Offer.parseOffers(response.data);
+        dispatch(ActionCreator.loadFavorites(favoriteOffers));
       });
   },
 

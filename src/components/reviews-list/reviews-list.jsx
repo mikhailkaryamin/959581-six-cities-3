@@ -1,11 +1,13 @@
 import React, {
   PureComponent
 } from "react";
-import PropTypes from "prop-types";
-import Review from "../review/review.jsx";
+import {
+  arrayOf,
+} from "prop-types";
 import {
   commentsPropTypes
 } from "../../types.js";
+import Review from "../review/review.jsx";
 
 class ReviewsList extends PureComponent {
   constructor(props) {
@@ -31,7 +33,7 @@ class ReviewsList extends PureComponent {
 }
 
 ReviewsList.propTypes = {
-  comments: PropTypes.arrayOf(
+  comments: arrayOf(
       commentsPropTypes
   ).isRequired,
 };

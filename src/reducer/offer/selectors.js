@@ -1,9 +1,14 @@
 import NameSpace from '../name-space.js';
 
-export const getActiveOffer = (state) => {
+const getActiveOffer = (state) => {
   return state[NameSpace.OFFER].activeOffer;
 };
 
-export const getFocusOffer = (state) => {
+const getFocusOffer = (state) => {
   return state[NameSpace.OFFER].focusOffer;
+};
+
+export {
+  getActiveOffer,
+  getFocusOffer,
 };

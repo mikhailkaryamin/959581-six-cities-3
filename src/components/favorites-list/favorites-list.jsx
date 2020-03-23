@@ -1,11 +1,16 @@
 import React, {
   PureComponent
 } from 'react';
-import PropTypes from 'prop-types';
-import FavoriteItem from '../favorite-item/favorite-item.jsx';
+import {
+  array,
+  arrayOf,
+  func,
+  string,
+} from 'prop-types';
 import {
   getUniqueArray
 } from '../../utils.js';
+import FavoriteItem from '../favorite-item/favorite-item.jsx';
 
 class FavoritesList extends PureComponent {
   constructor(props) {
@@ -21,25 +26,27 @@ class FavoritesList extends PureComponent {
 
   render() {
     const {
+      currentCity,
       favorites,
       favoritesLocations,
-      currentCity,
       onCardHover,
       onCardLeave,
     } = this.props;
 
     return (
       <section className="favorites">
-        <h1 className="favorites__title">Saved listing</h1>
+        <h1 className="favorites__title">
+          Saved listing
+        </h1>
         <ul className="favorites__list">
           {favoritesLocations.map((location, i) => (
             <FavoriteItem
+              city={location}
+              key={location}
+              isCurrentCity={currentCity === location}
+              offers={this._getOffersForLocation(favorites, favoritesLocations[i])}
               onCardHover={onCardHover}
               onCardLeave={onCardLeave}
-              key={location}
-              city={location}
-              offers={this._getOffersForLocation(favorites, favoritesLocations[i])}
-              isCurrentCity={currentCity === location}
             />
           ))}
         </ul>
@@ -49,14 +56,13 @@ class FavoritesList extends PureComponent {
 }
 
 FavoritesList.propTypes = {
-  favorites: PropTypes.array.isRequired,
-  favoritesLocations: PropTypes
-    .arrayOf(
-        PropTypes.string
-    ).isRequired,
-  currentCity: PropTypes.string.isRequired,
-  onCardHover: PropTypes.func.isRequired,
-  onCardLeave: PropTypes.func.isRequired,
+  currentCity: string.isRequired,
+  favorites: array.isRequired,
+  favoritesLocations: arrayOf(
+      string
+  ).isRequired,
+  onCardHover: func.isRequired,
+  onCardLeave: func.isRequired,
 };
 
 export default FavoritesList;

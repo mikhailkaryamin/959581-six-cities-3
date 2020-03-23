@@ -31,10 +31,10 @@ class Review extends PureComponent {
     } = this.props;
 
     const {
-      user,
-      rating,
+      date,
       name,
-      date
+      rating,
+      user,
     } = comment;
 
     return (
@@ -75,4 +75,5 @@ class Review extends PureComponent {
 Review.propTypes = {
   comment: commentsPropTypes,
 };
+
 export default Review;

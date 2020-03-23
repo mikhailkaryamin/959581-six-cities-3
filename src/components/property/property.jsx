@@ -4,9 +4,13 @@ import React, {
 import {
   connect
 } from 'react-redux';
-import PropTypes from "prop-types";
 import {
-  ClassModificator
+  arrayOf,
+  func,
+  string,
+} from "prop-types";
+import {
+  ClassModificator,
 } from "../../consts.js";
 import {
   getComments,
@@ -25,15 +29,14 @@ import {
   AuthorizationStatus
 } from '../../reducer/user/user.js';
 import {
-  ONE_STAR,
-} from "../../consts.js";
-import {
   offerPropTypes,
   commentsPropTypes
 } from "../../types.js";
 import Reviews from "../reviews/reviews.jsx";
 import Map from "../map/map.jsx";
 import Places from "../places/places.jsx";
+import FavoriteButton from "../favorite-button/favorite-button.jsx";
+import Rating from '../rating/rating.jsx';
 
 class Property extends PureComponent {
   componentDidMount() {
@@ -49,31 +52,32 @@ class Property extends PureComponent {
   render() {
     const {
       activeOffer,
-      focusOffer,
+      authStatus,
       currentSort,
       comments,
+      focusOffer,
       offersNearby,
       onCardHover,
       onCommentSubmit,
       onCardLeave,
-      authStatus,
     } = this.props;
-
+    // Доделать карту
     if (offersNearby.length === 0 || activeOffer === null) {
       return ``;
     }
 
     const {
+      bedrooms,
+      goods,
+      host,
+      id,
       images,
       isPremium,
+      maxAdults,
       price,
       rating,
       title,
       type,
-      bedrooms,
-      maxAdults,
-      goods,
-      host,
     } = activeOffer;
 
     const isAuth = authStatus === AuthorizationStatus.AUTH;
@@ -92,35 +96,28 @@ class Property extends PureComponent {
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
-              {isPremium ?
+              {isPremium &&
                 <div className="property__mark">
                   <span>
                     Premium
                   </span>
                 </div>
-                :
-                ``
               }
               <div className="property__name-wrapper">
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <button className="property__bookmark-button button" type="button">
-                  <svg className="property__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <FavoriteButton
+                  classModificator={ClassModificator.PROPERTY}
+                  id={id}
+                  height={33}
+                  width={31}
+                />
               </div>
-              <div className="property__rating rating">
-                <div className="property__stars rating__stars">
-                  <span style={{width: `${ONE_STAR * rating}%`}}></span>
-                  <span className="visually-hidden">Rating</span>
-                </div>
-                <span className="property__rating-value rating__value">
-                  {rating}
-                </span>
-              </div>
+              <Rating
+                classModificator={ClassModificator.PROPERTY}
+                rating={rating}
+              />
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
                   {type}
@@ -164,9 +161,9 @@ class Property extends PureComponent {
                 </div>
               </div>
               {<Reviews
+                comments={comments}
                 isAuth={isAuth}
                 onCommentSubmit={onCommentSubmit}
-                comments={comments}
               />}
             </div>
           </div>
@@ -191,23 +188,23 @@ class Property extends PureComponent {
 }
 
 Property.propTypes = {
-  offersCurrentCity: PropTypes.arrayOf(
-      offerPropTypes
-  ),
   activeOffer: offerPropTypes.isRequired,
-  focusOffer: offerPropTypes,
-  currentSort: PropTypes.string.isRequired,
-  offersNearby: PropTypes.arrayOf(
-      offerPropTypes
-  ).isRequired,
-  comments: PropTypes.arrayOf(
+  authStatus: string.isRequired,
+  currentSort: string.isRequired,
+  comments: arrayOf(
       commentsPropTypes
   ),
-  authStatus: PropTypes.string.isRequired,
-  onCommentSubmit: PropTypes.func.isRequired,
-  onCardHover: PropTypes.func.isRequired,
-  onCardLeave: PropTypes.func.isRequired,
-  onLoadDataProperty: PropTypes.func.isRequired,
+  focusOffer: offerPropTypes,
+  offersNearby: arrayOf(
+      offerPropTypes
+  ).isRequired,
+  offersCurrentCity: arrayOf(
+      offerPropTypes
+  ),
+  onCommentSubmit: func.isRequired,
+  onCardHover: func.isRequired,
+  onCardLeave: func.isRequired,
+  onLoadDataProperty: func.isRequired,
 };
 
 Property.defaultProps = {
@@ -217,9 +214,9 @@ Property.defaultProps = {
 
 const mapStateToProps = (state) => ({
   activeOffer: getActiveOffer(state),
+  authStatus: getAuthorizationStatus(state),
   comments: getComments(state),
   offersNearby: getOffersNearby(state),
-  authStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

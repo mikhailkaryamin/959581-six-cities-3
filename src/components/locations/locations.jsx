@@ -1,11 +1,15 @@
 import React from "react";
-import PropTypes from "prop-types";
+import {
+  arrayOf,
+  func,
+  string,
+} from "prop-types";
 
 const Locations = (props) => {
   const {
+    currentCity,
     locations,
     handleLocationClick,
-    currentCity,
   } = props;
   return (
     <div className="tabs">
@@ -39,11 +43,11 @@ const Locations = (props) => {
 };
 
 Locations.propTypes = {
-  locations: PropTypes.arrayOf(
-      PropTypes.string.isRequired
+  currentCity: string.isRequired,
+  locations: arrayOf(
+      string.isRequired
   ).isRequired,
-  handleLocationClick: PropTypes.func.isRequired,
-  currentCity: PropTypes.string.isRequired,
+  handleLocationClick: func.isRequired,
 };
 
 export default Locations;

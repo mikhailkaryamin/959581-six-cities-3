@@ -1,5 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
+import {
+  arrayOf,
+  bool,
+  func,
+} from "prop-types";
 import {
   commentsPropTypes
 } from "../../types.js";
@@ -12,17 +16,17 @@ const ReviewsFormWrapped = withCommentData(ReviewsForm);
 const Reviews = (props) => {
   const {
     comments,
-    onCommentSubmit,
     isAuth,
+    onCommentSubmit,
   } = props;
 
-  const NUMBER_REVIEWS = comments.length;
+  const NUMBER_COMMENTS = comments.length;
 
   return (
     <section className="property__reviews reviews">
       <h2 className="reviews__title">Reviews &middot;
         <span className="reviews__amount">
-          {NUMBER_REVIEWS}
+          {NUMBER_COMMENTS}
         </span>
       </h2>
       {<ReviewsList
@@ -30,6 +34,7 @@ const Reviews = (props) => {
       />}
       {isAuth &&
         <ReviewsFormWrapped
+          numberComments={NUMBER_COMMENTS}
           onCommentSubmit={onCommentSubmit}
         />
       }
@@ -38,11 +43,11 @@ const Reviews = (props) => {
 };
 
 Reviews.propTypes = {
-  comments: PropTypes.arrayOf(
+  comments: arrayOf(
       commentsPropTypes
   ),
-  onCommentSubmit: PropTypes.func.isRequired,
-  isAuth: PropTypes.bool.isRequired,
+  isAuth: bool.isRequired,
+  onCommentSubmit: func.isRequired,
 };
 
 export default Reviews;

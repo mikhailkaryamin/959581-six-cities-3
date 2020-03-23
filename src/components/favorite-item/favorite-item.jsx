@@ -1,5 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {
+  arrayOf,
+  func,
+  bool,
+  string,
+} from 'prop-types';
 import {
   offerPropTypes
 } from '../../types.js';
@@ -25,7 +30,9 @@ const FavoriteItem = (props) => {
       <div className={`favorites__locations locations ${isCurrentCity ? `locations--current` : ``}`}>
         <div className="locations__item">
           <a className="locations__item-link" href="#">
-            <span>{city}</span>
+            <span>
+              {city}
+            </span>
           </a>
         </div>
       </div>
@@ -45,13 +52,12 @@ const FavoriteItem = (props) => {
 };
 
 FavoriteItem.propTypes = {
-  isCurrentCity: PropTypes.bool.isRequired,
-  city: PropTypes.string.isRequired,
-  offers: PropTypes
-      .arrayOf(offerPropTypes)
+  city: string.isRequired,
+  isCurrentCity: bool.isRequired,
+  offers: arrayOf(offerPropTypes)
       .isRequired,
-  onCardHover: PropTypes.func.isRequired,
-  onCardLeave: PropTypes.func.isRequired,
+  onCardHover: func.isRequired,
+  onCardLeave: func.isRequired,
 };
 
 export default FavoriteItem;

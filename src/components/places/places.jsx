@@ -2,7 +2,11 @@ import React,
 {
   PureComponent
 } from "react";
-import PropTypes from "prop-types";
+import {
+  arrayOf,
+  func,
+  string,
+} from "prop-types";
 import {
   ClassModificator
 } from "../../consts.js";
@@ -26,9 +30,9 @@ class Places extends PureComponent {
       currentCityOffers,
       currentSort,
       currentCity,
+      handleSortChange,
       onCardHover,
       onCardLeave,
-      handleSortChange,
     } = this.props;
 
     const AVAILABLE_OFFERS = currentCityOffers.length;
@@ -46,8 +50,8 @@ class Places extends PureComponent {
               }
             </b>
             {<PlacesSortWrapped
-              handleSortChange={handleSortChange}
               currentSort={currentSort}
+              handleSortChange={handleSortChange}
             />}
             {<PlacesCardList
               classModificator={ClassModificator.CITIES_PLACES_LIST}
@@ -78,15 +82,15 @@ class Places extends PureComponent {
 }
 
 Places.propTypes = {
-  currentCityOffers: PropTypes.arrayOf(
+  classModificator: string.isRequired,
+  currentCityOffers: arrayOf(
       offerPropTypes
   ).isRequired,
-  classModificator: PropTypes.string.isRequired,
-  currentSort: PropTypes.string,
-  onCardHover: PropTypes.func.isRequired,
-  onCardLeave: PropTypes.func.isRequired,
-  handleSortChange: PropTypes.func,
-  currentCity: PropTypes.string,
+  currentSort: string,
+  currentCity: string,
+  handleSortChange: func,
+  onCardHover: func.isRequired,
+  onCardLeave: func.isRequired,
 };
 
 Places.defaultProps = {

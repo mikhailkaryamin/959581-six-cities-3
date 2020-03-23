@@ -6,16 +6,16 @@ import {
 } from '../../utils.js';
 import NameSpace from '../name-space.js';
 
-const getOffers = (state) => {
-  return state[NameSpace.DATA].offers;
-};
-
 const getCurrentCity = (state) => {
   return state[NameSpace.CITY].currentCity;
 };
 
 const getComments = (state) => {
   return state[NameSpace.DATA].comments;
+};
+
+const getOffers = (state) => {
+  return state[NameSpace.DATA].offers;
 };
 
 const getOffersNearby = (state) => {

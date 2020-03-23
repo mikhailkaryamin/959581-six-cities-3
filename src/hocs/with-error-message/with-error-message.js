@@ -1,7 +1,10 @@
 import React, {
   PureComponent
 } from 'react';
-import PropTypes from 'prop-types';
+import {
+  func,
+  number,
+} from 'prop-types';
 import ErrorMessage from '../../components/error-message/error-message.jsx';
 
 const withErrorMessage = (Component) => {
@@ -23,8 +26,8 @@ const withErrorMessage = (Component) => {
 
     render() {
       const {
-        responseStatus,
         onResetError,
+        responseStatus,
       } = this.props;
 
       return (
@@ -43,8 +46,8 @@ const withErrorMessage = (Component) => {
   }
 
   WithErrorMessage.propTypes = {
-    responseStatus: PropTypes.number,
-    onResetError: PropTypes.func.isRequired,
+    responseStatus: number,
+    onResetError: func.isRequired,
   };
 
   return WithErrorMessage;

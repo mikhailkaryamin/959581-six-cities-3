@@ -1,5 +1,7 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import {
+  bool,
+} from 'prop-types';
 import {
   Link
 } from 'react-router-dom';
@@ -54,8 +56,8 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
+  isAuth: bool.isRequired,
   user: userPropTypes,
-  isAuth: PropTypes.bool.isRequired,
 };
 
 export default Header;

@@ -5,7 +5,11 @@ import {
 import {
   connect
 } from 'react-redux';
-import PropTypes from 'prop-types';
+import {
+  bool,
+  func,
+  string,
+} from 'prop-types';
 import {
   AppRoute
 } from '../../consts.js';
@@ -18,10 +22,10 @@ import {
 
 const RouteForFavorites = (props) => {
   const {
-    render,
-    path,
+    authStatus,
     exact,
-    authStatus
+    path,
+    render,
   } = props;
 
   const isAuth = authStatus === AuthorizationStatus.AUTH;
@@ -48,10 +52,10 @@ const RouteForFavorites = (props) => {
 };
 
 RouteForFavorites.propTypes = {
-  authStatus: PropTypes.string.isRequired,
-  exact: PropTypes.bool.isRequired,
-  path: PropTypes.string.isRequired,
-  render: PropTypes.func.isRequired,
+  authStatus: string.isRequired,
+  exact: bool.isRequired,
+  path: string.isRequired,
+  render: func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

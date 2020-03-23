@@ -2,7 +2,11 @@ import React, {
   PureComponent,
   createRef
 } from "react";
-import PropTypes from 'prop-types';
+import {
+  func,
+  number,
+  string,
+} from 'prop-types';
 import {
   STARS
 } from "../../consts.js";
@@ -11,7 +15,6 @@ class ReviewsForm extends PureComponent {
   constructor(props) {
     super(props);
     this._submitButtonRef = createRef();
-    this._handleSubmit = this._handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -20,22 +23,6 @@ class ReviewsForm extends PureComponent {
 
   componentDidUpdate() {
     this._checkSubmitDisabled();
-  }
-
-  _handleSubmit(evt) {
-    evt.preventDefault();
-
-    this._submitButtonRef.current.disabled = true;
-
-    const {
-      rating,
-      comment,
-    } = this.props;
-
-    this.props.onCommentSubmit({
-      rating,
-      text: comment,
-    });
   }
 
   _checkSubmitDisabled() {
@@ -55,6 +42,7 @@ class ReviewsForm extends PureComponent {
     const {
       comment,
       onChange,
+      onSubmit
     } = this.props;
 
     return (
@@ -62,7 +50,7 @@ class ReviewsForm extends PureComponent {
         className="reviews__form form"
         action="#"
         method="post"
-        onSubmit={this._handleSubmit}
+        onSubmit={onSubmit}
       >
         <label className="reviews__label form__label" htmlFor="review">Your review</label>
         <div className="reviews__rating-form form__rating">
@@ -97,7 +85,12 @@ class ReviewsForm extends PureComponent {
         />
         <div className="reviews__button-wrapper">
           <p className="reviews__help">
-            To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
+              To submit review please make sure to set
+            <span className="reviews__star">rating</span>
+              and describe your stay with at least
+            <b className="reviews__text-amount">
+              50 characters
+            </b>.
           </p>
           <button
             className="reviews__submit form__submit button"
@@ -115,10 +108,12 @@ class ReviewsForm extends PureComponent {
 
 
 ReviewsForm.propTypes = {
-  rating: PropTypes.number.isRequired,
-  comment: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onCommentSubmit: PropTypes.func.isRequired
+  comment: string.isRequired,
+  numberComments: number.isRequired,
+  onChange: func.isRequired,
+  onCommentSubmit: func.isRequired,
+  onSubmit: func.isRequired,
+  rating: number.isRequired,
 };
 
 export default ReviewsForm;

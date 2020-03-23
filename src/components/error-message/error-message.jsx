@@ -1,7 +1,10 @@
 import React, {
   PureComponent
 } from 'react';
-import PropTypes from 'prop-types';
+import {
+  func,
+  number,
+} from 'prop-types';
 
 const Styles = {
   ErrorMessage: {
@@ -87,8 +90,8 @@ class ErrorMessage extends PureComponent {
 }
 
 ErrorMessage.propTypes = {
-  errorCode: PropTypes.number.isRequired,
-  onErrorReset: PropTypes.func.isRequired,
+  errorCode: number.isRequired,
+  onErrorReset: func.isRequired,
 };
 
 export default ErrorMessage;

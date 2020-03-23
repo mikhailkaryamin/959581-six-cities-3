@@ -2,7 +2,14 @@ import React,
 {
   PureComponent
 } from 'react';
-import PropTypes from 'prop-types';
+import {
+  func,
+  string,
+} from 'prop-types';
+import {
+  TypeInputLogin
+} from '../../consts.js';
+import LoginInput from '../login-input/login-input.jsx';
 
 class LoginForm extends PureComponent {
   constructor(props) {
@@ -37,29 +44,30 @@ class LoginForm extends PureComponent {
         onSubmit={this._handleSubmit}
       >
         <div className="login__input-wrapper form__input-wrapper">
-          <label className="visually-hidden">E-mail</label>
-          <input className="login__input form__input"
-            type="email"
-            name="email"
-            placeholder="Email"
+          <label className="visually-hidden">
+            E-mail
+          </label>
+          <LoginInput
+            onChange={onChange}
+            type={TypeInputLogin.EMAIL}
             value={login}
-            onChange={onChange}
-            required
           />
-          <input className="login__input form__input"
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={password}
+        </div>
+        <div className="login__input-wrapper form__input-wrapper">
+          <label className="visually-hidden">
+            Password
+          </label>
+          <LoginInput
             onChange={onChange}
-            required
+            type={TypeInputLogin.PASSWORD}
+            value={password}
           />
         </div>
         <button
-          className="login__submit form__submit button" 
+          className="login__submit form__submit button"
           type="submit"
         >
-              Sign in
+          Sign in
         </button>
       </form>
     );
@@ -67,10 +75,10 @@ class LoginForm extends PureComponent {
 }
 
 LoginForm.propTypes = {
-  login: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  signIn: PropTypes.func.isRequired,
+  login: string.isRequired,
+  password: string.isRequired,
+  onChange: func.isRequired,
+  signIn: func.isRequired,
 };
 
 export default LoginForm;

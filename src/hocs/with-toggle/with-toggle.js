@@ -10,6 +10,7 @@ const withToggle = (Component) => {
       this.state = {
         isActive: false
       };
+      this._handleToggleClick = this._handleToggleClick.bind(this);
     }
 
     _handleToggleClick() {
@@ -29,9 +30,7 @@ const withToggle = (Component) => {
         <Component
           {...this.props}
           isActive={isActive}
-          onToggleClick={() => {
-            this._handleToggleClick();
-          }}
+          onToggleClick={this._handleToggleClick}
         />
       );
     }

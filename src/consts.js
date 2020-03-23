@@ -1,9 +1,18 @@
+const AppRoute = {
+  ROOT: `/`,
+  OFFER: `/offer/:id`,
+  LOGIN: `/login`,
+  FAVORITE: `/favorite/`,
+};
+
 const ClassModificator = {
   CITIES: `cities`,
   CITIES_MAP: `cities__map`,
   CITIES_PLACES: `cities__places`,
   CITIES_PLACES_LIST: `cities__places-list tabs__content`,
   PROPERTY_MAP: `property__map`,
+  PROPERTY: `property`,
+  PLACE_CARD: `place-card`,
   NEAR_PLACES: `near-places`,
   NEAR_PLACES_LIST: `near-places__list`,
   FAVORITES: `favorites`,
@@ -26,11 +35,9 @@ const TypeSort = {
   TOP_RATED_FIRST: `Top rated first`,
 };
 
-const AppRoute = {
-  ROOT: `/`,
-  OFFER: `/offer/:id`,
-  LOGIN: `/login`,
-  FAVORITE: `/favorite/`,
+const TypeInputLogin = {
+  EMAIL: `email`,
+  PASSWORD: `password`,
 };
 
 const MS_IN_WEEK = 604800000;
@@ -47,4 +54,5 @@ export {
   AppRoute,
   TypeSort,
   ClassModificator,
+  TypeInputLogin,
 };

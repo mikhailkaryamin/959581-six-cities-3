@@ -1,7 +1,12 @@
 import React, {
   PureComponent
 } from 'react';
-import PropTypes from 'prop-types';
+import {
+  array,
+  arrayOf,
+  func,
+  string,
+} from 'prop-types';
 import {
   connect
 } from 'react-redux';
@@ -44,13 +49,13 @@ class Favorites extends PureComponent {
 
   render() {
     const {
+      authStatus,
+      currentCity,
       favorites,
       favoritesLocations,
-      currentCity,
-      authStatus,
-      user,
       onCardHover,
       onCardLeave,
+      user,
     } = this.props;
 
     const isEmpty = favorites.length === 0;
@@ -70,11 +75,11 @@ class Favorites extends PureComponent {
               }
               {isEmpty ||
                 <FavoritesList
-                  onCardHover={onCardHover}
-                  onCardLeave={onCardLeave}
+                  currentCity={currentCity}
                   favorites={favorites}
                   favoritesLocations={favoritesLocations}
-                  currentCity={currentCity}
+                  onCardHover={onCardHover}
+                  onCardLeave={onCardLeave}
                 />
               }
             </div>
@@ -97,26 +102,26 @@ class Favorites extends PureComponent {
 }
 
 Favorites.propTypes = {
+  authStatus: string.isRequired,
+  currentCity: string.isRequired,
+  favorites: array.isRequired,
+  favoritesLocations: arrayOf(
+      string
+  ).isRequired,
+  onCardHover: func.isRequired,
+  onCardLeave: func.isRequired,
   user: userPropTypes,
-  authStatus: PropTypes.string.isRequired,
-  favorites: PropTypes.array.isRequired,
-  favoritesLocations: PropTypes
-    .arrayOf(
-        PropTypes.string
-    ).isRequired,
-  currentCity: PropTypes.string.isRequired,
-  onCardHover: PropTypes.func.isRequired,
-  onCardLeave: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
+  authStatus: getAuthorizationStatus(state),
   favorites: getFavorites(state),
   favoritesLocations: getFavoritesLocations(state),
-  authStatus: getAuthorizationStatus(state),
   user: getUser(state),
 });
 
 export {
   Favorites
 };
+
 export default connect(mapStateToProps)(Favorites);

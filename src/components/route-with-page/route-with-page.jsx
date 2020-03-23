@@ -7,7 +7,13 @@ import {
 import {
   connect
 } from 'react-redux';
-import PropTypes from 'prop-types';
+import {
+  arrayOf,
+  bool,
+  element,
+  func,
+  string,
+} from 'prop-types';
 import {
   getAuthorizationStatus,
   getUser,
@@ -47,10 +53,10 @@ class RouteWithPage extends PureComponent {
 
   render() {
     const {
-      component,
-      path,
-      exact,
       authStatus,
+      component,
+      exact,
+      path,
       user,
     } = this.props;
 
@@ -85,8 +91,8 @@ class RouteWithPage extends PureComponent {
           return (
             <Page
               className={className}
-              user={user}
               isAuth={isAuth}
+              user={user}
             >
               {component}
             </Page>
@@ -98,20 +104,20 @@ class RouteWithPage extends PureComponent {
 }
 
 RouteWithPage.propTypes = {
-  component: PropTypes.element.isRequired,
-  exact: PropTypes.bool.isRequired,
-  path: PropTypes.string.isRequired,
-  authStatus: PropTypes.string,
-  user: userPropTypes,
-  onSetActiveOffer: PropTypes.func.isRequired,
-  initialOffers: PropTypes.arrayOf(
+  authStatus: string,
+  component: element.isRequired,
+  exact: bool.isRequired,
+  initialOffers: arrayOf(
       offerPropTypes
   ).isRequired,
+  onSetActiveOffer: func.isRequired,
+  path: string.isRequired,
+  user: userPropTypes,
 };
 
 const mapStateToProps = (state) => ({
-  initialOffers: getOffers(state),
   authStatus: getAuthorizationStatus(state),
+  initialOffers: getOffers(state),
   user: getUser(state),
 });
 

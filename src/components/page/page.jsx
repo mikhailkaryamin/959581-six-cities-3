@@ -1,5 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
+import {
+  bool,
+  element,
+  string,
+} from "prop-types";
 import {
   userPropTypes
 } from '../../types.js';
@@ -8,9 +12,9 @@ import Header from "../header/header.jsx";
 const Page = (props) => {
   const {
     className,
+    children,
     isAuth,
     user,
-    children
   } = props;
 
   return (
@@ -25,9 +29,9 @@ const Page = (props) => {
 };
 
 Page.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.element,
-  isAuth: PropTypes.bool.isRequired,
+  className: string,
+  children: element,
+  isAuth: bool.isRequired,
   user: userPropTypes,
 };
 

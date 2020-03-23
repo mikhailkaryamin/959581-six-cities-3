@@ -2,7 +2,10 @@ import React,
 {
   PureComponent
 } from 'react';
-import PropTypes from 'prop-types';
+import {
+  func,
+  number,
+} from 'prop-types';
 
 const withCommentData = (Component) => {
   class WithCommentData extends PureComponent {
@@ -14,6 +17,15 @@ const withCommentData = (Component) => {
       };
       this._handleChange = this._handleChange.bind(this);
       this._handleSubmit = this._handleSubmit.bind(this);
+    }
+
+    componentDidUpdate(prevProps) {
+      if (prevProps.numberComments < this.props.numberComments) {
+        this.setState({
+          rating: 0,
+          comment: ``
+        });
+      }
     }
 
     _handleChange({currentTarget}) {
@@ -30,7 +42,9 @@ const withCommentData = (Component) => {
       }
     }
 
-    _handleSubmit() {
+    _handleSubmit(evt) {
+      evt.preventDefault();
+
       const {
         rating,
         comment,
@@ -47,23 +61,25 @@ const withCommentData = (Component) => {
 
     render() {
       const {
+        comment,
         rating,
-        comment
       } = this.state;
+
       return (
         <Component
           {...this.props}
-          rating={rating}
           comment={comment}
           onChange={this._handleChange}
           onSubmit={this._handleSubmit}
+          rating={rating}
         />
       );
     }
   }
 
   WithCommentData.propTypes = {
-    onCommentSubmit: PropTypes.func.isRequired,
+    numberComments: number.isRequired,
+    onCommentSubmit: func.isRequired,
   };
 
   return WithCommentData;

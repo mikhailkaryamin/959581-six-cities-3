@@ -1,7 +1,11 @@
 import React, {
   PureComponent
 } from "react";
-import PropTypes from "prop-types";
+import {
+  arrayOf,
+  func,
+  string,
+} from "prop-types";
 import {
   offerPropTypes
 } from "../../types.js";
@@ -42,17 +46,15 @@ class PlacesCardList extends PureComponent {
       classModificator,
       onCardHover,
       onCardLeave,
-      handleActiveItem
     } = this.props;
 
     const places = this._sortBy().map((offer) =>
       <PlaceCardWrapped
+        classModificator={ClassModificator.CITIES}
         key={`${offer.id}`}
         offer={offer}
         onCardHover={onCardHover}
         onCardLeave={onCardLeave}
-        handleActiveItem={handleActiveItem}
-        classModificator={ClassModificator.CITIES}
       />);
 
     return (
@@ -66,13 +68,13 @@ class PlacesCardList extends PureComponent {
 }
 
 PlacesCardList.propTypes = {
-  currentCityOffers: PropTypes.arrayOf(
+  classModificator: string,
+  currentCityOffers: arrayOf(
       offerPropTypes
   ).isRequired,
-  classModificator: PropTypes.string,
-  currentSort: PropTypes.string.isRequired,
-  onCardHover: PropTypes.func.isRequired,
-  onCardLeave: PropTypes.func.isRequired,
+  currentSort: string.isRequired,
+  onCardHover: func.isRequired,
+  onCardLeave: func.isRequired,
 };
 
 PlacesCardList.defaultProps = {

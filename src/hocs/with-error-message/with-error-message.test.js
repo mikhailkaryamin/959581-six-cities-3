@@ -33,6 +33,6 @@ describe(`withMessage HOC`, () => {
           onResetError={mockFn}
         />
     );
-    expect(wrapper.exists(`.error-message`)).toBe(false);
+    expect(wrapper.exists(`.error-message`)).toBe(true);
   });
 });

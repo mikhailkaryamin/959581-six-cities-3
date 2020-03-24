@@ -17,10 +17,10 @@ const withErrorMessage = (Component) => {
       const firstNumber = responseStatus
         .toString()[0];
 
-      if (firstNumber === `4`) {
-        return true;
-      } else {
+      if (firstNumber === `2`) {
         return false;
+      } else {
+        return true;
       }
     }
 

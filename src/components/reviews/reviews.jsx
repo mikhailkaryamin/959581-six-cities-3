@@ -12,6 +12,7 @@ import ReviewsList from "../reviews-list/reviews-list.jsx";
 import ReviewsForm from "../reviews-form/reviews-form.jsx";
 import withCommentData from '../../hocs/with-comment-data/with-comment-data.js';
 
+
 const ReviewsFormWrapped = withCommentData(ReviewsForm);
 
 const Reviews = (props) => {
@@ -20,6 +21,7 @@ const Reviews = (props) => {
     countComments,
     isAuth,
     onCommentSubmit,
+    responseStatus,
   } = props;
 
   return (
@@ -36,6 +38,7 @@ const Reviews = (props) => {
         <ReviewsFormWrapped
           countComments={countComments}
           onCommentSubmit={onCommentSubmit}
+          responseStatus={responseStatus}
         />
       }
     </section>
@@ -49,6 +52,7 @@ Reviews.propTypes = {
   countComments: number.isRequired,
   isAuth: bool.isRequired,
   onCommentSubmit: func.isRequired,
+  responseStatus: number,
 };
 
 export default Reviews;

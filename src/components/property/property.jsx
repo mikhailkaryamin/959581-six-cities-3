@@ -63,6 +63,7 @@ class Property extends PureComponent {
       onCardHover,
       onCommentSubmit,
       onCardLeave,
+      responseStatus,
     } = this.props;
 
     const isLoading = offersNearby.length === 0 || activeOffer === null;
@@ -176,6 +177,7 @@ class Property extends PureComponent {
                 countComments={countComments}
                 isAuth={isAuth}
                 onCommentSubmit={onCommentSubmit}
+                responseStatus={responseStatus}
               />}
             </div>
           </div>
@@ -219,6 +221,7 @@ Property.propTypes = {
   onCardHover: func.isRequired,
   onCardLeave: func.isRequired,
   onLoadDataProperty: func.isRequired,
+  responseStatus: number,
 };
 
 Property.defaultProps = {

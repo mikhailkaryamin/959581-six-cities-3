@@ -20,7 +20,7 @@ import {
   getAuthorizationStatus,
 } from '../../reducer/user/selectors.js';
 
-const RouteForFavorites = (props) => {
+const PrivateRoute = (props) => {
   const {
     authStatus,
     exact,
@@ -51,7 +51,7 @@ const RouteForFavorites = (props) => {
   );
 };
 
-RouteForFavorites.propTypes = {
+PrivateRoute.propTypes = {
   authStatus: string.isRequired,
   exact: bool.isRequired,
   path: string.isRequired,
@@ -63,7 +63,7 @@ const mapStateToProps = (state) => ({
 });
 
 export {
-  RouteForFavorites
+  PrivateRoute
 };
 
-export default connect(mapStateToProps)(RouteForFavorites);
+export default connect(mapStateToProps)(PrivateRoute);

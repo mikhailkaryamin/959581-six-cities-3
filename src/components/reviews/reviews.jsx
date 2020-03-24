@@ -3,6 +3,7 @@ import {
   arrayOf,
   bool,
   func,
+  number,
 } from "prop-types";
 import {
   commentsPropTypes
@@ -16,17 +17,16 @@ const ReviewsFormWrapped = withCommentData(ReviewsForm);
 const Reviews = (props) => {
   const {
     comments,
+    countComments,
     isAuth,
     onCommentSubmit,
   } = props;
-
-  const NUMBER_COMMENTS = comments.length;
 
   return (
     <section className="property__reviews reviews">
       <h2 className="reviews__title">Reviews &middot;
         <span className="reviews__amount">
-          {NUMBER_COMMENTS}
+          {countComments}
         </span>
       </h2>
       {<ReviewsList
@@ -34,7 +34,7 @@ const Reviews = (props) => {
       />}
       {isAuth &&
         <ReviewsFormWrapped
-          numberComments={NUMBER_COMMENTS}
+          countComments={countComments}
           onCommentSubmit={onCommentSubmit}
         />
       }
@@ -46,6 +46,7 @@ Reviews.propTypes = {
   comments: arrayOf(
       commentsPropTypes
   ),
+  countComments: number.isRequired,
   isAuth: bool.isRequired,
   onCommentSubmit: func.isRequired,
 };

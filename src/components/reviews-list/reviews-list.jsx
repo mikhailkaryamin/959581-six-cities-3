@@ -7,7 +7,7 @@ import {
 import {
   commentsPropTypes
 } from "../../types.js";
-import Review from "../review/review.jsx";
+import ReviewItem from "../review-item/review-item.jsx";
 
 class ReviewsList extends PureComponent {
   constructor(props) {
@@ -21,12 +21,14 @@ class ReviewsList extends PureComponent {
 
     return (
       <ul className="reviews__list">
-        {comments.map((comment) =>
-          <Review
-            key={`${comment.id}`}
-            comment={comment}
-          />
-        )}
+        {comments
+          .reverse()
+          .map((comment) =>
+            <ReviewItem
+              key={`${comment.id}`}
+              comment={comment}
+            />
+          )}
       </ul>
     );
   }

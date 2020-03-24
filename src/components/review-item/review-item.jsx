@@ -8,7 +8,7 @@ import {
   ONE_STAR
 } from "../../consts.js";
 
-class Review extends PureComponent {
+class ReviewItem extends PureComponent {
   constructor(props) {
     super(props);
   }
@@ -32,7 +32,6 @@ class Review extends PureComponent {
 
     const {
       date,
-      name,
       rating,
       user,
     } = comment;
@@ -50,7 +49,7 @@ class Review extends PureComponent {
             />
           </div>
           <span className="reviews__user-name">
-            {name}
+            {user.name}
           </span>
         </div>
         <div className="reviews__info">
@@ -72,8 +71,8 @@ class Review extends PureComponent {
   }
 }
 
-Review.propTypes = {
+ReviewItem.propTypes = {
   comment: commentsPropTypes,
 };
 
-export default Review;
+export default ReviewItem;

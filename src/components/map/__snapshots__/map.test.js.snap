@@ -2,6 +2,6 @@
 
 exports[`Render map correctly 1`] = `
 <section
-  className="map "
+  className="map undefined"
 />
 `;

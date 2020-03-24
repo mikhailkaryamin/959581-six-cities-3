@@ -42,7 +42,8 @@ class ReviewsForm extends PureComponent {
     const {
       comment,
       onChange,
-      onSubmit
+      onSubmit,
+      rating,
     } = this.props;
 
     return (
@@ -61,6 +62,7 @@ class ReviewsForm extends PureComponent {
                 value={numberStars}
                 id={`${numberStars}-stars`}
                 type="radio"
+                checked={rating === numberStars}
                 onChange={onChange}
               />
               <label

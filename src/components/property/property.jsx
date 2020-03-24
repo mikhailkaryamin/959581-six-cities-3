@@ -8,13 +8,15 @@ import {
   arrayOf,
   func,
   string,
+  number,
 } from "prop-types";
 import {
   ClassModificator,
 } from "../../consts.js";
 import {
-  getComments,
+  getCommentsByShow,
   getOffersNearby,
+  getCountComments,
 } from '../../reducer/data/selectors.js';
 import {
   getActiveOffer,
@@ -55,6 +57,7 @@ class Property extends PureComponent {
       authStatus,
       currentSort,
       comments,
+      countComments,
       focusOffer,
       offersNearby,
       onCardHover,
@@ -170,6 +173,7 @@ class Property extends PureComponent {
               </div>
               {<Reviews
                 comments={comments}
+                countComments={countComments}
                 isAuth={isAuth}
                 onCommentSubmit={onCommentSubmit}
               />}
@@ -203,6 +207,7 @@ Property.propTypes = {
   comments: arrayOf(
       commentsPropTypes
   ),
+  countComments: number.isRequired,
   focusOffer: offerPropTypes,
   offersNearby: arrayOf(
       offerPropTypes
@@ -224,7 +229,8 @@ Property.defaultProps = {
 const mapStateToProps = (state) => ({
   activeOffer: getActiveOffer(state),
   authStatus: getAuthorizationStatus(state),
-  comments: getComments(state),
+  comments: getCommentsByShow(state),
+  countComments: getCountComments(state),
   offersNearby: getOffersNearby(state),
 });
 

@@ -27,11 +27,13 @@ const comments = [
 ];
 const isAuth = true;
 const onCommentSubmit = () => {};
+const countComments = 3;
 
 test(`Render reviews`, () => {
   const tree = shallow(
       <Reviews
         comments={comments}
+        countComments={countComments}
         isAuth={isAuth}
         onCommentSubmit={onCommentSubmit}
       />

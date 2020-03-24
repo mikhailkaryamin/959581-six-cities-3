@@ -5,11 +5,16 @@ import React, {
 import {
   arrayOf,
   string,
+  shape,
+  number,
 } from "prop-types";
 import leaflet from "leaflet";
 import {
   offerPropTypes,
 } from "../../types.js";
+import {
+  ClassModificator
+} from '../../consts.js';
 
 class Map extends PureComponent {
   constructor(props) {
@@ -19,11 +24,15 @@ class Map extends PureComponent {
     this._markers = {};
     this._iconActive = leaflet.icon({
       iconUrl: `../img/pin-active.svg`,
-      iconSize: [30, 30]
+      iconSize: [30, 35]
     });
     this._iconDefault = leaflet.icon({
       iconUrl: `../img/pin.svg`,
-      iconSize: [30, 30]
+      iconSize: [30, 35]
+    });
+    this._iconCurrentOffer = leaflet.icon({
+      iconUrl: `../img/pin-current-offer.svg`,
+      iconSize: [37, 42]
     });
   }
 
@@ -31,7 +40,9 @@ class Map extends PureComponent {
     const mapRef = this._mapRef.current;
     if (mapRef) {
       const {
-        currentCityOffers
+        currentCityOffers,
+        classModificator,
+        currentOfferCoordinate,
       } = this.props;
 
       const COORDINATES = this._getCoordinates(currentCityOffers);
@@ -51,6 +62,12 @@ class Map extends PureComponent {
         .marker(markerCoordinate, {icon: this._iconDefault})
         .addTo(this._map)
       );
+
+      if (classModificator === ClassModificator.PROPERTY_MAP) {
+        this._markers.push(leaflet
+        .marker(currentOfferCoordinate, {icon: this._iconCurrentOffer})
+        .addTo(this._map));
+      }
     }
   }
 
@@ -58,6 +75,8 @@ class Map extends PureComponent {
     const {
       focusOffer,
       currentCityOffers,
+      classModificator,
+      currentOfferCoordinate,
     } = this.props;
 
     const CURRENT_CITY = this._getCurrentCityCoordinate(currentCityOffers);
@@ -69,7 +88,6 @@ class Map extends PureComponent {
     if (focusOffer !== null) {
       const COORDINATES_WITH_ID = this._getCoordinatesWithID(currentCityOffers);
       const FOCUS_OFFER_ID = focusOffer.id;
-
       this._markers = COORDINATES_WITH_ID.map((markerCoordinate) => {
         if (markerCoordinate.id !== FOCUS_OFFER_ID) {
           return leaflet
@@ -89,6 +107,12 @@ class Map extends PureComponent {
           .marker(coordinate, {icon: this._iconDefault})
           .addTo(this._map)
       );
+    }
+
+    if (classModificator === ClassModificator.PROPERTY_MAP) {
+      this._markers.push(leaflet
+      .marker(currentOfferCoordinate, {icon: this._iconCurrentOffer})
+      .addTo(this._map));
     }
   }
 
@@ -160,10 +184,10 @@ Map.propTypes = {
       offerPropTypes
   ).isRequired,
   focusOffer: offerPropTypes,
-};
-
-Map.defaultProps = {
-  classModificator: ``,
+  currentOfferCoordinate: shape({
+    lat: number,
+    lng: number,
+  })
 };
 
 export default Map;

@@ -62,7 +62,10 @@ class Property extends PureComponent {
       onCardLeave,
     } = this.props;
     // Доделать карту
-    if (offersNearby.length === 0 || activeOffer === null) {
+
+    const isLoading = offersNearby.length === 0 || activeOffer === null;
+
+    if (isLoading) {
       return ``;
     }
 
@@ -78,7 +81,13 @@ class Property extends PureComponent {
       rating,
       title,
       type,
+      location,
     } = activeOffer;
+
+    const CURRENT_OFFER_COORDINATE = {
+      lat: location.latitude,
+      lng: location.longitude,
+    };
 
     const isAuth = authStatus === AuthorizationStatus.AUTH;
 
@@ -171,6 +180,7 @@ class Property extends PureComponent {
             classModificator={ClassModificator.PROPERTY_MAP}
             currentCityOffers={offersNearby}
             focusOffer={focusOffer}
+            currentOfferCoordinate={CURRENT_OFFER_COORDINATE}
           />}
         </section>
         <div className="container">

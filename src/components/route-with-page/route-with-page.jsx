@@ -20,6 +20,7 @@ import {
 } from '../../reducer/user/selectors.js';
 import {
   getOffers,
+  getLoadStatus,
 } from '../../reducer/data/selectors.js';
 import {
   AuthorizationStatus
@@ -47,6 +48,7 @@ class RouteWithPage extends PureComponent {
     const {
       initialOffers
     } = this.props;
+
     const initialActiveOffer = initialOffers.find((offer) => offer.id === currentOfferID);
     this.props.onSetActiveOffer(initialActiveOffer);
   }
@@ -56,9 +58,16 @@ class RouteWithPage extends PureComponent {
       authStatus,
       component,
       exact,
+      loadStatus,
       path,
       user,
     } = this.props;
+
+    const isLoading = loadStatus !== true;
+
+    if (isLoading) {
+      return ``;
+    }
 
     const isAuth = authStatus === AuthorizationStatus.AUTH;
     let className;
@@ -74,7 +83,7 @@ class RouteWithPage extends PureComponent {
         className = ClassModificator.PAGE_PROPERTY;
         break;
       default:
-        className = ``;
+        className = ClassModificator.PAGE_MAIN;
     }
 
     return (
@@ -110,6 +119,7 @@ RouteWithPage.propTypes = {
   initialOffers: arrayOf(
       offerPropTypes
   ).isRequired,
+  loadStatus: bool.isRequired,
   onSetActiveOffer: func.isRequired,
   path: string.isRequired,
   user: userPropTypes,
@@ -118,6 +128,7 @@ RouteWithPage.propTypes = {
 const mapStateToProps = (state) => ({
   authStatus: getAuthorizationStatus(state),
   initialOffers: getOffers(state),
+  loadStatus: getLoadStatus(state),
   user: getUser(state),
 });
 

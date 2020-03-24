@@ -58,8 +58,9 @@ import Login from '../login/login.jsx';
 import Main from "../main/main.jsx";
 import Property from "../property/property.jsx";
 import RouteWithPage from '../route-with-page/route-with-page.jsx';
-import RouteForFavorites from '../route-for-favorites/route-for-favorites.jsx';
+import PrivateRoute from '../privateRoute/private-route.jsx';
 import NotAvailableOffers from '../not-available-offers/not-available-offers.jsx';
+import NotFoundPage from '../not-found-page/not-found-page.jsx';
 
 const FavoritesWrapped = withErrorMessage(Favorites);
 const LoginWrapped = withErrorMessage(Login);
@@ -84,9 +85,27 @@ class App extends PureComponent {
       signIn,
     } = this.props;
 
-    const isLoading = loadStatus !== true;
+    const isLoadingComplete = loadStatus;
     const isNotAvailableOffers = offers.length === 0;
     const isAuth = authStatus === AuthorizationStatus.AUTH;
+
+    const getRootPage = () => {
+      if (isLoadingComplete && isNotAvailableOffers) {
+        return <NotAvailableOffers />;
+      } else {
+        return <MainWrapped
+          currentCity={currentCity}
+          currentCityOffers={currentCityOffers}
+          currentSort={currentSort}
+          focusOffer={focusOffer}
+          locations={locations}
+          onCardHover={onCardHover}
+          onCardLeave={onCardLeave}
+          onResetError={onResetError}
+          responseStatus={responseStatus}
+        />;
+      }
+    };
 
     return (
       <BrowserRouter>
@@ -94,21 +113,7 @@ class App extends PureComponent {
           <RouteWithPage
             exact
             path={AppRoute.ROOT}
-            component={(!isLoading && isNotAvailableOffers) ?
-              <NotAvailableOffers />
-              :
-              <MainWrapped
-                currentCity={currentCity}
-                currentCityOffers={currentCityOffers}
-                currentSort={currentSort}
-                focusOffer={focusOffer}
-                locations={locations}
-                onCardHover={onCardHover}
-                onCardLeave={onCardLeave}
-                onResetError={onResetError}
-                responseStatus={responseStatus}
-              />
-            }
+            component={getRootPage()}
           />
           <RouteWithPage
             exact
@@ -137,7 +142,7 @@ class App extends PureComponent {
               />
             }
           />
-          <RouteForFavorites
+          <PrivateRoute
             exact
             path={AppRoute.FAVORITE}
             render={() => (
@@ -149,6 +154,13 @@ class App extends PureComponent {
                 currentCity={currentCity}
               />
             )}
+          />
+          <RouteWithPage
+            exact
+            path="*"
+            component={
+              <NotFoundPage />
+            }
           />
         </Switch>
       </BrowserRouter>

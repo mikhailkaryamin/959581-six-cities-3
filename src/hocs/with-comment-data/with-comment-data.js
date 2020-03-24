@@ -20,7 +20,7 @@ const withCommentData = (Component) => {
     }
 
     componentDidUpdate(prevProps) {
-      if (prevProps.numberComments < this.props.numberComments) {
+      if (prevProps.countComments < this.props.countComments) {
         this.setState({
           rating: 0,
           comment: ``
@@ -78,7 +78,7 @@ const withCommentData = (Component) => {
   }
 
   WithCommentData.propTypes = {
-    numberComments: number.isRequired,
+    countComments: number.isRequired,
     onCommentSubmit: func.isRequired,
   };
 

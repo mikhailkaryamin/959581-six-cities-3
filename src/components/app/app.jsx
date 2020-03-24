@@ -58,7 +58,7 @@ import Login from '../login/login.jsx';
 import Main from "../main/main.jsx";
 import Property from "../property/property.jsx";
 import RouteWithPage from '../route-with-page/route-with-page.jsx';
-import PrivateRoute from '../privateRoute/private-route.jsx';
+import PrivateRoute from '../private-route/private-route.jsx';
 import NotAvailableOffers from '../not-available-offers/not-available-offers.jsx';
 import NotFoundPage from '../not-found-page/not-found-page.jsx';
 

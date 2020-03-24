@@ -15,11 +15,13 @@ const comment = `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 const onChange = () => {};
 const onSubmit = () => {};
 const rating = 3;
+const countComments = 10;
 
 test(`Render reviews form`, () => {
   const tree = mount(
       <ReviewsForm
         comment={comment}
+        countComments={countComments}
         onChange={onChange}
         onSubmit={onSubmit}
         rating={rating}

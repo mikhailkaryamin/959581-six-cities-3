@@ -22,7 +22,7 @@ describe(`withCommentData HOC`, () => {
     const wrapper = shallow(
         <MockComponentWrapped
           onCommentSubmit={() => {}}
-          numberComments={10}
+          countComments={10}
         />
     );
     expect(wrapper.props().rating).toEqual(0);
@@ -33,7 +33,7 @@ describe(`withCommentData HOC`, () => {
     const wrapper = shallow(
         <MockComponentWrapped
           onCommentSubmit={() => {}}
-          numberComments={5}
+          countComments={5}
         />
     );
     wrapper.props().onChange(mockRating);

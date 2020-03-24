@@ -22,7 +22,9 @@ exports[`Render correctly reviews list 1`] = `
       </div>
       <span
         className="reviews__user-name"
-      />
+      >
+        Mi
+      </span>
     </div>
     <div
       className="reviews__info"

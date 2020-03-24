@@ -8,21 +8,31 @@ import {
   string,
 } from 'prop-types';
 import {
-  STARS
+  STARS,
+  RESPONSE_STATUS_OK,
 } from "../../consts.js";
 
 class ReviewsForm extends PureComponent {
   constructor(props) {
     super(props);
     this._submitButtonRef = createRef();
+    this._textAreaRef = createRef();
+    this._setDisabledOnClick = this._setDisabledOnClick.bind(this);
+    this._checkTextAreaDisabled = this._checkTextAreaDisabled.bind(this);
   }
 
   componentDidMount() {
     this._submitButtonRef.current.disabled = true;
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    this._checkTextAreaDisabled(prevProps);
     this._checkSubmitDisabled();
+  }
+
+  _setDisabledOnClick() {
+    this._submitButtonRef.current.disabled = true;
+    this._textAreaRef.current.disabled = true;
   }
 
   _checkSubmitDisabled() {
@@ -38,11 +48,25 @@ class ReviewsForm extends PureComponent {
     }
   }
 
+  _checkTextAreaDisabled(prevProps) {
+    const {
+      responseStatus,
+      countComments,
+    } = prevProps;
+
+    const isOkResponse = responseStatus === RESPONSE_STATUS_OK || responseStatus === null;
+
+    if (isOkResponse && countComments < this.props.countComments) {
+      this._textAreaRef.current.disabled = false;
+    }
+  }
+
   render() {
     const {
       comment,
       onChange,
-      onSubmit
+      onSubmit,
+      rating,
     } = this.props;
 
     return (
@@ -61,6 +85,7 @@ class ReviewsForm extends PureComponent {
                 value={numberStars}
                 id={`${numberStars}-stars`}
                 type="radio"
+                checked={rating === numberStars}
                 onChange={onChange}
               />
               <label
@@ -82,6 +107,7 @@ class ReviewsForm extends PureComponent {
           placeholder="Tell how was your stay, what you like and what can be improved"
           value={comment}
           onChange={onChange}
+          ref={this._textAreaRef}
         />
         <div className="reviews__button-wrapper">
           <p className="reviews__help">
@@ -96,6 +122,7 @@ class ReviewsForm extends PureComponent {
             className="reviews__submit form__submit button"
             type="submit"
             disabled=""
+            onClick={this._setDisabledOnClick}
             ref={this._submitButtonRef}
           >
             Submit
@@ -109,6 +136,7 @@ class ReviewsForm extends PureComponent {
 
 ReviewsForm.propTypes = {
   comment: string.isRequired,
+  countComments: number.isRequired,
   onChange: func.isRequired,
   onSubmit: func.isRequired,
   rating: number.isRequired,

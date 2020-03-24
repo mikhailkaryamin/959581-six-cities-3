@@ -4,6 +4,9 @@ import {
 import {
   getUniqueArray
 } from '../../utils.js';
+import {
+  MAX_SHOW_COMMENTS
+} from '../../consts.js';
 import NameSpace from '../name-space.js';
 
 const getCurrentCity = (state) => {
@@ -45,11 +48,28 @@ const getOffersCurrentCity = createSelector(
     }
 );
 
+const getSortedCommentsNewOld = createSelector(
+    getComments,
+    (comments) => comments
+      .slice((newComment, oldComment) => new Date(oldComment.date) - new Date(newComment.date))
+);
+
+const getCommentsByShow = createSelector(
+    getSortedCommentsNewOld,
+    (comments) => comments.slice(0, MAX_SHOW_COMMENTS)
+);
+
+const getCountComments = createSelector(
+    getComments,
+    (comments) => comments.length
+);
+
 export {
   getOffers,
-  getComments,
   getOffersNearby,
   getLocations,
   getOffersCurrentCity,
   getLoadStatus,
+  getCommentsByShow,
+  getCountComments,
 };

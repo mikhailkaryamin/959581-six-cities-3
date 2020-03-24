@@ -8,13 +8,15 @@ import {
   arrayOf,
   func,
   string,
+  number,
 } from "prop-types";
 import {
   ClassModificator,
 } from "../../consts.js";
 import {
-  getComments,
+  getCommentsByShow,
   getOffersNearby,
+  getCountComments,
 } from '../../reducer/data/selectors.js';
 import {
   getActiveOffer,
@@ -55,14 +57,18 @@ class Property extends PureComponent {
       authStatus,
       currentSort,
       comments,
+      countComments,
       focusOffer,
       offersNearby,
       onCardHover,
       onCommentSubmit,
       onCardLeave,
+      responseStatus,
     } = this.props;
-    // Доделать карту
-    if (offersNearby.length === 0 || activeOffer === null) {
+
+    const isLoading = offersNearby.length === 0 || activeOffer === null;
+
+    if (isLoading) {
       return ``;
     }
 
@@ -78,7 +84,13 @@ class Property extends PureComponent {
       rating,
       title,
       type,
+      location,
     } = activeOffer;
+
+    const CURRENT_OFFER_COORDINATE = {
+      lat: location.latitude,
+      lng: location.longitude,
+    };
 
     const isAuth = authStatus === AuthorizationStatus.AUTH;
 
@@ -162,8 +174,10 @@ class Property extends PureComponent {
               </div>
               {<Reviews
                 comments={comments}
+                countComments={countComments}
                 isAuth={isAuth}
                 onCommentSubmit={onCommentSubmit}
+                responseStatus={responseStatus}
               />}
             </div>
           </div>
@@ -171,6 +185,7 @@ class Property extends PureComponent {
             classModificator={ClassModificator.PROPERTY_MAP}
             currentCityOffers={offersNearby}
             focusOffer={focusOffer}
+            currentOfferCoordinate={CURRENT_OFFER_COORDINATE}
           />}
         </section>
         <div className="container">
@@ -194,6 +209,7 @@ Property.propTypes = {
   comments: arrayOf(
       commentsPropTypes
   ),
+  countComments: number.isRequired,
   focusOffer: offerPropTypes,
   offersNearby: arrayOf(
       offerPropTypes
@@ -205,6 +221,7 @@ Property.propTypes = {
   onCardHover: func.isRequired,
   onCardLeave: func.isRequired,
   onLoadDataProperty: func.isRequired,
+  responseStatus: number,
 };
 
 Property.defaultProps = {
@@ -215,7 +232,8 @@ Property.defaultProps = {
 const mapStateToProps = (state) => ({
   activeOffer: getActiveOffer(state),
   authStatus: getAuthorizationStatus(state),
-  comments: getComments(state),
+  comments: getCommentsByShow(state),
+  countComments: getCountComments(state),
   offersNearby: getOffersNearby(state),
 });
 

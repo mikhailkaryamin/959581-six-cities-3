@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Not available offers render correctly 1`] = `
+exports[`Not found page render correctly 1`] = `
 <main
   className="page__main page__main--index page__main--index-empty"
 >
@@ -19,12 +19,12 @@ exports[`Not available offers render correctly 1`] = `
           <b
             className="cities__status"
           >
-            No places to stay available
+            Page not found
           </b>
           <p
             className="cities__status-description"
           >
-            We could not find any property available at the moment
+            Maybe you were wrong when entering link
           </p>
         </div>
       </section>

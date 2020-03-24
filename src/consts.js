@@ -45,6 +45,7 @@ const ONE_STAR = 20;
 const STARS = [5, 4, 3, 2, 1];
 const SITE_URL = `https://htmlacademy-react-3.appspot.com/six-cities`;
 const RESPONSE_STATUS_OK = 200;
+const MAX_SHOW_COMMENTS = 10;
 
 export {
   MS_IN_WEEK,
@@ -57,4 +58,5 @@ export {
   TypeSort,
   ClassModificator,
   TypeInputLogin,
+  MAX_SHOW_COMMENTS,
 };

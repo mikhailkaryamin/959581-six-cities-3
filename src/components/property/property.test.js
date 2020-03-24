@@ -283,6 +283,7 @@ const onResetError = () => {};
 const onLoadDataProperty = () => {};
 const onCommentSubmit = () => {};
 const responseStatus = 200;
+const countComments = 3;
 const authStatus = AuthorizationStatus.AUTH;
 
 it(`Render property correctly`, () => {
@@ -294,6 +295,7 @@ it(`Render property correctly`, () => {
         <BrowserRouter>
           <Property
             currentSort={currentSort}
+            countComments={countComments}
             focusOffer={focusOffer}
             onCardHover={onCardHover}
             onCardLeave={onCardLeave}

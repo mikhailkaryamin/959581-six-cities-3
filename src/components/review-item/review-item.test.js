@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Review from "./review.jsx";
+import ReviewItem from "./review-item.jsx";
 
 const comment = {
   id: 1,
@@ -20,7 +20,7 @@ const comment = {
 it(`Render correctly review`, () => {
   const tree = renderer
     .create(
-        <Review
+        <ReviewItem
           comment={comment}
         />
     )

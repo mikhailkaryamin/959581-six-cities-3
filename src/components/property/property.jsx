@@ -61,7 +61,6 @@ class Property extends PureComponent {
       onCommentSubmit,
       onCardLeave,
     } = this.props;
-    // Доделать карту
 
     const isLoading = offersNearby.length === 0 || activeOffer === null;
 

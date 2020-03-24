@@ -47,6 +47,7 @@ class RouteWithPage extends PureComponent {
     const {
       initialOffers
     } = this.props;
+
     const initialActiveOffer = initialOffers.find((offer) => offer.id === currentOfferID);
     this.props.onSetActiveOffer(initialActiveOffer);
   }
@@ -58,7 +59,14 @@ class RouteWithPage extends PureComponent {
       exact,
       path,
       user,
+      initialOffers,
     } = this.props;
+
+    const isLoadingInitialOffers = initialOffers.length === 0;
+
+    if (isLoadingInitialOffers) {
+      return ``;
+    }
 
     const isAuth = authStatus === AuthorizationStatus.AUTH;
     let className;

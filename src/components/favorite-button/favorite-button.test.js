@@ -2,10 +2,10 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {
   AuthorizationStatus
-} from '../../reducer/user/user.js';
+} from '../../reducer/user/user';
 import {
   FavoriteButton
-} from './favorite-button.jsx';
+} from './favorite-button';
 
 const onFavoriteClick = () => {};
 const authStatus = AuthorizationStatus.AUTH;

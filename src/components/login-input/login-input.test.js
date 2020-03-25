@@ -2,8 +2,8 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {
   TypeInputLogin
-} from '../../consts.js';
-import LoginInput from './login-input.jsx';
+} from '../../consts';
+import LoginInput from './login-input';
 
 const onChange = () => {};
 

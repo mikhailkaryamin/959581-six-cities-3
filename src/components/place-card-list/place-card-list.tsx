@@ -1,13 +1,6 @@
-import React, {
-  PureComponent
-} from "react";
+import * as React from 'react';
 import {
-  arrayOf,
-  func,
-  string,
-} from "prop-types";
-import {
-  offerPropTypes
+  Offer
 } from "../../types";
 import {
   TypeSort,
@@ -16,9 +9,17 @@ import {
 import PlaceCard from "../place-card/place-card";
 import withHover from "../../hocs/with-hover/with-hover";
 
+interface Props {
+  currentCityOffers: Offer[];
+  currentSort: string;
+  classModificator: string;
+  onCardHover: () => void;
+  onCardLeave: () => void;
+}
+
 const PlaceCardWrapped = withHover(PlaceCard);
 
-class PlacesCardList extends PureComponent {
+class PlacesCardList extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
   }
@@ -67,18 +68,18 @@ class PlacesCardList extends PureComponent {
   }
 }
 
-PlacesCardList.propTypes = {
-  classModificator: string,
-  currentCityOffers: arrayOf(
-      offerPropTypes
-  ).isRequired,
-  currentSort: string.isRequired,
-  onCardHover: func.isRequired,
-  onCardLeave: func.isRequired,
-};
+// PlacesCardList.propTypes = {
+//   classModificator: string,
+//   currentCityOffers: arrayOf(
+//       offerPropTypes
+//   ).isRequired,
+//   currentSort: string.isRequired,
+//   onCardHover: func.isRequired,
+//   onCardLeave: func.isRequired,
+// };
 
-PlacesCardList.defaultProps = {
-  classModificator: ``,
-};
+// PlacesCardList.defaultProps = {
+//   classModificator: ``,
+// };
 
 export default PlacesCardList;

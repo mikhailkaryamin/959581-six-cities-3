@@ -1,25 +1,27 @@
-import React,
-{
-  PureComponent
-} from "react";
-import {
-  arrayOf,
-  func,
-  string,
-} from "prop-types";
+import * as React from 'react';
 import {
   ClassModificator
 } from "../../consts";
 import {
-  offerPropTypes,
+  Offer,
 } from "../../types";
 import PlacesCardList from "../place-card-list/place-card-list";
 import PlacesSort from "../places-sort/places-sort";
 import withToggle from "../../hocs/with-toggle/with-toggle";
 
+interface Props {
+  classModificator: string;
+  currentCity?: string;
+  currentSort: string;
+  currentCityOffers: Offer[];
+  handleSortChange?: () => void;
+  onCardHover: () => void;
+  onCardLeave: () => void;
+}
+
 const PlacesSortWrapped = withToggle(PlacesSort);
 
-class Places extends PureComponent {
+class Places extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
   }
@@ -81,22 +83,22 @@ class Places extends PureComponent {
   }
 }
 
-Places.propTypes = {
-  classModificator: string.isRequired,
-  currentCityOffers: arrayOf(
-      offerPropTypes
-  ).isRequired,
-  currentSort: string,
-  currentCity: string,
-  handleSortChange: func,
-  onCardHover: func.isRequired,
-  onCardLeave: func.isRequired,
-};
+// Places.propTypes = {
+//   classModificator: string.isRequired,
+//   currentCityOffers: arrayOf(
+//       offerPropTypes
+//   ).isRequired,
+//   currentSort: string,
+//   currentCity: string,
+//   handleSortChange: func,
+//   onCardHover: func.isRequired,
+//   onCardLeave: func.isRequired,
+// };
 
-Places.defaultProps = {
-  reviews: [],
-  currentSort: `Popular`,
-  handleSortChange: () => {},
-};
+// Places.defaultProps = {
+//   reviews: [],
+//   currentSort: `Popular`,
+//   handleSortChange: () => {},
+// };
 
 export default Places;

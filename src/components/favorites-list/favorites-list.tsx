@@ -1,18 +1,21 @@
-import React, {
-  PureComponent
-} from 'react';
-import {
-  array,
-  arrayOf,
-  func,
-  string,
-} from 'prop-types';
+import * as React from 'react';
 import {
   getUniqueArray
 } from '../../utils';
+import {
+  Offer
+} from '../../types';
 import FavoriteItem from '../favorite-item/favorite-item';
 
-class FavoritesList extends PureComponent {
+interface Props {
+  currentCity: string;
+  favorites: Offer[];
+  favoritesLocations: string[];
+  onCardHover: () => void;
+  onCardLeave: () => void;
+}
+
+class FavoritesList extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
   }
@@ -55,14 +58,14 @@ class FavoritesList extends PureComponent {
   }
 }
 
-FavoritesList.propTypes = {
-  currentCity: string.isRequired,
-  favorites: array.isRequired,
-  favoritesLocations: arrayOf(
-      string
-  ).isRequired,
-  onCardHover: func.isRequired,
-  onCardLeave: func.isRequired,
-};
+// FavoritesList.propTypes = {
+//   currentCity: string.isRequired,
+//   favorites: array.isRequired,
+//   favoritesLocations: arrayOf(
+//       string
+//   ).isRequired,
+//   onCardHover: func.isRequired,
+//   onCardLeave: func.isRequired,
+// };
 
 export default FavoritesList;

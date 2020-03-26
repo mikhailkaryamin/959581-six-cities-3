@@ -1,22 +1,22 @@
-import React from 'react';
+import * as React from 'react';
 import {
   Redirect
 } from 'react-router-dom';
 import {
   AppRoute
 } from '../../consts';
-import {
-  bool,
-  func,
-  string,
-} from 'prop-types';
-
 import withAuthorization from '../../hocs/with-authorization/with-authorization';
 import LoginForm from '../login-form/login-form';
 
+interface Props {
+  currentCity: string;
+  isAuth: boolean;
+  signIn: () => void;
+}
+
 const LoginFormWrapped = withAuthorization(LoginForm);
 
-const Login = (props) => {
+const Login: React.FC<Props> = (props: Props) => {
   const {
     currentCity,
     isAuth,
@@ -55,10 +55,10 @@ const Login = (props) => {
   );
 };
 
-Login.propTypes = {
-  currentCity: string.isRequired,
-  signIn: func.isRequired,
-  isAuth: bool.isRequired,
-};
+// Login.propTypes = {
+//   currentCity: string.isRequired,
+//   signIn: func.isRequired,
+//   isAuth: bool.isRequired,
+// };
 
 export default Login;

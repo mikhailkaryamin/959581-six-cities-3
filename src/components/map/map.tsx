@@ -1,25 +1,31 @@
-import React, {
-  PureComponent,
-  createRef
-} from "react";
+import * as React from 'react';
+import * as leaflet from "leaflet";
 import {
-  arrayOf,
-  string,
-  shape,
-  number,
-} from "prop-types";
-import leaflet from "leaflet";
-import {
-  offerPropTypes,
+  Coordinate,
+  Offer,
 } from "../../types";
 import {
   ClassModificator
 } from '../../consts';
 
-class Map extends PureComponent {
+interface Props {
+  currentCityOffers: Offer[];
+  classModificator?: string;
+  currentOfferCoordinate?: Coordinate;
+  focusOffer: Offer;
+}
+
+class Map extends React.PureComponent<Props, {}> {
+  private _map;
+  private _markers;
+  private _iconActive;
+  private _iconDefault;
+  private _iconCurrentOffer;
+  private readonly _mapRef: React.RefObject<HTMLElement>;
+
   constructor(props) {
     super(props);
-    this._mapRef = createRef();
+    this._mapRef = React.createRef();
     this._map = undefined;
     this._markers = {};
     this._iconActive = leaflet.icon({
@@ -177,17 +183,5 @@ class Map extends PureComponent {
     );
   }
 }
-
-Map.propTypes = {
-  classModificator: string,
-  currentCityOffers: arrayOf(
-      offerPropTypes
-  ).isRequired,
-  focusOffer: offerPropTypes,
-  currentOfferCoordinate: shape({
-    lat: number,
-    lng: number,
-  })
-};
 
 export default Map;

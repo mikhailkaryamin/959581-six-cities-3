@@ -1,17 +1,10 @@
-import React, {
-  PureComponent
-} from 'react';
-import {
-  array,
-  arrayOf,
-  func,
-  string,
-} from 'prop-types';
+import * as React from 'react';
 import {
   connect
 } from 'react-redux';
 import {
-  userPropTypes
+  Offer,
+  User,
 } from "../../types";
 import {
   getFavorites,
@@ -28,7 +21,17 @@ import Page from '../page/page';
 import FavoritesEmpty from '../favorites-empty/favorites-empty';
 import FavoritesList from '../favorites-list/favorites-list';
 
-class Favorites extends PureComponent {
+interface Props {
+  authStatus: string;
+  currentCity: string;
+  favorites: Offer[];
+  favoritesLocations: string[];
+  onCardHover: () => void;
+  onCardLeave: () => void;
+  user: User;
+}
+
+class Favorites extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
   }
@@ -101,17 +104,17 @@ class Favorites extends PureComponent {
   }
 }
 
-Favorites.propTypes = {
-  authStatus: string.isRequired,
-  currentCity: string.isRequired,
-  favorites: array.isRequired,
-  favoritesLocations: arrayOf(
-      string
-  ).isRequired,
-  onCardHover: func.isRequired,
-  onCardLeave: func.isRequired,
-  user: userPropTypes,
-};
+// Favorites.propTypes = {
+//   authStatus: string.isRequired,
+//   currentCity: string.isRequired,
+//   favorites: array.isRequired,
+//   favoritesLocations: arrayOf(
+//       string
+//   ).isRequired,
+//   onCardHover: func.isRequired,
+//   onCardLeave: func.isRequired,
+//   user: userPropTypes,
+// };
 
 const mapStateToProps = (state) => ({
   authStatus: getAuthorizationStatus(state),

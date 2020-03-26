@@ -14,7 +14,7 @@ exports[`Error message 1`] = `
       "right": "50%",
       "top": "5%",
       "width": "250px",
-      "zIndex": "50",
+      "zIndex": 50,
     }
   }
 >
@@ -54,7 +54,7 @@ exports[`Error message 1`] = `
         "right": "5px",
         "top": "5px",
         "width": "10px",
-        "zIndex": "10",
+        "zIndex": 10,
       }
     }
   />

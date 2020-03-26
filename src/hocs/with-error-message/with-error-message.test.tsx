@@ -1,17 +1,17 @@
-import React from 'react';
+import * as React from 'react';
 import {
   configure,
   mount,
 } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import withErrorMessage from './with-error-message.js';
+import withErrorMessage from './with-error-message';
 
 configure({
   adapter: new Adapter()
 });
 
 const MockComponent = () => <div />;
-const mockFn = () => {};
+const mockFn = jest.fn();
 const MockComponentWrapped = withErrorMessage(MockComponent);
 
 describe(`withMessage HOC`, () => {

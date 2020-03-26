@@ -1,22 +1,25 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import configureStore from "redux-mock-store";
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import configureStore from 'redux-mock-store';
 import {
   Provider
-} from "react-redux";
+} from 'react-redux';
 import {
   BrowserRouter
 } from 'react-router-dom';
 import {
   storeWithAuth
-} from "../../mocks/initialState";
+} from '../../mocks/initialState';
 import {
   Main
-} from "./main";
+} from './main';
+import {
+  Offer
+} from '../../types';
 
 const mockStore = configureStore([]);
 
-const currentCityOffers = [
+const currentCityOffers: Offer[] = [
   {
     bedrooms: 3,
     city: {
@@ -156,7 +159,7 @@ const currentCityOffers = [
 ];
 const currentCity = `Paris`;
 const currentSort = `Popular`;
-const focusOffer = {
+const focusOffer: Offer = {
   bedrooms: 3,
   city: {
     location: {
@@ -190,8 +193,8 @@ const focusOffer = {
   title: `Beautiful & luxurious studio at great location`,
   type: `apartment`
 };
-const handleLocationClick = () => {};
-const handleSortChange = () => {};
+const handleLocationClick = jest.fn();
+const handleSortChange = jest.fn();
 const locations = [
   `Paris`,
   `Cologne`,
@@ -200,8 +203,8 @@ const locations = [
   `Hamburg`,
   `Dusseldorf`
 ];
-const onCardHover = () => {};
-const onCardLeave = () => {};
+const onCardHover = jest.fn();
+const onCardLeave = jest.fn();
 
 it(`Main render correctly`, () => {
   const store = mockStore(storeWithAuth);

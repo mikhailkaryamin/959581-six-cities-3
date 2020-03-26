@@ -1,43 +1,36 @@
-import React, {
-  PureComponent
-} from "react";
+import * as React from 'react';
 import {
-  arrayOf,
-} from "prop-types";
-import {
-  commentsPropTypes
+  Comment
 } from "../../types";
 import ReviewItem from "../review-item/review-item";
 
-class ReviewsList extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const {
-      comments
-    } = this.props;
-
-    return (
-      <ul className="reviews__list">
-        {comments
-          .reverse()
-          .map((comment) =>
-            <ReviewItem
-              key={`${comment.id}`}
-              comment={comment}
-            />
-          )}
-      </ul>
-    );
-  }
+interface Props {
+  comments: Comment[];
 }
 
-ReviewsList.propTypes = {
-  comments: arrayOf(
-      commentsPropTypes
-  ).isRequired,
+const ReviewsList: React.FC<Props> = (props: Props) => {
+  const {
+    comments
+  } = props;
+
+  return (
+    <ul className="reviews__list">
+      {comments
+        .reverse()
+        .map((comment) =>
+          <ReviewItem
+            key={`${comment.id}`}
+            comment={comment}
+          />
+        )}
+    </ul>
+  );
 };
+
+// ReviewsList.propTypes = {
+//   comments: arrayOf(
+//       commentsPropTypes
+//   ).isRequired,
+// };
 
 export default ReviewsList;

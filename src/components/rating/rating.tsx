@@ -1,14 +1,15 @@
-import React from 'react';
-import {
-  number,
-  string,
-} from 'prop-types';
+import * as React from 'react';
 import {
   ONE_STAR,
   ClassModificator
 } from "../../consts";
 
-const Rating = (props) => {
+interface Props {
+  classModificator: string;
+  rating: number;
+}
+
+const Rating: React.FC<Props> = (props: Props) => {
   const {
     classModificator,
     rating
@@ -31,9 +32,9 @@ const Rating = (props) => {
   );
 };
 
-Rating.propTypes = {
-  rating: number.isRequired,
-  classModificator: string.isRequired,
-};
+// Rating.propTypes = {
+//   rating: number.isRequired,
+//   classModificator: string.isRequired,
+// };
 
 export default Rating;

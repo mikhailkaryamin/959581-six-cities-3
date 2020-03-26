@@ -1,9 +1,9 @@
-import React from "react";
-import Adapter from "enzyme-adapter-react-16";
+import * as React from 'react';
+import Adapter from 'enzyme-adapter-react-16';
 import Enzyme, {
   mount
-} from "enzyme";
-import ReviewsForm from "./reviews-form";
+} from 'enzyme';
+import ReviewsForm from './reviews-form';
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -12,8 +12,8 @@ Enzyme.configure({
 const comment = `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   Curabitur ornare nunc a blandit ultricies.
   Integer a urna in nunc congue efficitur.`;
-const onChange = () => {};
-const onSubmit = () => {};
+const onChange = jest.fn();
+const onSubmit = jest.fn();
 const rating = 3;
 const countComments = 10;
 

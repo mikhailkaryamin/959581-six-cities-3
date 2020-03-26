@@ -1,6 +1,6 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import ReviewsList from "./reviews-list";
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import ReviewsList from './reviews-list';
 
 const comments = [
   {
@@ -9,7 +9,7 @@ const comments = [
       id: 1,
       isPro: true,
       name: `Mi`,
-      avatarURL: `img/avatar-max.jpg`
+      avatarUrl: `img/avatar-max.jpg`
     },
     rating: 2,
     comment: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.

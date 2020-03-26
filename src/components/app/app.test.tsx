@@ -1,13 +1,13 @@
-import * as React from "react"
-import renderer from "react-test-renderer";
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import App from './app';
-import configureStore from "redux-mock-store";
+import configureStore from 'redux-mock-store';
 import {
   Provider
-} from "react-redux";
+} from 'react-redux';
 import {
   storeWithoutActiveOffer
-} from "../../mocks/initialState";
+} from '../../mocks/initialState';
 
 const mockStore = configureStore([]);
 

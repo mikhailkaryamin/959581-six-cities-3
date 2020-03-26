@@ -1,14 +1,30 @@
-import React,
-{
-  PureComponent
-} from 'react';
+import * as React from 'react';
 import {
-  func,
-  number,
-} from 'prop-types';
+  Subtract
+} from "utility-types";
+
+interface State {
+  rating: number;
+  comment: string;
+}
+
+interface Props {
+  countComments: number;
+  onCommentSubmit: () => void;
+}
+
+interface InjectingProps {
+  comment: string;
+  onChange: () => void;
+  onSubmit: () => void;
+  rating: number;
+}
 
 const withCommentData = (Component) => {
-  class WithCommentData extends PureComponent {
+  type S = React.ComponentProps<typeof Component>;
+  type T = Subtract<S, InjectingProps>
+
+  class WithCommentData extends React.PureComponent<T, State, Props> {
     constructor(props) {
       super(props);
       this.state = {
@@ -77,10 +93,10 @@ const withCommentData = (Component) => {
     }
   }
 
-  WithCommentData.propTypes = {
-    countComments: number.isRequired,
-    onCommentSubmit: func.isRequired,
-  };
+  // WithCommentData.propTypes = {
+  //   countComments: number.isRequired,
+  //   onCommentSubmit: func.isRequired,
+  // };
 
   return WithCommentData;
 };

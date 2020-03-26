@@ -1,20 +1,23 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import configureStore from "redux-mock-store";
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import configureStore from 'redux-mock-store';
 import {
   Provider
-} from "react-redux";
+} from 'react-redux';
 import {
   BrowserRouter
 } from 'react-router-dom';
 import {
   storeWithAuth
-} from "../../mocks/initialState";
-import Cities from "./cities";
+} from '../../mocks/initialState';
+import {
+  Offer,
+} from '../../types';
+import Cities from './cities';
 
 const mockStore = configureStore([]);
 
-const currentCityOffers = [
+const currentCityOffers: Offer[] = [
   {
     bedrooms: 3,
     city: {
@@ -152,7 +155,7 @@ const currentCityOffers = [
     type: `apartment`
   }
 ];
-const focusOffer = {
+const focusOffer: Offer = {
   bedrooms: 3,
   city: {
     location: {
@@ -188,9 +191,9 @@ const focusOffer = {
 };
 const currentSort = `Popular`;
 const currentCity = `Amsterdam`;
-const onCardHover = () => {};
-const onCardLeave = () => {};
-const handleSortChange = () => {};
+const onCardHover = jest.fn();
+const onCardLeave = jest.fn();
+const handleSortChange = jest.fn();
 
 it(`Render cities correctly`, () => {
   const store = mockStore(storeWithAuth);

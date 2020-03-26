@@ -1,22 +1,25 @@
-import React, {
-  PureComponent,
-  createRef
-} from "react";
-import {
-  func,
-  number,
-  string,
-} from 'prop-types';
+import * as React from 'react';
 import {
   STARS,
   RESPONSE_STATUS_OK,
 } from "../../consts";
 
-class ReviewsForm extends PureComponent {
+interface Props {
+  comment: string;
+  countComments: number;
+  onChange: () => void;
+  onSubmit: () => void;
+  rating: number;
+}
+
+class ReviewsForm extends React.PureComponent<Props, {}> {
+  private _submitButtonRef;
+  private _textAreaRef;
+
   constructor(props) {
     super(props);
-    this._submitButtonRef = createRef();
-    this._textAreaRef = createRef();
+    this._submitButtonRef = React.createRef();
+    this._textAreaRef = React.createRef();
     this._setDisabledOnClick = this._setDisabledOnClick.bind(this);
     this._checkTextAreaDisabled = this._checkTextAreaDisabled.bind(this);
   }
@@ -121,7 +124,6 @@ class ReviewsForm extends PureComponent {
           <button
             className="reviews__submit form__submit button"
             type="submit"
-            disabled=""
             onClick={this._setDisabledOnClick}
             ref={this._submitButtonRef}
           >
@@ -132,14 +134,5 @@ class ReviewsForm extends PureComponent {
     );
   }
 }
-
-
-ReviewsForm.propTypes = {
-  comment: string.isRequired,
-  countComments: number.isRequired,
-  onChange: func.isRequired,
-  onSubmit: func.isRequired,
-  rating: number.isRequired,
-};
 
 export default ReviewsForm;

@@ -1,7 +1,4 @@
-import * as React from 'react'
-import {
-  PureComponent
-} from 'react';
+import * as React from 'react';
 import {
   connect
 } from 'react-redux';
@@ -9,13 +6,6 @@ import {
   BrowserRouter,
   Switch,
 } from 'react-router-dom';
-import {
-  arrayOf,
-  bool,
-  func,
-  number,
-  string,
-} from 'prop-types';
 import {
   ActionCreator as ActionOffer
 } from '../../reducer/offer/offer';
@@ -48,7 +38,7 @@ import {
   getCurrentSort
 } from '../../reducer/sort/selectors';
 import {
-  offerPropTypes,
+  Offer,
 } from '../../types';
 import {
   AppRoute,
@@ -63,132 +53,124 @@ import PrivateRoute from '../private-route/private-route';
 import NotAvailableOffers from '../not-available-offers/not-available-offers';
 import NotFoundPage from '../not-found-page/not-found-page';
 
+interface Props {
+  authStatus: string;
+  currentCity: string;
+  currentSort: string;
+  currentCityOffers: Offer[];
+  focusOffer: Offer;
+  locations: string[];
+  loadStatus: string;
+  offers: Offer[];
+  onCardHover: () => void;
+  onCardLeave: () => void;
+  onResetError: () => void;
+  responseStatus: null | number;
+  signIn: () => void;
+}
+
 const FavoritesWrapped = withErrorMessage(Favorites);
 const LoginWrapped = withErrorMessage(Login);
 const MainWrapped = withErrorMessage(Main);
 const PropertyWrapped = withErrorMessage(Property);
 
-class App extends PureComponent {
-  render() {
-    const {
-      authStatus,
-      currentCity,
-      currentSort,
-      currentCityOffers,
-      focusOffer,
-      locations,
-      loadStatus,
-      offers,
-      onCardHover,
-      onCardLeave,
-      onResetError,
-      responseStatus,
-      signIn,
-    } = this.props;
+const App: React.FC<Props> = (props: Props) => {
+  const {
+    authStatus,
+    currentCity,
+    currentSort,
+    currentCityOffers,
+    focusOffer,
+    locations,
+    loadStatus,
+    offers,
+    onCardHover,
+    onCardLeave,
+    onResetError,
+    responseStatus,
+    signIn,
+  } = props;
 
-    const isLoadingComplete = loadStatus;
-    const isNotAvailableOffers = offers.length === 0;
-    const isAuth = authStatus === AuthorizationStatus.AUTH;
+  const isLoadingComplete = loadStatus;
+  const isNotAvailableOffers = offers.length === 0;
+  const isAuth = authStatus === AuthorizationStatus.AUTH;
 
-    const getRootPage = () => {
-      if (isLoadingComplete && isNotAvailableOffers) {
-        return <NotAvailableOffers />;
-      } else {
-        return <MainWrapped
-          currentCity={currentCity}
-          currentCityOffers={currentCityOffers}
-          currentSort={currentSort}
-          focusOffer={focusOffer}
-          locations={locations}
-          onCardHover={onCardHover}
-          onCardLeave={onCardLeave}
-          onResetError={onResetError}
-          responseStatus={responseStatus}
-        />;
-      }
-    };
+  const getRootPage = () => {
+    if (isLoadingComplete && isNotAvailableOffers) {
+      return <NotAvailableOffers />;
+    } else {
+      return <MainWrapped
+        currentCity={currentCity}
+        currentCityOffers={currentCityOffers}
+        currentSort={currentSort}
+        focusOffer={focusOffer}
+        locations={locations}
+        onCardHover={onCardHover}
+        onCardLeave={onCardLeave}
+        onResetError={onResetError}
+        responseStatus={responseStatus}
+      />;
+    }
+  };
 
-    return (
-      <BrowserRouter>
-        <Switch>
-          <RouteWithPage
-            exact
-            path={AppRoute.ROOT}
-            component={getRootPage()}
-          />
-          <RouteWithPage
-            exact
-            path={AppRoute.LOGIN}
-            component={
-              <LoginWrapped
-                currentCity={currentCity}
-                isAuth={isAuth}
-                onResetError={onResetError}
-                responseStatus={responseStatus}
-                signIn={signIn}
-              />
-            }
-          />
-          <RouteWithPage
-            exact
-            path={AppRoute.OFFER}
-            component={
-              <PropertyWrapped
-                currentSort={currentSort}
-                focusOffer={focusOffer}
-                onCardHover={onCardHover}
-                onCardLeave={onCardLeave}
-                onResetError={onResetError}
-                responseStatus={responseStatus}
-              />
-            }
-          />
-          <PrivateRoute
-            exact
-            path={AppRoute.FAVORITE}
-            render={() => (
-              <FavoritesWrapped
-                onCardHover={onCardHover}
-                onCardLeave={onCardLeave}
-                onResetError={onResetError}
-                responseStatus={responseStatus}
-                currentCity={currentCity}
-              />
-            )}
-          />
-          <RouteWithPage
-            exact
-            path='*'
-            component={
-              <NotFoundPage />
-            }
-          />
-        </Switch>
-      </BrowserRouter>
-    );
-  }
-}
-
-App.propTypes = {
-  authStatus: string.isRequired,
-  currentCityOffers: arrayOf(
-      offerPropTypes
-  ).isRequired,
-  currentCity: string.isRequired,
-  currentSort: string.isRequired,
-  focusOffer: offerPropTypes,
-  locations: arrayOf(
-      string
-  ).isRequired,
-  loadStatus: bool.isRequired,
-  offers: arrayOf(
-      offerPropTypes
-  ).isRequired,
-  onCardHover: func.isRequired,
-  onCardLeave: func.isRequired,
-  onResetError: func.isRequired,
-  responseStatus: number,
-  signIn: func.isRequired,
+  return (
+    <BrowserRouter>
+      <Switch>
+        <RouteWithPage
+          exact
+          path={AppRoute.ROOT}
+          component={getRootPage()}
+        />
+        <RouteWithPage
+          exact
+          path={AppRoute.LOGIN}
+          component={
+            <LoginWrapped
+              currentCity={currentCity}
+              isAuth={isAuth}
+              onResetError={onResetError}
+              responseStatus={responseStatus}
+              signIn={signIn}
+            />
+          }
+        />
+        <RouteWithPage
+          exact
+          path={AppRoute.OFFER}
+          component={
+            <PropertyWrapped
+              currentSort={currentSort}
+              focusOffer={focusOffer}
+              onCardHover={onCardHover}
+              onCardLeave={onCardLeave}
+              onResetError={onResetError}
+              responseStatus={responseStatus}
+            />
+          }
+        />
+        <PrivateRoute
+          exact
+          path={AppRoute.FAVORITE}
+          render={() => (
+            <FavoritesWrapped
+              onCardHover={onCardHover}
+              onCardLeave={onCardLeave}
+              onResetError={onResetError}
+              responseStatus={responseStatus}
+              currentCity={currentCity}
+            />
+          )}
+        />
+        <RouteWithPage
+          exact
+          path='*'
+          component={
+            <NotFoundPage />
+          }
+        />
+      </Switch>
+    </BrowserRouter>
+  );
 };
 
 const mapStateToProps = (state) => ({

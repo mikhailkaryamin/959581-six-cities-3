@@ -1,14 +1,17 @@
-import React from "react";
-import Adapter from "enzyme-adapter-react-16";
+import * as React from 'react';
+import Adapter from 'enzyme-adapter-react-16';
 import Enzyme, {
   shallow
-} from "enzyme";
+} from 'enzyme';
 import {
   ClassModificator
-} from "../../consts";
-import PlaceCard from "./place-card";
+} from '../../consts';
+import PlaceCard from './place-card';
+import {
+  Offer
+} from '../../types';
 
-const offer = {
+const offer: Offer = {
   bedrooms: 3,
   city: {
     location: {

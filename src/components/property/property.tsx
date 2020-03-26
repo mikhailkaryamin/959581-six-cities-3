@@ -1,15 +1,7 @@
-import React, {
-  PureComponent
-} from "react";
+import * as React from 'react';
 import {
   connect
 } from 'react-redux';
-import {
-  arrayOf,
-  func,
-  string,
-  number,
-} from "prop-types";
 import {
   ClassModificator,
 } from "../../consts";
@@ -31,8 +23,8 @@ import {
   AuthorizationStatus
 } from '../../reducer/user/user';
 import {
-  offerPropTypes,
-  commentsPropTypes
+  Offer,
+  Comment,
 } from "../../types";
 import Reviews from "../reviews/reviews";
 import Map from "../map/map";
@@ -40,7 +32,22 @@ import Places from "../places/places";
 import FavoriteButton from "../favorite-button/favorite-button";
 import Rating from '../rating/rating';
 
-class Property extends PureComponent {
+interface Props {
+  activeOffer: Offer;
+  authStatus: string;
+  currentSort: string;
+  comments: Comment[];
+  countComments: number;
+  focusOffer: Offer;
+  offersNearby: Offer[];
+  onCardHover: () => void;
+  onCardLeave: () => void;
+  onCommentSubmit: () => void;
+  onLoadDataProperty: () => void;
+  responseStatus: null | number;
+}
+
+class Property extends React.PureComponent<Props, {}> {
   componentDidMount() {
     this.props.onLoadDataProperty();
   }
@@ -160,7 +167,7 @@ class Property extends PureComponent {
               <div className="property__host">
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
-                  <div className={`property__avatar-wrapper ${host.is_pro ? `property__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
+                  <div className={`property__avatar-wrapper ${host.isPro ? `property__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
                     <img className="property__avatar user__avatar" src={`../${host.avatarUrl}`} width="74" height="74" alt="Host avatar" />
                   </div>
                   <span className="property__user-name">
@@ -201,33 +208,6 @@ class Property extends PureComponent {
     );
   }
 }
-
-Property.propTypes = {
-  activeOffer: offerPropTypes.isRequired,
-  authStatus: string.isRequired,
-  currentSort: string.isRequired,
-  comments: arrayOf(
-      commentsPropTypes
-  ),
-  countComments: number.isRequired,
-  focusOffer: offerPropTypes,
-  offersNearby: arrayOf(
-      offerPropTypes
-  ).isRequired,
-  offersCurrentCity: arrayOf(
-      offerPropTypes
-  ),
-  onCommentSubmit: func.isRequired,
-  onCardHover: func.isRequired,
-  onCardLeave: func.isRequired,
-  onLoadDataProperty: func.isRequired,
-  responseStatus: number,
-};
-
-Property.defaultProps = {
-  reviews: [],
-  currentSort: `Popular`
-};
 
 const mapStateToProps = (state) => ({
   activeOffer: getActiveOffer(state),

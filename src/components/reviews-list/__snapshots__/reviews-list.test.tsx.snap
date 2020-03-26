@@ -17,6 +17,7 @@ exports[`Render correctly reviews list 1`] = `
           alt="Reviews avatar"
           className="reviews__avatar user__avatar"
           height="54"
+          src="img/avatar-max.jpg"
           width="54"
         />
       </div>

@@ -1,13 +1,15 @@
-import React from 'react';
-import {
-  func,
-  string,
-} from 'prop-types';
+import * as React from 'react';
 import {
   TypeInputLogin
 } from '../../consts';
 
-const LoginInput = (props) => {
+interface Props {
+  onChange: () => void;
+  type: string;
+  value: string;
+}
+
+const LoginInput: React.FC<Props> = (props: Props) => {
   const {
     onChange,
     type,
@@ -28,10 +30,10 @@ const LoginInput = (props) => {
   );
 };
 
-LoginInput.propTypes = {
-  onChange: func.isRequired,
-  type: string.isRequired,
-  value: string.isRequired,
-};
+// LoginInput.propTypes = {
+//   onChange: func.isRequired,
+//   type: string.isRequired,
+//   value: string.isRequired,
+// };
 
 export default LoginInput;

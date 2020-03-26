@@ -1,12 +1,28 @@
-import React, {
-  PureComponent
-} from "react";
+import * as React from "react";
 import {
-  func,
-} from "prop-types";
+  Subtract
+} from "utility-types";
+
+interface State {
+  isHovered: boolean;
+}
+
+interface Props {
+  onCardHover: () => void;
+  onCardLeave: () => void;
+}
+
+interface InjectingProps {
+  onCardHover: () => void;
+  onCardLeave: () => void;
+}
 
 const withHover = (Component) => {
-  class WithHover extends PureComponent {
+  type S = React.ComponentProps<typeof Component>;
+
+  type T = Subtract<S, InjectingProps>;
+
+  class WithHover extends React.PureComponent<T, State, Props> {
     constructor(props) {
       super(props);
       this.state = {
@@ -41,10 +57,10 @@ const withHover = (Component) => {
     }
   }
 
-  WithHover.propTypes = {
-    onCardHover: func.isRequired,
-    onCardLeave: func.isRequired,
-  };
+  // WithHover.propTypes = {
+  //   onCardHover: func.isRequired,
+  //   onCardLeave: func.isRequired,
+  // };
 
   return WithHover;
 };

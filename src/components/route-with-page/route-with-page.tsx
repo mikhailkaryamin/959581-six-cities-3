@@ -1,19 +1,10 @@
-import React, {
-  PureComponent
-} from 'react';
+import * as React from 'react';
 import {
   Route,
 } from 'react-router-dom';
 import {
   connect
 } from 'react-redux';
-import {
-  arrayOf,
-  bool,
-  element,
-  func,
-  string,
-} from 'prop-types';
 import {
   getAuthorizationStatus,
   getUser,
@@ -30,16 +21,26 @@ import {
   ClassModificator
 } from '../../consts';
 import {
-  userPropTypes,
-  offerPropTypes,
-} from "../../types";
+  User,
+  Offer,
+} from '../../types';
 import {
   ActionCreator as ActionOffer
 } from '../../reducer/offer/offer';
 import Page from '../page/page';
 
+interface Props {
+  initialOffers: Offer[];
+  authStatus: number | null;
+  component: React.ReactNode;
+  exact: boolean;
+  loadStatus: boolean;
+  path: string;
+  user: User;
+  onSetActiveOffer: (Offer) => void;
+}
 
-class RouteWithPage extends PureComponent {
+class RouteWithPage extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
   }
@@ -112,18 +113,18 @@ class RouteWithPage extends PureComponent {
   }
 }
 
-RouteWithPage.propTypes = {
-  authStatus: string,
-  component: element.isRequired,
-  exact: bool.isRequired,
-  initialOffers: arrayOf(
-      offerPropTypes
-  ).isRequired,
-  loadStatus: bool.isRequired,
-  onSetActiveOffer: func.isRequired,
-  path: string.isRequired,
-  user: userPropTypes,
-};
+// RouteWithPage.propTypes = {
+//   authStatus: string,
+//   component: element.isRequired,
+//   exact: bool.isRequired,
+//   initialOffers: arrayOf(
+//       offerPropTypes
+//   ).isRequired,
+//   loadStatus: bool.isRequired,
+//   onSetActiveOffer: func.isRequired,
+//   path: string.isRequired,
+//   user: userPropTypes,
+// };
 
 const mapStateToProps = (state) => ({
   authStatus: getAuthorizationStatus(state),

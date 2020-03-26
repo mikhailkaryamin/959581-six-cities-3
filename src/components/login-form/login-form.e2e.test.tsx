@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {
   configure,
   mount
@@ -13,7 +13,7 @@ configure({
 describe(`LoginForm`, () => {
   it(`should LoginForm change input`, () => {
     const onChange = jest.fn();
-    const signIn = () => {};
+    const signIn = jest.fn();
     const wrapper = mount(
         <LoginForm
           login={``}
@@ -32,7 +32,7 @@ describe(`LoginForm`, () => {
   });
 
   it(`should LoginForm pressed submit and check send obj`, () => {
-    const onChange = () => {};
+    const onChange = jest.fn();
     const signIn = jest.fn();
     const wrapper = mount(
         <LoginForm

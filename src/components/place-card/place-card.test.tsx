@@ -1,21 +1,24 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import configureStore from "redux-mock-store";
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import configureStore from 'redux-mock-store';
 import {
   Provider
-} from "react-redux";
+} from 'react-redux';
 import {
   BrowserRouter
 } from 'react-router-dom';
 import {
   storeWithAuth
-} from "../../mocks/initialState";
-import PlaceCard from "./place-card";
+} from '../../mocks/initialState';
+import PlaceCard from './place-card';
+import {
+  Offer
+} from '../../types';
 
 const mockStore = configureStore([]);
-const onMouseEnter = () => {};
-const onMouseLeave = () => {};
-const offer = {
+const onMouseEnter = jest.fn();
+const onMouseLeave = jest.fn();
+const offer: Offer = {
   bedrooms: 3,
   city: {
     location: {

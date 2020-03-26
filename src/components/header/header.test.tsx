@@ -1,12 +1,12 @@
-import React from "react";
-import renderer from "react-test-renderer";
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import {
   BrowserRouter
 } from 'react-router-dom';
 import {
   user,
 } from '../../mocks/testMock';
-import Header from "./header";
+import Header from './header';
 
 it(`Render header correctly`, () => {
   const tree = renderer

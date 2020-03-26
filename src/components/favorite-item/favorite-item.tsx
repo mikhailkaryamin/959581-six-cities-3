@@ -1,12 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import {
-  arrayOf,
-  func,
-  bool,
-  string,
-} from 'prop-types';
-import {
-  offerPropTypes
+  Offer
 } from '../../types';
 import {
   ClassModificator
@@ -14,9 +8,17 @@ import {
 import PlaceCard from '../place-card/place-card';
 import withHover from '../../hocs/with-hover/with-hover';
 
+interface Props {
+  city: string;
+  offers: Offer[];
+  isCurrentCity: boolean;
+  onCardHover: () => void;
+  onCardLeave: () => void;
+}
+
 const PlaceCardWrapped = withHover(PlaceCard);
 
-const FavoriteItem = (props) => {
+const FavoriteItem: React.FC<Props> = (props: Props) => {
   const {
     city,
     offers,
@@ -51,13 +53,13 @@ const FavoriteItem = (props) => {
   );
 };
 
-FavoriteItem.propTypes = {
-  city: string.isRequired,
-  isCurrentCity: bool.isRequired,
-  offers: arrayOf(offerPropTypes)
-      .isRequired,
-  onCardHover: func.isRequired,
-  onCardLeave: func.isRequired,
-};
+// FavoriteItem.propTypes = {
+//   city: string.isRequired,
+//   isCurrentCity: bool.isRequired,
+//   offers: arrayOf(offerPropTypes)
+//       .isRequired,
+//   onCardHover: func.isRequired,
+//   onCardLeave: func.isRequired,
+// };
 
 export default FavoriteItem;

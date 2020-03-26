@@ -1,9 +1,24 @@
-import React, {
-  PureComponent
-} from 'react';
+import * as React from 'react';
+import {
+  Subtract
+} from "utility-types";
+
+interface State {
+  login: string;
+  password: string;
+}
+
+interface InjectingProps {
+  login: string;
+  password: string;
+  onChange: () => void;
+}
 
 const withAuthorization = (Component) => {
-  class WithAuthorization extends PureComponent {
+  type S = React.ComponentProps<typeof Component>;
+  type T = Subtract<S, InjectingProps>
+
+  class WithAuthorization extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
       this.state = {

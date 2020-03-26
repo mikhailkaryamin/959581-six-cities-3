@@ -1,5 +1,5 @@
-import React from "react";
-import renderer from "react-test-renderer";
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import configureStore from "redux-mock-store";
 import {
   Provider
@@ -11,6 +11,9 @@ import {
   storeWithAuth
 } from "../../mocks/initialState";
 import FavoritesList from './favorites-list';
+import {
+  Offer
+} from '../../types';
 
 const mockStore = configureStore([]);
 const currentCity = `Paris`;
@@ -22,9 +25,9 @@ const favoritesLocations = [
   `Hamburg`,
   `Dusseldorf`
 ];
-const onCardHover = () => {};
-const onCardLeave = () => {};
-const favorites = [
+const onCardHover = jest.fn();
+const onCardLeave = jest.fn();
+const favorites: Offer[] = [
   {
     bedrooms: 3,
     city: {

@@ -1,24 +1,27 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import configureStore from "redux-mock-store";
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import configureStore from 'redux-mock-store';
 import {
   Provider
-} from "react-redux";
+} from 'react-redux';
 import {
   BrowserRouter
 } from 'react-router-dom';
 import {
   storeWithAuth
-} from "../../mocks/initialState";
+} from '../../mocks/initialState';
 import FavoriteItem from './favorite-item';
+import {
+  Offer
+} from '../../types';
 
 const mockStore = configureStore([]);
 
-const onCardHover = () => {};
-const onCardLeave = () => {};
+const onCardHover = jest.fn();
+const onCardLeave = jest.fn();
 const city = `Amsterdam`;
 const isCurrentCity = true;
-const offers = [
+const offers: Offer[] = [
   {
     bedrooms: 3,
     city: {

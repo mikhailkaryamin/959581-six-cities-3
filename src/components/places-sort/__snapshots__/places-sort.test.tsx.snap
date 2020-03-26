@@ -5,7 +5,7 @@ exports[`Render places sort 1`] = `
   action="#"
   className="places__sorting"
   method="get"
-  onClick={[Function]}
+  onClick={[MockFunction]}
 >
   <span
     className="places__sorting-caption"
@@ -14,7 +14,7 @@ exports[`Render places sort 1`] = `
   </span>
   <span
     className="places__sorting-type"
-    tabIndex="0"
+    tabIndex={0}
   >
     Popular
     <svg
@@ -33,21 +33,21 @@ exports[`Render places sort 1`] = `
     <li
       className="places__option"
       onClick={[Function]}
-      tabIndex="0"
+      tabIndex={0}
     >
       Price: low to high
     </li>
     <li
       className="places__option"
       onClick={[Function]}
-      tabIndex="0"
+      tabIndex={0}
     >
       Price: high to low
     </li>
     <li
       className="places__option"
       onClick={[Function]}
-      tabIndex="0"
+      tabIndex={0}
     >
       Top rated first
     </li>

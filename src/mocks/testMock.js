@@ -423,6 +423,7 @@ const user = {
   id: 1,
   isPro: true,
   name: `Vasya`,
+  email: `safsa@mail.ru`,
 };
 
 export {

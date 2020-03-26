@@ -1,24 +1,24 @@
-import React,
-{
-  PureComponent
-} from "react";
+import * as React from 'react';
 import {
   Link
 } from 'react-router-dom';
 import {
-  bool,
-  func,
-  number,
-  shape,
-  string,
-} from "prop-types";
-import {
-  ClassModificator
+  ClassModificator as ClassName
 } from "../../consts";
+import {
+  Offer
+} from '../../types';
 import FavoriteButton from "../favorite-button/favorite-button";
 import Rating from '../rating/rating';
 
-class PlaceCard extends PureComponent {
+interface Props {
+  classModificator: string;
+  offer: Offer;
+  onMouseEnter: (Offer) => void;
+  onMouseLeave: () => void;
+}
+
+class PlaceCard extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
   }
@@ -51,7 +51,7 @@ class PlaceCard extends PureComponent {
           onMouseLeave();
         }}
       >
-        {(isPremium && classModificator !== ClassModificator.FAVORITES) &&
+        {(isPremium && classModificator !== ClassName.FAVORITES) &&
           <div className="place-card__mark">
             <span>
               Premium
@@ -63,8 +63,8 @@ class PlaceCard extends PureComponent {
             <img
               className="place-card__image"
               src={previewImage}
-              width={classModificator === ClassModificator.FAVORITES ? 150 : 260}
-              height={classModificator === ClassModificator.FAVORITES ? 110 : 200}
+              width={classModificator === ClassName.FAVORITES ? 150 : 260}
+              height={classModificator === ClassName.FAVORITES ? 110 : 200}
               alt="Place image"
             />
           </a>
@@ -85,7 +85,7 @@ class PlaceCard extends PureComponent {
             />
           </div>
           <Rating
-            classModificator={ClassModificator.PLACE_CARD}
+            classModificator={ClassName.PLACE_CARD}
             rating={rating}
           />
           <h2
@@ -102,19 +102,19 @@ class PlaceCard extends PureComponent {
   }
 }
 
-PlaceCard.propTypes = {
-  classModificator: string.isRequired,
-  offer: shape({
-    previewImage: string.isRequired,
-    price: number.isRequired,
-    rating: number.isRequired,
-    title: string.isRequired,
-    type: string.isRequired,
-    isPremium: bool.isRequired,
-    id: number.isRequired,
-  }).isRequired,
-  onMouseEnter: func.isRequired,
-  onMouseLeave: func.isRequired,
-};
+// PlaceCard.propTypes = {
+//   classModificator: string.isRequired,
+//   offer: shape({
+//     previewImage: string.isRequired,
+//     price: number.isRequired,
+//     rating: number.isRequired,
+//     title: string.isRequired,
+//     type: string.isRequired,
+//     isPremium: bool.isRequired,
+//     id: number.isRequired,
+//   }).isRequired,
+//   onMouseEnter: func.isRequired,
+//   onMouseLeave: func.isRequired,
+// };
 
 export default PlaceCard;

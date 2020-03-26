@@ -4,11 +4,13 @@
     "outDir": "./dist",
     "sourceMap": true,
     "module": "commonjs",
-    "target": "ES2016",
+    "target": "es2016",
     "jsx": "react",
-    "allowSyntheticDefaultImports": false
+    "allowSyntheticDefaultImports": false,
+    "lib": ["dom"]
   },
   "exclude": [
+    "demos",
     "node_modules",
     "dist"
   ]

@@ -1,15 +1,17 @@
-import React from "react";
+import * as React from 'react';
 import {
-  bool,
-  element,
-  string,
-} from "prop-types";
-import {
-  userPropTypes
+  User
 } from '../../types';
 import Header from "../header/header";
 
-const Page = (props) => {
+interface Props {
+  className?: string;
+  children?: React.ReactNode;
+  isAuth: boolean;
+  user: User;
+}
+
+const Page: React.FC<Props> = (props: Props) => {
   const {
     className,
     children,
@@ -26,17 +28,6 @@ const Page = (props) => {
       {children}
     </div>
   );
-};
-
-Page.propTypes = {
-  className: string,
-  children: element,
-  isAuth: bool.isRequired,
-  user: userPropTypes,
-};
-
-Page.defaultProps = {
-  className: ``,
 };
 
 export default Page;

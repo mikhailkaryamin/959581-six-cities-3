@@ -1,14 +1,16 @@
-import React, {
-  PureComponent
-} from "react";
+import * as React from 'react';
 import {
-  commentsPropTypes
+  Comment
 } from "../../types";
 import {
   ONE_STAR
 } from "../../consts";
 
-class ReviewItem extends PureComponent {
+interface Props {
+  comment: Comment;
+}
+
+class ReviewItem extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
   }
@@ -71,8 +73,8 @@ class ReviewItem extends PureComponent {
   }
 }
 
-ReviewItem.propTypes = {
-  comment: commentsPropTypes,
-};
+// ReviewItem.propTypes = {
+//   comment: commentsPropTypes,
+// };
 
 export default ReviewItem;

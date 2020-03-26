@@ -1,7 +1,4 @@
-import React from "react";
-import {
-  bool,
-} from 'prop-types';
+import * as React from 'react';
 import {
   Link
 } from 'react-router-dom';
@@ -10,11 +7,16 @@ import {
   SITE_URL
 } from '../../consts';
 import {
-  userPropTypes
+  User
 } from '../../types';
 import Logotype from "../logotype/logotype";
 
-const Header = (props) => {
+interface Props {
+  isAuth: boolean;
+  user: User;
+}
+
+const Header: React.FC<Props> = (props: Props) => {
   const {
     isAuth,
     user,
@@ -55,9 +57,9 @@ const Header = (props) => {
   );
 };
 
-Header.propTypes = {
-  isAuth: bool.isRequired,
-  user: userPropTypes,
-};
+// Header.propTypes = {
+//   isAuth: bool.isRequired,
+//   user: userPropTypes,
+// };
 
 export default Header;

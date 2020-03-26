@@ -1,8 +1,11 @@
-import React from "react";
-import renderer from "react-test-renderer";
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import Map from "./map";
+import {
+  Offer
+} from '../../types';
 
-const focusOffer = {
+const focusOffer: Offer = {
   bedrooms: 3,
   city: {
     location: {
@@ -37,7 +40,7 @@ const focusOffer = {
   type: `apartment`
 };
 
-const currentCityOffers = [
+const currentCityOffers: Offer[] = [
   {
     bedrooms: 3,
     city: {

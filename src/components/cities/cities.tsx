@@ -1,21 +1,24 @@
-import React, {
-  PureComponent
-} from "react";
+import * as React from 'react';
 import {
-  arrayOf,
-  string,
-  func,
-} from "prop-types";
-import {
-  offerPropTypes,
-} from "../../types";
+  Offer,
+} from '../../types';
 import {
   ClassModificator
 } from "../../consts";
 import Map from "../map/map";
 import Places from "../places/places";
 
-class Cities extends PureComponent {
+interface Props {
+  currentCity: string;
+  currentSort: string;
+  currentCityOffers: Offer[];
+  focusOffer: Offer;
+  onCardHover: () => void;
+  onCardLeave: () => void;
+  handleSortChange: () => void;
+}
+
+class Cities extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
   }
@@ -56,16 +59,16 @@ class Cities extends PureComponent {
   }
 }
 
-Cities.propTypes = {
-  currentCityOffers: arrayOf(
-      offerPropTypes
-  ).isRequired,
-  currentSort: string.isRequired,
-  currentCity: string.isRequired,
-  handleSortChange: func.isRequired,
-  focusOffer: offerPropTypes,
-  onCardHover: func.isRequired,
-  onCardLeave: func.isRequired,
-};
+// Cities.propTypes = {
+//   currentCityOffers: arrayOf(
+//       offerPropTypes
+//   ).isRequired,
+//   currentSort: string.isRequired,
+//   currentCity: string.isRequired,
+//   handleSortChange: func.isRequired,
+//   focusOffer: offerPropTypes,
+//   onCardHover: func.isRequired,
+//   onCardLeave: func.isRequired,
+// };
 
 export default Cities;

@@ -1,14 +1,15 @@
-import React, {
-  PureComponent
-} from 'react';
-import {
-  func,
-  number,
-} from 'prop-types';
-import ErrorMessage from '../../components/error-message/error-message.jsx';
+import * as React from 'react';
+import ErrorMessage from '../../components/error-message/error-message';
+
+// interface Props {
+//   onResetError: () => void;
+//   responseStatus: null | number;
+// }
 
 const withErrorMessage = (Component) => {
-  class WithErrorMessage extends PureComponent {
+  type S = React.ComponentProps<typeof Component>;
+
+  class WithErrorMessage extends React.PureComponent<S, {}> {
     _isErrorCode(responseStatus) {
       if (responseStatus === null) {
         return false;
@@ -45,10 +46,10 @@ const withErrorMessage = (Component) => {
     }
   }
 
-  WithErrorMessage.propTypes = {
-    responseStatus: number,
-    onResetError: func.isRequired,
-  };
+  // WithErrorMessage.propTypes = {
+  //   responseStatus: number,
+  //   onResetError: func.isRequired,
+  // };
 
   return WithErrorMessage;
 };

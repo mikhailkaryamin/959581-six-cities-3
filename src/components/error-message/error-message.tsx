@@ -1,18 +1,24 @@
-import React, {
-  PureComponent
-} from 'react';
-import {
-  func,
-  number,
-} from 'prop-types';
+import * as React from 'react';
+import * as CSS from 'csstype';
 
-const Styles = {
-  ErrorMessage: {
+interface Props {
+  errorCode: number;
+  onResetError: () => void;
+}
+
+type CSSProps = {
+  errorMessage: CSS.Properties;
+  header: CSS.Properties;
+  closeButton: CSS.Properties;
+}
+
+const Styles: CSSProps = {
+  errorMessage: {
     position: `fixed`,
     top: `5%`,
     right: `50%`,
     left: `50%`,
-    zIndex: `50`,
+    zIndex: 50,
     width: `250px`,
     color: `#ffffff`,
     padding: `25px`,
@@ -26,7 +32,7 @@ const Styles = {
     position: `absolute`,
     top: `5px`,
     right: `5px`,
-    zIndex: `10`,
+    zIndex: 10,
     width: `10px`,
     height: `10px`,
     padding: `10px`,
@@ -38,7 +44,7 @@ const Styles = {
   }
 };
 
-class ErrorMessage extends PureComponent {
+class ErrorMessage extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
     this._onEscKeyDown = this._onEscKeyDown.bind(this);
@@ -71,7 +77,7 @@ class ErrorMessage extends PureComponent {
     return (
       <div
         className="error-message"
-        style={Styles.ErrorMessage}
+        style={Styles.errorMessage}
       >
         <div className="error-message__header"
           style={Styles.header}
@@ -90,10 +96,10 @@ class ErrorMessage extends PureComponent {
   }
 }
 
-ErrorMessage.propTypes = {
-  errorCode: number.isRequired,
-  onResetError: func.isRequired,
-};
+// ErrorMessage.propTypes = {
+//   errorCode: number.isRequired,
+//   onResetError: func.isRequired,
+// };
 
 export default ErrorMessage;
 

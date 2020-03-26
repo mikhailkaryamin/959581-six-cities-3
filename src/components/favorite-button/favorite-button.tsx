@@ -1,18 +1,10 @@
-import React, {
-  PureComponent
-} from 'react';
+import * as React from 'react';
 import {
   Link
 } from 'react-router-dom';
 import {
   connect
 } from 'react-redux';
-import {
-  bool,
-  func,
-  number,
-  string,
-} from 'prop-types';
 import {
   Operation as FavoriteOperation
 } from '../../reducer/favorite/favorite';
@@ -29,7 +21,17 @@ import {
   AppRoute
 } from '../../consts';
 
-class FavoriteButton extends PureComponent {
+interface Props {
+  authStatus: string;
+  classModificator?: string;
+  id: number;
+  height: number;
+  width: number;
+  isFavorite: boolean;
+  onFavoriteClick: (id: number, isFavorite: boolean) => void;
+}
+
+class FavoriteButton extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
     this._handleFavorite = this._handleFavorite.bind(this);
@@ -90,15 +92,15 @@ class FavoriteButton extends PureComponent {
   }
 }
 
-FavoriteButton.propTypes = {
-  authStatus: string.isRequired,
-  classModificator: string.isRequired,
-  id: number.isRequired,
-  isFavorite: bool.isRequired,
-  height: number.isRequired,
-  onFavoriteClick: func.isRequired,
-  width: number.isRequired,
-};
+// FavoriteButton.propTypes = {
+//   authStatus: string.isRequired,
+//   classModificator: string.isRequired,
+//   id: number.isRequired,
+//   isFavorite: bool.isRequired,
+//   height: number.isRequired,
+//   onFavoriteClick: func.isRequired,
+//   width: number.isRequired,
+// };
 
 const mapStateToProps = (state, props) => ({
   authStatus: getAuthorizationStatus(state),

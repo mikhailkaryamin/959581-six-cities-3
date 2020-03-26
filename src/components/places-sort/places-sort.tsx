@@ -1,16 +1,16 @@
-import React, {
-  PureComponent
-} from "react";
-import {
-  bool,
-  func,
-  string
-} from "prop-types";
+import * as React from 'react';
 import {
   SORTING
 } from "../../consts";
 
-class PlacesSort extends PureComponent {
+interface Props {
+  currentSort: string;
+  handleSortChange: (string) => void;
+  isActive: boolean;
+  onToggleClick: () => void;
+}
+
+class PlacesSort extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
   }
@@ -31,7 +31,7 @@ class PlacesSort extends PureComponent {
         onClick={onToggleClick}
       >
         <span className="places__sorting-caption">Sort by </span>
-        <span className="places__sorting-type" tabIndex="0">
+        <span className="places__sorting-type" tabIndex={0}>
           {
             currentSort
           }
@@ -47,7 +47,7 @@ class PlacesSort extends PureComponent {
               sort !== currentSort && <li
                 className="places__option"
                 key={sort}
-                tabIndex="0"
+                tabIndex={0}
                 onClick={()=> {
                   handleSortChange(sort);
                 }}
@@ -62,11 +62,11 @@ class PlacesSort extends PureComponent {
   }
 }
 
-PlacesSort.propTypes = {
-  currentSort: string.isRequired,
-  handleSortChange: func.isRequired,
-  isActive: bool.isRequired,
-  onToggleClick: func.isRequired
-};
+// PlacesSort.propTypes = {
+//   currentSort: string.isRequired,
+//   handleSortChange: func.isRequired,
+//   isActive: bool.isRequired,
+//   onToggleClick: func.isRequired
+// };
 
 export default PlacesSort;

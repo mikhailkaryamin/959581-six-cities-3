@@ -1,24 +1,27 @@
-import React from "react";
-import Adapter from "enzyme-adapter-react-16";
+import * as React from 'react';
+import Adapter from 'enzyme-adapter-react-16';
 import Enzyme, {
   mount
-} from "enzyme";
+} from 'enzyme';
 import {
   Property
-} from "./property";
-import configureStore from "redux-mock-store";
+} from './property';
+import configureStore from 'redux-mock-store';
 import {
   Provider
-} from "react-redux";
+} from 'react-redux';
 import {
   BrowserRouter
 } from 'react-router-dom';
 import {
   storeWithAuth
-} from "../../mocks/initialState";
+} from '../../mocks/initialState';
 import {
   AuthorizationStatus
 } from '../../reducer/user/user';
+import {
+  Offer
+} from '../../types';
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -26,7 +29,7 @@ Enzyme.configure({
 
 const mockStore = configureStore([]);
 
-const offersNearby = [
+const offersNearby: Offer[] = [
   {
     bedrooms: 3,
     city: {
@@ -164,7 +167,7 @@ const offersNearby = [
     type: `apartment`
   }
 ];
-const focusOffer = {
+const focusOffer: Offer = {
   bedrooms: 3,
   city: {
     location: {
@@ -198,7 +201,7 @@ const focusOffer = {
   title: `Beautiful & luxurious studio at great location`,
   type: `apartment`
 };
-const activeOffer = {
+const activeOffer: Offer = {
   bedrooms: 3,
   city: {
     location: {
@@ -239,7 +242,7 @@ const comments = [
       id: 1,
       isPro: true,
       name: `Mi`,
-      avatarURL: `img/avatar-max.jpg`
+      avatarUrl: `img/avatar-max.jpg`
     },
     rating: 2,
     comment: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -253,7 +256,7 @@ const comments = [
       id: 1,
       isPro: true,
       name: `Mi`,
-      avatarURL: `img/avatar-max.jpg`
+      avatarUrl: `img/avatar-max.jpg`
     },
     rating: 2,
     comment: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -267,7 +270,7 @@ const comments = [
       id: 1,
       isPro: true,
       name: `Mi`,
-      avatarURL: `img/avatar-max.jpg`
+      avatarUrl: `img/avatar-max.jpg`
     },
     rating: 2,
     comment: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -277,11 +280,10 @@ const comments = [
   },
 ];
 const currentSort = `Popular`;
-const onCardHover = () => {};
-const onCardLeave = () => {};
-const onResetError = () => {};
-const onLoadDataProperty = () => {};
-const onCommentSubmit = () => {};
+const onCardHover = jest.fn();
+const onCardLeave = jest.fn();
+const onLoadDataProperty = jest.fn();
+const onCommentSubmit = jest.fn();
 const responseStatus = 200;
 const countComments = 3;
 const authStatus = AuthorizationStatus.AUTH;
@@ -299,7 +301,6 @@ it(`Render property correctly`, () => {
             focusOffer={focusOffer}
             onCardHover={onCardHover}
             onCardLeave={onCardLeave}
-            onResetError={onResetError}
             responseStatus={responseStatus}
             offersNearby={offersNearby}
             activeOffer={activeOffer}

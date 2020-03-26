@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App render correctly App render correctly with active offer 1`] = `
+exports[`Render correctly page 1`] = `
 <div
-  className="page page--gray page--main"
+  className="page undefined"
 >
   <header
     className="header"
@@ -41,21 +41,16 @@ exports[`App render correctly App render correctly with active offer 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="/favorite/"
+                href="/login"
                 onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
-                  style={
-                    Object {
-                      "backgroundImage": "url(https://htmlacademy-react-3.appspot.com/six-cities)",
-                    }
-                  }
                 />
                 <span
                   className="header__user-name user__name"
                 >
-                  mail@mail.ru
+                  Sign in
                 </span>
               </a>
             </li>
@@ -64,7 +59,5 @@ exports[`App render correctly App render correctly with active offer 1`] = `
       </div>
     </div>
   </header>
-  
-  
 </div>
 `;

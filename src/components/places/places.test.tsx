@@ -1,23 +1,26 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import configureStore from "redux-mock-store";
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import configureStore from 'redux-mock-store';
 import {
   Provider
-} from "react-redux";
+} from 'react-redux';
 import {
   BrowserRouter
 } from 'react-router-dom';
 import {
   storeWithAuth
-} from "../../mocks/initialState";
+} from '../../mocks/initialState';
 import {
   ClassModificator
-} from "../../consts";
-import Places from "./places";
+} from '../../consts';
+import Places from './places';
+import {
+  Offer
+} from '../../types';
 
 const mockStore = configureStore([]);
 
-const currentCityOffers = [
+const currentCityOffers: Offer[] = [
   {
     bedrooms: 3,
     city: {
@@ -157,9 +160,9 @@ const currentCityOffers = [
 ];
 const currentSort = `Popular`;
 const currentCity = `Paris`;
-const onCardHover = () => {};
-const onCardLeave = () => {};
-const handleSortChange = () => {};
+const onCardHover = jest.fn();
+const onCardLeave = jest.fn();
+const handleSortChange = jest.fn();
 
 it(`Render places (modificator - cities) correctly`, () => {
   const store = mockStore(storeWithAuth);

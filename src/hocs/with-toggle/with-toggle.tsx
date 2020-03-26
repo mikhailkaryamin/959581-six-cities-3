@@ -1,9 +1,22 @@
-import React, {
-  PureComponent
-} from "react";
+import * as React from 'react';
+import {
+  Subtract
+} from "utility-types";
+
+interface State {
+  isActive: boolean;
+}
+
+interface InjectingProps {
+  isActive: boolean;
+  onToggleClick: () => void;
+}
 
 const withToggle = (Component) => {
-  class WithToggle extends PureComponent {
+  type S = React.ComponentProps<typeof Component>;
+  type T = Subtract<S, InjectingProps>;
+
+  class WithToggle extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
@@ -36,7 +49,7 @@ const withToggle = (Component) => {
     }
   }
 
-  WithToggle.propTypes = {};
+  // WithToggle.propTypes = {};
 
   return WithToggle;
 };

@@ -4,7 +4,7 @@ exports[`Login input Login input email render correctly 1`] = `
 <input
   className="login__input form__input"
   name="email"
-  onChange={[Function]}
+  onChange={[MockFunction]}
   placeholder="Email"
   required={true}
   type="email"
@@ -16,7 +16,7 @@ exports[`Login input Login input password render correctly 1`] = `
 <input
   className="login__input form__input"
   name="password"
-  onChange={[Function]}
+  onChange={[MockFunction]}
   placeholder="Password"
   required={true}
   type="password"

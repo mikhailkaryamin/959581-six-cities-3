@@ -1,6 +1,6 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import Locations from "./locations";
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import Locations from './locations';
 
 const locations = [
   `Paris`,
@@ -11,7 +11,7 @@ const locations = [
   `Dusseldorf`
 ];
 const currentCity = `Paris`;
-const handleLocationClick = () => {};
+const handleLocationClick = jest.fn();
 
 it(`Render locations correctly`, () => {
   const tree = renderer

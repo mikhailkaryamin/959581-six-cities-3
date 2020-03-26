@@ -54,7 +54,9 @@ exports[`Favorites render correctly 1`] = `
                 />
                 <span
                   className="header__user-name user__name"
-                />
+                >
+                  test@mail.ru
+                </span>
               </a>
             </li>
           </ul>

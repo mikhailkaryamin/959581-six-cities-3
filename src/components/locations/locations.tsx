@@ -1,11 +1,12 @@
-import React from "react";
-import {
-  arrayOf,
-  func,
-  string,
-} from "prop-types";
+import * as React from 'react';
 
-const Locations = (props) => {
+interface Props {
+  currentCity: string;
+  locations: string[];
+  handleLocationClick: (location: string) => void;
+}
+
+const Locations: React.FC<Props> = (props: Props) => {
   const {
     currentCity,
     locations,
@@ -42,12 +43,12 @@ const Locations = (props) => {
   );
 };
 
-Locations.propTypes = {
-  currentCity: string.isRequired,
-  locations: arrayOf(
-      string.isRequired
-  ).isRequired,
-  handleLocationClick: func.isRequired,
-};
+// Locations.propTypes = {
+//   currentCity: string.isRequired,
+//   locations: arrayOf(
+//       string.isRequired
+//   ).isRequired,
+//   handleLocationClick: func.isRequired,
+// };
 
 export default Locations;

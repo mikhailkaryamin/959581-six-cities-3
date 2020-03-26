@@ -1,9 +1,9 @@
-import React from "react";
-import Adapter from "enzyme-adapter-react-16";
+import * as React from 'react';
+import Adapter from 'enzyme-adapter-react-16';
 import Enzyme, {
   shallow
-} from "enzyme";
-import Reviews from "./reviews";
+} from 'enzyme';
+import Reviews from './reviews';
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -16,7 +16,7 @@ const comments = [
       id: 1,
       isPro: true,
       name: `Mi`,
-      avatarURL: `img/avatar-max.jpg`
+      avatarUrl: `img/avatar-max.jpg`
     },
     rating: 2,
     comment: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -26,7 +26,8 @@ const comments = [
   }
 ];
 const isAuth = true;
-const onCommentSubmit = () => {};
+const onCommentSubmit = jest.fn();
+const responseStatus = null;
 const countComments = 3;
 
 test(`Render reviews`, () => {
@@ -36,6 +37,7 @@ test(`Render reviews`, () => {
         countComments={countComments}
         isAuth={isAuth}
         onCommentSubmit={onCommentSubmit}
+        responseStatus={responseStatus}
       />
   ).html();
 

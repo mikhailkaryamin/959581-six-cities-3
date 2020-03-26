@@ -1,5 +1,5 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 import {
   createStore,
   applyMiddleware,
@@ -11,20 +11,20 @@ import {
   composeWithDevTools
 } from "redux-devtools-extension";
 import thunk from 'redux-thunk';
-import App from "./components/app/app.jsx";
-import reducer from "./reducer/reducer.js";
+import App from "./components/app/app";
+import reducer from "./reducer/reducer";
 import {
   Operation as DataOperation
-} from "./reducer/data/data.js";
+} from "./reducer/data/data";
 
 import {
   createAPI
-} from './api.js';
+} from './api';
 import {
   Operation as UserOperation,
   ActionCreator,
   AuthorizationStatus
-} from "./reducer/user/user.js";
+} from "./reducer/user/user";
 
 const onUnauthorized = () => {
   store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));

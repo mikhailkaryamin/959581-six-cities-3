@@ -1,17 +1,22 @@
-import React,
-{
-  PureComponent
-} from 'react';
-import {
-  func,
-  string,
-} from 'prop-types';
+import * as React from 'react';
 import {
   TypeInputLogin
 } from '../../consts';
 import LoginInput from '../login-input/login-input';
 
-class LoginForm extends PureComponent {
+type LoginValue = {
+  login: string;
+  password: string;
+}
+
+interface Props {
+  login: string;
+  password: string;
+  onChange: () => void;
+  signIn: (LoginValue) => void;
+}
+
+class LoginForm extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
     this._handleSubmit = this._handleSubmit.bind(this);
@@ -74,11 +79,11 @@ class LoginForm extends PureComponent {
   }
 }
 
-LoginForm.propTypes = {
-  login: string.isRequired,
-  password: string.isRequired,
-  onChange: func.isRequired,
-  signIn: func.isRequired,
-};
+// LoginForm.propTypes = {
+//   login: string.isRequired,
+//   password: string.isRequired,
+//   onChange: func.isRequired,
+//   signIn: func.isRequired,
+// };
 
 export default LoginForm;

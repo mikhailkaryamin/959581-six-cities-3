@@ -1,5 +1,5 @@
-import React from "react";
-import renderer from "react-test-renderer";
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import NotAvailableOffers from './not-available-offers';
 
 test(`Not available offers render correctly`, () => {

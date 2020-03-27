@@ -1,11 +1,12 @@
 import * as React from 'react';
-import Adapter from 'enzyme-adapter-react-16';
-import Enzyme, {
+import * as Adapter from 'enzyme-adapter-react-16';
+import {
+  configure,
   mount
 } from 'enzyme';
 import ReviewsForm from './reviews-form';
 
-Enzyme.configure({
+configure({
   adapter: new Adapter(),
 });
 

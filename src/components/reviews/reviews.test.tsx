@@ -1,11 +1,12 @@
 import * as React from 'react';
-import Adapter from 'enzyme-adapter-react-16';
-import Enzyme, {
+import * as Adapter from 'enzyme-adapter-react-16';
+import {
+  configure,
   shallow
 } from 'enzyme';
 import Reviews from './reviews';
 
-Enzyme.configure({
+configure({
   adapter: new Adapter(),
 });
 

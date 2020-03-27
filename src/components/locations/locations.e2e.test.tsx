@@ -1,8 +1,9 @@
 import * as React from 'react';
-import Enzyme, {
-  shallow
+import {
+  configure,
+  shallow,
 } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import * as Adapter from 'enzyme-adapter-react-16';
 import Locations from './locations';
 
 const locations = [
@@ -15,7 +16,7 @@ const locations = [
 ];
 const currentCity = `Paris`;
 
-Enzyme.configure({
+configure({
   adapter: new Adapter(),
 });
 

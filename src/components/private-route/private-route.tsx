@@ -19,7 +19,7 @@ interface Props {
   authStatus: string;
   exact: boolean;
   path: string;
-  render: () => void;
+  render: () => React.ReactNode;
 }
 
 const PrivateRoute: React.FC<Props> = (props: Props) => {
@@ -52,13 +52,6 @@ const PrivateRoute: React.FC<Props> = (props: Props) => {
     />
   );
 };
-
-// PrivateRoute.propTypes = {
-//   authStatus: string.isRequired,
-//   exact: bool.isRequired,
-//   path: string.isRequired,
-//   render: func.isRequired,
-// };
 
 const mapStateToProps = (state) => ({
   authStatus: getAuthorizationStatus(state),

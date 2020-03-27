@@ -6,7 +6,7 @@ import {
 import {
   TypeInputLogin
 } from '../../consts';
-import Adapter from 'enzyme-adapter-react-16';
+import * as Adapter from 'enzyme-adapter-react-16';
 import LoginInput from './login-input';
 
 configure({

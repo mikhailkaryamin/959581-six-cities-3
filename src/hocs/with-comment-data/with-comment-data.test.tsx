@@ -3,7 +3,7 @@ import {
   configure,
   shallow
 } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import * as Adapter from 'enzyme-adapter-react-16';
 import withCommentData from './with-comment-data';
 
 configure({adapter: new Adapter()});

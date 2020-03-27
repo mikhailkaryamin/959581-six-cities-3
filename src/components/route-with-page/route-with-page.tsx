@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {
   Route,
+  Redirect
 } from 'react-router-dom';
 import {
   connect
@@ -13,6 +14,9 @@ import {
   getOffers,
   getLoadStatus,
 } from '../../reducer/data/selectors';
+import {
+  getActiveOffer
+} from '../../reducer/offer/selectors';
 import {
   AuthorizationStatus
 } from '../../reducer/user/user';
@@ -31,6 +35,7 @@ import Page from '../page/page';
 
 interface Props {
   initialOffers: Offer[];
+  activeOffer: Offer;
   authStatus: number | null;
   component: React.ReactNode;
   exact: boolean;
@@ -45,17 +50,26 @@ class RouteWithPage extends React.PureComponent<Props, {}> {
     super(props);
   }
 
-  _setInitialActiveOffer(currentOfferID) {
+  _setInitialActiveOffer(currentRequestOfferId) {
     const {
       initialOffers
     } = this.props;
 
-    const initialActiveOffer = initialOffers.find((offer) => offer.id === currentOfferID);
+    const initialActiveOffer = initialOffers.find((offer) => offer.id === currentRequestOfferId);
     this.props.onSetActiveOffer(initialActiveOffer);
+  }
+
+  _checkCorrectOfferId(currentRequestOfferId) {
+    const {
+      initialOffers
+    } = this.props;
+
+    return (initialOffers.length <= currentRequestOfferId || isNaN(currentRequestOfferId));
   }
 
   render() {
     const {
+      activeOffer,
       authStatus,
       component,
       exact,
@@ -92,10 +106,23 @@ class RouteWithPage extends React.PureComponent<Props, {}> {
         path={path}
         exact={exact}
         render={(renderProps) => {
-
           if (path === AppRoute.OFFER) {
-            const currentOfferID = parseInt(renderProps.match.params.id, 10);
-            this._setInitialActiveOffer(currentOfferID);
+            const currentRequestOfferId = parseInt(renderProps.match.params.id, 10);
+
+            if (this._checkCorrectOfferId(currentRequestOfferId)) {
+              return (
+                <Redirect to={{
+                  pathname: AppRoute.NOT_FOUND,
+                  state: {
+                    from: renderProps.location
+                  }
+                }}/>
+              );
+            }
+
+            if (activeOffer === null || activeOffer.id !== currentRequestOfferId) {
+              this._setInitialActiveOffer(currentRequestOfferId);
+            }
           }
 
           return (
@@ -113,21 +140,9 @@ class RouteWithPage extends React.PureComponent<Props, {}> {
   }
 }
 
-// RouteWithPage.propTypes = {
-//   authStatus: string,
-//   component: element.isRequired,
-//   exact: bool.isRequired,
-//   initialOffers: arrayOf(
-//       offerPropTypes
-//   ).isRequired,
-//   loadStatus: bool.isRequired,
-//   onSetActiveOffer: func.isRequired,
-//   path: string.isRequired,
-//   user: userPropTypes,
-// };
-
 const mapStateToProps = (state) => ({
   authStatus: getAuthorizationStatus(state),
+  activeOffer: getActiveOffer(state),
   initialOffers: getOffers(state),
   loadStatus: getLoadStatus(state),
   user: getUser(state),

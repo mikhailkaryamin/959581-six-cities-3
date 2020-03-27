@@ -55,10 +55,4 @@ const Login: React.FC<Props> = (props: Props) => {
   );
 };
 
-// Login.propTypes = {
-//   currentCity: string.isRequired,
-//   signIn: func.isRequired,
-//   isAuth: bool.isRequired,
-// };
-
 export default Login;

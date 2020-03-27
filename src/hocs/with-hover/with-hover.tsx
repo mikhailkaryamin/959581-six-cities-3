@@ -57,11 +57,6 @@ const withHover = (Component) => {
     }
   }
 
-  // WithHover.propTypes = {
-  //   onCardHover: func.isRequired,
-  //   onCardLeave: func.isRequired,
-  // };
-
   return WithHover;
 };
 

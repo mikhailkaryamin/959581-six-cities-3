@@ -8,6 +8,9 @@ import {
   AuthorizationStatus
 } from '../../reducer/user/user';
 import {
+  ClassModificator
+} from '../../consts';
+import {
   FavoriteButton
 } from './favorite-button';
 
@@ -17,13 +20,13 @@ configure({
 
 const authStatus = AuthorizationStatus.AUTH;
 
-describe(`FavoriteButton`, () => {
-  it(`should favoriteButton pressed remove favorite`, () => {
+describe(`Favorite Button`, () => {
+  test(`should favoriteButton pressed remove favorite`, () => {
     const onFavoriteClick = jest.fn();
     const wrapper = mount(
         <FavoriteButton
           id={1}
-          classModificator={`place-card`}
+          classModificator={ClassModificator.PLACE_CARD}
           width={25}
           height={25}
           isFavorite={false}
@@ -38,12 +41,12 @@ describe(`FavoriteButton`, () => {
     expect(onFavoriteClick.mock.calls[0][1]).toBe(false);
   });
 
-  it(`should favoriteButton pressed add to favorites`, () => {
+  test(`should favoriteButton pressed add to favorites`, () => {
     const onFavoriteClick = jest.fn();
     const wrapper = mount(
         <FavoriteButton
           id={1}
-          classModificator={`place-card`}
+          classModificator={ClassModificator.PLACE_CARD}
           width={25}
           height={25}
           isFavorite={true}

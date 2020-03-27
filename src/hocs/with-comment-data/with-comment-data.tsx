@@ -93,11 +93,6 @@ const withCommentData = (Component) => {
     }
   }
 
-  // WithCommentData.propTypes = {
-  //   countComments: number.isRequired,
-  //   onCommentSubmit: func.isRequired,
-  // };
-
   return WithCommentData;
 };
 

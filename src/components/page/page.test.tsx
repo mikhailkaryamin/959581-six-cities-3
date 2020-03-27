@@ -5,8 +5,8 @@ import {
 } from 'react-router-dom';
 import Page from './page';
 import {
-  user,
-} from '../../mocks/testMock';
+  USER,
+} from '../../mocks/constsMockTest';
 
 test(`Render correctly page`, () => {
   const tree = renderer
@@ -14,7 +14,7 @@ test(`Render correctly page`, () => {
         <BrowserRouter>
           <Page
             isAuth={false}
-            user={user}
+            user={USER}
           />
         </BrowserRouter>
     ).toJSON();

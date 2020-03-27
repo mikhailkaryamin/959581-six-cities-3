@@ -92,16 +92,6 @@ class FavoriteButton extends React.PureComponent<Props, {}> {
   }
 }
 
-// FavoriteButton.propTypes = {
-//   authStatus: string.isRequired,
-//   classModificator: string.isRequired,
-//   id: number.isRequired,
-//   isFavorite: bool.isRequired,
-//   height: number.isRequired,
-//   onFavoriteClick: func.isRequired,
-//   width: number.isRequired,
-// };
-
 const mapStateToProps = (state, props) => ({
   authStatus: getAuthorizationStatus(state),
   isFavorite: checkFavorite(state, props.id),

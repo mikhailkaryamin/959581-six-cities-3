@@ -73,8 +73,4 @@ class ReviewItem extends React.PureComponent<Props, {}> {
   }
 }
 
-// ReviewItem.propTypes = {
-//   comment: commentsPropTypes,
-// };
-
 export default ReviewItem;

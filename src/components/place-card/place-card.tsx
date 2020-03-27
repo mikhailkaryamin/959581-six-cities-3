@@ -18,103 +18,82 @@ interface Props {
   onMouseLeave: () => void;
 }
 
-class PlaceCard extends React.PureComponent<Props, {}> {
-  constructor(props) {
-    super(props);
-  }
+const PlaceCard: React.FC<Props> = (props: Props) => {
+  const {
+    classModificator,
+    offer,
+    onMouseEnter,
+    onMouseLeave,
+  } = props;
 
-  render() {
-    const {
-      classModificator,
-      offer,
-      onMouseEnter,
-      onMouseLeave,
-    } = this.props;
+  const {
+    id,
+    isPremium,
+    previewImage,
+    price,
+    rating,
+    title,
+    type,
+  } = offer;
 
-    const {
-      id,
-      isPremium,
-      previewImage,
-      price,
-      rating,
-      title,
-      type,
-    } = offer;
-
-    return (
-      <article
-        className={`${classModificator}__place-card place-card`}
-        onMouseEnter={() => {
-          onMouseEnter(offer);
-        }}
-        onMouseLeave={() => {
-          onMouseLeave();
-        }}
-      >
-        {(isPremium && classModificator !== ClassName.FAVORITES) &&
-          <div className="place-card__mark">
-            <span>
-              Premium
-            </span>
-          </div>
-        }
-        <div className="cities__image-wrapper place-card__image-wrapper">
-          <a href="#">
-            <img
-              className="place-card__image"
-              src={previewImage}
-              width={classModificator === ClassName.FAVORITES ? 150 : 260}
-              height={classModificator === ClassName.FAVORITES ? 110 : 200}
-              alt="Place image"
-            />
-          </a>
+  return (
+    <article
+      className={`${classModificator}__place-card place-card`}
+      onMouseEnter={() => {
+        onMouseEnter(offer);
+      }}
+      onMouseLeave={() => {
+        onMouseLeave();
+      }}
+    >
+      {(isPremium && classModificator !== ClassName.FAVORITES) &&
+        <div className="place-card__mark">
+          <span>
+            Premium
+          </span>
         </div>
-        <div className="place-card__info">
-          <div className="place-card__price-wrapper">
-            <div className="place-card__price">
-              <b className="place-card__price-value">&euro;
-                {price}
-              </b>
-              <span className="place-card__price-text">&#47;&nbsp;night</span>
-            </div>
-            <FavoriteButton
-              classModificator={classModificator}
-              id={id}
-              height={19}
-              width={18}
-            />
-          </div>
-          <Rating
-            classModificator={ClassName.PLACE_CARD}
-            rating={rating}
+      }
+      <div className="cities__image-wrapper place-card__image-wrapper">
+        <a href="#">
+          <img
+            className="place-card__image"
+            src={previewImage}
+            width={classModificator === ClassName.FAVORITES ? 150 : 260}
+            height={classModificator === ClassName.FAVORITES ? 110 : 200}
+            alt="Place image"
           />
-          <h2
-            className="place-card__name"
-          >
-            <Link to={`/offer/${id}`}>{title}</Link>
-          </h2>
-          <p className="place-card__type">
-            {type}
-          </p>
+        </a>
+      </div>
+      <div className="place-card__info">
+        <div className="place-card__price-wrapper">
+          <div className="place-card__price">
+            <b className="place-card__price-value">&euro;
+              {price}
+            </b>
+            <span className="place-card__price-text">&#47;&nbsp;night</span>
+          </div>
+          <FavoriteButton
+            classModificator={classModificator}
+            id={id}
+            height={19}
+            width={18}
+          />
         </div>
-      </article>
-    );
-  }
-}
-
-// PlaceCard.propTypes = {
-//   classModificator: string.isRequired,
-//   offer: shape({
-//     previewImage: string.isRequired,
-//     price: number.isRequired,
-//     rating: number.isRequired,
-//     title: string.isRequired,
-//     type: string.isRequired,
-//     isPremium: bool.isRequired,
-//     id: number.isRequired,
-//   }).isRequired,
-//   onMouseEnter: func.isRequired,
-//   onMouseLeave: func.isRequired,
-// };
+        <Rating
+          classModificator={ClassName.PLACE_CARD}
+          rating={rating}
+        />
+        <h2
+          className="place-card__name"
+        >
+          <Link to={`/offer/${id}`}>{title}</Link>
+        </h2>
+        <p className="place-card__type">
+          {type}
+        </p>
+      </div>
+    </article>
+  );
+};
 
 export default PlaceCard;

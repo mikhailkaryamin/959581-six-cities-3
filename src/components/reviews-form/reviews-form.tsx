@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   STARS,
-  RESPONSE_STATUS_OK,
+  ResponseStatus,
 } from "../../consts";
 
 interface Props {
@@ -57,7 +57,7 @@ class ReviewsForm extends React.PureComponent<Props, {}> {
       countComments,
     } = prevProps;
 
-    const isOkResponse = responseStatus === RESPONSE_STATUS_OK || responseStatus === null;
+    const isOkResponse = responseStatus === ResponseStatus.STATUS_OK || responseStatus === null;
 
     if (isOkResponse && countComments < this.props.countComments) {
       this._textAreaRef.current.disabled = false;

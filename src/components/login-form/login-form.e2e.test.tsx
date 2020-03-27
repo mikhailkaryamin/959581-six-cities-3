@@ -11,7 +11,7 @@ configure({
 });
 
 describe(`LoginForm`, () => {
-  it(`should LoginForm change input`, () => {
+  test(`should LoginForm change input`, () => {
     const onChange = jest.fn();
     const signIn = jest.fn();
     const wrapper = mount(
@@ -31,7 +31,7 @@ describe(`LoginForm`, () => {
     expect(onChange).toHaveBeenCalledTimes(2);
   });
 
-  it(`should LoginForm pressed submit and check send obj`, () => {
+  test(`should LoginForm pressed submit and check send obj`, () => {
     const onChange = jest.fn();
     const signIn = jest.fn();
     const wrapper = mount(

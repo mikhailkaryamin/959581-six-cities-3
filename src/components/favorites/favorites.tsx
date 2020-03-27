@@ -104,18 +104,6 @@ class Favorites extends React.PureComponent<Props, {}> {
   }
 }
 
-// Favorites.propTypes = {
-//   authStatus: string.isRequired,
-//   currentCity: string.isRequired,
-//   favorites: array.isRequired,
-//   favoritesLocations: arrayOf(
-//       string
-//   ).isRequired,
-//   onCardHover: func.isRequired,
-//   onCardLeave: func.isRequired,
-//   user: userPropTypes,
-// };
-
 const mapStateToProps = (state) => ({
   authStatus: getAuthorizationStatus(state),
   favorites: getFavorites(state),

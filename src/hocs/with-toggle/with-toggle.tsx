@@ -49,8 +49,6 @@ const withToggle = (Component) => {
     }
   }
 
-  // WithToggle.propTypes = {};
-
   return WithToggle;
 };
 

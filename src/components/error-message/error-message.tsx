@@ -96,10 +96,5 @@ class ErrorMessage extends React.PureComponent<Props, {}> {
   }
 }
 
-// ErrorMessage.propTypes = {
-//   errorCode: number.isRequired,
-//   onResetError: func.isRequired,
-// };
-
 export default ErrorMessage;
 

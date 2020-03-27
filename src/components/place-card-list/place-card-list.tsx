@@ -68,18 +68,4 @@ class PlacesCardList extends React.PureComponent<Props, {}> {
   }
 }
 
-// PlacesCardList.propTypes = {
-//   classModificator: string,
-//   currentCityOffers: arrayOf(
-//       offerPropTypes
-//   ).isRequired,
-//   currentSort: string.isRequired,
-//   onCardHover: func.isRequired,
-//   onCardLeave: func.isRequired,
-// };
-
-// PlacesCardList.defaultProps = {
-//   classModificator: ``,
-// };
-
 export default PlacesCardList;

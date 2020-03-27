@@ -4,13 +4,15 @@ import {
   shallow
 } from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
+import {
+  CURRENT_SORT,
+} from '../../mocks/constsMockTest';
 import PlacesSort from './places-sort';
 
 configure({
   adapter: new Adapter(),
 });
 
-const currentSort = `Popular`;
 const isActive = true;
 
 describe(`Clicks places sort`, () => {
@@ -24,7 +26,7 @@ describe(`Clicks places sort`, () => {
 
     placesSortScr = shallow(
         <PlacesSort
-          currentSort={currentSort}
+          currentSort={CURRENT_SORT}
           isActive={isActive}
           onToggleClick={onToggleClick}
           handleSortChange={handleSortChange}

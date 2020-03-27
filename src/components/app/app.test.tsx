@@ -6,14 +6,29 @@ import {
   Provider
 } from 'react-redux';
 import {
-  storeWithoutActiveOffer
-} from '../../mocks/initialState';
+  Store,
+} from '../../mocks/initialStateTest';
 
 const mockStore = configureStore([]);
 
 describe(`App render correctly`, () => {
-  it(`App render correctly with active offer`, () => {
-    const store = mockStore(storeWithoutActiveOffer);
+  test(`App render correctly AUTH`, () => {
+    const store = mockStore(Store.WITH_AUTH);
+    const tree = renderer
+      .create(
+          <Provider
+            store={
+              store
+            }
+          >
+            <App />
+          </Provider>
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+  test(`App render correctly NO AUTH`, () => {
+    const store = mockStore(Store.NO_AUTH);
     const tree = renderer
       .create(
           <Provider

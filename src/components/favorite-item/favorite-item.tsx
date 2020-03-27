@@ -53,13 +53,4 @@ const FavoriteItem: React.FC<Props> = (props: Props) => {
   );
 };
 
-// FavoriteItem.propTypes = {
-//   city: string.isRequired,
-//   isCurrentCity: bool.isRequired,
-//   offers: arrayOf(offerPropTypes)
-//       .isRequired,
-//   onCardHover: func.isRequired,
-//   onCardLeave: func.isRequired,
-// };
-
 export default FavoriteItem;

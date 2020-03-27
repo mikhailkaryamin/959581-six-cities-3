@@ -3,6 +3,7 @@ const AppRoute = {
   OFFER: `/offer/:id`,
   LOGIN: `/login`,
   FAVORITE: `/favorite/`,
+  NOT_FOUND: `/*`,
 };
 
 const ClassModificator = {
@@ -40,11 +41,15 @@ const TypeInputLogin = {
   PASSWORD: `password`,
 };
 
+const ResponseStatus = {
+  STATUS_OK: 200,
+  UNAUTHORIZED: 401,
+};
+
 const MS_IN_WEEK = 604800000;
 const ONE_STAR = 20;
 const STARS = [5, 4, 3, 2, 1];
 const SITE_URL = `https://htmlacademy-react-3.appspot.com/six-cities`;
-const RESPONSE_STATUS_OK = 200;
 const MAX_SHOW_COMMENTS = 10;
 
 export {
@@ -53,7 +58,7 @@ export {
   ONE_STAR,
   STARS,
   SITE_URL,
-  RESPONSE_STATUS_OK,
+  ResponseStatus,
   AppRoute,
   TypeSort,
   ClassModificator,

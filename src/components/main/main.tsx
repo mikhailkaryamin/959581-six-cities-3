@@ -72,22 +72,6 @@ class Main extends React.PureComponent<Props, {}> {
   }
 }
 
-// Main.propTypes = {
-//   currentCityOffers: arrayOf(
-//       offerPropTypes
-//   ).isRequired,
-//   currentSort: string.isRequired,
-//   currentCity: string.isRequired,
-//   focusOffer: offerPropTypes,
-//   handleLocationClick: func.isRequired,
-//   handleSortChange: func.isRequired,
-//   locations: arrayOf(
-//       string
-//   ).isRequired,
-//   onCardHover: func.isRequired,
-//   onCardLeave: func.isRequired,
-// };
-
 const mapDispatchToProps = (dispatch) => ({
   handleLocationClick(location) {
     dispatch(ActionCity.setCurrentCity(location));

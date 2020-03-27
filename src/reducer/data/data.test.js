@@ -8,13 +8,13 @@ import {
   Operation
 } from "./data.js";
 import {
-  currentCityOffers,
-  comments,
-  apiOffers,
-  apiComments,
-} from '../../mocks/testMock.js';
-import Offer from '../../adapters/offer.js';
-import Comment from '../../adapters/comment.js';
+  API_OFFERS,
+  API_COMMENTS,
+  OFFERS,
+  COMMENTS,
+} from '../../mocks/constsMockTest.js';
+import Offer from '../../models/offer.js';
+import Comment from '../../models/comment.js';
 
 const api = createAPI(() => {});
 
@@ -35,11 +35,11 @@ describe(`Data reducer works correctly`, () => {
       offersNearby: [],
     }, {
       type: ActionType.LOAD_OFFERS_NEARBY,
-      payload: currentCityOffers,
+      payload: OFFERS,
     })).toEqual({
       offers: [],
       comments: [],
-      offersNearby: currentCityOffers,
+      offersNearby: OFFERS,
     });
   });
 
@@ -50,9 +50,9 @@ describe(`Data reducer works correctly`, () => {
       offersNearby: [],
     }, {
       type: ActionType.LOAD_OFFERS,
-      payload: currentCityOffers,
+      payload: OFFERS,
     })).toEqual({
-      offers: currentCityOffers,
+      offers: OFFERS,
       comments: [],
       offersNearby: [],
     });
@@ -65,10 +65,10 @@ describe(`Data reducer works correctly`, () => {
       offersNearby: [],
     }, {
       type: ActionType.LOAD_COMMENTS,
-      payload: comments,
+      payload: COMMENTS,
     })).toEqual({
       offers: [],
-      comments,
+      comments: COMMENTS,
       offersNearby: [],
     });
   });
@@ -80,7 +80,7 @@ describe(`Operation work correctly`, () => {
     const dispatch = jest.fn();
     const hotelID = 111;
     const commentsLoader = Operation.loadComments();
-    const adaptedApiComments = Comment.parseComments(apiComments);
+    const adaptedApiComments = Comment.parseComments(API_COMMENTS);
     const mockState = () => ({
       OFFER: {
         activeOffer: {
@@ -91,7 +91,7 @@ describe(`Operation work correctly`, () => {
 
     apiMock
       .onGet(`/comments/${hotelID}`)
-      .reply(200, apiComments);
+      .reply(200, API_COMMENTS);
 
     return commentsLoader(dispatch, mockState, api)
       .then(() => {
@@ -108,7 +108,7 @@ describe(`Operation work correctly`, () => {
     const dispatch = jest.fn();
     const hotelID = 111;
     const nearbyOffersLoader = Operation.loadOffersNearby();
-    const adaptedApiOffers = Offer.parseOffers(apiOffers);
+    const adaptedApiOffers = Offer.parseOffers(API_OFFERS);
     const mockState = () => ({
       OFFER: {
         activeOffer: {
@@ -119,7 +119,7 @@ describe(`Operation work correctly`, () => {
 
     apiMock
       .onGet(`/hotels/${hotelID}/nearby`)
-      .reply(200, apiOffers);
+      .reply(200, API_OFFERS);
 
     return nearbyOffersLoader(dispatch, mockState, api)
       .then(() => {
@@ -135,11 +135,11 @@ describe(`Operation work correctly`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const offersLoader = Operation.loadOffers();
-    const adaptedApiOffers = Offer.parseOffers(apiOffers);
+    const adaptedApiOffers = Offer.parseOffers(API_OFFERS);
 
     apiMock
       .onGet(`/hotels`)
-      .reply(200, apiOffers);
+      .reply(200, API_OFFERS);
 
     return offersLoader(dispatch, () => {}, api)
       .then(() => {

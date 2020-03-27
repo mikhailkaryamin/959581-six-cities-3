@@ -58,14 +58,4 @@ class FavoritesList extends React.PureComponent<Props, {}> {
   }
 }
 
-// FavoritesList.propTypes = {
-//   currentCity: string.isRequired,
-//   favorites: array.isRequired,
-//   favoritesLocations: arrayOf(
-//       string
-//   ).isRequired,
-//   onCardHover: func.isRequired,
-//   onCardLeave: func.isRequired,
-// };
-
 export default FavoritesList;

@@ -57,9 +57,4 @@ const Header: React.FC<Props> = (props: Props) => {
   );
 };
 
-// Header.propTypes = {
-//   isAuth: bool.isRequired,
-//   user: userPropTypes,
-// };
-
 export default Header;

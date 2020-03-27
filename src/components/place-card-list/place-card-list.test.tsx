@@ -8,161 +8,22 @@ import {
   BrowserRouter
 } from 'react-router-dom';
 import {
-  storeWithAuth
-} from '../../mocks/initialState';
-import PlacesList from './place-card-list';
+  OFFERS,
+  CURRENT_SORT,
+} from '../../mocks/constsMockTest';
 import {
-  Offer
-} from '../../types';
+  Store
+} from '../../mocks/initialStateTest';
+import PlacesList from './place-card-list';
 
 const mockStore = configureStore([]);
 
-const classModificator = ``;
-const currentSort = `Popular`;
-const currentCityOffers: Offer[] = [
-  {
-    bedrooms: 3,
-    city: {
-      location: {
-        latitude: 52.370216,
-        longitude: 4.895168,
-        zoom: 10
-      },
-      name: `Amsterdam`
-    },
-    description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
-    goods: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
-    host: {
-      avatarUrl: `img/1.png`,
-      id: 3,
-      isPro: true,
-      name: `Angelina`
-    },
-    id: 1,
-    images: [`img/1.png`, `img/2.png`],
-    isFavorite: false,
-    isPremium: false,
-    location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
-      zoom: 8
-    },
-    maxAdults: 4,
-    previewImage: `img/1.png`,
-    price: 120,
-    rating: 4.8,
-    title: `Beautiful & luxurious studio at great location`,
-    type: `apartment`
-  },
-  {
-    bedrooms: 3,
-    city: {
-      location: {
-        latitude: 52.370216,
-        longitude: 4.895168,
-        zoom: 10
-      },
-      name: `Amsterdam`
-    },
-    description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
-    goods: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
-    host: {
-      avatarUrl: `img/1.png`,
-      id: 3,
-      isPro: true,
-      name: `Angelina`
-    },
-    id: 2,
-    images: [`img/1.png`, `img/2.png`],
-    isFavorite: false,
-    isPremium: false,
-    location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
-      zoom: 8
-    },
-    maxAdults: 4,
-    previewImage: `img/1.png`,
-    price: 120,
-    rating: 4.8,
-    title: `Beautiful & luxurious studio at great location`,
-    type: `apartment`
-  },
-  {
-    bedrooms: 3,
-    city: {
-      location: {
-        latitude: 52.370216,
-        longitude: 4.895168,
-        zoom: 10
-      },
-      name: `Amsterdam`
-    },
-    description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
-    goods: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
-    host: {
-      avatarUrl: `img/1.png`,
-      id: 3,
-      isPro: true,
-      name: `Angelina`
-    },
-    id: 3,
-    images: [`img/1.png`, `img/2.png`],
-    isFavorite: false,
-    isPremium: false,
-    location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
-      zoom: 8
-    },
-    maxAdults: 4,
-    previewImage: `img/1.png`,
-    price: 120,
-    rating: 4.8,
-    title: `Beautiful & luxurious studio at great location`,
-    type: `apartment`
-  },
-  {
-    bedrooms: 3,
-    city: {
-      location: {
-        latitude: 52.370216,
-        longitude: 4.895168,
-        zoom: 10
-      },
-      name: `Amsterdam`
-    },
-    description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
-    goods: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
-    host: {
-      avatarUrl: `img/1.png`,
-      id: 3,
-      isPro: true,
-      name: `Angelina`
-    },
-    id: 4,
-    images: [`img/1.png`, `img/2.png`],
-    isFavorite: false,
-    isPremium: false,
-    location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
-      zoom: 8
-    },
-    maxAdults: 4,
-    previewImage: `img/1.png`,
-    price: 120,
-    rating: 4.8,
-    title: `Beautiful & luxurious studio at great location`,
-    type: `apartment`
-  }
-];
+const CLASS_MODIFICATOR = ``;
 const onCardHover = jest.fn();
 const onCardLeave = jest.fn();
 
-
-it(`Render places-list correctly`, () => {
-  const store = mockStore(storeWithAuth);
+test(`Render places-list correctly`, () => {
+  const store = mockStore(Store.WITH_AUTH);
   const tree = renderer
     .create(
         <Provider
@@ -170,9 +31,9 @@ it(`Render places-list correctly`, () => {
         >
           <BrowserRouter>
             <PlacesList
-              classModificator={classModificator}
-              currentSort={currentSort}
-              currentCityOffers={currentCityOffers}
+              classModificator={CLASS_MODIFICATOR}
+              currentSort={CURRENT_SORT}
+              currentCityOffers={OFFERS}
               onCardHover={onCardHover}
               onCardLeave={onCardLeave}
             />

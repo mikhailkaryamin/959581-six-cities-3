@@ -46,14 +46,4 @@ const Reviews: React.FC<Props> = (props: Props) => {
   );
 };
 
-// Reviews.propTypes = {
-//   comments: arrayOf(
-//       commentsPropTypes
-//   ),
-//   countComments: number.isRequired,
-//   isAuth: bool.isRequired,
-//   onCommentSubmit: func.isRequired,
-//   responseStatus: number,
-// };
-
 export default Reviews;

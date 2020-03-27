@@ -18,57 +18,39 @@ interface Props {
   handleSortChange: () => void;
 }
 
-class Cities extends React.PureComponent<Props, {}> {
-  constructor(props) {
-    super(props);
-  }
+const Cities: React.FC<Props> = (props: Props) => {
+  const {
+    currentCityOffers,
+    currentSort,
+    currentCity,
+    focusOffer,
+    handleSortChange,
+    onCardHover,
+    onCardLeave,
+  } = props;
 
-  render() {
-    const {
-      currentCityOffers,
-      currentSort,
-      currentCity,
-      focusOffer,
-      handleSortChange,
-      onCardHover,
-      onCardLeave,
-    } = this.props;
-
-    return (
-      <div className="cities">
-        <div className="cities__places-container container">
-          <Places
-            classModificator={ClassModificator.CITIES_PLACES}
-            currentCity={currentCity}
+  return (
+    <div className="cities">
+      <div className="cities__places-container container">
+        <Places
+          classModificator={ClassModificator.CITIES_PLACES}
+          currentCity={currentCity}
+          currentCityOffers={currentCityOffers}
+          currentSort={currentSort}
+          handleSortChange={handleSortChange}
+          onCardHover={onCardHover}
+          onCardLeave={onCardLeave}
+        />
+        <div className="cities__right-section">
+          <Map
+            classModificator={ClassModificator.CITIES_MAP}
             currentCityOffers={currentCityOffers}
-            currentSort={currentSort}
-            handleSortChange={handleSortChange}
-            onCardHover={onCardHover}
-            onCardLeave={onCardLeave}
+            focusOffer={focusOffer}
           />
-          <div className="cities__right-section">
-            <Map
-              classModificator={ClassModificator.CITIES_MAP}
-              currentCityOffers={currentCityOffers}
-              focusOffer={focusOffer}
-            />
-          </div>
         </div>
       </div>
-    );
-  }
-}
-
-// Cities.propTypes = {
-//   currentCityOffers: arrayOf(
-//       offerPropTypes
-//   ).isRequired,
-//   currentSort: string.isRequired,
-//   currentCity: string.isRequired,
-//   handleSortChange: func.isRequired,
-//   focusOffer: offerPropTypes,
-//   onCardHover: func.isRequired,
-//   onCardLeave: func.isRequired,
-// };
+    </div>
+  );
+};
 
 export default Cities;

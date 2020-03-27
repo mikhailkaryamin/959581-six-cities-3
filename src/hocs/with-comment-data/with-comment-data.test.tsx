@@ -7,14 +7,21 @@ import * as Adapter from 'enzyme-adapter-react-16';
 import withCommentData from './with-comment-data';
 
 configure({adapter: new Adapter()});
+
 const MockComponent = () => <div />;
 const MockComponentWrapped = withCommentData(MockComponent);
 
-const mockRating = {
-  currentTarget: {value: 3, name: `rating`}
+const MOCK_RATING = {
+  currentTarget: {
+    value: 3,
+    name: `rating`
+  }
 };
-const mockReview = {
-  currentTarget: {value: `Test text`, name: `review`}
+const MOCK_REVIEW = {
+  currentTarget: {
+    value: `Test text`,
+    name: `review`
+  }
 };
 const onCommentSubmit = jest.fn();
 
@@ -37,9 +44,9 @@ describe(`withCommentData HOC`, () => {
           countComments={5}
         />
     );
-    wrapper.props().onChange(mockRating);
+    wrapper.props().onChange(MOCK_RATING);
     expect(wrapper.props().rating).toEqual(3);
-    wrapper.props().onChange(mockReview);
+    wrapper.props().onChange(MOCK_REVIEW);
     expect(wrapper.props().comment).toEqual(`Test text`);
   });
 });

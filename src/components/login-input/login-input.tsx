@@ -30,10 +30,4 @@ const LoginInput: React.FC<Props> = (props: Props) => {
   );
 };
 
-// LoginInput.propTypes = {
-//   onChange: func.isRequired,
-//   type: string.isRequired,
-//   value: string.isRequired,
-// };
-
 export default LoginInput;

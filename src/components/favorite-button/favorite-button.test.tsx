@@ -4,6 +4,9 @@ import {
   AuthorizationStatus
 } from '../../reducer/user/user';
 import {
+  ClassModificator
+} from '../../consts';
+import {
   FavoriteButton
 } from './favorite-button';
 
@@ -14,7 +17,7 @@ test(`Render correctly favorite button`, () => {
   const tree = renderer.create(
       <FavoriteButton
         id={1}
-        classModificator={`place-card`}
+        classModificator={ClassModificator.PLACE_CARD}
         width={25}
         height={25}
         isFavorite={true}

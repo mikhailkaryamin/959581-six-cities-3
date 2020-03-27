@@ -32,9 +32,4 @@ const Rating: React.FC<Props> = (props: Props) => {
   );
 };
 
-// Rating.propTypes = {
-//   rating: number.isRequired,
-//   classModificator: string.isRequired,
-// };
-
 export default Rating;

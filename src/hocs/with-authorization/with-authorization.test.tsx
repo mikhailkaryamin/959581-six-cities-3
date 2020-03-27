@@ -7,21 +7,22 @@ import * as Adapter from 'enzyme-adapter-react-16';
 import withAuthorization from './with-authorization';
 
 configure({adapter: new Adapter()});
-const MockComponent = () => <div />;
-const MockComponentWrapped = withAuthorization(MockComponent);
-const mockLogin = {
+
+const MOCK_LOGIN = {
   currentTarget: {
     value: `vasya@mail.ru`,
     name: `email`
   }
 };
-
-const mockPassword = {
+const MOCK_PASSWORD = {
   currentTarget: {
     value: `ezPz`,
     name: `password`
   }
 };
+const MockComponent = () => <div />;
+const MockComponentWrapped = withAuthorization(MockComponent);
+
 
 describe(`withAuthorization HOC`, () => {
   test(`should render wrapped component with initial state`, () => {
@@ -36,9 +37,9 @@ describe(`withAuthorization HOC`, () => {
     const wrapper = shallow(
         <MockComponentWrapped />
     );
-    wrapper.props().onChange(mockLogin);
+    wrapper.props().onChange(MOCK_LOGIN);
     expect(wrapper.props().login).toEqual(`vasya@mail.ru`);
-    wrapper.props().onChange(mockPassword);
+    wrapper.props().onChange(MOCK_PASSWORD);
     expect(wrapper.props().password).toEqual(`ezPz`);
   });
 });

@@ -94,7 +94,6 @@ const App: React.FC<Props> = (props: Props) => {
   const isLoadingComplete = loadStatus;
   const isNotAvailableOffers = offers.length === 0;
   const isAuth = authStatus === AuthorizationStatus.AUTH;
-  const amountAvailableOffers = offers.length;
 
   const getRootPage = () => {
     if (isLoadingComplete && isNotAvailableOffers) {
@@ -164,7 +163,7 @@ const App: React.FC<Props> = (props: Props) => {
         />
         <RouteWithPage
           exact
-          path='*'
+          path={AppRoute.NOT_FOUND}
           component={
             <NotFoundPage />
           }

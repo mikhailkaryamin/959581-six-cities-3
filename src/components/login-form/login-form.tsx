@@ -79,11 +79,4 @@ class LoginForm extends React.PureComponent<Props, {}> {
   }
 }
 
-// LoginForm.propTypes = {
-//   login: string.isRequired,
-//   password: string.isRequired,
-//   onChange: func.isRequired,
-//   signIn: func.isRequired,
-// };
-
 export default LoginForm;

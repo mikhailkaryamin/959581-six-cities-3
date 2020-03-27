@@ -1,11 +1,6 @@
 import * as React from 'react';
 import ErrorMessage from '../../components/error-message/error-message';
 
-// interface Props {
-//   onResetError: () => void;
-//   responseStatus: null | number;
-// }
-
 const withErrorMessage = (Component) => {
   type S = React.ComponentProps<typeof Component>;
 
@@ -45,11 +40,6 @@ const withErrorMessage = (Component) => {
       );
     }
   }
-
-  // WithErrorMessage.propTypes = {
-  //   responseStatus: number,
-  //   onResetError: func.isRequired,
-  // };
 
   return WithErrorMessage;
 };

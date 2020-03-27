@@ -1,8 +1,7 @@
 import axios from "axios";
-
-const Error = {
-  UNAUTHORIZED: 401,
-};
+import {
+  ResponseStatus,
+} from './consts';
 
 export const createAPI = (onUnauthorized) => {
   const api = axios.create({
@@ -20,7 +19,7 @@ export const createAPI = (onUnauthorized) => {
       response
     } = err;
 
-    if (response.status === Error.UNAUTHORIZED) {
+    if (response.status === ResponseStatus.UNAUTHORIZED) {
       onUnauthorized();
 
       throw err;

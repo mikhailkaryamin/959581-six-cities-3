@@ -4,41 +4,28 @@ import {
   configure,
   shallow
 } from 'enzyme';
+import {
+  COMMENTS,
+} from '../../mocks/constsMockTest';
 import Reviews from './reviews';
 
 configure({
   adapter: new Adapter(),
 });
 
-const comments = [
-  {
-    id: 1,
-    user: {
-      id: 1,
-      isPro: true,
-      name: `Mi`,
-      avatarUrl: `img/avatar-max.jpg`
-    },
-    rating: 2,
-    comment: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Curabitur ornare nunc a blandit ultricies.
-    Integer a urna in nunc congue efficitur.`,
-    date: `April 2010`
-  }
-];
-const isAuth = true;
+const IS_AUTH = true;
+const RESPONSE_STATUS = null;
+const COUNT_COMMENTS = 3;
 const onCommentSubmit = jest.fn();
-const responseStatus = null;
-const countComments = 3;
 
 test(`Render reviews`, () => {
   const tree = shallow(
       <Reviews
-        comments={comments}
-        countComments={countComments}
-        isAuth={isAuth}
+        comments={COMMENTS}
+        countComments={COUNT_COMMENTS}
+        isAuth={IS_AUTH}
         onCommentSubmit={onCommentSubmit}
-        responseStatus={responseStatus}
+        responseStatus={RESPONSE_STATUS}
       />
   ).html();
 

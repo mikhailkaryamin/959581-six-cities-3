@@ -5,10 +5,10 @@ import {
 } from 'react-router-dom';
 import {
   user,
-} from '../../mocks/testMock';
+} from '../../mocks/constsMockTest';
 import Header from './header';
 
-it(`Render header correctly`, () => {
+test(`Render header correctly`, () => {
   const tree = renderer
     .create(
         <BrowserRouter>

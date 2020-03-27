@@ -12,6 +12,7 @@ const Locations: React.FC<Props> = (props: Props) => {
     locations,
     handleLocationClick,
   } = props;
+
   return (
     <div className="tabs">
       <section className="locations container">
@@ -42,13 +43,5 @@ const Locations: React.FC<Props> = (props: Props) => {
     </div>
   );
 };
-
-// Locations.propTypes = {
-//   currentCity: string.isRequired,
-//   locations: arrayOf(
-//       string.isRequired
-//   ).isRequired,
-//   handleLocationClick: func.isRequired,
-// };
 
 export default Locations;

@@ -3,9 +3,11 @@ import * as renderer from 'react-test-renderer';
 import {
   BrowserRouter
 } from 'react-router-dom';
+import {
+  CURRENT_CITY,
+} from '../../mocks/constsMockTest';
 import Login from './login';
 
-const currentCity = `Paris`;
 const isAuth = true;
 const signIn = jest.fn();
 
@@ -14,7 +16,7 @@ test(`Render correctly sign in`, () => {
   .create(
       <BrowserRouter>
         <Login
-          currentCity={currentCity}
+          currentCity={CURRENT_CITY}
           isAuth={isAuth}
           signIn={signIn}
         />

@@ -16,6 +16,7 @@ const ReviewsList: React.FC<Props> = (props: Props) => {
   return (
     <ul className="reviews__list">
       {comments
+        .slice()
         .reverse()
         .map((comment) =>
           <ReviewItem
@@ -26,11 +27,5 @@ const ReviewsList: React.FC<Props> = (props: Props) => {
     </ul>
   );
 };
-
-// ReviewsList.propTypes = {
-//   comments: arrayOf(
-//       commentsPropTypes
-//   ).isRequired,
-// };
 
 export default ReviewsList;

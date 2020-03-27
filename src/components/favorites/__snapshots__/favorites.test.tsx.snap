@@ -55,7 +55,7 @@ exports[`Favorites render correctly 1`] = `
                 <span
                   className="header__user-name user__name"
                 >
-                  test@mail.ru
+                  safsa@mail.ru
                 </span>
               </a>
             </li>
@@ -85,7 +85,7 @@ exports[`Favorites render correctly 1`] = `
             className="favorites__locations-items"
           >
             <div
-              className="favorites__locations locations locations--current"
+              className="favorites__locations locations "
             >
               <div
                 className="locations__item"
@@ -154,7 +154,7 @@ exports[`Favorites render correctly 1`] = `
             className="favorites__locations-items"
           >
             <div
-              className="favorites__locations locations "
+              className="favorites__locations locations locations--current"
             >
               <div
                 className="locations__item"

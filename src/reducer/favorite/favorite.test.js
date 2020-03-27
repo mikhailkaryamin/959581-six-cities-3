@@ -8,10 +8,10 @@ import {
   Operation
 } from './favorite.js';
 import {
-  favoriteOffers,
-  apiOffers
-} from '../../mocks/testMock.js';
-import Offer from '../../adapters/offer.js';
+  API_OFFERS,
+  OFFERS,
+} from '../../mocks/constsMockTest';
+import Offer from '../../models/offer.js';
 
 const api = createAPI(() => {});
 
@@ -27,32 +27,32 @@ describe(`Favorite reducer works correctly`, () => {
       favorites: []
     }, {
       type: ActionType.LOAD_FAVORITES,
-      payload: favoriteOffers
+      payload: OFFERS
     })).toEqual({
-      favorites: favoriteOffers
+      favorites: OFFERS
     });
   });
 
   test(`Reducer should add favorite`, () => {
-    const initialFavorites = favoriteOffers.slice(1, 6);
-    const newFavorite = favoriteOffers[0];
+    const initialFavorites = OFFERS.slice(1, 6);
+    const newFavorite = OFFERS[0];
     expect(reducer({
       favorites: initialFavorites
     }, {
       type: ActionType.ADD_FAVORITE,
       payload: newFavorite
     })).toEqual({
-      favorites: favoriteOffers
+      favorites: OFFERS
     });
   });
 
   test(`Reducer should remove favorite`, () => {
-    const updatedFavorites = favoriteOffers.slice(0, 5);
+    const updatedFavorites = OFFERS.slice(0, 3);
     expect(reducer({
-      favorites: favoriteOffers
+      favorites: OFFERS
     }, {
       type: ActionType.REMOVE_FAVORITE,
-      payload: favoriteOffers[5]
+      payload: OFFERS[3]
     })).toEqual({
       favorites: updatedFavorites
     });
@@ -64,10 +64,10 @@ describe(`Operation work correctly`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const favoritesLoader = Operation.loadFavorites();
-    const adaptedApiMockOffers = Offer.parseOffers(apiOffers);
+    const adaptedApiMockOffers = Offer.parseOffers(API_OFFERS);
     apiMock
       .onGet(`/favorite`)
-      .reply(200, apiOffers);
+      .reply(200, API_OFFERS);
 
     return favoritesLoader(dispatch, () => {}, api)
       .then(() => {
@@ -91,10 +91,10 @@ describe(`Operation work correctly`, () => {
         },
       }
     });
-    const adaptedApiMockOffer = Offer.parseOffer(apiOffers[0]);
+    const adaptedApiMockOffer = Offer.parseOffer(API_OFFERS[0]);
     apiMock
       .onPost(`/favorite/1/0.5`)
-      .reply(200, apiOffers[0]);
+      .reply(200, API_OFFERS[0]);
 
     return favoritesUpdater(dispatch, mockState, api)
       .then(() => {
@@ -118,7 +118,7 @@ describe(`Operation work correctly`, () => {
         },
       }
     });
-    const notFavoriteOffer = Object.assign({}, apiOffers[0], {'is_favorite': false});
+    const notFavoriteOffer = Object.assign({}, API_OFFERS[0], {'is_favorite': false});
     const adaptedNotFavoriteOffer = Offer.parseOffer(notFavoriteOffer);
 
     apiMock

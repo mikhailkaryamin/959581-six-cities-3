@@ -2,8 +2,8 @@ import {
   extend
 } from "../../utils.js";
 import NameSpace from '../name-space.js';
-import Comment from '../../adapters/comment.js';
-import Offer from '../../adapters/offer.js';
+import Comment from '../../models/comment.js';
+import Offer from '../../models/offer.js';
 import {
   ActionCreator as ActionCity
 } from '../city/city.js';
@@ -79,7 +79,6 @@ const Operation = {
   },
   loadComments: () => (dispatch, getState, api) => {
     const REQUEST = `/comments/${getState()[NameSpace.OFFER].activeOffer.id}`;
-
     return api.get(REQUEST)
       .then((response) => {
         const comments = Comment.parseComments(response.data);

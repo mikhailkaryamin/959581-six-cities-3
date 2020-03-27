@@ -5,9 +5,9 @@ import {
   ActionCreator as ResponseAction
 } from '../response/response.js';
 import {
-  RESPONSE_STATUS_OK
+  ResponseStatus
 } from '../../consts.js';
-import User from '../../adapters/user.js';
+import User from '../../models/user.js';
 
 const DEFAULT_USER = {
   id: -1,
@@ -86,7 +86,7 @@ const Operation = {
         const responseCode = response.status;
         dispatch(ResponseAction.setResponseStatusCode(responseCode));
 
-        if (responseCode === RESPONSE_STATUS_OK) {
+        if (responseCode === ResponseStatus.STATUS_OK) {
           onUserSignInSuccess(response, dispatch);
         }
       });

@@ -1,11 +1,11 @@
-import React from "react";
-import renderer from "react-test-renderer";
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import {
   TypeInputLogin
-} from '../../consts.js';
-import LoginInput from './login-input.jsx';
+} from '../../consts';
+import LoginInput from './login-input';
 
-const onChange = () => {};
+const onChange = jest.fn();
 
 describe(`Login input`, () => {
   test(`Login input email render correctly`, () => {

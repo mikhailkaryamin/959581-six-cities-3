@@ -9,24 +9,26 @@ import {
 } from '../../consts.js';
 import NameSpace from '../name-space.js';
 
+const NAME_SPACE = NameSpace.DATA;
+
 const getCurrentCity = (state) => {
   return state[NameSpace.CITY].currentCity;
 };
 
 const getComments = (state) => {
-  return state[NameSpace.DATA].comments;
+  return state[NAME_SPACE].comments;
 };
 
 const getOffers = (state) => {
-  return state[NameSpace.DATA].offers;
+  return state[NAME_SPACE].offers;
 };
 
 const getOffersNearby = (state) => {
-  return state[NameSpace.DATA].offersNearby;
+  return state[NAME_SPACE].offersNearby;
 };
 
 const getLoadStatus = (state) => {
-  return state[NameSpace.DATA].loadStatus;
+  return state[NAME_SPACE].loadStatus;
 };
 
 const getLocations = createSelector(

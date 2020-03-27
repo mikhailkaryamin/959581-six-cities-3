@@ -1,6 +1,8 @@
 import NameSpace from '../name-space.js';
 
-const getResponseStatusCode = (state) => state[NameSpace.RESPONSE].responseStatusCode;
+const NAME_SPACE = NameSpace.RESPONSE;
+
+const getResponseStatusCode = (state) => state[NAME_SPACE].responseStatusCode;
 
 export {
   getResponseStatusCode

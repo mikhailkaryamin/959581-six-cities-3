@@ -1,7 +1,7 @@
 import {
   extend
 } from '../../utils.js';
-import Offer from '../../adapters/offer.js';
+import Offer from '../../models/offer.js';
 import NameSpace from '../name-space.js';
 
 const initialState = {

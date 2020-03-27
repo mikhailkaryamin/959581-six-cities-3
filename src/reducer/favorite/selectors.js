@@ -6,10 +6,12 @@ import {
   getUniqueArray
 } from '../../utils.js';
 
-const getFavorites = (state) => state[NameSpace.FAVORITE].favorites;
+const NAME_SPACE = NameSpace.FAVORITE;
+
+const getFavorites = (state) => state[NAME_SPACE].favorites;
 
 const checkFavorite = (state, id) => {
-  return state[NameSpace.FAVORITE]
+  return state[NAME_SPACE]
     .favorites
     .some((offer) => offer.id === id);
 };

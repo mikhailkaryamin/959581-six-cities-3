@@ -1,11 +1,13 @@
 import NameSpace from '../name-space.js';
 
+const NAME_SPACE = NameSpace.OFFER;
+
 const getActiveOffer = (state) => {
-  return state[NameSpace.OFFER].activeOffer;
+  return state[NAME_SPACE].activeOffer;
 };
 
 const getFocusOffer = (state) => {
-  return state[NameSpace.OFFER].focusOffer;
+  return state[NAME_SPACE].focusOffer;
 };
 
 export {

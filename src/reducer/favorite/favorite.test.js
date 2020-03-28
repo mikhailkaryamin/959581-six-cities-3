@@ -86,7 +86,7 @@ describe(`Operation work correctly`, () => {
     const FAVORITE_ID = 1;
     const mockState = () => ({
       OFFER: {
-        activeOffer: {
+        focusOffer: {
           id: FAVORITE_ID
         },
       }
@@ -113,7 +113,7 @@ describe(`Operation work correctly`, () => {
     const FAVORITE_ID = 1;
     const mockState = () => ({
       OFFER: {
-        activeOffer: {
+        focusOffer: {
           id: FAVORITE_ID
         },
       }

@@ -33,10 +33,10 @@ const Operation = {
   addFavorite: () => (dispatch, getState, api) => {
     const status = 0.5;
     let id;
-    if (getState()[NameSpace.OFFER].activeOffer !== null) {
-      id = getState()[NameSpace.OFFER].activeOffer.id;
-    } else {
+    if (getState()[NameSpace.OFFER].focusOffer !== null) {
       id = getState()[NameSpace.OFFER].focusOffer.id;
+    } else {
+      id = getState()[NameSpace.OFFER].activeOffer.id;
     }
 
     return api.post(`/favorite/${id}/${status}`, {
@@ -60,10 +60,10 @@ const Operation = {
   removeFavorite: () => (dispatch, getState, api) => {
     const status = 0;
     let id;
-    if (getState()[NameSpace.OFFER].activeOffer !== null) {
-      id = getState()[NameSpace.OFFER].activeOffer.id;
-    } else {
+    if (getState()[NameSpace.OFFER].focusOffer !== null) {
       id = getState()[NameSpace.OFFER].focusOffer.id;
+    } else {
+      id = getState()[NameSpace.OFFER].activeOffer.id;
     }
 
     return api.post(`/favorite/${id}/${status}`, {

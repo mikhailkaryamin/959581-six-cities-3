@@ -17,9 +17,7 @@ describe(`App render correctly`, () => {
     const tree = renderer
       .create(
           <Provider
-            store={
-              store
-            }
+            store={store}
           >
             <App />
           </Provider>
@@ -32,9 +30,7 @@ describe(`App render correctly`, () => {
     const tree = renderer
       .create(
           <Provider
-            store={
-              store
-            }
+            store={store}
           >
             <App />
           </Provider>

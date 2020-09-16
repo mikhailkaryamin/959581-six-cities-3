@@ -19,11 +19,13 @@ module.exports = {
       chunks: 'all',
     },
   },
-  plugins: new CopyWebpackPlugin({
+  plugins: [
+    new CopyWebpackPlugin({
       patterns: [{
         from: path.join(__dirname, `public`),
       }],
     }),
+  ],
   module: {
     rules: [
       {

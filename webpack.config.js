@@ -14,11 +14,6 @@ module.exports = {
     port: 1338,
     historyApiFallback: true,
   },
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-    },
-  },
   plugins: [
     new CopyWebpackPlugin({
       patterns: [{

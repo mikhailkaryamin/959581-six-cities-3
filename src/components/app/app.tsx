@@ -115,7 +115,7 @@ const App: React.FC<Props> = (props: Props) => {
   };
 
   return (
-    <BrowserRouter basename={BASE_NAME}>
+    <BrowserRouter basename="/">
       <Switch>
         <RouteWithPage
           exact

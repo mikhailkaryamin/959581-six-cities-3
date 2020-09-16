@@ -91,7 +91,7 @@ class Favorites extends React.PureComponent<Props, {}> {
             <a className="footer__logo-link" href="main.html">
               <img
                 className="footer__logo"
-                src="../img/logo.svg"
+                src={process.env.PUBLIC_URL + `/img/logo.svg`}
                 alt="6 cities logo"
                 width="64"
                 height="33"

@@ -25,7 +25,7 @@ exports[`App render correctly App render correctly AUTH 1`] = `
               alt="6 cities logo"
               className="header__logo"
               height="41"
-              src="../img/logo.svg"
+              src="undefined/img/logo.svg"
               width="81"
             />
           </a>
@@ -94,7 +94,7 @@ exports[`App render correctly App render correctly NO AUTH 1`] = `
               alt="6 cities logo"
               className="header__logo"
               height="41"
-              src="../img/logo.svg"
+              src="undefined/img/logo.svg"
               width="81"
             />
           </a>

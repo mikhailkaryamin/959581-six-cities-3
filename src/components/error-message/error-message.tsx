@@ -38,7 +38,7 @@ const Styles: CSSProps = {
     padding: `10px`,
     color: `#ffffff`,
     backgroundSize: `10px`,
-    backgroundImage: `url(./img/close.svg)`,
+    backgroundImage: `url(${process.env.PUBLIC_URL + `/img/close.svg`})`,
     backgroundPosition: `center`,
     backgroundRepeat: `no-repeat`,
   }

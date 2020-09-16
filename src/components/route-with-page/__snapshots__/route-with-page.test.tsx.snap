@@ -25,7 +25,7 @@ exports[`Route with page With AUTH 1`] = `
               alt="6 cities logo"
               className="header__logo"
               height="41"
-              src="../img/logo.svg"
+              src="undefined/img/logo.svg"
               width="81"
             />
           </a>
@@ -93,7 +93,7 @@ exports[`Route with page Without AUTH 1`] = `
               alt="6 cities logo"
               className="header__logo"
               height="41"
-              src="../img/logo.svg"
+              src="undefined/img/logo.svg"
               width="81"
             />
           </a>

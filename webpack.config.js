@@ -11,7 +11,7 @@ const CONFIG = {
   indexTSX: './src/index.tsx',
   outputDir: './build',
   assetDir: './public',
-  publicDir: '/959581-six-cities-3',
+  publicDir: 'https://mikhailkaryamin.github.io/959581-six-cities-3/',
   devServerPort: 8000,
 };
 

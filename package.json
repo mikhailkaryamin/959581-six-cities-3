@@ -1,7 +1,7 @@
 {
   "name": "six-cities",
   "version": "1.0.0",
-  "homepage": https://mikhailkaryamin.github.io/959581-six-cities-3/,
+  "homepage": "https://mikhailkaryamin.github.io/959581-six-cities-3/",
   "private": true,
   "description": "Личный проект «Шесть городов» от HTML Academy",
   "scripts": {

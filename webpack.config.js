@@ -1,10 +1,20 @@
 const path = require(`path`);
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const commonPlugins = [
+  new HtmlWebpackPlugin({
+    filename: 'index.html',
+    template: path.join(__dirname, `public/index.html`),
+  }),
+];
 
 module.exports = {
   entry: `./src/index.tsx`,
   output: {
     filename: `bundle.js`,
-    path: path.join(__dirname, `public`)
+    path: path.join(__dirname, `build`),
+    publicPath: path.join(__dirname, `public`)
   },
   devServer: {
     contentBase: path.join(__dirname, `public`),
@@ -12,6 +22,18 @@ module.exports = {
     port: 1338,
     historyApiFallback: true,
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
+  plugins: commonPlugins.concat([
+    new CopyWebpackPlugin({
+      patterns: [{
+        from: path.join(__dirname, `public`),
+      }],
+    }),
+  ]),
   module: {
     rules: [
       {

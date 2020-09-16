@@ -29,15 +29,15 @@ class Map extends React.PureComponent<Props, {}> {
     this._map = undefined;
     this._markers = {};
     this._iconActive = leaflet.icon({
-      iconUrl: `/img/pin-active.svg`,
+      iconUrl: `https://mikhailkaryamin.github.io/959581-six-cities-3/img/pin-active.svg`,
       iconSize: [30, 35]
     });
     this._iconDefault = leaflet.icon({
-      iconUrl: `/img/pin.svg`,
+      iconUrl: `https://mikhailkaryamin.github.io/959581-six-cities-3/img/pin.svg`,
       iconSize: [30, 35]
     });
     this._iconCurrentOffer = leaflet.icon({
-      iconUrl: `/img/pin-current-offer.svg`,
+      iconUrl: `https://mikhailkaryamin.github.io/959581-six-cities-3/img/pin-current-offer.svg`,
       iconSize: [37, 42]
     });
   }

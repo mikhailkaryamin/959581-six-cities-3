@@ -73,6 +73,7 @@ const FavoritesWrapped = withErrorMessage(Favorites);
 const LoginWrapped = withErrorMessage(Login);
 const MainWrapped = withErrorMessage(Main);
 const PropertyWrapped = withErrorMessage(Property);
+const BASE_NAME = `/959581-six-cities-3`;
 
 const App: React.FC<Props> = (props: Props) => {
   const {
@@ -114,7 +115,7 @@ const App: React.FC<Props> = (props: Props) => {
   };
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={BASE_NAME}>
       <Switch>
         <RouteWithPage
           exact

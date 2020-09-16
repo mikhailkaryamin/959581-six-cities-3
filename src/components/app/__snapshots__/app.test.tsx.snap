@@ -18,7 +18,7 @@ exports[`App render correctly App render correctly AUTH 1`] = `
         >
           <a
             className="header__logo-link header__logo-link--active"
-            href="/"
+            href="/959581-six-cities-3/"
             onClick={[Function]}
           >
             <img
@@ -41,7 +41,7 @@ exports[`App render correctly App render correctly AUTH 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="/favorite/"
+                href="/959581-six-cities-3/favorite/"
                 onClick={[Function]}
               >
                 <div
@@ -87,7 +87,7 @@ exports[`App render correctly App render correctly NO AUTH 1`] = `
         >
           <a
             className="header__logo-link header__logo-link--active"
-            href="/"
+            href="/959581-six-cities-3/"
             onClick={[Function]}
           >
             <img
@@ -110,7 +110,7 @@ exports[`App render correctly App render correctly NO AUTH 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="/login"
+                href="/959581-six-cities-3/login"
                 onClick={[Function]}
               >
                 <div

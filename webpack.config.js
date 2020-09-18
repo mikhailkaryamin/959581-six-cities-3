@@ -1,17 +1,18 @@
-const path = require(`path`);
+const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 
-const isProduction = process.env.NODE_ENV !== 'production';
+const isProduction = !process.env.WEBPACK_DEV_SERVER;
 
 const CONFIG = {
-  indexHtmlTemplate: './src/index.html',
+  indexHtmlTemplate: './public/index.html',
   indexTSX: './src/index.tsx',
   outputDir: './build',
   assetDir: './public',
-  publicDir: 'https://mikhailkaryamin.github.io/959581-six-cities-3/',
+  publicDirProduct: '/959581-six-cities-3',
+  publicDirDevServer: '/',
   devServerPort: 8000,
 };
 
@@ -25,18 +26,18 @@ const commonPlugins = [
     template: resolve(CONFIG.indexHtmlTemplate),
   }),
   new InterpolateHtmlPlugin(HtmlWebpackPlugin, {
-    PUBLIC_URL: CONFIG.publicDir,
+    PUBLIC_URL: isProduction ? CONFIG.publicDirProduct : '',
   }),
 ];
 
 module.exports = {
-  entry: `./src/index.tsx`,
+  entry: './src/index.tsx',
+  mode: isProduction ? 'production' : 'development',
   output: {
     filename: isProduction ? '[name].[hash].js' : '[name].js',
     path: resolve(CONFIG.outputDir),
-    publicPath: CONFIG.publicDir,
+    publicPath: isProduction ? CONFIG.publicDirProduct : CONFIG.publicDirDevServer,
   },
-  mode: isProduction ? 'production' : 'development',
   optimization: {
     splitChunks: {
       chunks: 'all',
@@ -47,6 +48,7 @@ module.exports = {
       new CopyWebpackPlugin({
         patterns: [{
           from: resolve(CONFIG.assetDir),
+          to: resolve(CONFIG.outputDir),
         }],
       }),
     ])
@@ -58,7 +60,7 @@ module.exports = {
     historyApiFallback: {
       index: '/',
     },
-    publicPath: CONFIG.publicDir,
+    publicPath: CONFIG.publicDirDevServer,
     port: CONFIG.devServerPort,
     hot: true,
     inline: true,
@@ -69,16 +71,16 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: `babel-loader`,
+          loader: 'babel-loader',
         },
       },
       {
         test: /\.(tsx|ts)?$/,
-        loader: `ts-loader`
+        loader: 'ts-loader'
       }
     ],
   },
   resolve: {
-    extensions: [`.ts`, `.tsx`, `.js`, `json`]
+    extensions: ['.ts', '.tsx', '.js', 'json']
   },
 };

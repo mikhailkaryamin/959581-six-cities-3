@@ -45,7 +45,7 @@
     "node": "10"
   },
   "dependencies": {
-    "axios": "0.19.2",
+    "axios": "0.21.1",
     "axios-mock-adapter": "1.17.0",
     "copy-webpack-plugin": "6.1.0",
     "csstype": "2.6.9",
